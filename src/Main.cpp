@@ -4,6 +4,8 @@
 /**
  * @brief Point d'entrée du programme
  */
+
+
 int main(int argc, char ** argv)
 {
     sf::Window window(sf::VideoMode(640, 480, 32), "El-Bombino", sf::Style::Default, sf::ContextSettings(32));
@@ -19,8 +21,6 @@ int main(int argc, char ** argv)
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
                 window.close();
         }
-
-
 
         window.display();
     }
