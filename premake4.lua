@@ -31,7 +31,8 @@ solution "El-Bombino"
   project "elbombino"
     language "C++"
     files { "src/**.cpp" }
-    sfml_libs = { "system", "window", "graphics", "audio" }
+    sfml_libs = { "graphics", "audio", "window", "system" }
+    defines { "SFML_STATIC" }
 
     configuration "Debug"
       kind "ConsoleApp"
