@@ -13,10 +13,10 @@ class Case;
 /**
  * @brief
  */
-class Objet : public sf::Sprite
+class Objet
 {
 private:
-    Case * _case;
+    const Case *    _case;
 
 public:
     Objet();

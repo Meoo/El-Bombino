@@ -16,7 +16,7 @@ class Soulevable;
 class Mobile : public Objet
 {
 private:
-    Soulevable _souleve;
+    Soulevable * _objet_souleve;
 
 public:
     Mobile();
