@@ -15,6 +15,7 @@ class Monde
 {
 private:
     std::vector<Niveau> _niveaux;
+    Niveau *            _niveau_courant;
 
 public:
     Monde();

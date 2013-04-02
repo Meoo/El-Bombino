@@ -22,6 +22,8 @@ private:
     sf::RenderWindow    _fenetre;
 
     std::vector<Monde>  _mondes;
+    Monde *             _monde_courant;
+
     Sauvegarde          _sauvegarde;
 
     sf::Texture         _flammes_texture;   //!< Texture des flammes
