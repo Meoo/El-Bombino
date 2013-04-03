@@ -13,7 +13,7 @@ class Case;
 /**
  * @brief
  */
-class Objet
+class Objet : public sf::Drawable
 {
 private:
     const Case *    _case;
@@ -21,6 +21,11 @@ private:
 public:
     Objet();
     virtual ~Objet();
+
+    // Fonction d'affichage de Drawable
+    virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const = 0;
+
+    virtual void mise_a_jour();
 
 };
 // class Objet

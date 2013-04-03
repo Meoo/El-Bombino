@@ -18,24 +18,31 @@ class Objet;
 class Case : public sf::Drawable
 {
 private:
-    Objet *     _objet;
-    sf::Sprite  _sprite;
+    Objet *         _objet;
+    sf::Texture *   _texture;
 
-    unsigned    _feu_duree;
-    sf::Color   _feu_couleur;
+    unsigned        _feu_duree;
+    sf::Color       _feu_couleur;
 
 public:
-    Case();
-    virtual ~Case();
+                    Case();
+    virtual         ~Case();
 
-    void enflammer(unsigned          duree   = FIRE_DEFAULT_TIME,
-                   const sf::Color & couleur = FIRE_DEFAULT_COLOR);
+    Objet *         get_objet();
+    const Objet *   get_objet() const;
 
-    bool est_en_feu() const;
-    unsigned get_duree_flammes() const;
+    void            enflammer(unsigned          duree   = FIRE_DEFAULT_TIME,
+                              const sf::Color & couleur = FIRE_DEFAULT_COLOR);
+
+    bool            est_en_feu() const;
+    unsigned        get_duree_flammes() const;
+
+    virtual bool    est_praticable();
 
     // Fonction d'affichage de Drawable
-    virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const;
+    virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
+
+    virtual void    mise_a_jour();
 
 };
 // class Case

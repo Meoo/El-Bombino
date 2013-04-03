@@ -12,10 +12,15 @@
 class Niveau
 {
 private:
+	unsigned	_largeur;
+	unsigned	_hauteur;
+	Case **		_cases;			//!< Tableau de pointeurs de case (taille : largeur x hauteur)
 
 public:
     Niveau();
     virtual ~Niveau();
+
+    virtual void mise_a_jour();
 
 };
 // class Niveau
