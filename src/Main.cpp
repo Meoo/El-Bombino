@@ -1,9 +1,12 @@
 
-#include <SFML/Window.hpp>
-
-/**
- * @brief Point d'entrée du programme
- */
+////////////////////////////////////////////////////////////
+// Headers
+////////////////////////////////////////////////////////////
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <cmath>
+#include <ctime>
+#include <cstdlib>
 
 
 int main(int argc, char ** argv)
