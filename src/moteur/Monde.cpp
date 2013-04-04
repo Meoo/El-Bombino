@@ -50,15 +50,23 @@ const sf::Texture* Monde::get_texture(const std::string & res) const
 
 void Monde::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+    assert(_niveau_courant != NULL);
+
+    _niveau_courant->draw(target, states);
 }
 
 void Monde::mise_a_jour()
 {
+    assert(_niveau_courant != NULL);
+
+    _niveau_courant->mise_a_jour();
 }
 
-void Monde::set_monde_courant(unsigned num)
+void Monde::set_niveau_courant(unsigned num)
 {
-    assert(num < MONDES_COUNT);
+    assert(num < _niveaux_count);
+
+    if (_niveau_courant == _niveaux[num]) return;
 
     if (_niveau_courant != NULL)
         _niveau_courant->liberer();

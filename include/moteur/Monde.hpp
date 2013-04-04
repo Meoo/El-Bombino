@@ -40,7 +40,7 @@ public:
     virtual void        mise_a_jour();
 
 protected:
-    void                set_monde_courant(unsigned num);
+    void                set_niveau_courant(unsigned num);
 
 };
 // class Monde

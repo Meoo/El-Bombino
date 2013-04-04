@@ -43,13 +43,13 @@ public:
 
     const sf::Texture * get_texture(const std::string & res) const;
 
+    Monde *             get_monde_courant();
+    const Monde *       get_monde_courant() const;
+
     // Fonction d'affichage de Drawable
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;
 
     virtual void        mise_a_jour();
-
-    Monde *             get_monde_courant();
-    const Monde *       get_monde_courant() const;
 
 protected:
     void                set_monde_courant(unsigned num);

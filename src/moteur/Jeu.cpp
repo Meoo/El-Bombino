@@ -6,6 +6,8 @@
 #include <moteur/Jeu.hpp>
 #include <moteur/Monde.hpp>
 
+Jeu Jeu::s_jeu;
+
 Jeu::Jeu() : _monde_courant(NULL)
 {
     _mondes = new Monde* [MONDES_COUNT];
@@ -33,20 +35,6 @@ const sf::Texture * Jeu::get_texture(const std::string & res) const
     return NULL;
 }
 
-void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    assert(_monde_courant != NULL);
-
-    _monde_courant->draw(target, states);
-}
-
-void Jeu::mise_a_jour()
-{
-    assert(_monde_courant != NULL);
-
-    _monde_courant->mise_a_jour();
-}
-
 Monde* Jeu::get_monde_courant()
 {
     assert(_monde_courant != NULL);
@@ -61,9 +49,25 @@ const Monde* Jeu::get_monde_courant() const
     return _monde_courant;
 }
 
+void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    assert(_monde_courant != NULL);
+
+    _monde_courant->draw(target, states);
+}
+
+void Jeu::mise_a_jour()
+{
+    assert(_monde_courant != NULL);
+
+    _monde_courant->mise_a_jour();
+}
+
 void Jeu::set_monde_courant(unsigned num)
 {
     assert(num < MONDES_COUNT);
+
+    if (_monde_courant == _mondes[num]) return;
 
     if (_monde_courant != NULL)
         _monde_courant->liberer();
