@@ -8,7 +8,7 @@
 
 #include <fstream>
 
-Monde::Monde(const std::string & fic) : _niveau_courant(NULL), _niveaux(NULL), _niveaux_count(0), _fichier_rc(fic)
+Monde::Monde(const std::string & fic) : _fichier_rc(fic), _niveaux_count(0), _niveaux(NULL),_niveau_courant(NULL)
 {
 }
 
