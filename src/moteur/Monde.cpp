@@ -1,6 +1,7 @@
 /**
  * @file   Monde.cpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #include <moteur/Monde.hpp>
@@ -8,7 +9,8 @@
 
 #include <fstream>
 
-Monde::Monde(const std::string & fic) : _fichier_rc(fic), _niveaux_count(0), _niveaux(NULL),_niveau_courant(NULL)
+Monde::Monde(const std::string & fic) :
+        _fichier_rc(fic), _niveaux_count(0), _niveaux(NULL), _niveau_courant(NULL)
 {
 }
 
@@ -51,14 +53,12 @@ const sf::Texture* Monde::get_texture(const std::string & res) const
 void Monde::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     assert(_niveau_courant != NULL);
-
     _niveau_courant->draw(target, states);
 }
 
 void Monde::mise_a_jour()
 {
     assert(_niveau_courant != NULL);
-
     _niveau_courant->mise_a_jour();
 }
 
@@ -66,7 +66,8 @@ void Monde::set_niveau_courant(unsigned num)
 {
     assert(num < _niveaux_count);
 
-    if (_niveau_courant == _niveaux[num]) return;
+    if (_niveau_courant == _niveaux[num])
+        return;
 
     if (_niveau_courant != NULL)
         _niveau_courant->liberer();

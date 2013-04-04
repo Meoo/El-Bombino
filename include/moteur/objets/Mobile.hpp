@@ -1,6 +1,7 @@
 /**
  * @file   Mobile.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef _MOBILE_HPP_

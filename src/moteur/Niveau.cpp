@@ -1,14 +1,13 @@
-/*
- * Niveau.cpp
- *
- *  Created on: 4 avr. 2013
- *      Author: Sanpas
+/**
+ * @file   Niveau.cpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
-
 
 #include <moteur/Niveau.hpp>
 
-Niveau::Niveau(const std::string & fic): _largeur(0), _hauteur(0), _cases(NULL), _fichier_rc(fic)
+Niveau::Niveau(const std::string & fic) :
+        _largeur(0), _hauteur(0), _cases(NULL), _fichier_rc(fic)
 {
 }
 
@@ -35,7 +34,7 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     assert(_cases != NULL);
 
-    for(unsigned i = 0; i < _largeur*_hauteur; ++i)
+    for (unsigned i = 0; i < _largeur * _hauteur; ++i)
         _cases[i]->draw(target, states);
 }
 
@@ -43,6 +42,6 @@ void Niveau::mise_a_jour()
 {
     assert(_cases != NULL);
 
-    for(unsigned i = 0; i < _largeur*_hauteur; ++i)
-         _cases[i]->mise_a_jour();
+    for (unsigned i = 0; i < _largeur * _hauteur; ++i)
+        _cases[i]->mise_a_jour();
 }

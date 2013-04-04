@@ -1,6 +1,7 @@
 /**
  * @file   Jeu.cpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #include <moteur/Jeu.hpp>
@@ -38,28 +39,24 @@ const sf::Texture * Jeu::get_texture(const std::string & res) const
 Monde* Jeu::get_monde_courant()
 {
     assert(_monde_courant != NULL);
-
     return _monde_courant;
 }
 
 const Monde* Jeu::get_monde_courant() const
 {
     assert(_monde_courant != NULL);
-
     return _monde_courant;
 }
 
 void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     assert(_monde_courant != NULL);
-
     _monde_courant->draw(target, states);
 }
 
 void Jeu::mise_a_jour()
 {
     assert(_monde_courant != NULL);
-
     _monde_courant->mise_a_jour();
 }
 
@@ -67,7 +64,8 @@ void Jeu::set_monde_courant(unsigned num)
 {
     assert(num < MONDES_COUNT);
 
-    if (_monde_courant == _mondes[num]) return;
+    if (_monde_courant == _mondes[num])
+        return;
 
     if (_monde_courant != NULL)
         _monde_courant->liberer();

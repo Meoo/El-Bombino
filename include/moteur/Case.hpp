@@ -1,6 +1,7 @@
 /**
  * @file   Case.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef _CASE_HPP_

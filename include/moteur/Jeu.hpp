@@ -1,6 +1,7 @@
 /**
  * @file   Jeu.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef _JEU_HPP_

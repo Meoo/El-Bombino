@@ -1,6 +1,7 @@
 /**
  * @file   Niveau.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef _NIVEAU_HPP_
@@ -24,16 +25,16 @@ private:
 	Case **		        _cases;			//!< Tableau de pointeurs de case (taille : largeur x hauteur)
 
 public:
-                    Niveau(const std::string & fic);
-    virtual         ~Niveau();
+                        Niveau(const std::string & fic);
+    virtual             ~Niveau();
 
-    void            charger();
-    void            liberer();
+    void                charger();
+    void                liberer();
 
     // Fonction d'affichage de Drawable
-    virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
+    virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;
 
-    virtual void    mise_a_jour();
+    virtual void        mise_a_jour();
 
 };
 // class Niveau

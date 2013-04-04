@@ -1,6 +1,7 @@
 /**
  * @file   Monde.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef _MONDE_HPP_

@@ -1,6 +1,7 @@
 /**
  * @file   Sauvegarde.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef _SAUVEGARDE_HPP_
