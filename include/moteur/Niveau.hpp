@@ -18,12 +18,13 @@ class Case;
 class Niveau : public sf::Drawable
 {
 private:
+    const std::string   _fichier_rc;
 	unsigned	_largeur;
 	unsigned	_hauteur;
 	Case **		_cases;			//!< Tableau de pointeurs de case (taille : largeur x hauteur)
 
 public:
-                    Niveau();
+                    Niveau(const std::string & fic);
     virtual         ~Niveau();
 
     void            charger();

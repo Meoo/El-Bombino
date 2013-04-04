@@ -26,7 +26,7 @@ private:
     Monde **            _mondes;
     Monde *             _monde_courant;
 
-    Sauvegarde          _sauvegarde;
+    /*Sauvegarde          _sauvegarde;*/
 
     /*sf::Texture         _flammes_texture;   //!< Texture des flammes
     sf::Sprite          _flammes_coin;      //!< Sprite de flamme qui fait un coin

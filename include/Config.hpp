@@ -6,6 +6,8 @@
 #ifndef _CONFIG_HPP_
 #define _CONFIG_HPP_
 
+#include <SFML/Graphics/Color.hpp>
+
 #include <string>
 #include <cassert>
 
