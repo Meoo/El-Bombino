@@ -14,14 +14,14 @@
 /**
  * @brief
  */
-class Jeu
+class Jeu : public sf::Drawable
 {
 private:
     Jeu();                                  //!< Constructeur private car c'est un singleton
 
     sf::RenderWindow    _fenetre;
 
-    std::vector<Monde>  _mondes;
+    Monde **            _mondes;
     Monde *             _monde_courant;
 
     Sauvegarde          _sauvegarde;
@@ -35,9 +35,16 @@ private:
     static Jeu          s_jeu;              //!< Singleton
 
 public:
-    virtual ~Jeu();
+    virtual             ~Jeu();
 
-    static Jeu & instance();
+    static Jeu &        instance();
+
+    const sf::Texture * get_texture(unsigned id) const;
+
+    // Fonction d'affichage de Drawable
+    virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;
+
+    virtual void        mise_a_jour();
 
 };
 // class Jeu
