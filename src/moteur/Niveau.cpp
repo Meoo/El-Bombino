@@ -5,6 +5,9 @@
  */
 
 #include <moteur/Niveau.hpp>
+#include <moteur/Case.hpp>
+
+#include <fstream>
 
 Niveau::Niveau(const std::string & fic) :
         _largeur(0), _hauteur(0), _cases(NULL), _fichier_rc(fic)

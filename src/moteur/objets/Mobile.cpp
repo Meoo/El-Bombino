@@ -1,15 +1,10 @@
-/*
- * Mobile.cpp
- *
- *  Created on: 4 avr. 2013
- *      Author: Sanpas
+/**
+ * @file   Mobile.cpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
-
-
-
-#include <objets/Mobile.hpp>
-
+#include <moteur/objets/Mobile.hpp>
 
 Mobile::Mobile(): _objet_souleve(NULL)
 {

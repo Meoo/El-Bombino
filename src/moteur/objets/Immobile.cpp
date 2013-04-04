@@ -1,13 +1,10 @@
-/*
- * Immobile.cpp
- *
- *  Created on: 4 avr. 2013
- *      Author: Sanpas
+/**
+ * @file   Immobile.cpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
-
-
-#include <objets/Immobile.hpp>
+#include <moteur/objets/Immobile.hpp>
 
 Immobile::Immobile()
 {

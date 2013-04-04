@@ -1,15 +1,10 @@
-/*
- * Objet.cpp
- *
- *  Created on: 4 avr. 2013
- *      Author: Sanpas
+/**
+ * @file   Objet.cpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
-
-
-#include <objet.hpp>
-
-
+#include <moteur/Objet.hpp>
 
 Objet::Objet(): _case(NULL)
 {

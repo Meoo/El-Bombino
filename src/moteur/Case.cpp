@@ -5,6 +5,7 @@
  */
 
 #include <moteur/Case.hpp>
+#include <moteur/Objet.hpp>
 
 Case::Case(unsigned x, unsigned y) :
         _x(x), _y(y), _objet(NULL), _feu_duree(0), _texture(0)

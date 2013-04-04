@@ -1,14 +1,10 @@
-/*
- * Soulevable.cpp
- *
- *  Created on: 4 avr. 2013
- *      Author: Sanpas
+/**
+ * @file   Soulevable.cpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
-
-
-
-#include <objets/Soulevable.hpp>
+#include <moteur/objets/Soulevable.hpp>
 
 Soulevable::Soulevable(): _porteur(NULL)
 {
