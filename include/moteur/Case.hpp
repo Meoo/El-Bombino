@@ -24,14 +24,18 @@ private:
     unsigned        _feu_duree;
     sf::Color       _feu_couleur;
 
+    const unsigned  _x;
+    const unsigned  _y;
+
 public:
-                    Case();
+                    Case(unsigned x, unsigned y);
     virtual         ~Case();
 
     Objet *         get_objet();
     const Objet *   get_objet() const;
 
-    void            enflammer(unsigned          duree   = FIRE_DEFAULT_TIME,
+    /// Renvoyer false si les flammes ne passe pas au travers de la case
+    virtual bool    enflammer(unsigned          duree   = FIRE_DEFAULT_TIME,
                               const sf::Color & couleur = FIRE_DEFAULT_COLOR);
 
     bool            est_en_feu() const;
