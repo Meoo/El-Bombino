@@ -27,7 +27,7 @@ public:
     // Fonction d'affichage de Drawable
     virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const = 0;
 
-    virtual void mise_a_jour();
+    virtual void mise_a_jour()                                                  = 0;
 
 };
 // class Objet

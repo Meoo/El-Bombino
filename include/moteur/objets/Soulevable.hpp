@@ -22,6 +22,10 @@ public:
     Soulevable();
     virtual ~Soulevable();
 
+    Mobile * get_poteur();
+    void souleve();
+
+    virtual void mise_a_jour();
 };
 // class Soulevable
 
