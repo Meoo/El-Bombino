@@ -6,7 +6,11 @@
 #ifndef _NIVEAU_HPP_
 #define _NIVEAU_HPP_
 
+#include "../Config.hpp"
+
 #include <SFML/Graphics.hpp>
+
+class Case;
 
 /**
  * @brief

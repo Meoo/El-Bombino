@@ -7,6 +7,7 @@
 #define _CONFIG_HPP_
 
 #include <string>
+#include <cassert>
 
 // Fenêtre principale
 const std::string   WINDOW_NAME         ("El Bombino");
@@ -19,6 +20,11 @@ const unsigned      TILE_SIZE           = 48;
 
 // Flammes
 const unsigned      FIRE_DEFAULT_TIME   = 25;               //!< En nombre d'affichages
-const sf::Color     FIRE_DEFAULT_COLOR  (0xFF, 0x33, 0x00); //!< Rouge légèrement orangé
+const sf::Color     FIRE_DEFAULT_COLOR  (0xFF, 0xCC, 0xBB); //!< Rouge légèrement orangé
+
+const unsigned      MONDES_COUNT        = 3;
+
+// Ressources
+const std::string   RC_FOLDER           ("rc/");
 
 #endif // _CONFIG_HPP_

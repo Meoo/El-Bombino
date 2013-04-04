@@ -6,9 +6,10 @@
 #ifndef _MONDE_HPP_
 #define _MONDE_HPP_
 
-#include <SFML/Graphics.hpp>
-
+#include "../Config.hpp"
 #include "Niveau.hpp"
+
+#include <SFML/Graphics.hpp>
 
 /**
  * @brief
@@ -16,11 +17,13 @@
 class Monde : public sf::Drawable
 {
 private:
+    const std::string   _fichier_rc;
+    unsigned            _niveaux_count;
     Niveau **           _niveaux;
     Niveau *            _niveau_courant;
 
 public:
-                        Monde();
+                        Monde(const std::string & fic);
     virtual             ~Monde();
 
     Niveau *            get_niveau_courant();
@@ -29,12 +32,15 @@ public:
     void                charger();
     void                liberer();
 
-    const sf::Texture * get_texture(unsigned id) const;
+    const sf::Texture * get_texture(const std::string & res) const;
 
     // Fonction d'affichage de Drawable
-    virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
+    virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;
 
-    virtual void    mise_a_jour();
+    virtual void        mise_a_jour();
+
+protected:
+    void                set_monde_courant(unsigned num);
 
 };
 // class Monde

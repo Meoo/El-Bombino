@@ -6,9 +6,9 @@
 #ifndef _CASE_HPP_
 #define _CASE_HPP_
 
-#include <SFML/Graphics.hpp>
-
 #include "../Config.hpp"
+
+#include <SFML/Graphics.hpp>
 
 class Objet;
 

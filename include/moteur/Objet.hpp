@@ -6,6 +6,8 @@
 #ifndef _OBJET_HPP_
 #define _OBJET_HPP_
 
+#include "../Config.hpp"
+
 #include <SFML/Graphics.hpp>
 
 class Case;

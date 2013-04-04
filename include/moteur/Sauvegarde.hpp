@@ -6,6 +6,8 @@
 #ifndef _SAUVEGARDE_HPP_
 #define _SAUVEGARDE_HPP_
 
+#include "../Config.hpp"
+
 /**
  * @brief
  */
