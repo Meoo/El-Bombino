@@ -30,10 +30,10 @@ const std::string   RC_JEU              ("jeu.txt");
 
 // Debug
 #ifdef NDEBUG
-#define LOG(x) ;
+#   define LOG(x) ;
 #else
-#include <iostream>
-#define LOG(x) std::cout << ( x ) << std::endl;
+#   include <iostream>
+#   define LOG(x) std::cout << ( x ) << std::endl;
 #endif
 
 #endif // _CONFIG_HPP_
