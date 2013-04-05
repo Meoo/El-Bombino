@@ -12,6 +12,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <map>
+
 class Monde;
 
 /**
@@ -24,6 +26,9 @@ private:
 
     sf::RenderWindow    _fenetre;
 
+    std::map<std::string, sf::Texture> _textures;
+
+    unsigned            _mondes_count;
     Monde **            _mondes;
     Monde *             _monde_courant;
 
@@ -42,7 +47,10 @@ public:
 
     static Jeu &        instance();
 
-    const sf::Texture * get_texture(const std::string & res) const;
+    void                charger();
+    void                liberer();
+
+    const sf::Texture & get_texture(const std::string & res) const;
 
     Monde *             get_monde_courant();
     const Monde *       get_monde_courant() const;

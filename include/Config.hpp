@@ -24,9 +24,16 @@ const unsigned      TILE_SIZE           = 48;
 const unsigned      FIRE_DEFAULT_TIME   = 25;               //!< En nombre d'affichages
 const sf::Color     FIRE_DEFAULT_COLOR  (0xFF, 0xCC, 0xBB); //!< Rouge légèrement orangé
 
-const unsigned      MONDES_COUNT        = 3;
-
 // Ressources
 const std::string   RC_FOLDER           ("rc/");
+const std::string   RC_JEU              ("jeu.txt");
+
+// Debug
+#ifdef NDEBUG
+#define LOG(x) ;
+#else
+#include <iostream>
+#define LOG(x) std::cout << ( x ) << std::endl;
+#endif
 
 #endif // _CONFIG_HPP_

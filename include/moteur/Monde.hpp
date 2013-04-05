@@ -33,7 +33,7 @@ public:
     void                charger();
     void                liberer();
 
-    const sf::Texture * get_texture(const std::string & res) const;
+    const sf::Texture & get_texture(const std::string & res) const;
 
     // Fonction d'affichage de Drawable
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;

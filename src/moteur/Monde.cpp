@@ -16,6 +16,7 @@ Monde::Monde(const std::string & fic) :
 
 Monde::~Monde()
 {
+    liberer();
 }
 
 Niveau* Monde::get_niveau_courant()
@@ -45,9 +46,10 @@ void Monde::liberer()
 {
 }
 
-const sf::Texture* Monde::get_texture(const std::string & res) const
+const sf::Texture & Monde::get_texture(const std::string & res) const
 {
-    return NULL;
+    assert(false);
+    return sf::Texture();
 }
 
 void Monde::draw(sf::RenderTarget& target, sf::RenderStates states) const

@@ -18,8 +18,13 @@ int main(int argc, char ** argv)
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
     window.setFramerateLimit(WINDOW_FRAMERATE);
 
+    Jeu::instance().charger();
+
     sf::Font font;
     font.loadFromFile("C:/Windows/Fonts/arial.ttf");
+
+    sf::Sprite sprite(Jeu::instance().get_texture("caisse"));
+    sprite.setPosition(50, 250);
 
     while (window.isOpen())
     {
@@ -43,11 +48,15 @@ int main(int argc, char ** argv)
 
         text.setPosition(20, 20);
         text.setColor(sf::Color::Blue);
-
         window.draw(text);
+
+        sprite.move(1, 0);
+        window.draw(sprite);
 
         window.display();
     }
+
+    Jeu::instance().liberer();
 
     return EXIT_SUCCESS;
 }

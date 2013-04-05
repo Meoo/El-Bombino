@@ -10,12 +10,13 @@
 #include <fstream>
 
 Niveau::Niveau(const std::string & fic) :
-        _largeur(0), _hauteur(0), _cases(NULL), _fichier_rc(fic)
+        _fichier_rc(fic), _largeur(0), _hauteur(0), _cases(NULL)
 {
 }
 
 Niveau::~Niveau()
 {
+    liberer();
 }
 
 void Niveau::charger()

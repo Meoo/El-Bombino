@@ -8,7 +8,7 @@
 #include <moteur/Objet.hpp>
 
 Case::Case(unsigned x, unsigned y) :
-        _x(x), _y(y), _objet(NULL), _feu_duree(0), _texture(0)
+        _objet(NULL), _texture(0), _feu_duree(0), _x(x), _y(y)
 {
 }
 

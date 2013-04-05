@@ -14,6 +14,7 @@ solution "El-Bombino"
   objdir "bin/obj"
   includedirs { "include", "../../SFML2/include" }
   libdirs "../../SFML2/bin/lib"
+  pcheader "include/Config.hpp"
 
   -- Configurations Debug et Release
   configuration "Debug"
