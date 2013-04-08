@@ -15,6 +15,7 @@ Objet::Objet(Case * cse) :
 
 Objet::~Objet()
 {
+    _case->set_objet(NULL);
 }
 
 Case * Objet::get_case()
