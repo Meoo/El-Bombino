@@ -26,12 +26,6 @@ const Objet * Case::get_objet() const
     return _objet;
 }
 
-void Case::set_objet(Objet* obj)
-{
-    assert(_objet == NULL);
-
-    _objet = obj;
-}
 
 bool Case::enflammer(unsigned duree, const sf::Color& couleur)
 {
@@ -70,6 +64,23 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
     if (_objet != NULL)
         target.draw(*_objet, states);
+}
+
+void Case::set_objet(Objet& objet)
+{
+    assert(_objet == NULL);
+
+    _objet = &obj;
+}
+
+const unsigned Case::get_x() const
+{
+    return _x;
+}
+
+const unsigned Case::get_y() const
+{
+    return _y;
 }
 
 void Case::mise_a_jour()
