@@ -33,21 +33,78 @@ const Niveau* Monde::get_niveau_courant() const
 
 void Monde::charger()
 {
-    std::ifstream fic;
+    std::fstream fic((RC_FOLDER + _fichier_rc).c_str(), std::ios_base::in);
+    if (!fic)
+    {
+        // Exception : Impossible d'ouvrir le fichier
+        assert(false && new std::string("Impossible d'ouvrir le fichier monde " + _fichier_rc));
+    }
+    fic.exceptions(std::ios_base::failbit | std::ios_base::badbit);
+    fic >> std::skipws;
 
-    fic.open((RC_FOLDER + _fichier_rc).c_str());
+    std::string clef, valeur;
+    std::vector<std::string> niveaux;
 
-    // TODO Lire le fichier
+    unsigned mode = 0;
 
+    // Lire jusqu'à EOF
+    LOG(std::string("Chargement du fichier de configuration : ") + _fichier_rc);
+    do
+    {
+        fic >> clef;
+        if (clef == "NIVEAUX")
+            mode = 1;
+        else if (clef == "TEXTURES")
+            mode = 2;
+        else
+        {
+            switch (mode)
+            {
+            case 1: // NIVEAUX
+                LOG(std::string("Niveau : ") + clef);
+                niveaux.push_back(clef);
+                break;
+
+            case 2: // TEXTURES
+                fic >> valeur;
+                LOG(std::string("Texture : ") + clef + " -> " + valeur);
+                _textures[clef].loadFromFile(RC_FOLDER + valeur);
+                break;
+
+            default: // ERREUR
+                // Exception : Pas de mode
+                assert(false);
+                break;
+            }
+        }
+    }
+    while (!fic.eof());
+    LOG("");
+
+    fic.close();
+
+    // Créer et initialiser les niveaux
+    _niveaux_count = niveaux.size();
+    _niveaux = new Niveau *[_niveaux_count];
+    for (unsigned i = 0; i < _niveaux_count; ++i)
+        _niveaux[i] = new Niveau(niveaux[i]);
     fic.close();
 }
 
 void Monde::liberer()
 {
+    for (unsigned i = 0; i < _niveaux_count; ++i)
+       delete _niveaux[i];
+   delete _niveaux;
+   _niveaux_count = 0;
+   _niveau_courant = NULL;
 }
 
 const sf::Texture & Monde::get_texture(const std::string & res) const
 {
+    if (_textures.count(res) > 0)
+        return _textures.at(res);
+
     assert(false);
     return sf::Texture();
 }

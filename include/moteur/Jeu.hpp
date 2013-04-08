@@ -60,7 +60,7 @@ public:
 
     virtual void        mise_a_jour();
 
-protected:
+/*protected:*/
     void                set_monde_courant(unsigned num);
 
 };
