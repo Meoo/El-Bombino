@@ -26,6 +26,13 @@ const Objet * Case::get_objet() const
     return _objet;
 }
 
+void Case::set_objet(Objet* obj)
+{
+    assert(_objet == NULL);
+
+    _objet = obj;
+}
+
 bool Case::enflammer(unsigned duree, const sf::Color& couleur)
 {
     if (_feu_duree > duree)

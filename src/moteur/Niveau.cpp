@@ -49,32 +49,33 @@ void Niveau::charger()
         switch (texture_case)
         {
             case 'M': // Mur
-                _cases[i] = new Case (i % _largeur, i / _hauteur, Jeu::instance().get_texture("mur"));
+                _cases[i] = new Case (i % _largeur, i / _largeur, Jeu::instance().get_texture("mur"));
 
                 break;
 
             case '_': // Sol
-                _cases[i] = new Case (i % _largeur, i / _hauteur, Jeu::instance().get_texture("sol"));
+                _cases[i] = new Case (i % _largeur, i / _largeur, Jeu::instance().get_texture("sol"));
 
                 break;
 
             case 'I': // Player
-                _cases[i] = new Case (i % _largeur, i / _hauteur, Jeu::instance().get_texture("sol"));
+                _cases[i] = new Case (i % _largeur, i / _largeur, Jeu::instance().get_texture("sol"));
 
                 break;
 
             case 'C': // Caisse
-                _cases[i] = new Case (i % _largeur, i / _hauteur, Jeu::instance().get_texture("sol"));
+                _cases[i] = new Case (i % _largeur, i / _largeur, Jeu::instance().get_texture("sol"));
+                _cases[i]->set_objet(new Caisse());
 
                 break;
 
             case '0': // Enemis
-                _cases[i] = new Case (i % _largeur, i / _hauteur, Jeu::instance().get_texture("mur"));
+                _cases[i] = new Case (i % _largeur, i / _largeur, Jeu::instance().get_texture("mur"));
 
                 break;
 
             case '1': // Enemis
-                _cases[i] = new Case (i % _largeur, i / _hauteur, Jeu::instance().get_texture("mur"));
+                _cases[i] = new Case (i % _largeur, i / _largeur, Jeu::instance().get_texture("mur"));
 
                 break;
 
@@ -95,6 +96,12 @@ void Niveau::charger()
 
 void Niveau::liberer()
 {
+    for(unsigned i = 0; i < _largeur * _hauteur; ++i)
+        delete _cases[i];
+    delete _cases;
+    _cases = NULL;
+    _hauteur = 0;
+    _largeur = 0;
 }
 
 void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const

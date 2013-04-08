@@ -53,7 +53,5 @@ int main(int argc, char ** argv)
         window.display();
     }
 
-    Jeu::instance().liberer();
-
     return EXIT_SUCCESS;
 }

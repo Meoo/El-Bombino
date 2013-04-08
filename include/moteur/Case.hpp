@@ -34,6 +34,7 @@ public:
 
     Objet *         get_objet();
     const Objet *   get_objet() const;
+    void            set_objet(Objet* obj);
 
     /// Renvoyer false si les flammes ne passe pas au travers de la case
     virtual bool    enflammer(unsigned          duree   = FIRE_DEFAULT_TIME,
@@ -48,6 +49,7 @@ public:
     virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
 
     virtual void    mise_a_jour();
+
 
 };
 // class Case
