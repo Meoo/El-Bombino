@@ -86,8 +86,6 @@ void Monde::charger()
     while (!fic.eof());
     LOG("");
 
-    fic.close();
-
     // Créer et initialiser les niveaux
     _niveaux_count = niveaux.size();
     _niveaux = new Niveau *[_niveaux_count];
