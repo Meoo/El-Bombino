@@ -14,6 +14,8 @@ Case::Case(unsigned x, unsigned y, const sf::Texture & texture) :
 
 Case::~Case()
 {
+    if (_objet != NULL)
+        delete _objet;
 }
 
 Objet * Case::get_objet()
@@ -25,7 +27,6 @@ const Objet * Case::get_objet() const
 {
     return _objet;
 }
-
 
 bool Case::enflammer(unsigned duree, const sf::Color& couleur)
 {
@@ -66,19 +67,19 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
         target.draw(*_objet, states);
 }
 
-void Case::set_objet(Objet& objet)
+void Case::set_objet(Objet * objet)
 {
     assert(_objet == NULL);
 
-    _objet = &obj;
+    _objet = objet;
 }
 
-const unsigned Case::get_x() const
+unsigned Case::get_x() const
 {
     return _x;
 }
 
-const unsigned Case::get_y() const
+unsigned Case::get_y() const
 {
     return _y;
 }

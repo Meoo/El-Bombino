@@ -16,7 +16,7 @@ class Immobile : public Objet
 private:
 
 public:
-    Immobile();
+    Immobile(Case * cse);
     virtual ~Immobile();
 
     virtual void mise_a_jour();

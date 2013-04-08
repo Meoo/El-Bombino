@@ -38,11 +38,13 @@ int main(int argc, char ** argv)
                 window.close();
         }
 
-        window.clear(FIRE_DEFAULT_COLOR);
+        window.clear(sf::Color::Black);
 
         Jeu::instance().mise_a_jour();
 
         window.draw(Jeu::instance());
+
+        window.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
         sf::Text text(WINDOW_NAME, font);
 

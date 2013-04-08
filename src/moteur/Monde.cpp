@@ -96,12 +96,12 @@ void Monde::charger()
 void Monde::liberer()
 {
     for (unsigned i = 0; i < _niveaux_count; ++i)
-       delete _niveaux[i];
-   delete _niveaux;
-   _niveaux_count = 0;
-   _niveau_courant = NULL;
+        delete _niveaux[i];
+    delete _niveaux;
+    _niveaux_count = 0;
+    _niveau_courant = NULL;
 
-   _textures.clear();
+    _textures.clear();
 }
 
 const sf::Texture & Monde::get_texture(const std::string & res) const

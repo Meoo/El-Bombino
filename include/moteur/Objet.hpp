@@ -18,16 +18,20 @@ class Case;
 class Objet : public sf::Drawable
 {
 private:
-    const Case *    _case;
+    Case *          _case;
 
 public:
-    Objet();
-    virtual ~Objet();
+                    Objet(Case * cse);
+    virtual         ~Objet();
+
+    Case *          get_case();
+    const Case *    get_case() const;
+    void            set_case(Case * cse);
 
     // Fonction d'affichage de Drawable
-    virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const = 0;
+    virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const = 0;
 
-    virtual void mise_a_jour()                                                  = 0;
+    virtual void    mise_a_jour();
 
 };
 // class Objet

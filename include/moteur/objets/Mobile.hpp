@@ -20,12 +20,13 @@ private:
     Soulevable * _objet_souleve;
 
 public:
-    Mobile();
+    Mobile(Case * cse);
     virtual ~Mobile();
 
     Soulevable * get_objet_souleve();
 
     virtual void mise_a_jour();
+
 };
 // class Mobile
 

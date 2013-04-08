@@ -35,10 +35,8 @@ public:
     Objet *         get_objet();
     const Objet *   get_objet() const;
 
-    void            set_objet(Objet &objet);
-
-    const unsigned  get_x() const;
-    const unsigned  get_y() const;
+    unsigned        get_x() const;
+    unsigned        get_y() const;
 
     /// Renvoyer false si les flammes ne passe pas au travers de la case
     virtual bool    enflammer(unsigned          duree   = FIRE_DEFAULT_TIME,
@@ -54,7 +52,9 @@ public:
 
     virtual void    mise_a_jour();
 
-
+private:
+    friend class Objet;
+    void            set_objet(Objet * objet);
 };
 // class Case
 

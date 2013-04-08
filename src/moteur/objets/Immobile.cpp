@@ -6,7 +6,8 @@
 
 #include <moteur/objets/Immobile.hpp>
 
-Immobile::Immobile()
+Immobile::Immobile(Case * cse) :
+        Objet(cse)
 {
 }
 
