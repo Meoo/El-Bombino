@@ -77,6 +77,7 @@ void Monde::charger()
                 break;
             }
         }
+        fic >> std::ws;
     }
     while (!fic.eof());
     LOG("");
