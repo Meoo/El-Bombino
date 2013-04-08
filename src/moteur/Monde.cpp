@@ -6,7 +6,9 @@
 
 #include <moteur/Monde.hpp>
 #include <moteur/Niveau.hpp>
+#include <moteur/exceptions/ExceptionRessource.hpp>
 
+#include <vector>
 #include <fstream>
 
 Monde::Monde(const std::string & fic) :
@@ -35,10 +37,9 @@ void Monde::charger()
 {
     std::fstream fic((RC_FOLDER + _fichier_rc).c_str(), std::ios_base::in);
     if (!fic)
-    {
-        // Exception : Impossible d'ouvrir le fichier
-        assert(false && new std::string("Impossible d'ouvrir le fichier monde " + _fichier_rc));
-    }
+        throw ExceptionRessource(_fichier_rc,
+                "Impossible d'ouvrir le fichier de configuration");
+
     fic.exceptions(std::ios_base::failbit | std::ios_base::badbit);
     fic >> std::skipws;
 
@@ -66,15 +67,18 @@ void Monde::charger()
                 break;
 
             case 2: // TEXTURES
+                fic >> std::ws;
+                if (fic.eof())
+                    throw ExceptionRessource(RC_JEU,
+                            std::string("Pas de valeur pour la texture : ")
+                                    + clef);
                 fic >> valeur;
                 LOG(std::string("Texture : ") + clef + " -> " + valeur);
                 _textures[clef].loadFromFile(RC_FOLDER + valeur);
                 break;
 
             default: // ERREUR
-                // Exception : Pas de mode
-                assert(false);
-                break;
+                throw ExceptionRessource(_fichier_rc, "Le fichier est mal formé (pas de mode)");
             }
         }
         fic >> std::ws;
@@ -89,7 +93,6 @@ void Monde::charger()
     _niveaux = new Niveau *[_niveaux_count];
     for (unsigned i = 0; i < _niveaux_count; ++i)
         _niveaux[i] = new Niveau(niveaux[i]);
-    fic.close();
 }
 
 void Monde::liberer()
@@ -106,8 +109,7 @@ const sf::Texture & Monde::get_texture(const std::string & res) const
     if (_textures.count(res) > 0)
         return _textures.at(res);
 
-    assert(false);
-    return sf::Texture();
+    throw ExceptionRessource(res, "La ressource demandée n'existe pas");
 }
 
 void Monde::draw(sf::RenderTarget& target, sf::RenderStates states) const

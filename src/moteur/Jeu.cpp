@@ -6,6 +6,7 @@
 
 #include <moteur/Jeu.hpp>
 #include <moteur/Monde.hpp>
+#include <moteur/exceptions/ExceptionRessource.hpp>
 
 #include <vector>
 #include <fstream>
@@ -31,16 +32,14 @@ void Jeu::charger()
 {
     std::fstream fic((RC_FOLDER + RC_JEU).c_str(), std::ios_base::in);
     if (!fic)
-    {
-        // Exception : Impossible d'ouvrir le fichier
-        assert(false && "Impossible d'ouvrir le fichier jeu");
-    }
+        throw ExceptionRessource(RC_JEU,
+                "Impossible d'ouvrir le fichier de configuration");
+
     fic.exceptions(std::ios_base::failbit | std::ios_base::badbit);
     fic >> std::skipws;
 
     std::string clef, valeur;
     std::vector<std::string> mondes;
-
     unsigned mode = 0;
 
     // Lire jusqu'à EOF
@@ -62,15 +61,18 @@ void Jeu::charger()
                 break;
 
             case 2: // TEXTURES
+                fic >> std::ws;
+                if (fic.eof())
+                    throw ExceptionRessource(RC_JEU,
+                            std::string("Pas de valeur pour la texture : ")
+                                    + clef);
                 fic >> valeur;
                 LOG(std::string("Texture : ") + clef + " -> " + valeur);
                 _textures[clef].loadFromFile(RC_FOLDER + valeur);
                 break;
 
             default: // ERREUR
-                // Exception : Pas de mode
-                assert(false);
-                break;
+                throw ExceptionRessource(RC_JEU, "Le fichier est mal formé (pas de mode)");
             }
         }
         fic >> std::ws;
@@ -85,6 +87,8 @@ void Jeu::charger()
     _mondes = new Monde*[_mondes_count];
     for (unsigned i = 0; i < _mondes_count; ++i)
         _mondes[i] = new Monde(mondes[i]);
+
+    // TODO : Charger la sauvegarde
 }
 
 void Jeu::liberer()
@@ -94,6 +98,8 @@ void Jeu::liberer()
     delete _mondes;
     _mondes_count = 0;
     _monde_courant = NULL;
+
+    _textures.clear();
 }
 
 const sf::Texture & Jeu::get_texture(const std::string & res) const
@@ -104,8 +110,7 @@ const sf::Texture & Jeu::get_texture(const std::string & res) const
     if (_monde_courant != NULL)
         return _monde_courant->get_texture(res);
 
-    assert(false);
-    return sf::Texture();
+    throw ExceptionRessource(res, "La ressource demandée n'existe pas");
 }
 
 Monde* Jeu::get_monde_courant()
