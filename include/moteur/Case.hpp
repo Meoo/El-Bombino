@@ -20,7 +20,7 @@ class Case : public sf::Drawable
 {
 private:
     Objet *         _objet;
-    sf::Texture *   _texture;
+    const sf::Texture * _texture;
 
     unsigned        _feu_duree;
     sf::Color       _feu_couleur;
@@ -29,7 +29,7 @@ private:
     const unsigned  _y;
 
 public:
-                    Case(unsigned x, unsigned y);
+                    Case(unsigned x, unsigned y, const sf::Texture & texture);
     virtual         ~Case();
 
     Objet *         get_objet();

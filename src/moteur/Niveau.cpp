@@ -39,7 +39,7 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
     assert(_cases != NULL);
 
     for (unsigned i = 0; i < _largeur * _hauteur; ++i)
-        _cases[i]->draw(target, states);
+        target.draw(*_cases[i], states);
 }
 
 void Niveau::mise_a_jour()

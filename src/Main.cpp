@@ -21,12 +21,10 @@ int main(int argc, char ** argv)
     Jeu::instance().charger();
 
     Jeu::instance().set_monde_courant(0);
+    Jeu::instance().get_monde_courant().set_niveau_courant(0);
 
     sf::Font font;
     font.loadFromFile("C:/Windows/Fonts/arial.ttf");
-
-    sf::Sprite sprite(Jeu::instance().get_texture("caisse"));
-    sprite.setPosition(50, 250);
 
     while (window.isOpen())
     {
@@ -42,18 +40,15 @@ int main(int argc, char ** argv)
 
         window.clear(FIRE_DEFAULT_COLOR);
 
-        /*Jeu::instance().mise_a_jour();
+        Jeu::instance().mise_a_jour();
 
-        window.draw(Jeu::instance());*/
+        window.draw(Jeu::instance());
 
         sf::Text text(WINDOW_NAME, font);
 
         text.setPosition(20, 20);
         text.setColor(sf::Color::Blue);
         window.draw(text);
-
-        sprite.move(1, 0);
-        window.draw(sprite);
 
         window.display();
     }

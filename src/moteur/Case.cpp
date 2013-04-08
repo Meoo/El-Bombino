@@ -7,8 +7,8 @@
 #include <moteur/Case.hpp>
 #include <moteur/Objet.hpp>
 
-Case::Case(unsigned x, unsigned y) :
-        _objet(NULL), _texture(0), _feu_duree(0), _x(x), _y(y)
+Case::Case(unsigned x, unsigned y, const sf::Texture & texture) :
+        _objet(NULL), _texture(&texture), _feu_duree(0), _x(x), _y(y)
 {
 }
 
@@ -56,8 +56,13 @@ bool Case::est_praticable()
 
 void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+    sf::Sprite sprite(*_texture);
+    sprite.setPosition(_x * TILE_SIZE, _y * TILE_SIZE);
+    sprite.setOrigin(0, 0);
+    target.draw(sprite, states);
+
     if (_objet != NULL)
-        _objet->draw(target, states);
+        target.draw(*_objet, states);
 }
 
 void Case::mise_a_jour()

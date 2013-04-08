@@ -30,8 +30,8 @@ public:
                         Monde(const std::string & fic);
     virtual             ~Monde();
 
-    Niveau *            get_niveau_courant();
-    const Niveau *      get_niveau_courant() const;
+    Niveau &            get_niveau_courant();
+    const Niveau &      get_niveau_courant() const;
 
     void                charger();
     void                liberer();
@@ -43,7 +43,7 @@ public:
 
     virtual void        mise_a_jour();
 
-protected:
+/*protected:*/
     void                set_niveau_courant(unsigned num);
 
 };

@@ -104,31 +104,31 @@ void Jeu::liberer()
 
 const sf::Texture & Jeu::get_texture(const std::string & res) const
 {
-    if (_textures.count(res) > 0)
-        return _textures.at(res);
-
     if (_monde_courant != NULL)
         return _monde_courant->get_texture(res);
+
+    if (_textures.count(res) > 0)
+        return _textures.at(res);
 
     throw ExceptionRessource(res, "La ressource demandée n'existe pas");
 }
 
-Monde* Jeu::get_monde_courant()
+Monde & Jeu::get_monde_courant()
 {
     assert(_monde_courant != NULL);
-    return _monde_courant;
+    return *_monde_courant;
 }
 
-const Monde* Jeu::get_monde_courant() const
+const Monde & Jeu::get_monde_courant() const
 {
     assert(_monde_courant != NULL);
-    return _monde_courant;
+    return *_monde_courant;
 }
 
 void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     assert(_monde_courant != NULL);
-    _monde_courant->draw(target, states);
+    target.draw(*_monde_courant, states);
 }
 
 void Jeu::mise_a_jour()
