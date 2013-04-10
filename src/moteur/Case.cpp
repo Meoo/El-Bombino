@@ -60,7 +60,7 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     sf::Sprite sprite(*_texture);
     sprite.setPosition(_x * TILE_SIZE, _y * TILE_SIZE);
-    sprite.setOrigin(0, 0);
+    sprite.setOrigin(0, TILE_SIZE - sprite.getTexture()->getSize().y);
     target.draw(sprite, states);
 
     if (_objet != NULL)

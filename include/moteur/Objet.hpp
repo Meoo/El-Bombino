@@ -11,12 +11,15 @@
 #include <SFML/Graphics.hpp>
 
 class Case;
+class Soulevable;
 
 /**
  * @brief
  */
 class Objet : public sf::Drawable
 {
+    friend class Soulevable;
+
 private:
     Case *          _case;
 
@@ -24,8 +27,8 @@ public:
                     Objet(Case * cse);
     virtual         ~Objet();
 
-    Case *          get_case();
-    const Case *    get_case() const;
+    virtual Case *  get_case();
+    virtual const Case * get_case() const;
     void            set_case(Case * cse);
 
     // Fonction d'affichage de Drawable

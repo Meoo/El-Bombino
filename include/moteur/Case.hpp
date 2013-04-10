@@ -12,12 +12,16 @@
 #include <SFML/Graphics.hpp>
 
 class Objet;
+class Soulevable;
 
 /**
  * @brief
  */
 class Case : public sf::Drawable
 {
+    friend class Objet;
+    friend class Soulevable;
+
 private:
     Objet *         _objet;
     const sf::Texture * _texture;
@@ -53,7 +57,6 @@ public:
     virtual void    mise_a_jour();
 
 private:
-    friend class Objet;
     void            set_objet(Objet * objet);
 };
 // class Case

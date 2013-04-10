@@ -59,7 +59,7 @@ public:
 
     virtual void        mise_a_jour();
 
-/*protected:*/
+/*TODO protected:*/
     void                set_monde_courant(unsigned num);
 
 };

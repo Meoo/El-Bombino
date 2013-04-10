@@ -38,8 +38,9 @@ void Niveau::charger()
     if (_largeur <= 0 || _hauteur <= 0)
         throw ExceptionRessource(_fichier_rc, "Largeur ou heuteur incorrecte");
 
-    _cases = new Case*[_largeur * _hauteur];
-    // Lire jusqu'à EOF
+    _cases = new Case* [_largeur * _hauteur];
+
+    // Lire toutes les cases
     LOG(std::string("Chargement du fichier de configuration : ") + _fichier_rc);
     for (unsigned i = 0; i < _largeur * _hauteur && !fic.eof(); ++i)
     {
@@ -82,8 +83,9 @@ void Niveau::charger()
             throw ExceptionRessource(_fichier_rc,
                     "Le fichier est mal formé (pas de mode)");
         }
-        fic >> std::ws;
     }
+
+    // Vérifier que le fichier soit vide
     fic >> std::ws;
     if (!fic.eof())
         throw ExceptionRessource(_fichier_rc, "Le fichier est mal formé");
@@ -106,12 +108,11 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     assert(_cases != NULL);
 
-    target.setView(
-            sf::View(
-                    sf::Vector2f(_largeur * TILE_SIZE / 2,
-                            _hauteur * TILE_SIZE / 2),
+    target.setView(sf::View(
+                    sf::Vector2f(_largeur * TILE_SIZE / 2, _hauteur * TILE_SIZE / 2),
                     sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)));
 
+    // Dessiner toutes les cases
     for (unsigned i = 0; i < _largeur * _hauteur; ++i)
         target.draw(*_cases[i], states);
 }
@@ -120,6 +121,7 @@ void Niveau::mise_a_jour()
 {
     assert(_cases != NULL);
 
+    // Mettre à jour toutes les cases
     for (unsigned i = 0; i < _largeur * _hauteur; ++i)
         _cases[i]->mise_a_jour();
 }

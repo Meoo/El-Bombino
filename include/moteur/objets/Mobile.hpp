@@ -16,16 +16,19 @@ class Soulevable;
  */
 class Mobile : public Objet
 {
+    friend class Soulevable;
+
 private:
-    Soulevable * _objet_souleve;
+    Soulevable *        _objet_souleve;
 
 public:
-    Mobile(Case * cse);
-    virtual ~Mobile();
+                        Mobile(Case * cse);
+    virtual             ~Mobile();
 
-    Soulevable * get_objet_souleve();
+    Soulevable *        get_objet_souleve();
+    const Soulevable *  get_objet_souleve() const;
 
-    virtual void mise_a_jour();
+    virtual void        mise_a_jour();
 
 };
 // class Mobile

@@ -43,7 +43,7 @@ public:
 
     virtual void        mise_a_jour();
 
-/*protected:*/
+/*TODO protected:*/
     void                set_niveau_courant(unsigned num);
 
 };
