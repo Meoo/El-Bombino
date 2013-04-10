@@ -24,6 +24,10 @@ private:
 	unsigned	        _hauteur;
 	Case **		        _cases;			//!< Tableau de pointeurs de case (taille : largeur x hauteur)
 
+#ifndef NDEBUG
+    bool                _pret;
+#endif
+
 public:
                         Niveau(const std::string & fic);
     virtual             ~Niveau();

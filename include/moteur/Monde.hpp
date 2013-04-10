@@ -29,6 +29,9 @@ private:
     Niveau **           _niveaux;
     Niveau *            _niveau_courant;
 
+#ifndef NDEBUG
+    bool                _pret;
+#endif
 
 public:
                         Monde(const std::string & fic);

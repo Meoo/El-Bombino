@@ -32,6 +32,10 @@ private:
     Monde **            _mondes;
     Monde *             _monde_courant;
 
+#ifndef NDEBUG
+    bool                _pret;
+#endif
+
     /*Sauvegarde          _sauvegarde;*/
 
     /*sf::Texture         _flammes_texture;   //!< Texture des flammes

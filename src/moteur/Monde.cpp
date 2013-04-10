@@ -14,6 +14,9 @@
 
 Monde::Monde(const std::string & fic) :
         _fichier_rc(fic), _niveaux_count(0), _niveaux(NULL), _niveau_courant(NULL)
+#ifndef NDEBUG
+        , _pret(false)
+#endif
 {
 }
 
@@ -36,6 +39,8 @@ const Niveau & Monde::get_niveau_courant() const
 
 void Monde::charger()
 {
+    assert(!_pret);
+
     std::fstream fic((RC_FOLDER + _fichier_rc).c_str(), std::ios_base::in);
     if (!fic)
         throw ExceptionRessource(_fichier_rc,
@@ -95,6 +100,10 @@ void Monde::charger()
     _niveaux = new Niveau *[_niveaux_count];
     for (unsigned i = 0; i < _niveaux_count; ++i)
         _niveaux[i] = new Niveau(niveaux[i]);
+
+#ifndef NDEBUG
+    _pret = true;
+#endif
 }
 
 void Monde::liberer()
@@ -102,14 +111,21 @@ void Monde::liberer()
     for (unsigned i = 0; i < _niveaux_count; ++i)
         delete _niveaux[i];
     delete _niveaux;
+    _niveaux = NULL;
     _niveaux_count = 0;
     _niveau_courant = NULL;
 
     _textures.clear();
+
+#ifndef NDEBUG
+    _pret = false;
+#endif
 }
 
 const sf::Texture & Monde::get_texture(const std::string & res) const
 {
+    assert(_pret);
+
     if (_textures.count(res) > 0)
     {
         const std::vector<sf::Texture> & vec = _textures.at(res);
@@ -121,19 +137,21 @@ const sf::Texture & Monde::get_texture(const std::string & res) const
 
 void Monde::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    assert(_niveau_courant != NULL);
+    assert(_pret && _niveau_courant != NULL);
+
     target.draw(*_niveau_courant, states);
 }
 
 void Monde::mise_a_jour()
 {
-    assert(_niveau_courant != NULL);
+    assert(_pret && _niveau_courant != NULL);
+
     _niveau_courant->mise_a_jour();
 }
 
 void Monde::set_niveau_courant(unsigned num)
 {
-    assert(num < _niveaux_count);
+    assert(_pret && num < _niveaux_count);
 
     if (_niveau_courant != NULL)
         _niveau_courant->liberer();

@@ -15,6 +15,9 @@ Jeu Jeu::s_jeu;
 
 Jeu::Jeu() :
         _mondes_count(0), _mondes(NULL), _monde_courant(NULL)
+#ifndef NDEBUG
+        , _pret(false)
+#endif
 {
 }
 
@@ -30,6 +33,8 @@ Jeu& Jeu::instance()
 
 void Jeu::charger()
 {
+    assert(!_pret);
+
     std::fstream fic((RC_FOLDER + RC_JEU).c_str(), std::ios_base::in);
     if (!fic)
         throw ExceptionRessource(RC_JEU,
@@ -76,7 +81,8 @@ void Jeu::charger()
                 break;
 
             default: // ERREUR
-                throw ExceptionRessource(RC_JEU, "Le fichier est mal formé (pas de mode)");
+                throw ExceptionRessource(RC_JEU,
+                        "Le fichier est mal formé (pas de mode)");
             }
         }
         fic >> std::ws;
@@ -93,6 +99,10 @@ void Jeu::charger()
         _mondes[i] = new Monde(mondes[i]);
 
     // TODO : Charger la sauvegarde
+
+#ifndef NDEBUG
+    _pret = true;
+#endif
 }
 
 void Jeu::liberer()
@@ -100,20 +110,29 @@ void Jeu::liberer()
     for (unsigned i = 0; i < _mondes_count; ++i)
         delete _mondes[i];
     delete _mondes;
+    _mondes = NULL;
     _mondes_count = 0;
     _monde_courant = NULL;
 
     _textures.clear();
+
+#ifndef NDEBUG
+    _pret = false;
+#endif
 }
 
 const sf::Texture & Jeu::get_texture(const std::string & res) const
 {
+    assert(_pret);
+
     try
     {
         if (_monde_courant != NULL)
             return _monde_courant->get_texture(res);
     }
-    catch (const ExceptionRessource & e) {} // TODO Super moche! Faire un has_texture(res)
+    catch (const ExceptionRessource & e)
+    {
+    } // TODO Super moche! Faire un has_texture(res)
 
     if (_textures.count(res) > 0)
     {
@@ -126,31 +145,35 @@ const sf::Texture & Jeu::get_texture(const std::string & res) const
 
 Monde & Jeu::get_monde_courant()
 {
-    assert(_monde_courant != NULL);
+    assert(_pret && _monde_courant != NULL);
+
     return *_monde_courant;
 }
 
 const Monde & Jeu::get_monde_courant() const
 {
-    assert(_monde_courant != NULL);
+    assert(_pret && _monde_courant != NULL);
+
     return *_monde_courant;
 }
 
 void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    assert(_monde_courant != NULL);
+    assert(_pret && _monde_courant != NULL);
+
     target.draw(*_monde_courant, states);
 }
 
 void Jeu::mise_a_jour()
 {
-    assert(_monde_courant != NULL);
+    assert(_pret && _monde_courant != NULL);
+
     _monde_courant->mise_a_jour();
 }
 
 void Jeu::set_monde_courant(unsigned num)
 {
-    assert(num < _mondes_count);
+    assert(_pret && num < _mondes_count);
 
     if (_monde_courant != NULL)
         _monde_courant->liberer();

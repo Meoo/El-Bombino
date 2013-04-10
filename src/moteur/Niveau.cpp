@@ -14,6 +14,9 @@
 
 Niveau::Niveau(const std::string & fic) :
         _fichier_rc(fic), _largeur(0), _hauteur(0), _cases(NULL)
+#ifndef NDEBUG
+        , _pret(false)
+#endif
 {
 }
 
@@ -24,6 +27,8 @@ Niveau::~Niveau()
 
 void Niveau::charger()
 {
+    assert(!_pret);
+
     std::fstream fic((RC_FOLDER + _fichier_rc).c_str(), std::ios_base::in);
     if (!fic)
         throw ExceptionRessource(_fichier_rc,
@@ -92,6 +97,10 @@ void Niveau::charger()
     LOG("");
 
     fic.close();
+
+#ifndef NDEBUG
+    _pret = true;
+#endif
 }
 
 void Niveau::liberer()
@@ -100,13 +109,17 @@ void Niveau::liberer()
         delete _cases[i];
     delete _cases;
     _cases = NULL;
-    _hauteur = 0;
     _largeur = 0;
+    _hauteur = 0;
+
+#ifndef NDEBUG
+    _pret = false;
+#endif
 }
 
 void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    assert(_cases != NULL);
+    assert(_pret);
 
     target.setView(sf::View(
                     sf::Vector2f(_largeur * TILE_SIZE / 2, _hauteur * TILE_SIZE / 2),
@@ -119,7 +132,7 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 void Niveau::mise_a_jour()
 {
-    assert(_cases != NULL);
+    assert(_pret);
 
     // Mettre à jour toutes les cases
     for (unsigned i = 0; i < _largeur * _hauteur; ++i)
