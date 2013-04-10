@@ -152,9 +152,6 @@ void Jeu::set_monde_courant(unsigned num)
 {
     assert(num < _mondes_count);
 
-    if (_monde_courant == _mondes[num])
-        return;
-
     if (_monde_courant != NULL)
         _monde_courant->liberer();
 

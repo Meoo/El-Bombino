@@ -38,6 +38,14 @@ int main(int argc, char ** argv)
 
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
                 window.close();
+
+#ifndef NDEBUG
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::F1))
+            {
+                Jeu::instance().set_monde_courant(0);
+                Jeu::instance().get_monde_courant().set_niveau_courant(0);
+            }
+#endif
         }
 
         window.clear(sf::Color::Black);

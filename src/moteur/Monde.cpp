@@ -135,9 +135,6 @@ void Monde::set_niveau_courant(unsigned num)
 {
     assert(num < _niveaux_count);
 
-    if (_niveau_courant == _niveaux[num])
-        return;
-
     if (_niveau_courant != NULL)
         _niveau_courant->liberer();
 
