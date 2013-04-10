@@ -59,8 +59,9 @@ bool Case::est_praticable()
 void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     sf::Sprite sprite(*_texture);
-    sprite.setPosition(_x * TILE_SIZE, _y * TILE_SIZE);
-    sprite.setOrigin(0, TILE_SIZE - sprite.getTexture()->getSize().y);
+    sprite.setPosition((float) _x * TILE_SIZE,
+            (float) _y * TILE_SIZE + (float) TILE_SIZE
+                    - (float) sprite.getTexture()->getSize().y);
     target.draw(sprite, states);
 
     if (_objet != NULL)
