@@ -12,13 +12,17 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <map>
+#include <vector>
+
+
 /**
  * @brief
  */
 class Monde : public sf::Drawable
 {
 private:
-    std::map<std::string, sf::Texture>  _textures;
+    std::map<std::string, std::vector<sf::Texture> > _textures;
 
     const std::string   _fichier_rc;
     unsigned            _niveaux_count;

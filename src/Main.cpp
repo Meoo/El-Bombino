@@ -15,6 +15,8 @@
 
 int main(int argc, char ** argv)
 {
+    srand(time(NULL));
+
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
     window.setFramerateLimit(WINDOW_FRAMERATE);
 

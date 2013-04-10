@@ -14,6 +14,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <map>
+#include <vector>
 
 /**
  * @brief
@@ -25,7 +26,7 @@ private:
 
     sf::RenderWindow    _fenetre;
 
-    std::map<std::string, sf::Texture> _textures;
+    std::map<std::string, std::vector<sf::Texture> > _textures;
 
     unsigned            _mondes_count;
     Monde **            _mondes;

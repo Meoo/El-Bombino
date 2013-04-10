@@ -10,6 +10,7 @@
 
 #include <vector>
 #include <fstream>
+#include <cstdlib>
 
 Monde::Monde(const std::string & fic) :
         _fichier_rc(fic), _niveaux_count(0), _niveaux(NULL), _niveau_courant(NULL)
@@ -45,6 +46,7 @@ void Monde::charger()
 
     std::string clef, valeur;
     std::vector<std::string> niveaux;
+    sf::Texture text;
 
     unsigned mode = 0;
 
@@ -73,8 +75,10 @@ void Monde::charger()
                             std::string("Pas de valeur pour la texture : ")
                                     + clef);
                 fic >> valeur;
-                LOG(std::string("Texture : ") + clef + " -> " + valeur);
-                _textures[clef].loadFromFile(RC_FOLDER + valeur);
+
+                // Charger la texture
+                text.loadFromFile(RC_FOLDER + valeur);
+                _textures[clef].push_back(text);
                 break;
 
             default: // ERREUR
@@ -107,7 +111,10 @@ void Monde::liberer()
 const sf::Texture & Monde::get_texture(const std::string & res) const
 {
     if (_textures.count(res) > 0)
-        return _textures.at(res);
+    {
+        const std::vector<sf::Texture> & vec = _textures.at(res);
+        return vec.at(rand() % vec.size());
+    }
 
     throw ExceptionRessource(res, "La ressource demandée n'existe pas");
 }

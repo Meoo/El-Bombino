@@ -41,6 +41,7 @@ void Jeu::charger()
     std::string clef, valeur;
     std::vector<std::string> mondes;
     unsigned mode = 0;
+    sf::Texture text;
 
     // Lire jusqu'à EOF
     LOG(std::string("Chargement du fichier de configuration : ") + RC_JEU);
@@ -68,7 +69,10 @@ void Jeu::charger()
                                     + clef);
                 fic >> valeur;
                 LOG(std::string("Texture : ") + clef + " -> " + valeur);
-                _textures[clef].loadFromFile(RC_FOLDER + valeur);
+
+                // Charger la texture
+                text.loadFromFile(RC_FOLDER + valeur);
+                _textures[clef].push_back(text);
                 break;
 
             default: // ERREUR
@@ -112,7 +116,10 @@ const sf::Texture & Jeu::get_texture(const std::string & res) const
     catch (const ExceptionRessource & e) {} // TODO Super moche! Faire un has_texture(res)
 
     if (_textures.count(res) > 0)
-        return _textures.at(res);
+    {
+        const std::vector<sf::Texture> & vec = _textures.at(res);
+        return vec.at(rand() % vec.size());
+    }
 
     throw ExceptionRessource(res, "La ressource demandée n'existe pas");
 }
