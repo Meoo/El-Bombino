@@ -7,11 +7,20 @@
 #include <moteur/Objet.hpp>
 #include <moteur/Case.hpp>
 
+<<<<<<< .mine
+// Réservé pour Soulevable
+Objet::Objet() :
+        _case(NULL)
+{
+}
+
+=======
 
 Objet::Objet(): _case(NULL)
 {
 }
 
+>>>>>>> .r42
 Objet::Objet(Case * cse) :
         _case(NULL)
 {

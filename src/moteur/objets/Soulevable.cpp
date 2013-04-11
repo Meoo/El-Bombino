@@ -14,10 +14,11 @@ Soulevable::Soulevable(Case * cse) :
 }
 
 Soulevable::Soulevable(Mobile * porteur) :
-        Objet(porteur->get_case()), _porteur(porteur)
+        Objet(), _porteur(porteur)
 {
+    assert(porteur != NULL && porteur->_objet_souleve == NULL);
+    porteur->_objet_souleve = this;
 }
-
 
 Soulevable::~Soulevable()
 {
