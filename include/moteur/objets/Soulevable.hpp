@@ -20,6 +20,7 @@ private:
 
 public:
                     Soulevable(Case * cse);
+                    Soulevable(Mobile * porteur);
     virtual         ~Soulevable();
 
     Mobile *        get_poteur();

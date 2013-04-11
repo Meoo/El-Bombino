@@ -68,6 +68,7 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
         target.draw(*_objet, states);
 }
 
+
 void Case::set_objet(Objet * objet)
 {
     assert(objet == NULL || _objet == NULL);

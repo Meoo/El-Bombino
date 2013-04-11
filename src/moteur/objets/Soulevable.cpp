@@ -13,6 +13,12 @@ Soulevable::Soulevable(Case * cse) :
 {
 }
 
+Soulevable::Soulevable(Mobile * porteur) :
+        Objet(porteur->get_case()), _porteur(porteur)
+{
+}
+
+
 Soulevable::~Soulevable()
 {
 }
