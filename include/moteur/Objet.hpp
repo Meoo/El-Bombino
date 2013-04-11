@@ -23,12 +23,8 @@ class Objet : public sf::Drawable
 private:
     Case *          _case;
 
-<<<<<<< .mine
                     Objet();        //!< Réservé pour Soulevable
 
-=======
-                    Objet();
->>>>>>> .r42
 public:
                     Objet(Case * cse);
     virtual         ~Objet();
