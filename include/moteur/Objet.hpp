@@ -23,6 +23,7 @@ class Objet : public sf::Drawable
 private:
     Case *          _case;
 
+                    Objet();
 public:
                     Objet(Case * cse);
     virtual         ~Objet();

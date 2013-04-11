@@ -24,6 +24,11 @@ const unsigned      TILE_SIZE           = 48;
 const unsigned      FIRE_DEFAULT_TIME   = 25;               //!< En nombre d'affichages
 const sf::Color     FIRE_DEFAULT_COLOR  (0xFF, 0xCC, 0xBB); //!< Rouge légèrement orangé
 
+// Timer Bombe
+const unsigned      BOMBE_DEFAULT_TIME  = 100;              //!< En nombre d'affichages
+const unsigned      BOMBE_LONG_TIME     = 200;              //!< En nombre d'affichages
+const unsigned      BOMBE_SMALL_TIME    = 50;               //!< En nombre d'affichages
+
 // Ressources
 const std::string   RC_FOLDER           ("rc/");
 const std::string   RC_JEU              ("jeu.txt");

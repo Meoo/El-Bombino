@@ -7,6 +7,11 @@
 #include <moteur/Objet.hpp>
 #include <moteur/Case.hpp>
 
+
+Objet::Objet(): _case(NULL)
+{
+}
+
 Objet::Objet(Case * cse) :
         _case(NULL)
 {

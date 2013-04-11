@@ -27,11 +27,23 @@ void Bombe::draw(sf::RenderTarget& target, sf::RenderStates states) const
 void Bombe::deposer(Case* cse)
 {
     Soulevable::deposer(cse);
-    //initialisation du timer;
+    //initialisation du timer en fonction du type de bombe que porte le porteur.
+    //_timer = _porteur->get_time_bombe();
 }
 
 void Bombe::mise_a_jour()
 {
     Soulevable::mise_a_jour();
-    //mise_a_jour du timer;
+    //mise a jour du timer (compteur de frame).
+    _timer -= 1;
+    if(_timer == 0)explose();
+}
+
+void Bombe::explose()
+{
+    //faire exploser la bombe.
+    // TODO enflammer la distance
+    _case->enflammer(FIRE_DEFAULT_TIME,FIRE_DEFAULT_COLOR);
+
+
 }

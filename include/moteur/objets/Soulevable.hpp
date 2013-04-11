@@ -27,10 +27,10 @@ public:
     const Mobile *  get_poteur() const;
 
     void            set_porteur(Mobile * porteur);
-    void            deposer(Case * cse);
 
-    virtual Case *  get_case();
-    virtual const Case * get_case() const;
+    virtual void            deposer(Case * cse);
+    virtual Case *          get_case();
+    virtual const Case *    get_case() const;
 
 };
 // class Soulevable
