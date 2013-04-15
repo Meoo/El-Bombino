@@ -10,6 +10,7 @@
 #include <moteur/Case.hpp>
 #include <moteur/objets/Caisse.hpp>
 #include <moteur/objets/Joueur.hpp>
+#include <moteur/case/Mur.hpp>
 
 #include <fstream>
 
@@ -55,7 +56,7 @@ void Niveau::charger()
         switch (texture_case)
         {
         case 'M': // Mur
-            _cases[i] = new Case(i % _largeur, i / _largeur,
+            _cases[i] = new Mur(i % _largeur, i / _largeur,
                     Jeu::instance().get_texture("mur"));
             break;
 
