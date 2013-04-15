@@ -37,7 +37,7 @@ bool Case::enflammer(unsigned duree, const sf::Color& couleur)
     _feu_duree = duree;
     _feu_couleur = couleur;
 
-    // TODO Brûler objet
+    // TODO Brûler objet ?
 
     return true;
 }
@@ -92,51 +92,49 @@ void Case::mise_a_jour()
         _objet->mise_a_jour();
 }
 
-
-
-Case* Case::get_case_droite()
+Case * Case::get_case_droite()
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x + 1, _y);
 }
 
-const Case* Case::get_case_droite() const
+const Case * Case::get_case_droite() const
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x + 1, _y);
 }
 
-Case* Case::get_case_gauche()
+Case * Case::get_case_gauche()
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x - 1, _y);
 }
 
-const Case* Case::get_case_gauche() const
+const Case * Case::get_case_gauche() const
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x - 1, _y);
 }
 
-Case* Case::get_case_haut()
+Case * Case::get_case_haut()
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x, _y - 1);
 }
 
-const Case* Case::get_case_haut() const
+const Case * Case::get_case_haut() const
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x, _y - 1);
 }
 
-Case* Case::get_case_bas()
+Case * Case::get_case_bas()
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x, _y + 1);
 }
 
-const Case* Case::get_case_bas() const
+const Case * Case::get_case_bas() const
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x, _y + 1);

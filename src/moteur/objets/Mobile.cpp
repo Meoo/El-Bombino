@@ -9,9 +9,10 @@
 #include <moteur/Case.hpp>
 
 Mobile::Mobile(Case * cse, float vitesse) :
-        Objet(cse), _objet_souleve(NULL), _vitesse(vitesse), _direction(BAS), _bouge(false), _deplacement(0),
-        _position_ecran(cse->get_x() * TILE_SIZE + TILE_SIZE / 2,
-                        cse->get_y() * TILE_SIZE + TILE_SIZE / 2)
+        Objet(cse), _objet_souleve(NULL), _vitesse(vitesse), _direction(BAS), _bouge(
+                false), _deplacement(0), _position_ecran(
+                cse->get_x() * TILE_SIZE + TILE_SIZE / 2,
+                cse->get_y() * TILE_SIZE + TILE_SIZE / 2)
 {
     assert(vitesse > 0);
 }
@@ -37,9 +38,33 @@ void Mobile::bouger(Direction dir)
 
     // TODO Détecter les murs
 
-    _bouge = true;
     _direction = dir;
-    _deplacement = 0;
+
+    Case * cse = NULL;
+    switch (_direction)
+    {
+    case HAUT:
+        cse = get_case()->get_case_haut();
+        break;
+
+    case BAS:
+        cse = get_case()->get_case_bas();
+        break;
+
+    case GAUCHE:
+        cse = get_case()->get_case_gauche();
+        break;
+
+    case DROITE:
+        cse = get_case()->get_case_droite();
+        break;
+    }
+
+    if (cse->est_praticable() && cse->get_objet() == NULL)
+    {
+        set_case(cse);
+        _bouge = true;
+    }
 }
 
 float Mobile::get_vitesse() const
@@ -72,7 +97,7 @@ void Mobile::mise_a_jour()
             _deplacement += _vitesse;
 
             // Bouger la position écran
-            switch(_direction)
+            switch (_direction)
             {
             case HAUT:
                 _position_ecran.y -= _vitesse;
@@ -90,41 +115,6 @@ void Mobile::mise_a_jour()
                 _position_ecran.x += _vitesse;
                 break;
             }
-
-            // TODO Changer la case à la moitié du déplacement
-            if (_deplacement - _vitesse < TILE_SIZE && _deplacement >= TILE_SIZE)
-            {
-                switch(_direction)
-                {
-                case HAUT:
-                    if(get_case()->get_case_haut() != NULL)
-                        set_case(get_case()->get_case_haut());
-                    else
-                        // TODO Si impossible faire demi-tour
-                    break;
-
-                case BAS:
-                    if(get_case()->get_case_bas() != NULL)
-                        set_case(get_case()->get_case_bas());
-                    else
-                        // TODO Si impossible faire demi-tour
-                    break;
-
-                case GAUCHE:
-                    if(get_case()->get_case_gauche() != NULL)
-                        set_case(get_case()->get_case_gauche());
-                    else
-                        // TODO Si impossible faire demi-tour
-                    break;
-
-                case DROITE:
-                    if(get_case()->get_case_droite() != NULL)
-                        set_case(get_case()->get_case_droite());
-                    else
-                        // TODO Si impossible faire demi-tour
-                    break;
-                }
-            }
         }
         else
         {
@@ -132,9 +122,9 @@ void Mobile::mise_a_jour()
             _position_ecran.x = get_case()->get_x() * TILE_SIZE + TILE_SIZE / 2;
             _position_ecran.y = get_case()->get_y() * TILE_SIZE + TILE_SIZE / 2;
             _bouge = false;
+            _deplacement = 0;
         }
     }
 
-    if (_objet_souleve != NULL)
-        _objet_souleve->mise_a_jour();
+    if (_objet_souleve != NULL) _objet_souleve->mise_a_jour();
 }

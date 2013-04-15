@@ -133,22 +133,22 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
         target.draw(*_cases[i], states);
 }
 
-Case* Niveau::get_case(unsigned x, unsigned y)
+Case * Niveau::get_case(unsigned x, unsigned y)
 {
     assert(_pret);
     assert(x >= 0 && x < _largeur);
     assert(y >= 0 && y < _hauteur);
 
-    return _cases[y*_hauteur + x];
+    return _cases[y*_largeur + x];
 }
 
-const Case* Niveau::get_case(unsigned x, unsigned y) const
+const Case * Niveau::get_case(unsigned x, unsigned y) const
 {
     assert(_pret);
     assert(x >= 0 && x < _largeur);
     assert(y >= 0 && y < _hauteur);
 
-    return _cases[y*_hauteur + x];
+    return _cases[y*_largeur + x];
 }
 
 void Niveau::mise_a_jour()

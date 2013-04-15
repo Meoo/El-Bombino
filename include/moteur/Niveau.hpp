@@ -35,8 +35,8 @@ public:
     void                charger();
     void                liberer();
 
-    Case*               get_case(unsigned x, unsigned y);
-    const Case*         get_case(unsigned x, unsigned y)const;
+    Case *              get_case(unsigned x, unsigned y);
+    const Case *        get_case(unsigned x, unsigned y) const;
 
     // Fonction d'affichage de Drawable
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;

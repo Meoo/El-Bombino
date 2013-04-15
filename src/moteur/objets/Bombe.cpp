@@ -42,9 +42,7 @@ void Bombe::mise_a_jour()
 void Bombe::explose()
 {
     //faire exploser la bombe.
-    // TODO enflammer la distance
+    // TODO enflammer la distance ?
     get_case()->enflammer();
-
-
 
 }

@@ -42,18 +42,17 @@ public:
     unsigned        get_x() const;
     unsigned        get_y() const;
 
+    Case *          get_case_droite();
+    const Case *    get_case_droite() const;
 
-    Case*           get_case_droite();
-    const Case*     get_case_droite()const;
+    Case *          get_case_gauche();
+    const Case *    get_case_gauche() const;
 
-    Case*           get_case_gauche();
-    const Case*     get_case_gauche()const;
+    Case *          get_case_haut();
+    const Case *    get_case_haut() const;
 
-    Case*           get_case_haut();
-    const Case*     get_case_haut()const;
-
-    Case*           get_case_bas();
-    const Case*     get_case_bas()const;
+    Case *          get_case_bas();
+    const Case *    get_case_bas() const;
 
     /// Renvoyer false si les flammes ne passe pas au travers de la case
     virtual bool    enflammer(unsigned          duree   = FEU_TIME_DEFAULT,
