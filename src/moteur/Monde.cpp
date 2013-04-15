@@ -122,6 +122,13 @@ void Monde::liberer()
 #endif
 }
 
+bool Monde::has_texture(const std::string & res) const
+{
+    assert(_pret);
+
+    return _textures.count(res) > 0;
+}
+
 const sf::Texture & Monde::get_texture(const std::string & res) const
 {
     assert(_pret);

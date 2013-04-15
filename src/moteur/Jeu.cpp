@@ -125,14 +125,8 @@ const sf::Texture & Jeu::get_texture(const std::string & res) const
 {
     assert(_pret);
 
-    try
-    {
-        if (_monde_courant != NULL)
-            return _monde_courant->get_texture(res);
-    }
-    catch (const ExceptionRessource & e)
-    {
-    } // TODO Super moche! Faire un has_texture(res)
+    if (_monde_courant != NULL && _monde_courant->has_texture(res))
+        return _monde_courant->get_texture(res);
 
     if (_textures.count(res) > 0)
     {
