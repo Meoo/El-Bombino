@@ -64,9 +64,6 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
             (float) _y * TILE_SIZE + (float) TILE_SIZE
                     - (float) sprite.getTexture()->getSize().y);
     target.draw(sprite, states);
-
-    if (_objet != NULL)
-        target.draw(*_objet, states);
 }
 
 void Case::set_objet(Objet * objet)

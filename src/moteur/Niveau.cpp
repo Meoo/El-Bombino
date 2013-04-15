@@ -119,7 +119,6 @@ void Niveau::liberer()
 #endif
 }
 
-
 void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     assert(_pret);
@@ -128,9 +127,23 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
                     sf::Vector2f(_largeur * TILE_SIZE / 2, _hauteur * TILE_SIZE / 2),
                     sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)));
 
-    // Dessiner toutes les cases
-    for (unsigned i = 0; i < _largeur * _hauteur; ++i)
-        target.draw(*_cases[i], states);
+    // Dessiner toutes les cases de type sol
+    for (unsigned i = 0; i < _hauteur * _largeur; ++i)
+    {
+        if (_cases[i]->est_praticable())
+            target.draw(*_cases[i], states);
+    }
+
+    // Dessiner les murs et les objets
+    for (unsigned i = 0; i < _hauteur * _largeur; ++i)
+    {
+        if (!_cases[i]->est_praticable())
+            target.draw(*_cases[i], states);
+
+        const Objet * obj = _cases[i]->get_objet();
+        if (obj != NULL)
+            target.draw(*obj, states);
+    }
 }
 
 Case * Niveau::get_case(unsigned x, unsigned y)

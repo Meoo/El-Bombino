@@ -36,8 +36,6 @@ void Mobile::bouger(Direction dir)
 {
     if (_bouge) return; // TODO assert?
 
-    // TODO Détecter les murs
-
     _direction = dir;
 
     Case * cse = NULL;
