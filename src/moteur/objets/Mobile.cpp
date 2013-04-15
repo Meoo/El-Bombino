@@ -94,7 +94,36 @@ void Mobile::mise_a_jour()
             // TODO Changer la case à la moitié du déplacement
             if (_deplacement - _vitesse < TILE_SIZE && _deplacement >= TILE_SIZE)
             {
-                // TODO Si impossible faire demi-tour
+                switch(_direction)
+                {
+                case HAUT:
+                    if(_case->get_case_haut() != NULL)
+                        set_case(_case->get_case_haut());
+                    else
+                        // TODO Si impossible faire demi-tour
+                    break;
+
+                case BAS:
+                    if(_case->get_case_bas() != NULL)
+                        set_case(_case->get_case_bas());
+                    else
+                        // TODO Si impossible faire demi-tour
+                    break;
+
+                case GAUCHE:
+                    if(_case->get_case_gauche() != NULL)
+                        set_case(_case->get_case_gauche());
+                    else
+                        // TODO Si impossible faire demi-tour
+                    break;
+
+                case DROITE:
+                    if(_case->get_case_droite() != NULL)
+                        set_case(_case->get_case_droite());
+                    else
+                        // TODO Si impossible faire demi-tour
+                    break;
+                }
             }
         }
         else
