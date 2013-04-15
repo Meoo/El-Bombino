@@ -68,7 +68,6 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
         target.draw(*_objet, states);
 }
 
-
 void Case::set_objet(Objet * objet)
 {
     assert(objet == NULL || _objet == NULL);
@@ -90,4 +89,54 @@ void Case::mise_a_jour()
 {
     if (_objet != NULL)
         _objet->mise_a_jour();
+}
+
+
+
+Case* Case::get_case_droite()
+{
+    return Jeu::instance().get_monde_courant().
+                get_niveau_courant().get_case(_x + 1, _y);
+}
+
+const Case* Case::get_case_droite() const
+{
+    return Jeu::instance().get_monde_courant().
+                get_niveau_courant().get_case(_x + 1, _y);
+}
+
+Case* Case::get_case_gauche()
+{
+    return Jeu::instance().get_monde_courant().
+                get_niveau_courant().get_case(_x - 1, _y);
+}
+
+const Case* Case::get_case_gauche() const
+{
+    return Jeu::instance().get_monde_courant().
+                get_niveau_courant().get_case(_x - 1, _y);
+}
+
+Case* Case::get_case_haut()
+{
+    return Jeu::instance().get_monde_courant().
+                get_niveau_courant().get_case(_x, _y - 1);
+}
+
+const Case* Case::get_case_haut() const
+{
+    return Jeu::instance().get_monde_courant().
+                get_niveau_courant().get_case(_x, _y - 1);
+}
+
+Case* Case::get_case_bas()
+{
+    return Jeu::instance().get_monde_courant().
+                get_niveau_courant().get_case(_x, _y + 1);
+}
+
+const Case* Case::get_case_bas() const
+{
+    return Jeu::instance().get_monde_courant().
+                get_niveau_courant().get_case(_x, _y + 1);
 }

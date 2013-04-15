@@ -46,4 +46,5 @@ void Bombe::explose()
     get_case()->enflammer();
 
 
+
 }
