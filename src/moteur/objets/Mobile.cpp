@@ -97,29 +97,29 @@ void Mobile::mise_a_jour()
                 switch(_direction)
                 {
                 case HAUT:
-                    if(_case->get_case_haut() != NULL)
-                        set_case(_case->get_case_haut());
+                    if(get_case()->get_case_haut() != NULL)
+                        set_case(get_case()->get_case_haut());
                     else
                         // TODO Si impossible faire demi-tour
                     break;
 
                 case BAS:
-                    if(_case->get_case_bas() != NULL)
-                        set_case(_case->get_case_bas());
+                    if(get_case()->get_case_bas() != NULL)
+                        set_case(get_case()->get_case_bas());
                     else
                         // TODO Si impossible faire demi-tour
                     break;
 
                 case GAUCHE:
-                    if(_case->get_case_gauche() != NULL)
-                        set_case(_case->get_case_gauche());
+                    if(get_case()->get_case_gauche() != NULL)
+                        set_case(get_case()->get_case_gauche());
                     else
                         // TODO Si impossible faire demi-tour
                     break;
 
                 case DROITE:
-                    if(_case->get_case_droite() != NULL)
-                        set_case(_case->get_case_droite());
+                    if(get_case()->get_case_droite() != NULL)
+                        set_case(get_case()->get_case_droite());
                     else
                         // TODO Si impossible faire demi-tour
                     break;

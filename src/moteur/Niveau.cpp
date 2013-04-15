@@ -136,10 +136,8 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 Case* Niveau::get_case(unsigned x, unsigned y)
 {
     assert(_pret);
-    //assert(x >= 0 && x < _largeur);
-    //assert(y >= 0 && y < _hauteur);
-    if(x < 0 || x > _largeur)return NULL;
-    if(y < 0 || y > _hauteur)return NULL;
+    assert(x >= 0 && x < _largeur);
+    assert(y >= 0 && y < _hauteur);
 
     return _cases[y*_hauteur + x];
 }
@@ -147,11 +145,8 @@ Case* Niveau::get_case(unsigned x, unsigned y)
 const Case* Niveau::get_case(unsigned x, unsigned y) const
 {
     assert(_pret);
-    //assert(x >= 0 && x < _largeur);
-    //assert(y >= 0 && y < _hauteur);
-    if(x < 0 || x > _largeur)return NULL;
-    if(y < 0 || y > _hauteur)return NULL;
-
+    assert(x >= 0 && x < _largeur);
+    assert(y >= 0 && y < _hauteur);
 
     return _cases[y*_hauteur + x];
 }

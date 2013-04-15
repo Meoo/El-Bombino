@@ -6,6 +6,7 @@
 
 #include <moteur/Case.hpp>
 #include <moteur/Objet.hpp>
+#include <moteur/Jeu.hpp>
 
 Case::Case(unsigned x, unsigned y, const sf::Texture & texture) :
         _objet(NULL), _texture(&texture), _feu_duree(0), _x(x), _y(y)
