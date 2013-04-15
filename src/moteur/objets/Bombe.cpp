@@ -43,7 +43,7 @@ void Bombe::explose()
 {
     //faire exploser la bombe.
     // TODO enflammer la distance
-    _case->enflammer(FIRE_DEFAULT_TIME,FIRE_DEFAULT_COLOR);
+    get_case()->enflammer();
 
 
 }

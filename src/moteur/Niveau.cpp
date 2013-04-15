@@ -9,6 +9,7 @@
 #include <moteur/Niveau.hpp>
 #include <moteur/Case.hpp>
 #include <moteur/objets/Caisse.hpp>
+#include <moteur/objets/Joueur.hpp>
 
 #include <fstream>
 
@@ -66,6 +67,7 @@ void Niveau::charger()
         case 'I': // Player
             _cases[i] = new Case(i % _largeur, i / _largeur,
                     Jeu::instance().get_texture("sol"));
+            new Joueur(_cases[i]);
             break;
 
         case 'C': // Caisse

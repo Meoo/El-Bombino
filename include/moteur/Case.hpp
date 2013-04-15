@@ -43,8 +43,8 @@ public:
     unsigned        get_y() const;
 
     /// Renvoyer false si les flammes ne passe pas au travers de la case
-    virtual bool    enflammer(unsigned          duree   = FIRE_DEFAULT_TIME,
-                              const sf::Color & couleur = FIRE_DEFAULT_COLOR);
+    virtual bool    enflammer(unsigned          duree   = FEU_TIME_DEFAULT,
+                              const sf::Color & couleur = FEU_COLOR_DEFAULT);
 
     bool            est_en_feu() const;
     unsigned        get_duree_flammes() const;
