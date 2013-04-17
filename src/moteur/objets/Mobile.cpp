@@ -124,5 +124,24 @@ void Mobile::mise_a_jour()
         }
     }
 
-    if (_objet_souleve != NULL) _objet_souleve->mise_a_jour();
+    if (_objet_souleve != NULL)
+    {
+        if (_objet_souleve->est_valide())
+            _objet_souleve->mise_a_jour();
+
+        // mise_a_jour peut enlever _objet_souleve
+        if (_objet_souleve != NULL && !_objet_souleve->est_valide())
+        {
+            delete _objet_souleve;
+            _objet_souleve = NULL;
+        }
+    }
+}
+
+void Mobile::blesser()
+{
+    if (_objet_souleve != NULL && _objet_souleve->est_valide())
+        _objet_souleve->blesser();
+
+    detruire();
 }

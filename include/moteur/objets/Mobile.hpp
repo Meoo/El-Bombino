@@ -53,6 +53,8 @@ public:
 
     virtual void        mise_a_jour();
 
+    virtual void        blesser();
+
 };
 // class Mobile
 

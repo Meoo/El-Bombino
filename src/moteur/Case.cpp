@@ -31,13 +31,14 @@ const Objet * Case::get_objet() const
 
 bool Case::enflammer(unsigned duree, const sf::Color& couleur)
 {
-    if (_feu_duree > duree)
-        return true;
-
     _feu_duree = duree;
     _feu_couleur = couleur;
 
-    // TODO Brûler objet ?
+    // TODO Toujours bloquer les flammes si objet?
+    if (_objet != NULL && _objet->est_valide())
+    {
+        return false;
+    }
 
     return true;
 }
@@ -64,6 +65,14 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
             (float) _y * TILE_SIZE + (float) TILE_SIZE
                     - (float) sprite.getTexture()->getSize().y);
     target.draw(sprite, states);
+
+    if (est_en_feu())
+    {
+        sf::Sprite feu(Jeu::instance().get_texture("feu"));
+        feu.setPosition((float) _x * TILE_SIZE,
+                           (float) _y * TILE_SIZE);
+        target.draw(feu, states);
+    }
 }
 
 void Case::set_objet(Objet * objet)
@@ -86,7 +95,25 @@ unsigned Case::get_y() const
 void Case::mise_a_jour()
 {
     if (_objet != NULL)
-        _objet->mise_a_jour();
+    {
+        if (_objet->est_valide())
+        {
+            if (est_en_feu())
+                _objet->blesser();
+
+            _objet->mise_a_jour();
+        }
+
+        // mise_a_jour peut changer de case
+        if (_objet != NULL && !_objet->est_valide())
+        {
+            delete _objet;
+            _objet = NULL;
+        }
+    }
+
+    if (_feu_duree > 0)
+        _feu_duree--;
 }
 
 Case * Case::get_case_droite()

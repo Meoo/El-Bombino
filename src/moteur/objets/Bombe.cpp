@@ -29,15 +29,17 @@ void Bombe::mise_a_jour()
 {
     Soulevable::mise_a_jour();
     _timer -= 1;
-    if(_timer == 0)exploser();
+    if (_timer == 0) exploser();
 }
 
 void Bombe::exploser()
 {
-    //faire exploser la bombe.
-    // TODO enflammer la distance ?
-    //detruire();
+    if (!est_valide()) return;
+
+    //Faire exploser la bombe
+    detruire();
     get_case()->enflammer();
+
     Case *droite = get_case()->get_case_droite();
     Case *gauche = get_case()->get_case_gauche();
     Case *haut   = get_case()->get_case_haut();

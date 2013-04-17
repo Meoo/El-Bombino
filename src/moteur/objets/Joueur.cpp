@@ -23,7 +23,7 @@ Joueur::~Joueur()
 
 void Joueur::charger_bombe()
 {
-    Bombe(this,300,2);
+    new Bombe(this, 300, 2);
 }
 
 
@@ -43,13 +43,12 @@ void Joueur::mise_a_jour()
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) bouger(DROITE);
 
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-        if(get_objet_souleve() != NULL){
+        if(get_objet_souleve() == NULL){
             charger_bombe();
         }
         else
         {
             //poser_bombe();
-
         }
     }
 

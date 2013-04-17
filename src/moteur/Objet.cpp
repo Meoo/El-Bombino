@@ -9,19 +9,20 @@
 
 // Réservé pour Soulevable
 Objet::Objet() :
-        _case(NULL)
+        _case(NULL), _valide(true)
 {
 }
 
 Objet::Objet(Case * cse) :
-        _case(NULL)
+        _case(NULL), _valide(true)
 {
     set_case(cse);
 }
 
 Objet::~Objet()
 {
-    _case->set_objet(NULL);
+    if (_case != NULL)
+        _case->set_objet(NULL);
 }
 
 Case * Objet::get_case()
@@ -47,6 +48,21 @@ void Objet::set_case(Case * cse)
     cse->set_objet(this);
 }
 
+bool Objet::est_valide() const
+{
+    return _valide;
+}
+
 void Objet::mise_a_jour()
 {
+}
+
+void Objet::blesser()
+{
+    detruire();
+}
+
+void Objet::detruire()
+{
+    _valide = false;
 }

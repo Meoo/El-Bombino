@@ -22,6 +22,7 @@ class Objet : public sf::Drawable
 
 private:
     Case *          _case;
+    bool            _valide;
 
                     Objet();        //!< Réservé pour Soulevable
 
@@ -33,10 +34,17 @@ public:
     virtual const Case * get_case() const;
     void            set_case(Case * cse);
 
+    bool            est_valide() const;
+
     // Fonction d'affichage de Drawable
     virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const = 0;
 
     virtual void    mise_a_jour();
+
+    virtual void    blesser();
+
+protected:
+    void            detruire();
 
 };
 // class Objet
