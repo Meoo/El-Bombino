@@ -23,7 +23,7 @@ Joueur::~Joueur()
 
 void Joueur::charger_bombe()
 {
-    new Bombe(this,100,10);
+    new Bombe(this,150,2);
 }
 
 
