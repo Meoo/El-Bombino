@@ -33,7 +33,6 @@ void Bombe::deposer(Case* cse)
 
 void Bombe::mise_a_jour()
 {
-    Soulevable::mise_a_jour();
     //mise a jour du timer (compteur de frame).
     _timer -= 1;
     if(_timer == 0)explose();
@@ -44,5 +43,4 @@ void Bombe::explose()
     //faire exploser la bombe.
     // TODO enflammer la distance ?
     get_case()->enflammer();
-
 }

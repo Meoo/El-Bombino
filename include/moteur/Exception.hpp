@@ -17,7 +17,7 @@ private:
     const std::string message;
 
 public:
-    Exception(const std::string & message) throw () :
+    explicit Exception(const std::string & message) throw () :
             std::exception(), message(message)
     {
     }

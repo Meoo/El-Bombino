@@ -29,7 +29,7 @@ private:
 #endif
 
 public:
-                        Niveau(const std::string & fic);
+    explicit            Niveau(const std::string & fic);
     virtual             ~Niveau();
 
     void                charger();

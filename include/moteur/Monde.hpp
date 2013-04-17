@@ -34,7 +34,7 @@ private:
 #endif
 
 public:
-                        Monde(const std::string & fic);
+    explicit            Monde(const std::string & fic);
     virtual             ~Monde();
 
     Niveau &            get_niveau_courant();

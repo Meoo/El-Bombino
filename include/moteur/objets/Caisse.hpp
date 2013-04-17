@@ -15,7 +15,7 @@ private:
     sf::Sprite      _sprite;
 
 public:
-                    Caisse(Case * cse);
+    explicit        Caisse(Case * cse);
     virtual         ~Caisse();
 
     // Fonction d'affichage de Drawable

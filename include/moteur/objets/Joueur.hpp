@@ -18,7 +18,7 @@ private:
     sf::Sprite          _sprite;
 
 public:
-                        Joueur(Case * cse);
+    explicit            Joueur(Case * cse);
     virtual             ~Joueur();
 
     // Fonction d'affichage de Drawable
