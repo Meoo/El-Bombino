@@ -35,6 +35,7 @@ private:
     bool                _bouge;
     float               _deplacement;
     sf::Vector2f        _position_ecran;
+    bool                _change_case;
 
 public:
                         Mobile(Case * cse, float vitesse);
