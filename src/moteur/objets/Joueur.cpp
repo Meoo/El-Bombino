@@ -45,7 +45,7 @@ void Joueur::mise_a_jour()
 
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) bouger(DROITE);
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
         if(get_objet_souleve() == NULL){
             charger_bombe();
             _case_charge_bombe = this->get_case();

@@ -90,3 +90,8 @@ void Bombe::exploser()
         }
     }
 }
+
+void Bombe::blesser()
+{
+    exploser();
+}
