@@ -94,5 +94,6 @@ void Bombe::exploser()
 
 void Bombe::blesser()
 {
-    exploser();
+    if (_timer > 4)
+        _timer = 4;
 }
