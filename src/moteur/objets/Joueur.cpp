@@ -11,7 +11,7 @@
 #include <SFML/Window.hpp>
 
 Joueur::Joueur(Case * cse) :
-        Mobile(cse, JOUEUR_VIT_DEFAULT), _sprite(Jeu::instance().get_texture("joueur"))
+        Mobile(cse, JOUEUR_VIT_DEFAULT), _sprite(Jeu::instance().get_texture("joueur")), _case_charge_bombe(NULL)
 {
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2, _sprite.getTexture()->getSize().y - _sprite.getTexture()->getSize().x / 2);
 }
@@ -23,7 +23,7 @@ Joueur::~Joueur()
 
 void Joueur::charger_bombe()
 {
-    new Bombe(this, 300, 2);
+    new Bombe(this,100,10);
 }
 
 
@@ -45,14 +45,17 @@ void Joueur::mise_a_jour()
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
         if(get_objet_souleve() == NULL){
             charger_bombe();
-        }
-        else
-        {
-            //poser_bombe();
+            _case_charge_bombe = this->get_case();
         }
     }
 
     Mobile::mise_a_jour();
+
+    if(_case_charge_bombe != NULL && _case_charge_bombe != this->get_case())
+    {
+        get_objet_souleve()->deposer(_case_charge_bombe);
+        _case_charge_bombe = NULL;
+    }
 
     _sprite.setPosition(get_position_ecran());
 

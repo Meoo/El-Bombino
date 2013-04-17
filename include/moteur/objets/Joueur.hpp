@@ -16,6 +16,7 @@ class Joueur : public Mobile
 {
 private:
     sf::Sprite          _sprite;
+    Case*               _case_charge_bombe;
 
 public:
     explicit            Joueur(Case * cse);
