@@ -50,6 +50,7 @@ public:
 
     Direction           get_direction() const;
     const sf::Vector2f & get_position_ecran() const;
+    const sf::Vector2f  get_position_objet_souleve() const;
 
     virtual void        mise_a_jour();
 

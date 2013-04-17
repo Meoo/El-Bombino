@@ -24,12 +24,12 @@ Soulevable::~Soulevable()
 {
 }
 
-Mobile* Soulevable::get_poteur()
+Mobile* Soulevable::get_porteur()
 {
     return _porteur;
 }
 
-const Mobile* Soulevable::get_poteur() const
+const Mobile* Soulevable::get_porteur() const
 {
     return _porteur;
 }

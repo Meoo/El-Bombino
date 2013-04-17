@@ -86,6 +86,11 @@ const sf::Vector2f & Mobile::get_position_ecran() const
     return _position_ecran;
 }
 
+const sf::Vector2f Mobile::get_position_objet_souleve() const
+{
+    return get_position_ecran() + sf::Vector2f(0, -32);
+}
+
 void Mobile::mise_a_jour()
 {
     if (_bouge)

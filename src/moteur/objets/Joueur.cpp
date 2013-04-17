@@ -30,6 +30,9 @@ void Joueur::charger_bombe()
 void Joueur::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
+
+    if (get_objet_souleve() != NULL)
+        target.draw(*get_objet_souleve());
 }
 
 void Joueur::mise_a_jour()

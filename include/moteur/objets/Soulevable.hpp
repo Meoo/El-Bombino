@@ -16,17 +16,17 @@ class Mobile;
 class Soulevable : public Objet
 {
 private:
-    Mobile *        _porteur;
+    Mobile *                _porteur;
 
 public:
-                    Soulevable(Case * cse);
-                    Soulevable(Mobile * porteur);
-    virtual         ~Soulevable();
+                            Soulevable(Case * cse);
+                            Soulevable(Mobile * porteur);
+    virtual                 ~Soulevable();
 
-    Mobile *        get_poteur();
-    const Mobile *  get_poteur() const;
+    Mobile *                get_porteur();
+    const Mobile *          get_porteur() const;
 
-    void            set_porteur(Mobile * porteur);
+    void                    set_porteur(Mobile * porteur);
 
     virtual void            deposer(Case * cse);
     virtual Case *          get_case();
