@@ -6,6 +6,7 @@
 
 #include <moteur/objets/Joueur.hpp>
 #include <moteur/Jeu.hpp>
+#include <moteur/objets/Bombe.hpp>
 
 #include <SFML/Window.hpp>
 
@@ -18,6 +19,13 @@ Joueur::Joueur(Case * cse) :
 Joueur::~Joueur()
 {
 }
+
+
+void Joueur::charger_bombe()
+{
+    Bombe(this,300,2);
+}
+
 
 void Joueur::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
@@ -34,9 +42,21 @@ void Joueur::mise_a_jour()
 
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) bouger(DROITE);
 
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        if(get_objet_souleve() != NULL){
+            charger_bombe();
+        }
+        else
+        {
+            //poser_bombe();
+
+        }
+    }
+
     Mobile::mise_a_jour();
 
     _sprite.setPosition(get_position_ecran());
 
     // TODO Gérer la direction
 }
+

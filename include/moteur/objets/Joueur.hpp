@@ -21,6 +21,9 @@ public:
     explicit            Joueur(Case * cse);
     virtual             ~Joueur();
 
+    void                charger_bombe();
+    void                poser_bombe();
+
     // Fonction d'affichage de Drawable
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;
 
