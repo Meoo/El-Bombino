@@ -44,22 +44,22 @@ void Bombe::exploser()
     Case *bas    = get_case()->get_case_bas();
     for (unsigned i = 1; i <= _puissance; ++i)
     {
-        if(bas != NULL)
+        if(bas->est_praticable())
         {
             bas->enflammer();
             bas = bas->get_case_bas();
         }
-        if(haut != NULL)
+        if(haut->est_praticable())
         {
             haut->enflammer();
             haut = haut->get_case_haut();
         }
-        if(droite != NULL)
+        if(droite->est_praticable())
         {
             droite->enflammer();
             droite = droite->get_case_droite();
         }
-        if(gauche != NULL)
+        if(gauche->est_praticable())
         {
             gauche->enflammer();
             gauche = gauche->get_case_gauche();
