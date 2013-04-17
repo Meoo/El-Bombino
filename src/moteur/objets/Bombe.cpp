@@ -66,26 +66,27 @@ void Bombe::exploser()
     Case *gauche = get_case()->get_case_gauche();
     Case *haut   = get_case()->get_case_haut();
     Case *bas    = get_case()->get_case_bas();
+    bool r_bas = true, r_haut = true, r_droite = true, r_gauche = true;
     for (unsigned i = 1; i <= _puissance; ++i)
     {
-        if(bas->est_praticable())
+        if(bas->est_praticable() && r_bas)
         {
-            bas->enflammer();
+            r_bas = bas->enflammer();
             bas = bas->get_case_bas();
         }
-        if(haut->est_praticable())
+        if(haut->est_praticable() && r_haut)
         {
-            haut->enflammer();
+            r_haut = haut->enflammer();
             haut = haut->get_case_haut();
         }
-        if(droite->est_praticable())
+        if(droite->est_praticable() && r_droite)
         {
-            droite->enflammer();
+            r_droite = droite->enflammer();
             droite = droite->get_case_droite();
         }
-        if(gauche->est_praticable())
+        if(gauche->est_praticable() && r_gauche)
         {
-            gauche->enflammer();
+            r_gauche = gauche->enflammer();
             gauche = gauche->get_case_gauche();
         }
     }
