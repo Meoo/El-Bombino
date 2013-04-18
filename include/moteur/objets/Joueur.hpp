@@ -17,13 +17,15 @@ class Joueur : public Mobile
 private:
     sf::Sprite          _sprite;
     Case*               _case_charge_bombe;
+    unsigned            _bombe_cooldown;
 
 public:
     explicit            Joueur(Case * cse);
     virtual             ~Joueur();
 
     void                charger_bombe();
-    void                poser_bombe();
+
+    virtual const sf::Vector2f get_position_objet_souleve() const;
 
     // Fonction d'affichage de Drawable
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;

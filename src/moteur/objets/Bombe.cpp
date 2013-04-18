@@ -94,6 +94,9 @@ void Bombe::exploser()
 
 void Bombe::blesser()
 {
-    if (_timer > 4)
+    if (get_porteur())
+        exploser();
+
+    else if (_timer > 4)
         _timer = 4;
 }

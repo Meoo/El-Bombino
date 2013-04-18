@@ -45,7 +45,7 @@ bool Case::enflammer(unsigned duree, const sf::Color& couleur)
 
 bool Case::est_en_feu() const
 {
-    return _feu_duree > 0;
+    return _feu_duree > 10;
 }
 
 unsigned Case::get_duree_flammes() const
@@ -66,11 +66,17 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
                     - (float) sprite.getTexture()->getSize().y);
     target.draw(sprite, states);
 
-    if (est_en_feu())
+    if (_feu_duree > 0)
     {
+        sf::Color col (_feu_couleur);
+        if (_feu_duree < 15)
+        {
+            col.a = (_feu_duree * 255) / 15;
+        }
+
         sf::Sprite feu(Jeu::instance().get_texture("feu"));
-        feu.setPosition((float) _x * TILE_SIZE,
-                           (float) _y * TILE_SIZE);
+        feu.setPosition((float) _x * TILE_SIZE, (float) _y * TILE_SIZE);
+        feu.setColor(col);
         target.draw(feu, states);
     }
 }
