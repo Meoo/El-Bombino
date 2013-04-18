@@ -97,6 +97,51 @@ void Joueur::mise_a_jour()
 
     Mobile::mise_a_jour();
 
+    //TODO soulever l'objet present dans la direction
+    //TODO ou poser l'objet si il est en notre posetion
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+    {
+        if(get_objet_souleve() == NULL)
+        {
+            if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() != NULL)
+            {
+                //TODO si la case du haut est soulevable prendre l'objet
+            }
+            else if (get_direction() == BAS && get_case()->get_case_bas()->get_objet() != NULL)
+            {
+                //TODO si la case du bas est soulevable prendre l'objet
+            }
+            else if (get_direction() == DROITE && get_case()->get_case_droite()->get_objet() != NULL)
+            {
+                //TODO si la case de droite est soulevable prendre l'objet
+            }
+            else if (get_direction() == GAUCHE && get_case()->get_case_gauche()->get_objet() != NULL)
+            {
+                //TODO si la case de gauche est soulevable prendre l'objet
+            }
+        }
+        else
+        {
+            //TODO poser l'objet
+            if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() == NULL)
+            {
+               //TODO poser l'objet get_case()->get_case_haut()
+            }
+            else if (get_direction() == BAS && get_case()->get_case_bas()->get_objet() == NULL)
+            {
+               //TODO poser l'objet get_case()->get_case_bas()
+            }
+            else if (get_direction() == DROITE && get_case()->get_case_droite()->get_objet() == NULL)
+            {
+               //TODO poser l'objet get_case()->get_case_droite()
+            }
+            else if (get_direction() == GAUCHE && get_case()->get_case_gauche()->get_objet() == NULL)
+            {
+               //TODO poser l'objet get_case()->get_case_gauche()
+            }
+        }
+    }
+
     if (_case_charge_bombe != NULL && _case_charge_bombe != this->get_case())
     {
         get_objet_souleve()->deposer(_case_charge_bombe);
@@ -108,4 +153,3 @@ void Joueur::mise_a_jour()
 
 // TODO Gérer la direction
 }
-

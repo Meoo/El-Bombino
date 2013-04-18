@@ -23,7 +23,7 @@ int main(int argc, char ** argv)
     Jeu::instance().charger();
 
     Jeu::instance().set_monde_courant(0);
-    Jeu::instance().get_monde_courant().set_niveau_courant(0);
+    Jeu::instance().get_monde_courant().set_niveau_courant(1);
 
     sf::Font font;
     font.loadFromFile("C:/Windows/Fonts/arial.ttf");
