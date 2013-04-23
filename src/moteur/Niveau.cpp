@@ -11,6 +11,7 @@
 #include <moteur/objets/Caisse.hpp>
 #include <moteur/objets/Joueur.hpp>
 #include <moteur/case/Mur.hpp>
+#include <monde1/pnjs/Idiot.hpp>
 
 #include <fstream>
 #include <vector>
@@ -80,12 +81,14 @@ void Niveau::charger()
 
         case '0': // Enemis
             _cases[i] = new Case(i % _largeur, i / _largeur,
-                    Jeu::instance().get_texture("mur"));
+                    Jeu::instance().get_texture("sol"));
+            new Idiot(_cases[i]);
             break;
 
         case '1': // Enemis
             _cases[i] = new Case(i % _largeur, i / _largeur,
-                    Jeu::instance().get_texture("mur"));
+                    Jeu::instance().get_texture("sol"));
+            new Idiot(_cases[i]);
             break;
 
         default: // ERREUR

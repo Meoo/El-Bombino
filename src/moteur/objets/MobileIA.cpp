@@ -7,11 +7,12 @@
 #include <moteur/objets/MobileIA.hpp>
 #include <moteur/objets/Soulevable.hpp>
 
-MobileIA::MobileIA(Case* cse, float vitesse, unsigned vies, sf::Texture * texture)
+MobileIA::MobileIA(Case* cse, float vitesse, unsigned vies, const sf::Texture & texture)
     : Mobile(cse, vitesse), _vies(vies), _texture(texture), _protection(0), _clignote(false)
 {
     assert(vies > 0);
-    assert(texture != NULL);
+    _sprite.setOrigin(_texture.getSize().x / 2, _texture.getSize().y - _texture.getSize().x / 2);
+    _sprite.setTexture(_texture);
 }
 
 MobileIA::~MobileIA()
@@ -42,13 +43,16 @@ void MobileIA::mise_a_jour()
         mise_a_jour_ia();
     }
 
+    if (_protection > 0)
+        --_protection;
+
     // TODO Gérer la direction
     _sprite.setPosition(get_position_ecran());
 }
 
 void MobileIA::blesser()
 {
-    if (_protection > 0 && _vies > 0)
+    if (_protection == 0 && _vies > 0)
     {
         if (get_objet_souleve() != NULL && get_objet_souleve()->est_valide())
             get_objet_souleve()->blesser();

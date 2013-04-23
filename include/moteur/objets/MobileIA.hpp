@@ -17,14 +17,14 @@
 class MobileIA : public Mobile
 {
     unsigned            _vies;
-    sf::Texture *       _texture;
+    const sf::Texture & _texture;
     sf::Sprite          _sprite;
 
     unsigned            _protection;
     mutable bool        _clignote;
 
 public:
-                        MobileIA(Case * cse, float vitesse, unsigned vies, sf::Texture * texture);
+                        MobileIA(Case * cse, float vitesse, unsigned vies, const sf::Texture & texture);
     virtual             ~MobileIA();
 
     // Fonction d'affichage de Drawable
