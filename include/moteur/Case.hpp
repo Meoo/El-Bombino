@@ -8,6 +8,7 @@
 #define _CASE_HPP_
 
 #include "../Config.hpp"
+#include "Objet.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -22,12 +23,16 @@ class Case : public sf::Drawable
     friend class Objet;
     friend class Soulevable;
 
+    typedef void (Objet::* objet_effet_t) (void);
+
 private:
     Objet *         _objet;
     const sf::Texture * _texture;
 
     unsigned        _feu_duree;
     sf::Color       _feu_couleur;
+    objet_effet_t   _feu_effet;
+
 
     const unsigned  _x;
     const unsigned  _y;
@@ -56,7 +61,8 @@ public:
 
     /// Renvoyer false si les flammes ne passe pas au travers de la case
     virtual bool    enflammer(unsigned          duree   = FEU_TIME_DEFAULT,
-                              const sf::Color & couleur = FEU_COLOR_DEFAULT);
+                              const sf::Color & couleur = FEU_COLOR_DEFAULT,
+                              objet_effet_t     effet   = &Objet::blesser);
 
     bool            est_en_feu() const;
     unsigned        get_duree_flammes() const;
@@ -67,7 +73,6 @@ public:
     virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
 
     virtual void    mise_a_jour();
-
 
 private:
     void            set_objet(Objet * objet);

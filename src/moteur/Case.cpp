@@ -9,7 +9,7 @@
 #include <moteur/Jeu.hpp>
 
 Case::Case(unsigned x, unsigned y, const sf::Texture & texture) :
-        _objet(NULL), _texture(&texture), _feu_duree(0), _x(x), _y(y)
+        _objet(NULL), _texture(&texture), _feu_duree(0), _feu_effet(0), _x(x), _y(y)
 {
 }
 
@@ -29,10 +29,11 @@ const Objet * Case::get_objet() const
     return _objet;
 }
 
-bool Case::enflammer(unsigned duree, const sf::Color& couleur)
+bool Case::enflammer(unsigned duree, const sf::Color& couleur, objet_effet_t effet)
 {
     _feu_duree = duree;
     _feu_couleur = couleur;
+    _feu_effet = effet;
 
     // TODO Toujours bloquer les flammes si objet?
     if (_objet != NULL && _objet->est_valide())
@@ -105,13 +106,9 @@ void Case::mise_a_jour()
         if (_objet->est_valide())
         {
             if (est_en_feu())
-                _objet->blesser();
-
-            _objet->mise_a_jour();
+                (_objet->*_feu_effet)();
         }
-
-        // mise_a_jour peut changer de case
-        if (_objet != NULL && !_objet->est_valide())
+        else
         {
             delete _objet;
             _objet = NULL;

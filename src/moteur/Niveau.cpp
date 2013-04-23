@@ -13,6 +13,7 @@
 #include <moteur/case/Mur.hpp>
 
 #include <fstream>
+#include <vector>
 
 Niveau::Niveau(const std::string & fic) :
         _fichier_rc(fic), _largeur(0), _hauteur(0), _cases(NULL)
@@ -169,7 +170,21 @@ void Niveau::mise_a_jour()
 {
     assert(_pret);
 
+    typedef std::vector<Objet *> obj_vec_t;
+    obj_vec_t objs;
+
     // Mettre à jour toutes les cases
     for (unsigned i = 0; i < _largeur * _hauteur; ++i)
+    {
         _cases[i]->mise_a_jour();
+
+        // Faire une liste des objets valides à mettre à jour
+        Objet * obj = _cases[i]->get_objet();
+        if (obj != NULL && obj->est_valide())
+            objs.push_back(obj);
+    }
+
+    // Mettre à jour les objets
+    for (obj_vec_t::iterator i = objs.begin(); i != objs.end(); ++i)
+        (*i)->mise_a_jour();
 }
