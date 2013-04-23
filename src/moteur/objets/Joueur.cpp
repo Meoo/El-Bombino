@@ -24,25 +24,18 @@ Joueur::~Joueur()
 {
 }
 
-void Joueur::charger_bombe()
-{
-    // TODO Utiliser les bons paramètres
-    new Bombe(this, 150, 3);
-}
-
 void Joueur::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-
     if (get_objet_souleve() != NULL)
     {
         if (_case_charge_bombe == NULL)
         {
             target.draw(_sprite, states);
-            target.draw(*get_objet_souleve());
+            target.draw(*get_objet_souleve(), states);
         }
         else
         {
-            target.draw(*get_objet_souleve());
+            target.draw(*get_objet_souleve(), states);
             target.draw(_sprite, states);
         }
     }
@@ -64,21 +57,28 @@ const sf::Vector2f Joueur::get_position_objet_souleve() const
 
 void Joueur::mise_a_jour()
 {
+    Mobile::mise_a_jour();
+
     if (_bombe_cooldown > 0)
         --_bombe_cooldown;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        bouger(HAUT);
+    // Gérer déplacement
+    if (!est_en_mouvement())
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            bouger(HAUT);
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        bouger(BAS);
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            bouger(BAS);
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        bouger(GAUCHE);
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+            bouger(GAUCHE);
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        bouger(DROITE);
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            bouger(DROITE);
+    }
 
+    // Gérer charger une bombe
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
         // Si le joueur ne porte pas d'objets
@@ -88,14 +88,12 @@ void Joueur::mise_a_jour()
             if (_bombe_cooldown == 0)
             {
                 // Alors il peut sortir une bombe
-                charger_bombe();
                 _case_charge_bombe = this->get_case();
                 _bombe_cooldown = BOMBE_COOLDOWN;
+                new Bombe(this, BOMBE_TIMER_DEFAULT, BOMBE_POWER_DEFAULT);
             }
         }
     }
-
-    Mobile::mise_a_jour();
 
     //TODO soulever l'objet present dans la direction
     //TODO ou poser l'objet si il est en notre posetion
@@ -142,6 +140,7 @@ void Joueur::mise_a_jour()
         }
     }
 
+    // Gérer le dépot automatique au sol de la bombe
     if (_case_charge_bombe != NULL && _case_charge_bombe != this->get_case())
     {
         get_objet_souleve()->deposer(_case_charge_bombe);
@@ -149,7 +148,6 @@ void Joueur::mise_a_jour()
         _case_charge_bombe = NULL;
     }
 
+    // TODO Gérer la direction
     _sprite.setPosition(get_position_ecran());
-
-// TODO Gérer la direction
 }

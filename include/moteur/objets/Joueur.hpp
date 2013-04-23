@@ -23,8 +23,6 @@ public:
     explicit            Joueur(Case * cse);
     virtual             ~Joueur();
 
-    void                charger_bombe();
-
     virtual const sf::Vector2f get_position_objet_souleve() const;
 
     // Fonction d'affichage de Drawable

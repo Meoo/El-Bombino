@@ -45,6 +45,7 @@ public:
     const Soulevable *  get_objet_souleve() const;
 
     void                bouger(Direction dir);
+    bool                est_en_mouvement() const;
 
     float               get_vitesse() const;
     void                set_vitesse(float vitesse);

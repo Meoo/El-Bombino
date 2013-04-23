@@ -55,6 +55,11 @@ void Mobile::bouger(Direction dir)
     }
 }
 
+bool Mobile::est_en_mouvement() const
+{
+    return _bouge;
+}
+
 float Mobile::get_vitesse() const
 {
     return _vitesse;

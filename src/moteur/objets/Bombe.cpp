@@ -14,6 +14,7 @@ Bombe::Bombe(Mobile* porteur, unsigned timer, unsigned puissance) :
         Soulevable(porteur), _sprite(Jeu::instance().get_texture("bombe")), _timer(timer), _puissance(puissance)
 {
     _sprite.setOrigin(_sprite.getTexture()->getSize().x/2, _sprite.getTexture()->getSize().y/2);
+    _sprite.setPosition(porteur->get_position_objet_souleve());
 }
 
 Bombe::~Bombe()
