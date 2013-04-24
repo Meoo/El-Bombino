@@ -90,13 +90,13 @@ void Niveau::charger()
         case '0': // Enemis
             _cases[i] = new Case(i % _largeur, i / _largeur,
                     Jeu::instance().get_texture("sol"));
-            new Idiot(_cases[i]);
+            _pnjs.push_back(new Idiot(_cases[i]));
             break;
 
         case '1': // Enemis
             _cases[i] = new Case(i % _largeur, i / _largeur,
                     Jeu::instance().get_texture("sol"));
-            new Idiot(_cases[i]);
+            _pnjs.push_back(new Idiot(_cases[i]));
             break;
 
         default: // ERREUR
@@ -126,6 +126,7 @@ void Niveau::liberer()
     _cases = NULL;
     _largeur = 0;
     _hauteur = 0;
+    _pnjs.clear();
 
 #ifndef NDEBUG
     _pret = false;
@@ -190,6 +191,21 @@ const Joueur* Niveau::get_joueur() const
 void Niveau::delete_joueur()
 {
     _joueur = NULL;
+}
+
+std::list<MobileIA*>& Niveau::get_pnjs()
+{
+    return _pnjs;
+}
+
+const std::list<MobileIA*>& Niveau::get_pnjs() const
+{
+    return _pnjs;
+}
+
+void Niveau::delete_pnj(MobileIA* pnj)
+{
+    _pnjs.remove(pnj);
 }
 
 void Niveau::mise_a_jour()

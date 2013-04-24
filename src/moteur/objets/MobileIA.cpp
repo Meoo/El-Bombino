@@ -6,6 +6,7 @@
 
 #include <moteur/objets/MobileIA.hpp>
 #include <moteur/objets/Soulevable.hpp>
+#include <moteur/Jeu.hpp>
 
 MobileIA::MobileIA(Case* cse, float vitesse, unsigned vies, const sf::Texture & texture)
     : Mobile(cse, vitesse), _vies(vies), _texture(texture), _protection(0), _clignote(false)
@@ -17,6 +18,7 @@ MobileIA::MobileIA(Case* cse, float vitesse, unsigned vies, const sf::Texture & 
 
 MobileIA::~MobileIA()
 {
+    Jeu::instance().get_monde_courant().get_niveau_courant().delete_pnj(this);
 }
 
 void MobileIA::draw(sf::RenderTarget& target, sf::RenderStates states) const
