@@ -104,19 +104,35 @@ void Joueur::mise_a_jour()
         {
             if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() != NULL)
             {
-                //TODO si la case du haut est soulevable prendre l'objet
+                Soulevable * soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_haut()->get_objet());
+                if(soulevable)
+                {
+                    soulevable->set_porteur(this);
+                }
             }
             else if (get_direction() == BAS && get_case()->get_case_bas()->get_objet() != NULL)
             {
-                //TODO si la case du bas est soulevable prendre l'objet
+                Soulevable * soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_bas()->get_objet());
+                if(soulevable)
+                {
+                    soulevable->set_porteur(this);
+                }
             }
             else if (get_direction() == DROITE && get_case()->get_case_droite()->get_objet() != NULL)
             {
-                //TODO si la case de droite est soulevable prendre l'objet
+                Soulevable * soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_droite()->get_objet());
+                if(soulevable)
+                {
+                    soulevable->set_porteur(this);
+                }
             }
             else if (get_direction() == GAUCHE && get_case()->get_case_gauche()->get_objet() != NULL)
             {
-                //TODO si la case de gauche est soulevable prendre l'objet
+                Soulevable * soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_gauche()->get_objet());
+                if(soulevable)
+                {
+                    soulevable->set_porteur(this);
+                }
             }
         }
         else
@@ -124,19 +140,19 @@ void Joueur::mise_a_jour()
             //TODO poser l'objet
             if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() == NULL)
             {
-               //TODO poser l'objet get_case()->get_case_haut()
+                get_objet_souleve()->deposer(get_case()->get_case_haut());
             }
             else if (get_direction() == BAS && get_case()->get_case_bas()->get_objet() == NULL)
             {
-               //TODO poser l'objet get_case()->get_case_bas()
+                get_objet_souleve()->deposer(get_case()->get_case_bas());
             }
             else if (get_direction() == DROITE && get_case()->get_case_droite()->get_objet() == NULL)
             {
-               //TODO poser l'objet get_case()->get_case_droite()
+                get_objet_souleve()->deposer(get_case()->get_case_droite());
             }
             else if (get_direction() == GAUCHE && get_case()->get_case_gauche()->get_objet() == NULL)
             {
-               //TODO poser l'objet get_case()->get_case_gauche()
+                get_objet_souleve()->deposer(get_case()->get_case_gauche());
             }
         }
     }
