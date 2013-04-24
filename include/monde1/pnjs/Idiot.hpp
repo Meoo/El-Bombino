@@ -14,6 +14,7 @@
 class Idiot : public MobileIA
 {
 private:
+    Direction _derniere_direction;
 
 public:
     Idiot(Case * cse);
