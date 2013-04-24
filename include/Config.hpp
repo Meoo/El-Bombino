@@ -34,6 +34,9 @@ const unsigned      BOMBE_POWER_DEFAULT = 2;
 const unsigned      BOMBE_POWER_MIN     = 1;
 const unsigned      BOMBE_POWER_MAX     = 10;
 
+//Objet souleve
+const unsigned      OBJET_SOULEVE_COOLDOWN  = 10;
+
 // Joueur
 // > Vitesse
 const float         JOUEUR_VIT_DEFAULT  = 3;                //!< En pixels par affichage

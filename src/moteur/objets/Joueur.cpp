@@ -13,7 +13,7 @@
 
 Joueur::Joueur(Case * cse) :
         Mobile(cse, JOUEUR_VIT_DEFAULT), _sprite(
-                Jeu::instance().get_texture("joueur")), _case_charge_bombe(NULL), _bombe_cooldown(BOMBE_COOLDOWN)
+                Jeu::instance().get_texture("joueur")), _case_charge_bombe(NULL), _bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN)
 {
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
             _sprite.getTexture()->getSize().y
@@ -63,6 +63,9 @@ void Joueur::mise_a_jour()
     if (_bombe_cooldown > 0)
         --_bombe_cooldown;
 
+    if (_objet_souleve_cooldown > 0)
+        --_objet_souleve_cooldown;
+
     // Gérer déplacement
     if (!est_en_mouvement())
     {
@@ -100,7 +103,7 @@ void Joueur::mise_a_jour()
     //TODO ou poser l'objet si il est en notre posetion
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
     {
-        if(get_objet_souleve() == NULL)
+        if(get_objet_souleve() == NULL && _objet_souleve_cooldown == 0)
         {
             if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() != NULL)
             {
@@ -134,26 +137,30 @@ void Joueur::mise_a_jour()
                     soulevable->set_porteur(this);
                 }
             }
+            if(get_objet_souleve() != NULL)
+                _objet_souleve_cooldown = OBJET_SOULEVE_COOLDOWN;
         }
-        else
+        else if (_objet_souleve_cooldown == 0)
         {
             //TODO poser l'objet
-            if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() == NULL)
+            if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() == NULL && get_case()->get_case_haut()->est_praticable())
             {
                 get_objet_souleve()->deposer(get_case()->get_case_haut());
             }
-            else if (get_direction() == BAS && get_case()->get_case_bas()->get_objet() == NULL)
+            else if (get_direction() == BAS && get_case()->get_case_bas()->get_objet() == NULL && get_case()->get_case_bas()->est_praticable())
             {
                 get_objet_souleve()->deposer(get_case()->get_case_bas());
             }
-            else if (get_direction() == DROITE && get_case()->get_case_droite()->get_objet() == NULL)
+            else if (get_direction() == DROITE && get_case()->get_case_droite()->get_objet() == NULL && get_case()->get_case_droite()->est_praticable())
             {
                 get_objet_souleve()->deposer(get_case()->get_case_droite());
             }
-            else if (get_direction() == GAUCHE && get_case()->get_case_gauche()->get_objet() == NULL)
+            else if (get_direction() == GAUCHE && get_case()->get_case_gauche()->get_objet() == NULL && get_case()->get_case_gauche()->est_praticable())
             {
                 get_objet_souleve()->deposer(get_case()->get_case_gauche());
             }
+            if(get_objet_souleve() == NULL)
+                _objet_souleve_cooldown = OBJET_SOULEVE_COOLDOWN;
         }
     }
 

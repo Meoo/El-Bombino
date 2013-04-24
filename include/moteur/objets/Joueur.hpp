@@ -18,6 +18,7 @@ private:
     sf::Sprite          _sprite;
     Case*               _case_charge_bombe;
     unsigned            _bombe_cooldown;
+    unsigned            _objet_souleve_cooldown;
 
 public:
     explicit            Joueur(Case * cse);
