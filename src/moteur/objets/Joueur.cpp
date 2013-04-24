@@ -53,7 +53,7 @@ const sf::Vector2f Joueur::get_position_objet_souleve() const
                 get_objet_souleve()->get_case()->get_y() * TILE_SIZE
                         + TILE_SIZE / 2);
     else
-        return Mobile::get_position_ecran();
+        return Mobile::get_position_objet_souleve();
 }
 
 void Joueur::mise_a_jour()

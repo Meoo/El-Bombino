@@ -29,7 +29,6 @@ public:
     // Fonction d'affichage de Drawable
     virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
 
-    // redefinition de mise_a_jour (timer - 1) timer compte le nombres de frame (50 frame par seconde)
     virtual void    mise_a_jour();
 
     virtual void    blesser();

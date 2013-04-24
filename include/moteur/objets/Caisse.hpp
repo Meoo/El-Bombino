@@ -20,6 +20,9 @@ public:
 
     // Fonction d'affichage de Drawable
     virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
+
+    virtual void    mise_a_jour();
+
 };
 // class Caisse
 

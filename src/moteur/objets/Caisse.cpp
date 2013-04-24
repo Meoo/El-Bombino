@@ -5,6 +5,7 @@
  */
 
 #include <moteur/objets/Caisse.hpp>
+#include <moteur/objets/Mobile.hpp>
 #include <moteur/Jeu.hpp>
 #include <moteur/Case.hpp>
 
@@ -24,4 +25,19 @@ Caisse::~Caisse()
 void Caisse::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
+}
+
+void Caisse::mise_a_jour()
+{
+    Soulevable::mise_a_jour();
+
+    if (get_porteur() == NULL)
+    {
+        _sprite.setPosition(get_case()->get_x() * TILE_SIZE + TILE_SIZE / 2,
+                get_case()->get_y() * TILE_SIZE + TILE_SIZE / 2);
+    }
+    else
+    {
+        _sprite.setPosition(get_porteur()->get_position_objet_souleve());
+    }
 }
