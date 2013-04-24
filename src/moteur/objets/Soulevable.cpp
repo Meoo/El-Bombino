@@ -60,9 +60,12 @@ void Soulevable::deposer(Case * cse)
     assert(_porteur != NULL && _case == NULL);
 
     // Rattacher l'objet à une case
-    set_case(cse);
-    _porteur->_objet_souleve = NULL;
-    _porteur = NULL;
+    if(cse->est_praticable() && cse->get_objet() == NULL)
+    {
+        set_case(cse);
+        _porteur->_objet_souleve = NULL;
+        _porteur = NULL;
+    }
 }
 
 Case * Soulevable::get_case()

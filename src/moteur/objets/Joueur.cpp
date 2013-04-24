@@ -143,19 +143,19 @@ void Joueur::mise_a_jour()
         else if (_objet_souleve_cooldown == 0)
         {
             //TODO poser l'objet
-            if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() == NULL && get_case()->get_case_haut()->est_praticable())
+            if(get_direction() == HAUT)
             {
                 get_objet_souleve()->deposer(get_case()->get_case_haut());
             }
-            else if (get_direction() == BAS && get_case()->get_case_bas()->get_objet() == NULL && get_case()->get_case_bas()->est_praticable())
+            else if (get_direction() == BAS)
             {
                 get_objet_souleve()->deposer(get_case()->get_case_bas());
             }
-            else if (get_direction() == DROITE && get_case()->get_case_droite()->get_objet() == NULL && get_case()->get_case_droite()->est_praticable())
+            else if (get_direction() == DROITE)
             {
                 get_objet_souleve()->deposer(get_case()->get_case_droite());
             }
-            else if (get_direction() == GAUCHE && get_case()->get_case_gauche()->get_objet() == NULL && get_case()->get_case_gauche()->est_praticable())
+            else if (get_direction() == GAUCHE)
             {
                 get_objet_souleve()->deposer(get_case()->get_case_gauche());
             }
