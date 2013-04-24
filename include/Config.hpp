@@ -34,8 +34,13 @@ const unsigned      BOMBE_POWER_DEFAULT = 2;
 const unsigned      BOMBE_POWER_MIN     = 1;
 const unsigned      BOMBE_POWER_MAX     = 10;
 
-//Objet souleve
+// Objet souleve
+// > Timer
 const unsigned      OBJET_SOULEVE_COOLDOWN  = 10;
+
+// CaisseInfini
+// > Timer
+const unsigned      CAISSEINFINI_COLDOWN    = 50;
 
 // Joueur
 // > Vitesse

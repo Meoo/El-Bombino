@@ -11,6 +11,7 @@
 #include <moteur/objets/Caisse.hpp>
 #include <moteur/objets/Joueur.hpp>
 #include <moteur/case/Mur.hpp>
+#include <moteur/case/CaisseInfini.hpp>
 #include <monde1/pnjs/Idiot.hpp>
 
 #include <fstream>
@@ -87,6 +88,10 @@ void Niveau::charger()
             new Caisse(_cases[i]);
             break;
 
+        case 'R': // CaisseInfini
+            _cases[i] = new CaisseInfini(i % _largeur, i / _largeur,
+                                Jeu::instance().get_texture("caisseinfini"));
+            break;
         case '0': // Enemis
             _cases[i] = new Case(i % _largeur, i / _largeur,
                     Jeu::instance().get_texture("sol"));
