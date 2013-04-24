@@ -9,8 +9,10 @@
 
 #include "../Config.hpp"
 
+
 #include <SFML/Graphics.hpp>
 
+class Joueur;
 class Case;
 
 /**
@@ -23,6 +25,7 @@ private:
 	unsigned	        _largeur;
 	unsigned	        _hauteur;
 	Case **		        _cases;			//!< Tableau de pointeurs de case (taille : largeur x hauteur)
+	Joueur *            _joueur;
 
 #ifndef NDEBUG
     bool                _pret;
@@ -37,6 +40,11 @@ public:
 
     Case *              get_case(unsigned x, unsigned y);
     const Case *        get_case(unsigned x, unsigned y) const;
+
+    Joueur *            get_joueur();
+    const Joueur *      get_joueur() const;
+
+    void                delete_joueur();
 
     // Fonction d'affichage de Drawable
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;

@@ -22,6 +22,7 @@ Joueur::Joueur(Case * cse) :
 
 Joueur::~Joueur()
 {
+    Jeu::instance().get_monde_courant().get_niveau_courant().delete_joueur();
 }
 
 void Joueur::draw(sf::RenderTarget & target, sf::RenderStates states) const

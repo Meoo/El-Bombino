@@ -17,7 +17,7 @@
 #include <vector>
 
 Niveau::Niveau(const std::string & fic) :
-        _fichier_rc(fic), _largeur(0), _hauteur(0), _cases(NULL)
+        _fichier_rc(fic), _largeur(0), _hauteur(0), _cases(NULL), _joueur(NULL)
 #ifndef NDEBUG
         , _pret(false)
 #endif
@@ -70,7 +70,15 @@ void Niveau::charger()
         case 'I': // Player
             _cases[i] = new Case(i % _largeur, i / _largeur,
                     Jeu::instance().get_texture("sol"));
-            new Joueur(_cases[i]);
+            if(_joueur == NULL)
+            {
+                _joueur = new Joueur(_cases[i]);
+            }
+            else
+            {
+                throw ExceptionRessource(_fichier_rc,
+                        "Le fichier est mal formé (il ne peut pas avoir 2 joueur)");
+            }
             break;
 
         case 'C': // Caisse
@@ -167,6 +175,21 @@ const Case * Niveau::get_case(unsigned x, unsigned y) const
     assert(y >= 0 && y < _hauteur);
 
     return _cases[y*_largeur + x];
+}
+
+Joueur* Niveau::get_joueur()
+{
+    return _joueur;
+}
+
+const Joueur* Niveau::get_joueur() const
+{
+    return _joueur;
+}
+
+void Niveau::delete_joueur()
+{
+    _joueur = NULL;
 }
 
 void Niveau::mise_a_jour()
