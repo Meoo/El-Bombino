@@ -56,6 +56,15 @@ int main(int argc, char ** argv)
             Jeu::instance().set_monde_courant(0);
             Jeu::instance().get_monde_courant().set_niveau_courant(1);
         }
+        //test de la liste de pnjs
+        /** /
+        if(Jeu::instance().get_monde_courant().get_niveau_courant().get_pnjs().empty()){
+                    Jeu::instance().liberer();
+                    Jeu::instance().charger();
+                    Jeu::instance().set_monde_courant(0);
+                    Jeu::instance().get_monde_courant().set_niveau_courant(1);
+        }
+        / **/
         window.clear(sf::Color::Black);
 
         Jeu::instance().mise_a_jour();
