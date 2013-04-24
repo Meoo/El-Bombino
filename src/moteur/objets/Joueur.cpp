@@ -99,8 +99,8 @@ void Joueur::mise_a_jour()
         }
     }
 
-    //TODO soulever l'objet present dans la direction
-    //TODO ou poser l'objet si il est en notre posetion
+    // soulever l'objet present dans la direction
+    // ou poser l'objet si il est en notre posetion
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
     {
         if(get_objet_souleve() == NULL && _objet_souleve_cooldown == 0)
@@ -142,7 +142,6 @@ void Joueur::mise_a_jour()
         }
         else if (_objet_souleve_cooldown == 0)
         {
-            //TODO poser l'objet
             if(get_direction() == HAUT)
             {
                 get_objet_souleve()->deposer(get_case()->get_case_haut());
