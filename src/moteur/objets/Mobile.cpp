@@ -129,8 +129,8 @@ void Mobile::mise_a_jour()
                     {
                     case HAUT: _direction = BAS; break;
                     case BAS: _direction = HAUT; break;
-                    case GAUCHE: _direction = GAUCHE; break;
-                    case DROITE: _direction = DROITE; break;
+                    case GAUCHE: _direction = DROITE; break;
+                    case DROITE: _direction = GAUCHE; break;
                     }
                 }
             }
