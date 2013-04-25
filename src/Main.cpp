@@ -28,6 +28,24 @@ int main(int argc, char ** argv)
     sf::Font font;
     font.loadFromFile("C:/Windows/Fonts/arial.ttf");
 
+    // Variables pour la Pause
+    sf::Text texte_pause("PAUSE", font);
+    texte_pause.setCharacterSize(128);
+    texte_pause.setColor(sf::Color::White);
+    texte_pause.setOrigin(texte_pause.getLocalBounds().width / 2, texte_pause.getLocalBounds().height / 2);
+    texte_pause.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+
+    sf::Text texte_pause_fond(texte_pause);
+    texte_pause_fond.move(4, 4);
+    texte_pause_fond.setColor(sf::Color::Black);
+    texte_pause_fond.setStyle(sf::Text::Bold);
+
+    sf::RectangleShape fond_pause(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+    fond_pause.setFillColor(sf::Color(0, 0, 0, 128));
+
+    bool pause = false;
+    int pause_frame = 0;
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -36,8 +54,14 @@ int main(int argc, char ** argv)
             if (event.type == sf::Event::Closed)
                 window.close();
 
+            if (event.type == sf::Event::LostFocus)
+                pause = true;
+
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
                 window.close();
+
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Pause))
+                pause = !pause;
 
 #ifndef NDEBUG
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::F1))
@@ -67,17 +91,26 @@ int main(int argc, char ** argv)
         / **/
         window.clear(sf::Color::Black);
 
-        Jeu::instance().mise_a_jour();
+        if (!pause)
+        {
+            Jeu::instance().mise_a_jour();
+        }
 
         window.draw(Jeu::instance());
 
         window.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
-        sf::Text text(WINDOW_NAME, font);
+        if (pause)
+        {
+            window.draw(fond_pause);
 
-        text.setPosition(20, 20);
-        text.setColor(sf::Color::Blue);
-        window.draw(text);
+            float a = std::sin(pause_frame++ * 0.015f) * 3.f;
+            texte_pause.setRotation(a);
+            texte_pause_fond.setRotation(a);
+
+            window.draw(texte_pause_fond);
+            window.draw(texte_pause);
+        }
 
         window.display();
     }
