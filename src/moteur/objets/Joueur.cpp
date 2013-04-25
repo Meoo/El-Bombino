@@ -13,7 +13,7 @@
 
 Joueur::Joueur(Case * cse) :
         Mobile(cse, JOUEUR_VIT_DEFAULT), _sprite(
-                Jeu::instance().get_texture("joueur")), _case_charge_bombe(NULL), _bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN)
+                Jeu::instance().get_texture("joueur")), _case_deposer_objet(NULL), _bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN)
 {
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
             _sprite.getTexture()->getSize().y
@@ -29,7 +29,7 @@ void Joueur::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
     if (get_objet_souleve() != NULL)
     {
-        if (_case_charge_bombe == NULL)
+        if (_case_deposer_objet == NULL)
         {
             target.draw(_sprite, states);
             target.draw(*get_objet_souleve(), states);
@@ -46,7 +46,7 @@ void Joueur::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 const sf::Vector2f Joueur::get_position_objet_souleve() const
 {
-    if (_case_charge_bombe != NULL)
+    if (_case_deposer_objet != NULL)
         return sf::Vector2f(
                 get_objet_souleve()->get_case()->get_x() * TILE_SIZE
                         + TILE_SIZE / 2,
@@ -92,7 +92,7 @@ void Joueur::mise_a_jour()
             if (_bombe_cooldown == 0)
             {
                 // Alors il peut sortir une bombe
-                _case_charge_bombe = this->get_case();
+                _case_deposer_objet = this->get_case();
                 _bombe_cooldown = BOMBE_COOLDOWN;
                 new Bombe(this, BOMBE_TIMER_DEFAULT, BOMBE_POWER_DEFAULT);
             }
@@ -103,75 +103,76 @@ void Joueur::mise_a_jour()
     // ou poser l'objet si il est en notre posetion
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
     {
-        if(get_objet_souleve() == NULL && _objet_souleve_cooldown == 0)
+        if (_objet_souleve_cooldown == 0)
         {
-            if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() != NULL)
-            {
-                Soulevable * soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_haut()->get_objet());
-                if(soulevable)
-                {
-                    soulevable->set_porteur(this);
-                }
-            }
-            else if (get_direction() == BAS && get_case()->get_case_bas()->get_objet() != NULL)
-            {
-                Soulevable * soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_bas()->get_objet());
-                if(soulevable)
-                {
-                    soulevable->set_porteur(this);
-                }
-            }
-            else if (get_direction() == DROITE && get_case()->get_case_droite()->get_objet() != NULL)
-            {
-                Soulevable * soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_droite()->get_objet());
-                if(soulevable)
-                {
-                    soulevable->set_porteur(this);
-                }
-            }
-            else if (get_direction() == GAUCHE && get_case()->get_case_gauche()->get_objet() != NULL)
-            {
-                Soulevable * soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_gauche()->get_objet());
-                if(soulevable)
-                {
-                    soulevable->set_porteur(this);
-                }
-            }
-            if(get_objet_souleve() != NULL)
-                _objet_souleve_cooldown = OBJET_SOULEVE_COOLDOWN;
-        }
-        else if (_objet_souleve_cooldown == 0)
-        {
-            if(get_direction() == HAUT)
-            {
-                get_objet_souleve()->deposer(get_case()->get_case_haut());
-            }
-            else if (get_direction() == BAS)
-            {
-                get_objet_souleve()->deposer(get_case()->get_case_bas());
-            }
-            else if (get_direction() == DROITE)
-            {
-                get_objet_souleve()->deposer(get_case()->get_case_droite());
-            }
-            else if (get_direction() == GAUCHE)
-            {
-                get_objet_souleve()->deposer(get_case()->get_case_gauche());
-            }
             if(get_objet_souleve() == NULL)
-                _objet_souleve_cooldown = OBJET_SOULEVE_COOLDOWN;
+            {
+                Soulevable * soulevable = NULL;
+
+                // Essayer de récupérer un soulevable sur une case à coté
+                if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() != NULL)
+                {
+                    soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_haut()->get_objet());
+                }
+                else if (get_direction() == BAS && get_case()->get_case_bas()->get_objet() != NULL)
+                {
+                    soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_bas()->get_objet());
+                }
+                else if (get_direction() == DROITE && get_case()->get_case_droite()->get_objet() != NULL)
+                {
+                    soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_droite()->get_objet());
+                }
+                else if (get_direction() == GAUCHE && get_case()->get_case_gauche()->get_objet() != NULL)
+                {
+                    soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_gauche()->get_objet());
+                }
+
+                // Si c'est bon, le soulever
+                if(soulevable)
+                {
+                    soulevable->set_porteur(this);
+                }
+            }
+            else
+            {
+                // Si on as un objet à ses pieds, le soulever
+                if (_case_deposer_objet != NULL)
+                {
+                    _case_deposer_objet = NULL;
+                }
+
+                // Sinon déposer l'objet sur une case à coté
+                else if(get_direction() == HAUT)
+                {
+                    get_objet_souleve()->deposer(get_case()->get_case_haut());
+                }
+                else if (get_direction() == BAS)
+                {
+                    get_objet_souleve()->deposer(get_case()->get_case_bas());
+                }
+                else if (get_direction() == DROITE)
+                {
+                    get_objet_souleve()->deposer(get_case()->get_case_droite());
+                }
+                else if (get_direction() == GAUCHE)
+                {
+                    get_objet_souleve()->deposer(get_case()->get_case_gauche());
+                }
+            }
+
+            _objet_souleve_cooldown = OBJET_SOULEVE_COOLDOWN;
         }
     }
 
     // Gérer le dépot automatique au sol de la bombe
-    // TODO mettre _case_charge_bombe à null si on prend l'objet sur nous ou qu'on le pose!
-    if (get_objet_souleve() != NULL && _case_charge_bombe != NULL && _case_charge_bombe != this->get_case())
+    if (get_objet_souleve() != NULL && _case_deposer_objet != NULL && _case_deposer_objet != this->get_case())
     {
-        get_objet_souleve()->deposer(_case_charge_bombe);
-        _case_charge_bombe->get_objet()->mise_a_jour();
-        _case_charge_bombe = NULL;
+        get_objet_souleve()->deposer(_case_deposer_objet);
+        _case_deposer_objet->get_objet()->mise_a_jour();
+        _case_deposer_objet = NULL;
     }
 
     // TODO Gérer la direction
     _sprite.setPosition(get_position_ecran());
+
 }
