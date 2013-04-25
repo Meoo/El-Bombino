@@ -55,6 +55,7 @@ const unsigned      IA_PROTECTION       = 50;               //!< Temps de protec
 // Ressources
 const std::string   RC_FOLDER           ("rc/");
 const std::string   RC_JEU              ("jeu.txt");
+const std::string   RC_ICON             ("icon.png");
 
 // Debug
 #ifdef NDEBUG

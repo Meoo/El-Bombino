@@ -17,18 +17,16 @@ int main(int argc, char ** argv)
 {
     srand(time(NULL));
 
-    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
-    window.setFramerateLimit(WINDOW_FRAMERATE);
-
     Jeu::instance().charger();
 
+    // TODO DEBUG Enlever
     Jeu::instance().set_monde_courant(0);
     Jeu::instance().get_monde_courant().set_niveau_courant(1);
 
+    // Variables pour la Pause
     sf::Font font;
     font.loadFromFile("C:/Windows/Fonts/arial.ttf");
 
-    // Variables pour la Pause
     sf::Text texte_pause("PAUSE", font);
     texte_pause.setCharacterSize(128);
     texte_pause.setColor(sf::Color::White);
@@ -45,6 +43,17 @@ int main(int argc, char ** argv)
 
     bool pause = false;
     int pause_frame = 0;
+
+    // Fenêtre
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
+    window.setFramerateLimit(WINDOW_FRAMERATE);
+
+    // Icône de la fenêtre
+    {
+        sf::Image icon;
+        icon.loadFromFile(RC_FOLDER + RC_ICON);
+        window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    }
 
     while (window.isOpen())
     {
@@ -63,6 +72,7 @@ int main(int argc, char ** argv)
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Pause))
                 pause = !pause;
 
+            // TODO DEBUG Enlever
 #ifndef NDEBUG
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::F1))
             {
@@ -74,6 +84,7 @@ int main(int argc, char ** argv)
 #endif
         }
 
+        // TODO DEBUG Enlever
         if(Jeu::instance().get_monde_courant().get_niveau_courant().get_joueur()==NULL){
             Jeu::instance().liberer();
             Jeu::instance().charger();
@@ -89,6 +100,7 @@ int main(int argc, char ** argv)
                     Jeu::instance().get_monde_courant().set_niveau_courant(1);
         }
         / **/
+
         window.clear(sf::Color::Black);
 
         if (!pause)
