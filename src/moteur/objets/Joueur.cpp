@@ -164,7 +164,8 @@ void Joueur::mise_a_jour()
     }
 
     // Gérer le dépot automatique au sol de la bombe
-    if (_case_charge_bombe != NULL && _case_charge_bombe != this->get_case())
+    // TODO mettre _case_charge_bombe à null si on prend l'objet sur nous ou qu'on le pose!
+    if (get_objet_souleve() != NULL && _case_charge_bombe != NULL && _case_charge_bombe != this->get_case())
     {
         get_objet_souleve()->deposer(_case_charge_bombe);
         _case_charge_bombe->get_objet()->mise_a_jour();
