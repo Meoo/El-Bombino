@@ -26,7 +26,6 @@ void Bombe::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(_sprite, states);
 }
 
-
 void Bombe::mise_a_jour()
 {
     Soulevable::mise_a_jour();

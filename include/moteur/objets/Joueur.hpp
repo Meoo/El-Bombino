@@ -16,7 +16,7 @@ class Joueur : public Mobile
 {
 private:
     sf::Sprite          _sprite;
-    Case*               _case_charge_bombe;
+    Case*               _case_deposer_objet;
     unsigned            _bombe_cooldown;
     unsigned            _objet_souleve_cooldown;
 
