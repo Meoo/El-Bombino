@@ -45,5 +45,7 @@ void Caisse::mise_a_jour()
 
 void Caisse::laisser_tomber_objet(Case* cse)
 {
-    new Bonus(cse);
+    int laisser_tomber = rand() % 5;
+    if (laisser_tomber == 0)
+        new Bonus(cse);
 }

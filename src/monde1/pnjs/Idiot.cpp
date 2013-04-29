@@ -8,6 +8,7 @@
 #include <moteur/Case.hpp>
 #include <moteur/objets/Bonus.hpp>
 
+
 #include <vector>
 
 Idiot::Idiot(Case * cse) : MobileIA(cse, 1.f, 2, Jeu::instance().get_texture("idiot")), _derniere_direction((Direction) -1)
@@ -109,3 +110,4 @@ void Idiot::mise_a_jour_ia()
     }
     assert(false);
 }
+
