@@ -7,6 +7,7 @@
 #include <moteur/objets/Mobile.hpp>
 #include <moteur/objets/Soulevable.hpp>
 #include <moteur/Case.hpp>
+#include <moteur/objets/Bonus.hpp>
 
 Mobile::Mobile(Case * cse, float vitesse) :
         Objet(cse), _objet_souleve(NULL), _vitesse(vitesse), _direction(BAS), _bouge(
@@ -49,7 +50,8 @@ void Mobile::bouger(Direction dir)
     case DROITE: cse = get_case()->get_case_droite(); break;
     }
 
-    if (cse->est_praticable() && cse->get_objet() == NULL)
+    Bonus *bonus = dynamic_cast<Bonus *> (cse->get_objet());
+    if ( (cse->est_praticable() && cse->get_objet() == NULL) || (cse->est_praticable() && bonus))
     {
         _bouge = true;
     }
@@ -117,9 +119,18 @@ void Mobile::mise_a_jour()
                 case DROITE: cse = get_case()->get_case_droite(); break;
                 }
 
+                Bonus * bonus = dynamic_cast<Bonus *> (cse->get_objet());
+
                 if (cse->est_praticable() && cse->get_objet() == NULL)
                 {
                     // C'est ok, on change de case
+                    set_case(cse);
+                }
+                else if (cse->est_praticable() && bonus)
+                {
+                    //applique le bonus au mobile
+                    //_bonus = bonus->effet();
+                    delete bonus;
                     set_case(cse);
                 }
                 else
