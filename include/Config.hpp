@@ -48,6 +48,8 @@ const float         JOUEUR_VIT_DEFAULT  = 3;                //!< En pixels par a
 const float         JOUEUR_VIT_MIN      = 2;
 const float         JOUEUR_VIT_MAX      = 4;
 const float         JOUEUR_VIT_DELTA    = 0.5;              //!< Variation lorsque le joueur prend un bonus ou malus
+const unsigned      JOUEUR_DEFAULT_NB_BOMBES    = 2;
+
 
 // IA
 const unsigned      IA_PROTECTION       = 50;               //!< Temps de protection d'une IA lorsqu'elle est touchée

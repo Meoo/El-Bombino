@@ -19,6 +19,8 @@ private:
     Case*               _case_deposer_objet;
     unsigned            _bombe_cooldown;
     unsigned            _objet_souleve_cooldown;
+    unsigned            _nb_bombes_simultanee;
+    unsigned            _puissance_bombe;
 
 public:
     explicit            Joueur(Case * cse);

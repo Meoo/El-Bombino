@@ -13,7 +13,7 @@
 
 Joueur::Joueur(Case * cse) :
         Mobile(cse, JOUEUR_VIT_DEFAULT), _sprite(
-                Jeu::instance().get_texture("joueur")), _case_deposer_objet(NULL), _bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN)
+                Jeu::instance().get_texture("joueur")), _case_deposer_objet(NULL), _bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN), _nb_bombes_simultanee(JOUEUR_DEFAULT_NB_BOMBES), _puissance_bombe(BOMBE_POWER_DEFAULT)
 {
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
             _sprite.getTexture()->getSize().y
@@ -94,7 +94,7 @@ void Joueur::mise_a_jour()
                 // Alors il peut sortir une bombe
                 _case_deposer_objet = this->get_case();
                 _bombe_cooldown = BOMBE_COOLDOWN;
-                new Bombe(this, BOMBE_TIMER_DEFAULT, BOMBE_POWER_DEFAULT);
+                new Bombe(this, BOMBE_TIMER_DEFAULT, _puissance_bombe);
             }
         }
     }
