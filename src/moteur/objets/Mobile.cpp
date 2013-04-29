@@ -51,7 +51,7 @@ void Mobile::bouger(Direction dir)
     }
 
     Bonus *bonus = dynamic_cast<Bonus *> (cse->get_objet());
-    if ( (cse->est_praticable() && cse->get_objet() == NULL) || (cse->est_praticable() && bonus))
+    if ( cse->est_praticable() && (cse->get_objet() == NULL || bonus))
     {
         _bouge = true;
     }
