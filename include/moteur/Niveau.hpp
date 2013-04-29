@@ -16,6 +16,7 @@ class Joueur;
 class Case;
 class Monde;
 class MobileIA;
+class Bombe;
 
 /**
  * @brief
@@ -29,6 +30,7 @@ private:
 	Case **		            _cases;			//!< Tableau de pointeurs de case (taille : largeur x hauteur)
 	Joueur *                _joueur;
 	std::list<MobileIA *>   _pnjs;
+	std::list<Bombe *>      _bombes_actives;
 
 #ifndef NDEBUG
     bool                _pret;
@@ -53,6 +55,11 @@ public:
     const std::list<MobileIA *> &   get_pnjs() const;
 
     void                            delete_pnj(MobileIA* pnj);
+
+    std::list<Bombe *> &            get_bombes_actives();
+    const std::list<Bombe *> &      get_bombes_actives() const;
+
+    void                            delete_bombe(Bombe* bombe);
 
     // Fonction d'affichage de Drawable
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;

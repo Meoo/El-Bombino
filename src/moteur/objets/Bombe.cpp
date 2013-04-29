@@ -19,6 +19,7 @@ Bombe::Bombe(Mobile* porteur, unsigned timer, unsigned puissance) :
 
 Bombe::~Bombe()
 {
+    Jeu::instance().get_monde_courant().get_niveau_courant().delete_bombe(this);
 }
 
 void Bombe::draw(sf::RenderTarget& target, sf::RenderStates states) const

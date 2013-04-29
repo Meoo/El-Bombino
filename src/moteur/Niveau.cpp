@@ -11,6 +11,7 @@
 #include <moteur/Case.hpp>
 #include <moteur/objets/Joueur.hpp>
 #include <moteur/objets/MobileIA.hpp>
+#include <moteur/objets/Bombe.hpp>
 
 #include <fstream>
 
@@ -159,6 +160,21 @@ void Niveau::delete_pnj(MobileIA* pnj)
     _pnjs.remove(pnj);
 }
 
+std::list<Bombe*>& Niveau::get_bombes_actives()
+{
+    return _bombes_actives;
+}
+
+const std::list<Bombe*>& Niveau::get_bombes_actives() const
+{
+    return _bombes_actives;
+}
+
+void Niveau::delete_bombe(Bombe* bombe)
+{
+    _bombes_actives.remove(bombe);
+}
+
 void Niveau::mise_a_jour()
 {
     assert(_pret);
@@ -181,6 +197,12 @@ void Niveau::mise_a_jour()
             MobileIA * mobileIA = dynamic_cast<MobileIA *>(obj);
             if (mobileIA){
                 _pnjs.push_back(mobileIA);
+                _pnjs.unique();
+            }
+            Bombe * bombe = dynamic_cast<Bombe *> (obj);
+            if(bombe){
+                _bombes_actives.push_back(bombe);
+                _bombes_actives.unique();
             }
             objs.push_back(obj);
         }

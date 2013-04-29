@@ -89,7 +89,7 @@ void Joueur::mise_a_jour()
         if (get_objet_souleve() == NULL)
         {
             // Petit cooldown
-            if (_bombe_cooldown == 0)
+            if (_bombe_cooldown == 0 && Jeu::instance().get_monde_courant().get_niveau_courant().get_bombes_actives().size() < _nb_bombes_simultanee)
             {
                 // Alors il peut sortir une bombe
                 _case_deposer_objet = this->get_case();
