@@ -128,10 +128,7 @@ void Mobile::mise_a_jour()
                 }
                 else if (cse->est_praticable() && bonus)
                 {
-                    //applique le bonus au mobile
-                    //_bonus = bonus->effet();
-                    delete bonus;
-                    set_case(cse);
+                    bonus->utiliser(this);
                 }
                 else
                 {

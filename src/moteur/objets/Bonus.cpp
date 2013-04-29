@@ -35,3 +35,8 @@ void Bonus::mise_a_jour()
 void Bonus::blesser()
 {
 }
+
+void Bonus::utiliser(Objet * obj)
+{
+    detruire();
+}

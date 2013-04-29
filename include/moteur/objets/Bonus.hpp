@@ -24,6 +24,8 @@ public:
     virtual void mise_a_jour();
 
     virtual void blesser();
+
+    void        utiliser(Objet *);
 };
 // Class Bonus
 
