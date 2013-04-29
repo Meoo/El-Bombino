@@ -110,8 +110,10 @@ void Case::mise_a_jour()
         }
         else
         {
-            delete _objet;
+            Objet *obj = _objet;
             _objet = NULL;
+            obj->laisser_tomber_objet(this);
+            delete obj;
         }
     }
 

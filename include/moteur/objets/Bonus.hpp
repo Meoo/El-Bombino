@@ -16,10 +16,14 @@ private:
 
 
 public:
-                Bonus(Case * cse, sf::Sprite sprite);
+                Bonus(Case * cse);
     virtual     ~Bonus();
 
+    virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
+
     virtual void mise_a_jour();
+
+    virtual void blesser();
 };
 // Class Bonus
 

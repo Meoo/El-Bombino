@@ -6,6 +6,7 @@
 
 #include <moteur/objets/Caisse.hpp>
 #include <moteur/objets/Mobile.hpp>
+#include <moteur/objets/Bonus.hpp>
 #include <moteur/Jeu.hpp>
 #include <moteur/Case.hpp>
 
@@ -40,4 +41,9 @@ void Caisse::mise_a_jour()
     {
         _sprite.setPosition(get_porteur()->get_position_objet_souleve());
     }
+}
+
+void Caisse::laisser_tomber_objet(Case* cse)
+{
+    new Bonus(cse);
 }

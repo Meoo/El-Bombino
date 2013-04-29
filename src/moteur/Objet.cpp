@@ -62,6 +62,10 @@ void Objet::blesser()
     detruire();
 }
 
+void Objet::laisser_tomber_objet(Case* cse)
+{
+}
+
 void Objet::detruire()
 {
     _valide = false;

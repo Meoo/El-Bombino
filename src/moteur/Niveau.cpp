@@ -9,6 +9,8 @@
 #include <moteur/Jeu.hpp>
 #include <moteur/Monde.hpp>
 #include <moteur/Case.hpp>
+#include <moteur/objets/Joueur.hpp>
+#include <moteur/objets/MobileIA.hpp>
 
 #include <fstream>
 
@@ -171,8 +173,18 @@ void Niveau::mise_a_jour()
 
         // Faire une liste des objets valides à mettre à jour
         Objet * obj = _cases[i]->get_objet();
-        if (obj != NULL && obj->est_valide())
+        if (obj != NULL && obj->est_valide()){
+            Joueur *joueur = dynamic_cast<Joueur *>(obj);
+            if(joueur){
+                _joueur = joueur;
+            }
+            MobileIA * mobileIA = dynamic_cast<MobileIA *>(obj);
+            if (mobileIA){
+                _pnjs.push_back(mobileIA);
+            }
             objs.push_back(obj);
+        }
+
     }
 
     // Mettre à jour les objets

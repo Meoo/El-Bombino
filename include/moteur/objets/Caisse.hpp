@@ -23,6 +23,7 @@ public:
 
     virtual void    mise_a_jour();
 
+    virtual void    laisser_tomber_objet(Case * cse);
 };
 // class Caisse
 
