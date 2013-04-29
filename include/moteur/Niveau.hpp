@@ -9,12 +9,12 @@
 
 #include "../Config.hpp"
 
-
 #include <SFML/Graphics.hpp>
 #include <list>
 
 class Joueur;
 class Case;
+class Monde;
 class MobileIA;
 
 /**
@@ -38,7 +38,7 @@ public:
     explicit            Niveau(const std::string & fic);
     virtual             ~Niveau();
 
-    void                charger();
+    void                charger(const Monde * parent);
     void                liberer();
 
     Case *              get_case(unsigned x, unsigned y);

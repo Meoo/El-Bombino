@@ -4,18 +4,13 @@
  * @author Pascal-Pierre Sanchez-Carrion
  */
 
+#include <moteur/Niveau.hpp>
 #include <moteur/exceptions/ExceptionRessource.hpp>
 #include <moteur/Jeu.hpp>
-#include <moteur/Niveau.hpp>
+#include <moteur/Monde.hpp>
 #include <moteur/Case.hpp>
-#include <moteur/objets/Caisse.hpp>
-#include <moteur/objets/Joueur.hpp>
-#include <moteur/case/Mur.hpp>
-#include <moteur/case/CaisseInfini.hpp>
-#include <monde1/pnjs/Idiot.hpp>
 
 #include <fstream>
-#include <vector>
 
 Niveau::Niveau(const std::string & fic) :
         _fichier_rc(fic), _largeur(0), _hauteur(0), _cases(NULL), _joueur(NULL)
@@ -30,7 +25,7 @@ Niveau::~Niveau()
     liberer();
 }
 
-void Niveau::charger()
+void Niveau::charger(const Monde * parent)
 {
     assert(!_pret);
 
@@ -56,58 +51,7 @@ void Niveau::charger()
     {
         char texture_case;
         fic >> texture_case;
-        switch (texture_case)
-        {
-        case 'M': // Mur
-            _cases[i] = new Mur(i % _largeur, i / _largeur,
-                    Jeu::instance().get_texture("mur"));
-            break;
-
-        case '_': // Sol
-            _cases[i] = new Case(i % _largeur, i / _largeur,
-                    Jeu::instance().get_texture("sol"));
-            break;
-
-        case 'I': // Player
-            _cases[i] = new Case(i % _largeur, i / _largeur,
-                    Jeu::instance().get_texture("sol"));
-            if(_joueur == NULL)
-            {
-                _joueur = new Joueur(_cases[i]);
-            }
-            else
-            {
-                throw ExceptionRessource(_fichier_rc,
-                        "Le fichier est mal formé (il ne peut pas avoir 2 joueur)");
-            }
-            break;
-
-        case 'C': // Caisse
-            _cases[i] = new Case(i % _largeur, i / _largeur,
-                    Jeu::instance().get_texture("sol"));
-            new Caisse(_cases[i]);
-            break;
-
-        case 'R': // CaisseInfini
-            _cases[i] = new CaisseInfini(i % _largeur, i / _largeur,
-                                Jeu::instance().get_texture("caisseinfini"));
-            break;
-        case '0': // Enemis
-            _cases[i] = new Case(i % _largeur, i / _largeur,
-                    Jeu::instance().get_texture("sol"));
-            _pnjs.push_back(new Idiot(_cases[i]));
-            break;
-
-        case '1': // Enemis
-            _cases[i] = new Case(i % _largeur, i / _largeur,
-                    Jeu::instance().get_texture("sol"));
-            _pnjs.push_back(new Idiot(_cases[i]));
-            break;
-
-        default: // ERREUR
-            throw ExceptionRessource(_fichier_rc,
-                    "Le fichier est mal formé (pas de mode)");
-        }
+        _cases[i] = parent->creer_case(i % _largeur, i / _largeur, texture_case);
     }
 
     // Vérifier que le fichier soit vide

@@ -6,6 +6,7 @@
 
 #include <moteur/Monde.hpp>
 #include <moteur/Niveau.hpp>
+#include <moteur/Usine.hpp>
 #include <moteur/exceptions/ExceptionRessource.hpp>
 
 #include <vector>
@@ -52,6 +53,7 @@ void Monde::charger()
     std::string clef, valeur;
     std::vector<std::string> niveaux;
     sf::Texture text;
+    Tuile tuile;
 
     unsigned mode = 0;
 
@@ -64,6 +66,8 @@ void Monde::charger()
             mode = 1;
         else if (clef == "TEXTURES")
             mode = 2;
+        else if (clef == "CASES")
+            mode = 3;
         else
         {
             switch (mode)
@@ -84,6 +88,30 @@ void Monde::charger()
                 // Charger la texture
                 text.loadFromFile(RC_FOLDER + valeur);
                 _textures[clef].push_back(text);
+                break;
+
+            case 3: // CASES
+                if (clef.length() != 1)
+                    throw ExceptionRessource(RC_JEU,
+                            std::string("Identifiant de case invalide : ") + clef);
+                fic >> std::ws;
+
+                if (fic.eof())
+                    throw ExceptionRessource(RC_JEU,
+                            std::string("Pas assez d'arguments : ") + clef);
+                fic >> tuile.classe_case >> std::ws;
+
+                if (fic.eof())
+                    throw ExceptionRessource(RC_JEU,
+                            std::string("Pas assez d'arguments : ") + clef);
+                fic >> tuile.texture_case >> std::ws;
+
+                if (fic.eof())
+                    throw ExceptionRessource(RC_JEU,
+                            std::string("Pas assez d'arguments : ") + clef);
+                fic >> tuile.classe_objet;
+
+                _usine_cases[clef[0]] = tuile;
                 break;
 
             default: // ERREUR
@@ -156,6 +184,21 @@ void Monde::mise_a_jour()
     _niveau_courant->mise_a_jour();
 }
 
+Case * Monde::creer_case(unsigned x, unsigned y, char tuile) const
+{
+    const char err[] = {tuile, 0};
+    if (_usine_cases.count(tuile) == 0)
+        throw ExceptionRessource(err, "La tuile n'est pas enregistrée");
+
+    const Tuile & tuile_dat = _usine_cases.at(tuile);
+
+    Case * cse = Usine::creer_case(tuile_dat.classe_case, x, y, tuile_dat.texture_case);
+    if (tuile_dat.classe_objet.compare("Vide") != 0)
+        Usine::creer_objet(tuile_dat.classe_objet, cse);
+
+    return cse;
+}
+
 void Monde::set_niveau_courant(unsigned num)
 {
     assert(_pret && num < _niveaux_count);
@@ -164,5 +207,5 @@ void Monde::set_niveau_courant(unsigned num)
         _niveau_courant->liberer();
 
     _niveau_courant = _niveaux[num];
-    _niveau_courant->charger();
+    _niveau_courant->charger(this);
 }

@@ -22,12 +22,21 @@
 class Monde : public sf::Drawable
 {
 private:
+    struct Tuile
+    {
+        std::string classe_case;
+        std::string texture_case;
+        std::string classe_objet;
+    };
+
     std::map<std::string, std::vector<sf::Texture> > _textures;
 
     const std::string   _fichier_rc;
     unsigned            _niveaux_count;
     Niveau **           _niveaux;
     Niveau *            _niveau_courant;
+
+    std::map<char, Tuile> _usine_cases;
 
 #ifndef NDEBUG
     bool                _pret;
@@ -50,6 +59,8 @@ public:
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;
 
     virtual void        mise_a_jour();
+
+    Case *              creer_case(unsigned x, unsigned y, char tuile) const;
 
 /*TODO protected:*/
     void                set_niveau_courant(unsigned num);

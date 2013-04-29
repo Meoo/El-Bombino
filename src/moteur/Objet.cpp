@@ -21,7 +21,7 @@ Objet::Objet(Case * cse) :
 
 Objet::~Objet()
 {
-    if (_case != NULL)
+    if (_case != NULL && _case->get_objet() == this)
         _case->set_objet(NULL);
 }
 
