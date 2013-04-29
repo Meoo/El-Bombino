@@ -103,5 +103,9 @@ void Idiot::mise_a_jour_ia()
         }
     }
 
+    if(num_choix == 0)
+    {
+        return;
+    }
     assert(false);
 }
