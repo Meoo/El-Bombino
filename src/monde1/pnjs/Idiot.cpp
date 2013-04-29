@@ -21,19 +21,19 @@ Idiot::~Idiot()
 void Idiot::mise_a_jour_ia()
 {
     Case * gauche = get_case()->get_case_gauche();
-    Bonus *bonus_gauche = dynamic_cast<Bonus *> (gauche);
+    Bonus *bonus_gauche = dynamic_cast<Bonus *> (gauche->get_objet());
     bool gauche_ok = gauche->est_praticable() && !gauche->est_en_feu() && (gauche->get_objet() == NULL || bonus_gauche);
 
     Case * droite = get_case()->get_case_droite();
-    Bonus * bonus_droite = dynamic_cast<Bonus *> (droite);
+    Bonus * bonus_droite = dynamic_cast<Bonus *> (droite->get_objet());
     bool droite_ok = droite->est_praticable() && !droite->est_en_feu() && (droite->get_objet() == NULL || bonus_droite);
 
     Case * haut = get_case()->get_case_haut();
-    Bonus * bonus_haut = dynamic_cast<Bonus *> (haut);
+    Bonus * bonus_haut = dynamic_cast<Bonus *> (haut->get_objet());
     bool haut_ok = haut->est_praticable() && !haut->est_en_feu() && (haut->get_objet() == NULL || bonus_haut);
 
     Case * bas = get_case()->get_case_bas();
-    Bonus * bonus_bas = dynamic_cast<Bonus *> (bas);
+    Bonus * bonus_bas = dynamic_cast<Bonus *> (bas->get_objet());
     bool bas_ok = bas->est_praticable() && !bas->est_en_feu() && (bas->get_objet() == NULL || bonus_bas);
 
     int num_choix = gauche_ok + droite_ok + haut_ok + bas_ok;
