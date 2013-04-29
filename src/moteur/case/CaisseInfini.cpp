@@ -18,13 +18,9 @@ CaisseInfini::~CaisseInfini()
 {
 }
 
-bool CaisseInfini::est_praticable()
-{
-    return false;
-}
-
 void CaisseInfini::mise_a_jour()
 {
+    Case::mise_a_jour();
     if(get_objet() == NULL)
     {
         if(!_timer_init)

@@ -40,7 +40,7 @@ const unsigned      OBJET_SOULEVE_COOLDOWN  = 10;
 
 // CaisseInfini
 // > Timer
-const unsigned      CAISSEINFINI_COLDOWN    = 50;
+const unsigned      CAISSEINFINI_COLDOWN    = 250;
 
 // Joueur
 // > Vitesse

@@ -18,7 +18,6 @@ public:
                     CaisseInfini(unsigned x, unsigned y, const sf::Texture & texture);
     virtual         ~CaisseInfini();
 
-    virtual bool    est_praticable();
     virtual void    mise_a_jour();
 };
 // class CaisseInfini
