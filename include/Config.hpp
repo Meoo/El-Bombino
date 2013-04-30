@@ -33,6 +33,7 @@ const unsigned      BOMBE_COOLDOWN      = 10;               //!< Pour éviter de
 const unsigned      BOMBE_POWER_DEFAULT = 2;
 const unsigned      BOMBE_POWER_MIN     = 1;
 const unsigned      BOMBE_POWER_MAX     = 10;
+const unsigned      BOMBE_POWER_DELTA   = 1;
 
 // Objet souleve
 // > Timer
@@ -48,7 +49,13 @@ const float         JOUEUR_VIT_DEFAULT  = 3;                //!< En pixels par a
 const float         JOUEUR_VIT_MIN      = 2;
 const float         JOUEUR_VIT_MAX      = 4;
 const float         JOUEUR_VIT_DELTA    = 0.5;              //!< Variation lorsque le joueur prend un bonus ou malus
-const unsigned      JOUEUR_DEFAULT_NB_BOMBES    = 2;
+const unsigned      JOUEUR_NB_BOMBES_DEFAULT    = 2;
+const unsigned      JOUEUR_NB_BOMBES_DELTA      = 1;
+const unsigned      JOUEUR_NB_BOMBES_MIN        = 1;
+const unsigned      JOUEUR_NB_BOMBES_MAX        = 10;
+
+//Bonus
+const unsigned      BONUS_NB_DIFFERENTS     = 4;
 
 
 // IA

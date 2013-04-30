@@ -176,3 +176,13 @@ void Mobile::blesser()
 
     detruire();
 }
+
+void Mobile::appliquer_bonus(Bonus::bonus_t type_bonus)
+{
+
+}
+
+bool Mobile::est_joueur()
+{
+    return false;
+}

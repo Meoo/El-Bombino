@@ -8,8 +8,10 @@
 #define _MOBILE_HPP_
 
 #include "../Objet.hpp"
+#include <moteur/objets/Bonus.hpp>
 
 class Soulevable;
+class Bonus;
 
 /**
  * @brief
@@ -58,6 +60,9 @@ public:
 
     virtual void        blesser();
 
+    virtual void        appliquer_bonus(Bonus::bonus_t type_bonus);
+
+    virtual bool        est_joueur();
 };
 // class Mobile
 

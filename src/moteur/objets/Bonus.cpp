@@ -5,13 +5,30 @@
  */
 
 #include <moteur/objets/Immobile.hpp>
+#include <moteur/objets/Mobile.hpp>
 #include <moteur/objets/Bonus.hpp>
 #include <moteur/Objet.hpp>
 #include <moteur/Case.hpp>
 #include <moteur/Jeu.hpp>
 
-Bonus::Bonus(Case* cse) : Immobile(cse), _sprite(Jeu::instance().get_texture("bonnus"))
+Bonus::Bonus(Case* cse, bonus_t type_bonus) : Immobile(cse)
 {
+    _type_bonus = type_bonus;
+    switch(_type_bonus)
+    {
+        case(BONUS_BOMBE):
+                _sprite.setTexture(Jeu::instance().get_texture("bonus_bombe"),true);
+                break;
+        case(BONUS_PUISSANCE):
+                _sprite.setTexture(Jeu::instance().get_texture("bonus_puissance"),true);
+                break;
+        case(BONUS_VITESSE):
+                _sprite.setTexture(Jeu::instance().get_texture("bonus_vitesse"),true);
+                break;
+        case(BONUS_VIE):
+                _sprite.setTexture(Jeu::instance().get_texture("bonus_vie"),true);
+                break;
+    }
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
                 _sprite.getTexture()->getSize().y - _sprite.getTexture()->getSize().x / 2);
     _sprite.setPosition(get_case()->get_x() * TILE_SIZE + TILE_SIZE / 2,
@@ -36,7 +53,8 @@ void Bonus::blesser()
 {
 }
 
-void Bonus::utiliser(Objet * obj)
+void Bonus::utiliser(Mobile * mobile)
 {
+    mobile->appliquer_bonus(_type_bonus);
     detruire();
 }

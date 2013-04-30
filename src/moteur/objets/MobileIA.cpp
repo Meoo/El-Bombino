@@ -66,3 +66,24 @@ void MobileIA::blesser()
             _protection = IA_PROTECTION;
     }
 }
+
+void MobileIA::appliquer_bonus(Bonus::bonus_t type_bonus)
+{
+    switch (type_bonus) {
+        case Bonus::BONUS_BOMBE:
+            break;
+        case Bonus::BONUS_PUISSANCE:
+            break;
+        case Bonus::BONUS_VIE:
+            ++_vies;
+            break;
+        case Bonus::BONUS_VITESSE:
+            if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
+                set_vitesse(get_vitesse()+ JOUEUR_VIT_DELTA);
+            else
+                set_vitesse(JOUEUR_VIT_MAX);
+            break;
+        default:
+            break;
+    }
+}

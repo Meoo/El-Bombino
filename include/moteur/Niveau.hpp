@@ -60,6 +60,7 @@ public:
     const std::list<Bombe *> &      get_bombes_actives() const;
 
     void                            delete_bombe(Bombe* bombe);
+    void                            ajouter_bombe_active(Bombe* bombe);
 
     // Fonction d'affichage de Drawable
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;

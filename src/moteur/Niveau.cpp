@@ -175,6 +175,12 @@ void Niveau::delete_bombe(Bombe* bombe)
     _bombes_actives.remove(bombe);
 }
 
+void Niveau::ajouter_bombe_active(Bombe *bombe)
+{
+    _bombes_actives.push_back(bombe);
+}
+
+
 void Niveau::mise_a_jour()
 {
     assert(_pret);
@@ -198,11 +204,6 @@ void Niveau::mise_a_jour()
             if (mobileIA){
                 _pnjs.push_back(mobileIA);
                 _pnjs.unique();
-            }
-            Bombe * bombe = dynamic_cast<Bombe *> (obj);
-            if(bombe){
-                _bombes_actives.push_back(bombe);
-                _bombes_actives.unique();
             }
             objs.push_back(obj);
         }

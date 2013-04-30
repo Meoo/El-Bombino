@@ -13,7 +13,7 @@
 
 Joueur::Joueur(Case * cse) :
         Mobile(cse, JOUEUR_VIT_DEFAULT), _sprite(
-                Jeu::instance().get_texture("joueur")), _case_deposer_objet(NULL), _bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN), _nb_bombes_simultanee(JOUEUR_DEFAULT_NB_BOMBES), _puissance_bombe(BOMBE_POWER_DEFAULT)
+                Jeu::instance().get_texture("joueur")), _case_deposer_objet(NULL), _bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN), _nb_bombes_simultanee(JOUEUR_NB_BOMBES_DEFAULT), _puissance_bombe(BOMBE_POWER_DEFAULT)
 {
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
             _sprite.getTexture()->getSize().y
@@ -175,4 +175,34 @@ void Joueur::mise_a_jour()
     // TODO Gérer la direction
     _sprite.setPosition(get_position_ecran());
 
+}
+
+void Joueur::appliquer_bonus(Bonus::bonus_t type_bonus)
+{
+    switch (type_bonus) {
+        case Bonus::BONUS_BOMBE:
+            if(_nb_bombes_simultanee < JOUEUR_NB_BOMBES_MAX)
+                _nb_bombes_simultanee += JOUEUR_NB_BOMBES_DELTA;
+            break;
+        case Bonus::BONUS_PUISSANCE:
+            if(_puissance_bombe < BOMBE_POWER_MAX)
+                _puissance_bombe += BOMBE_POWER_DELTA;
+            break;
+        case Bonus::BONUS_VIE:
+
+            break;
+        case Bonus::BONUS_VITESSE:
+            if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
+                set_vitesse(get_vitesse()+ JOUEUR_VIT_DELTA);
+            else
+                set_vitesse(JOUEUR_VIT_MAX);
+            break;
+        default:
+            break;
+    }
+}
+
+bool Joueur::est_joueur()
+{
+    return true;
 }

@@ -35,6 +35,8 @@ public:
 
     virtual void        blesser();
 
+    virtual void        appliquer_bonus(Bonus::bonus_t type_bonus);
+
 };
 // class Mobile
 

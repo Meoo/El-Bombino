@@ -33,6 +33,9 @@ public:
 
     virtual void        mise_a_jour();
 
+    virtual void        appliquer_bonus(Bonus::bonus_t type_bonus);
+
+    virtual bool        est_joueur();
 };
 // class Joueur
 

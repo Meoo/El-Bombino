@@ -9,14 +9,24 @@
 
 #include <moteur/objets/Immobile.hpp>
 
+class Mobile;
+
 class Bonus : public Immobile
 {
-private:
-    sf::Sprite      _sprite;
+public:
+    enum bonus_t{
+        BONUS_BOMBE,
+        BONUS_PUISSANCE,
+        BONUS_VITESSE,
+        BONUS_VIE,
+    };
 
+private:
+    sf::Sprite          _sprite;
+    bonus_t             _type_bonus;
 
 public:
-                Bonus(Case * cse);
+                Bonus(Case * cse, bonus_t type_bonus);
     virtual     ~Bonus();
 
     virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
@@ -25,7 +35,7 @@ public:
 
     virtual void blesser();
 
-    void        utiliser(Objet *);
+    void        utiliser(Mobile * mobile);
 };
 // Class Bonus
 

@@ -15,6 +15,8 @@ Bombe::Bombe(Mobile* porteur, unsigned timer, unsigned puissance) :
 {
     _sprite.setOrigin(_sprite.getTexture()->getSize().x/2, _sprite.getTexture()->getSize().y/2);
     _sprite.setPosition(porteur->get_position_objet_souleve());
+    if(porteur->est_joueur())
+        Jeu::instance().get_monde_courant().get_niveau_courant().ajouter_bombe_active(this);
 }
 
 Bombe::~Bombe()
