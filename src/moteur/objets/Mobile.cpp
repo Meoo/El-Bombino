@@ -129,6 +129,7 @@ void Mobile::mise_a_jour()
                 else if (cse->est_praticable() && bonus)
                 {
                     bonus->utiliser(this);
+                    _change_case = false;
                 }
                 else
                 {

@@ -44,6 +44,7 @@ public:
     virtual void    blesser();
 
     virtual void    laisser_tomber_objet(Case * cse);
+
 protected:
     void            detruire();
 

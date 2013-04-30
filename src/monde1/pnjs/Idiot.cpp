@@ -39,6 +39,8 @@ void Idiot::mise_a_jour_ia()
 
     int num_choix = gauche_ok + droite_ok + haut_ok + bas_ok;
 
+    if (num_choix == 0) return;
+
     // Si on as plusieurs choix on bloque la direction d'ou l'on vient
     if (num_choix > 1)
     {

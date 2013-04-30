@@ -190,7 +190,7 @@ void Niveau::mise_a_jour()
         // Faire une liste des objets valides à mettre à jour
         Objet * obj = _cases[i]->get_objet();
         if (obj != NULL && obj->est_valide()){
-            Joueur *joueur = dynamic_cast<Joueur *>(obj);
+            Joueur * joueur = dynamic_cast<Joueur *>(obj);
             if(joueur){
                 _joueur = joueur;
             }
