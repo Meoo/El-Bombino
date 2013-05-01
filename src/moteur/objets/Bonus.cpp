@@ -37,9 +37,6 @@ Bonus::Bonus(Case* cse, bonus_t type_bonus) : Immobile(cse), _timer(BONUS_TIMER)
         case(MALUS_VITESSE):
                 _sprite.setTexture(Jeu::instance().get_texture("malus_vitesse"),true);
                 break;
-        case(MALUS_VIE):
-                _sprite.setTexture(Jeu::instance().get_texture("malus_vie"),true);
-                break;
     }
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
                 _sprite.getTexture()->getSize().y - _sprite.getTexture()->getSize().x / 2);

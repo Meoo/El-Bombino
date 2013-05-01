@@ -79,9 +79,6 @@ void Caisse::laisser_tomber_objet(Case* cse)
                 case Bonus::MALUS_VITESSE:
                     new Bonus(cse, Bonus::MALUS_VITESSE);
                     break;
-                case Bonus::MALUS_VIE:
-                    new Bonus(cse, Bonus::MALUS_VIE);
-                    break;
             }
         }
     }

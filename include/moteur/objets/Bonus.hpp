@@ -22,7 +22,6 @@ public:
         MALUS_BOMBE,
         MALUS_PUISSANCE,
         MALUS_VITESSE,
-        MALUS_VIE,
     };
 
 private:
