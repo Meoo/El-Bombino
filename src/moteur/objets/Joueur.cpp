@@ -12,8 +12,10 @@
 #include <SFML/Window.hpp>
 
 Joueur::Joueur(Case * cse) :
-        Mobile(cse, JOUEUR_VIT_DEFAULT), _sprite(
-                Jeu::instance().get_texture("joueur")), _case_deposer_objet(NULL), _bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN), _nb_bombes_simultanee(JOUEUR_NB_BOMBES_DEFAULT), _puissance_bombe(BOMBE_POWER_DEFAULT)
+        Mobile(cse, JOUEUR_VIT_DEFAULT), _sprite(Jeu::instance().get_texture("joueur")),
+        _case_deposer_objet(NULL),_bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN),
+        _nb_bombes_simultanee(JOUEUR_NB_BOMBES_DEFAULT), _puissance_bombe(BOMBE_POWER_DEFAULT),
+        _vies(JOUEUR_VIE_DEFAULT), _clignote(false), _protection(0)
 {
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
             _sprite.getTexture()->getSize().y
@@ -27,6 +29,9 @@ Joueur::~Joueur()
 
 void Joueur::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
+     _clignote = !_clignote;
+    if (_protection > 0 && _clignote) return;
+
     if (get_objet_souleve() != NULL)
     {
         if (_case_deposer_objet == NULL)
@@ -65,6 +70,9 @@ void Joueur::mise_a_jour()
 
     if (_objet_souleve_cooldown > 0)
         --_objet_souleve_cooldown;
+
+    if (_protection > 0)
+        --_protection;
 
     // Gérer déplacement
     if (!est_en_mouvement())
@@ -189,7 +197,7 @@ void Joueur::appliquer_bonus(Bonus::bonus_t type_bonus)
                 _puissance_bombe += BOMBE_POWER_DELTA;
             break;
         case Bonus::BONUS_VIE:
-
+            ++_vies;
             break;
         case Bonus::BONUS_VITESSE:
             if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
@@ -202,7 +210,52 @@ void Joueur::appliquer_bonus(Bonus::bonus_t type_bonus)
     }
 }
 
+void Joueur::blesser()
+{
+    if (_protection == 0 && _vies > 0)
+    {
+        if (get_objet_souleve() != NULL && get_objet_souleve()->est_valide())
+            get_objet_souleve()->blesser();
+
+        --_vies;
+        if (_vies == 0)
+            detruire();
+        else
+            _protection = IA_PROTECTION;
+    }
+}
+
 bool Joueur::est_joueur()
 {
     return true;
+}
+
+const unsigned Joueur::get_nb_bombe_simultanee() const
+{
+    return _nb_bombes_simultanee;
+}
+
+unsigned Joueur::get_nb_bombe_simultanee()
+{
+    return _nb_bombes_simultanee;
+}
+
+const unsigned Joueur::get_puissance_bombe() const
+{
+    return _puissance_bombe;
+}
+
+unsigned Joueur::get_puissance_bombe()
+{
+    return _puissance_bombe;
+}
+
+const unsigned Joueur::get_vie() const
+{
+    return _vies;
+}
+
+unsigned Joueur::get_vie()
+{
+    return _vies;
 }

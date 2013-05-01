@@ -53,6 +53,9 @@ const unsigned      JOUEUR_NB_BOMBES_DEFAULT    = 2;
 const unsigned      JOUEUR_NB_BOMBES_DELTA      = 1;
 const unsigned      JOUEUR_NB_BOMBES_MIN        = 1;
 const unsigned      JOUEUR_NB_BOMBES_MAX        = 10;
+const unsigned      JOUEUR_VIE_DEFAULT          = 2;
+const unsigned      JOUEUR_VIE_DELTA            = 1;
+
 
 //Bonus
 const unsigned      BONUS_NB_DIFFERENTS     = 4;

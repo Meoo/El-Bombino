@@ -14,6 +14,7 @@ MobileIA::MobileIA(Case* cse, float vitesse, unsigned vies, const sf::Texture & 
     assert(vies > 0);
     _sprite.setOrigin(_texture.getSize().x / 2, _texture.getSize().y - _texture.getSize().x / 2);
     _sprite.setTexture(_texture);
+    Jeu::instance().get_monde_courant().get_niveau_courant().ajouter_pnj(this);
 }
 
 MobileIA::~MobileIA()

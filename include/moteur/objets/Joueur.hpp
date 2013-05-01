@@ -22,6 +22,10 @@ private:
     unsigned            _nb_bombes_simultanee;
     unsigned            _puissance_bombe;
 
+    unsigned            _vies;
+    mutable bool        _clignote;
+    unsigned            _protection;
+
 public:
     explicit            Joueur(Case * cse);
     virtual             ~Joueur();
@@ -36,6 +40,20 @@ public:
     virtual void        appliquer_bonus(Bonus::bonus_t type_bonus);
 
     virtual bool        est_joueur();
+
+    virtual void        blesser();
+
+    // Fonction utile pour l'affichage d'information du Joueur
+    // < get_Vie, get_Puissance, get_BombeDisponible>
+    const unsigned      get_nb_bombe_simultanee()const;
+    unsigned            get_nb_bombe_simultanee();
+
+    const unsigned      get_puissance_bombe() const;
+    unsigned            get_puissance_bombe();
+
+    const unsigned      get_vie() const;
+    unsigned            get_vie();
+
 };
 // class Joueur
 

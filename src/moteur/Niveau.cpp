@@ -180,6 +180,10 @@ void Niveau::ajouter_bombe_active(Bombe *bombe)
     _bombes_actives.push_back(bombe);
 }
 
+void Niveau::ajouter_pnj(MobileIA* pnj)
+{
+    _pnjs.push_back(pnj);
+}
 
 void Niveau::mise_a_jour()
 {
@@ -196,14 +200,11 @@ void Niveau::mise_a_jour()
         // Faire une liste des objets valides à mettre à jour
         Objet * obj = _cases[i]->get_objet();
         if (obj != NULL && obj->est_valide()){
-            Joueur * joueur = dynamic_cast<Joueur *>(obj);
-            if(joueur){
-                _joueur = joueur;
-            }
-            MobileIA * mobileIA = dynamic_cast<MobileIA *>(obj);
-            if (mobileIA){
-                _pnjs.push_back(mobileIA);
-                _pnjs.unique();
+            if(_joueur == NULL){
+                Joueur * joueur = dynamic_cast<Joueur *>(obj);
+                if(joueur){
+                    _joueur = joueur;
+                }
             }
             objs.push_back(obj);
         }

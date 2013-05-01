@@ -55,6 +55,7 @@ public:
     const std::list<MobileIA *> &   get_pnjs() const;
 
     void                            delete_pnj(MobileIA* pnj);
+    void                            ajouter_pnj(MobileIA* pnj);
 
     std::list<Bombe *> &            get_bombes_actives();
     const std::list<Bombe *> &      get_bombes_actives() const;
