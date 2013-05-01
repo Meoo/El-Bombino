@@ -84,6 +84,19 @@ void MobileIA::appliquer_bonus(Bonus::bonus_t type_bonus)
             else
                 set_vitesse(JOUEUR_VIT_MAX);
             break;
+        case Bonus::MALUS_BOMBE:
+            break;
+        case Bonus::MALUS_PUISSANCE:
+            break;
+        case Bonus::MALUS_VIE:
+            --_vies;
+            break;
+        case Bonus::MALUS_VITESSE:
+            if(get_vitesse() - JOUEUR_VIT_DELTA > JOUEUR_VIT_MIN)
+                set_vitesse(get_vitesse() - JOUEUR_VIT_DELTA);
+            else
+                set_vitesse(JOUEUR_VIT_MIN);
+            break;
         default:
             break;
     }

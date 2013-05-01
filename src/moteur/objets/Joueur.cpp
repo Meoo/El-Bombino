@@ -190,12 +190,16 @@ void Joueur::appliquer_bonus(Bonus::bonus_t type_bonus)
 {
     switch (type_bonus) {
         case Bonus::BONUS_BOMBE:
-            if(_nb_bombes_simultanee < JOUEUR_NB_BOMBES_MAX)
+            if(_nb_bombes_simultanee + JOUEUR_NB_BOMBES_DELTA < JOUEUR_NB_BOMBES_MAX)
                 _nb_bombes_simultanee += JOUEUR_NB_BOMBES_DELTA;
+            else
+                _nb_bombes_simultanee = JOUEUR_NB_BOMBES_MAX;
             break;
         case Bonus::BONUS_PUISSANCE:
-            if(_puissance_bombe < BOMBE_POWER_MAX)
+            if(_puissance_bombe + BOMBE_POWER_DELTA < BOMBE_POWER_MAX)
                 _puissance_bombe += BOMBE_POWER_DELTA;
+            else
+                _puissance_bombe = BOMBE_POWER_MAX;
             break;
         case Bonus::BONUS_VIE:
             ++_vies;
@@ -206,6 +210,26 @@ void Joueur::appliquer_bonus(Bonus::bonus_t type_bonus)
             else
                 set_vitesse(JOUEUR_VIT_MAX);
             break;
+        case Bonus::MALUS_BOMBE:
+            if(_nb_bombes_simultanee - JOUEUR_NB_BOMBES_DELTA > JOUEUR_NB_BOMBES_MIN)
+                _nb_bombes_simultanee -= JOUEUR_NB_BOMBES_DEFAULT;
+            else
+                _nb_bombes_simultanee = JOUEUR_NB_BOMBES_MIN;
+            break;
+        case Bonus::MALUS_PUISSANCE:
+            if(_puissance_bombe - BOMBE_POWER_DELTA > BOMBE_POWER_MIN)
+                _puissance_bombe -= BOMBE_POWER_DELTA;
+            else
+                _puissance_bombe = BOMBE_POWER_MIN;
+            break;
+        case Bonus::MALUS_VIE:
+            --_vies;
+            break;
+        case Bonus::MALUS_VITESSE:
+            if(get_vitesse()-JOUEUR_VIT_DELTA > JOUEUR_VIT_MIN)
+                set_vitesse(get_vitesse()-JOUEUR_VIT_DELTA);
+            else
+                set_vitesse(JOUEUR_VIT_MIN);
         default:
             break;
     }
