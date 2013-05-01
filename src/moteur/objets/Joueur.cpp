@@ -20,6 +20,7 @@ Joueur::Joueur(Case * cse) :
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
             _sprite.getTexture()->getSize().y
                     - _sprite.getTexture()->getSize().x / 2);
+    Jeu::instance().get_monde_courant().get_niveau_courant().ajouter_joueur(this);
 }
 
 Joueur::~Joueur()

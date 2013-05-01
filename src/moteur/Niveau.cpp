@@ -185,6 +185,11 @@ void Niveau::ajouter_pnj(MobileIA* pnj)
     _pnjs.push_back(pnj);
 }
 
+void Niveau::ajouter_joueur(Joueur* joueur)
+{
+    _joueur = joueur;
+}
+
 void Niveau::mise_a_jour()
 {
     assert(_pret);
@@ -199,16 +204,8 @@ void Niveau::mise_a_jour()
 
         // Faire une liste des objets valides à mettre à jour
         Objet * obj = _cases[i]->get_objet();
-        if (obj != NULL && obj->est_valide()){
-            if(_joueur == NULL){
-                Joueur * joueur = dynamic_cast<Joueur *>(obj);
-                if(joueur){
-                    _joueur = joueur;
-                }
-            }
+        if (obj != NULL && obj->est_valide())
             objs.push_back(obj);
-        }
-
     }
 
     // Mettre à jour les objets

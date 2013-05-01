@@ -50,6 +50,8 @@ public:
     const Joueur *      get_joueur() const;
 
     void                delete_joueur();
+    void                ajouter_joueur(Joueur *joueur);
+
 
     std::list<MobileIA *>  &        get_pnjs();
     const std::list<MobileIA *> &   get_pnjs() const;
