@@ -35,6 +35,8 @@ void Jeu::charger()
 {
     assert(!_pret);
 
+    _default_font.loadFromFile("C:/Windows/Fonts/arial.ttf");
+
     std::fstream fic((RC_FOLDER + RC_JEU).c_str(), std::ios_base::in);
     if (!fic)
         throw ExceptionRessource(RC_JEU,
@@ -163,6 +165,11 @@ void Jeu::mise_a_jour()
     assert(_pret && _monde_courant != NULL);
 
     _monde_courant->mise_a_jour();
+}
+
+const sf::Font& Jeu::get_default_font() const
+{
+    return _default_font;
 }
 
 void Jeu::set_monde_courant(unsigned num)

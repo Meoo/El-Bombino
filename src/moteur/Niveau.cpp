@@ -110,6 +110,65 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
         if (obj != NULL)
             target.draw(*obj, states);
     }
+
+    target.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
+
+    // Dessiner l'interface
+    sf::RectangleShape rect(sf::Vector2f(250, 28));
+    rect.setFillColor(sf::Color(0,0,0,128));
+
+    target.draw(rect);
+
+    char text_c[10];
+    sprintf(text_c, "%d", _joueur->get_puissance_bombe());
+
+    sf::Text text(text_c, Jeu::instance().get_default_font(), 18);
+    text.setPosition(10, 3);
+
+    target.draw(text);
+
+    sf::Sprite sprite(Jeu::instance().get_texture("bonus_puissance"));
+    sprite.setScale(0.5, 0.5);
+    sprite.setPosition(30, 5);
+
+    target.draw(sprite);
+
+    sprintf(text_c, "%d", _joueur->get_nb_bombe_simultanee());
+
+    text.setString(text_c);
+    text.setPosition(70, 3);
+
+    target.draw(text);
+
+    sprite.setTexture(Jeu::instance().get_texture("bonus_bombe"));
+    sprite.setPosition(90, 5);
+
+    target.draw(sprite);
+
+    sprintf(text_c, "%.1f", _joueur->get_vitesse());
+
+    text.setString(text_c);
+    text.setPosition(130, 3);
+
+    target.draw(text);
+
+    sprite.setTexture(Jeu::instance().get_texture("bonus_vitesse"));
+    sprite.setPosition(160, 5);
+
+    target.draw(sprite);
+
+    sprintf(text_c, "%d", _joueur->get_vie());
+
+    text.setString(text_c);
+    text.setPosition(200, 3);
+
+    target.draw(text);
+
+    sprite.setTexture(Jeu::instance().get_texture("bonus_vie"));
+    sprite.setPosition(220, 5);
+
+    target.draw(sprite);
+
 }
 
 Case * Niveau::get_case(unsigned x, unsigned y)
@@ -187,6 +246,8 @@ void Niveau::ajouter_pnj(MobileIA* pnj)
 
 void Niveau::ajouter_joueur(Joueur* joueur)
 {
+    assert(_joueur == NULL);
+
     _joueur = joueur;
 }
 

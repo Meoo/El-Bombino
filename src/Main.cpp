@@ -24,10 +24,7 @@ int main(int argc, char ** argv)
     Jeu::instance().get_monde_courant().set_niveau_courant(1);
 
     // Variables pour la Pause
-    sf::Font font;
-    font.loadFromFile("C:/Windows/Fonts/arial.ttf");
-
-    sf::Text texte_pause("PAUSE", font);
+    sf::Text texte_pause("PAUSE", Jeu::instance().get_default_font());
     texte_pause.setCharacterSize(128);
     texte_pause.setColor(sf::Color::White);
     texte_pause.setOrigin(texte_pause.getLocalBounds().width / 2, texte_pause.getLocalBounds().height / 2);

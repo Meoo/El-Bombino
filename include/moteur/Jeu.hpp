@@ -31,6 +31,7 @@ private:
     unsigned            _mondes_count;
     Monde **            _mondes;
     Monde *             _monde_courant;
+    sf::Font            _default_font;
 
 #ifndef NDEBUG
     bool                _pret;
@@ -64,9 +65,10 @@ public:
 
     virtual void        mise_a_jour();
 
+    const sf::Font &    get_default_font() const;
+
 /*TODO protected:*/
     void                set_monde_courant(unsigned num);
-
 };
 // class Jeu
 
