@@ -22,6 +22,8 @@ public:
 
     virtual void mise_a_jour_ia();
 
+    virtual void    laisser_tomber_objet(Case * cse);
+
 private:
 
 };

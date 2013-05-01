@@ -7,7 +7,7 @@
 #include <moteur/Jeu.hpp>
 #include <moteur/Case.hpp>
 #include <moteur/objets/Bonus.hpp>
-
+#include <Config.hpp>
 
 #include <vector>
 
@@ -113,3 +113,17 @@ void Idiot::mise_a_jour_ia()
     assert(false);
 }
 
+void Idiot::laisser_tomber_objet(Case* cse)
+{
+    int type_bonus = rand() % BONUS_NB_DIFFERENTS_PNJ + BONUS_NB_DIFFERENTS_CAISSE;
+    switch (type_bonus) {
+        case Bonus::SPECIAL_GANT:
+            new Bonus(get_case(),Bonus::SPECIAL_GANT);
+            break;
+        case Bonus::SPECIAL_BOMBE_GLACEE:
+            new Bonus(get_case(), Bonus::SPECIAL_BOMBE_GLACEE);
+            break;
+        default:
+            break;
+    }
+}

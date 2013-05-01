@@ -22,6 +22,8 @@ public:
         MALUS_BOMBE,
         MALUS_PUISSANCE,
         MALUS_VITESSE,
+        SPECIAL_GANT,
+        SPECIAL_BOMBE_GLACEE,
     };
 
 private:
