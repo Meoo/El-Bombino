@@ -28,6 +28,18 @@ Bonus::Bonus(Case* cse, bonus_t type_bonus) : Immobile(cse), _timer(BONUS_TIMER)
         case(BONUS_VIE):
                 _sprite.setTexture(Jeu::instance().get_texture("bonus_vie"),true);
                 break;
+        case(MALUS_BOMBE):
+                _sprite.setTexture(Jeu::instance().get_texture("malus_bombe"),true);
+                break;
+        case(MALUS_PUISSANCE):
+                _sprite.setTexture(Jeu::instance().get_texture("malus_puissance"),true);
+                break;
+        case(MALUS_VITESSE):
+                _sprite.setTexture(Jeu::instance().get_texture("malus_vitesse"),true);
+                break;
+        case(MALUS_VIE):
+                _sprite.setTexture(Jeu::instance().get_texture("malus_vie"),true);
+                break;
     }
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
                 _sprite.getTexture()->getSize().y - _sprite.getTexture()->getSize().x / 2);

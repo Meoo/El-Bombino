@@ -45,22 +45,44 @@ void Caisse::mise_a_jour()
 
 void Caisse::laisser_tomber_objet(Case* cse)
 {
-    int laisser_tomber = rand() % 5;
-    int bonus_type = rand() % BONUS_NB_DIFFERENTS;
+    int laisser_tomber = rand() % 4;
+
     if (laisser_tomber == 0){
-        switch (bonus_type) {
-            case Bonus::BONUS_BOMBE:
-                new Bonus(cse, Bonus::BONUS_BOMBE);
-                break;
-            case Bonus::BONUS_PUISSANCE:
-                new Bonus(cse, Bonus::BONUS_PUISSANCE);
-                break;
-            case Bonus::BONUS_VIE:
-                new Bonus(cse, Bonus::BONUS_VIE);
-                break;
-            case Bonus::BONUS_VITESSE:
-                new Bonus(cse, Bonus::BONUS_VITESSE);
-                break;
+        int bonus_ou_malus = rand() % 4;
+        if(bonus_ou_malus != 0)
+        {
+            int bonus_type = rand() % BONUS_BONUS_NB_DIFFERENTS_CAISSE;
+            switch (bonus_type) {
+                case Bonus::BONUS_BOMBE:
+                    new Bonus(cse, Bonus::BONUS_BOMBE);
+                    break;
+                case Bonus::BONUS_PUISSANCE:
+                    new Bonus(cse, Bonus::BONUS_PUISSANCE);
+                    break;
+                case Bonus::BONUS_VIE:
+                    new Bonus(cse, Bonus::BONUS_VIE);
+                    break;
+                case Bonus::BONUS_VITESSE:
+                    new Bonus(cse, Bonus::BONUS_VITESSE);
+                    break;
+            }
+        }
+        else {
+            int malus_type = (rand() % BONUS_MALUS_NB_DIFFERENTS_CAISSE) + BONUS_BONUS_NB_DIFFERENTS_CAISSE;
+            switch (malus_type) {
+                case Bonus::MALUS_BOMBE:
+                    new Bonus(cse, Bonus::MALUS_BOMBE);
+                    break;
+                case Bonus::MALUS_PUISSANCE:
+                    new Bonus(cse, Bonus::MALUS_PUISSANCE);
+                    break;
+                case Bonus::MALUS_VITESSE:
+                    new Bonus(cse, Bonus::MALUS_VITESSE);
+                    break;
+                case Bonus::MALUS_VIE:
+                    new Bonus(cse, Bonus::MALUS_VIE);
+                    break;
+            }
         }
     }
 }

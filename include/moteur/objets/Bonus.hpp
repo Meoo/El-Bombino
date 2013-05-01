@@ -19,6 +19,10 @@ public:
         BONUS_PUISSANCE,
         BONUS_VITESSE,
         BONUS_VIE,
+        MALUS_BOMBE,
+        MALUS_PUISSANCE,
+        MALUS_VITESSE,
+        MALUS_VIE,
     };
 
 private:

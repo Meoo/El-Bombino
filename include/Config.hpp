@@ -58,8 +58,10 @@ const unsigned      JOUEUR_VIE_DELTA            = 1;
 
 
 //Bonus
-const unsigned      BONUS_NB_DIFFERENTS     = 4;
-const unsigned      BONUS_TIMER             = 250;
+const unsigned      BONUS_NB_DIFFERENTS_CAISSE          = 8; //!< Nombres de bonus differents que peut faire apparaitre les caisses
+const unsigned      BONUS_BONUS_NB_DIFFERENTS_CAISSE    = 4; //!< Nombres de bonus (bonus) differents que peut faire apparaitre les caisses
+const unsigned      BONUS_MALUS_NB_DIFFERENTS_CAISSE    = 4; //!< Nombres de bonus (malus) differents que peut faire apparaitre les caisses
+const unsigned      BONUS_TIMER                         = 250;
 
 
 // IA
