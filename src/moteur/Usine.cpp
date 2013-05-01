@@ -11,6 +11,7 @@
 #include <moteur/Case.hpp>
 #include <moteur/case/Mur.hpp>
 #include <moteur/case/CaisseInfini.hpp>
+#include <moteur/case/Vide.hpp>
 
 #include <moteur/Objet.hpp>
 #include <moteur/objets/Joueur.hpp>
@@ -31,6 +32,8 @@ namespace Usine
         if (classe_case.compare("CaisseInfini") == 0)
             return new CaisseInfini(x, y, Jeu::instance().get_texture(texture_case));
 
+        if (classe_case.compare("Vide") == 0)
+            return new Vide(x,y,Jeu::instance().get_texture(texture_case));
         throw ExceptionRessource(classe_case, "Classe de Case invalide");
     }
 
