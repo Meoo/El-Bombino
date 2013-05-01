@@ -25,6 +25,12 @@ private:
     sf::Sprite          _sprite;
     bonus_t             _type_bonus;
 
+    unsigned            _timer;
+    mutable bool        _clignote;
+    unsigned            _invesible;
+
+
+
 public:
                 Bonus(Case * cse, bonus_t type_bonus);
     virtual     ~Bonus();

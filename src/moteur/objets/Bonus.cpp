@@ -11,7 +11,7 @@
 #include <moteur/Case.hpp>
 #include <moteur/Jeu.hpp>
 
-Bonus::Bonus(Case* cse, bonus_t type_bonus) : Immobile(cse)
+Bonus::Bonus(Case* cse, bonus_t type_bonus) : Immobile(cse), _timer(BONUS_TIMER), _clignote(false),_invesible(FEU_TIME_DEFAULT)
 {
     _type_bonus = type_bonus;
     switch(_type_bonus)
@@ -41,16 +41,23 @@ Bonus::~Bonus()
 
 void Bonus::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+    _clignote = !_clignote;
+    if (_timer < 50 && _clignote) return;
     target.draw(_sprite, states);
 }
 
 void Bonus::mise_a_jour()
 {
+    if(_timer == 0)detruire();
+    --_timer;
+    if(_invesible > 0)--_invesible;
     Immobile::mise_a_jour();
 }
 
 void Bonus::blesser()
 {
+    if(_invesible == 0)
+        detruire();
 }
 
 void Bonus::utiliser(Mobile * mobile)

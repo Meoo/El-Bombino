@@ -56,6 +56,7 @@ const unsigned      JOUEUR_NB_BOMBES_MAX        = 10;
 
 //Bonus
 const unsigned      BONUS_NB_DIFFERENTS     = 4;
+const unsigned      BONUS_TIMER             = 250;
 
 
 // IA
