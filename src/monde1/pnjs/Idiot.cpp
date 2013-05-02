@@ -50,13 +50,12 @@ void Idiot::attaquer_joueur()
     Case * gauche = get_case()->get_case_gauche();
     Joueur *joueur_gauche;
     bool gauche_att = false;
-    for(unsigned i = 1; i < _visibilite; ++i)
+    for(unsigned i = 0; i < _visibilite; ++i)
     {
         joueur_gauche = dynamic_cast<Joueur *> (gauche->get_objet());
         if(gauche->est_praticable())
         {
-            gauche_att = joueur_gauche;
-            if(joueur_gauche)break;
+            gauche_att = gauche_att || joueur_gauche;
             gauche = gauche->get_case_gauche();
         }
     }
@@ -65,7 +64,7 @@ void Idiot::attaquer_joueur()
     if(gauche_att)
     {
         _coldown_att = IDIOT_COLDOWN_ATT;
-        for(unsigned i = 1; i < _puissance; ++i)
+        for(unsigned i = 0; i < _puissance; ++i)
         {
             if(gauche->est_praticable() && r_gauche)
             {
@@ -78,13 +77,12 @@ void Idiot::attaquer_joueur()
     Case * droite = get_case()->get_case_droite();
     Joueur *joueur_droite;
     bool droite_att = false;
-    for(unsigned i = 1; i < _visibilite; ++i)
+    for(unsigned i = 0; i < _visibilite; ++i)
     {
         joueur_droite = dynamic_cast<Joueur *> (droite->get_objet());
         if(droite->est_praticable())
         {
-            droite_att = joueur_droite;
-            if(joueur_droite)break;
+            droite_att = droite_att || joueur_droite;
             droite = droite->get_case_droite();
         }
     }
@@ -93,7 +91,7 @@ void Idiot::attaquer_joueur()
     if(droite_att)
     {
         _coldown_att = IDIOT_COLDOWN_ATT;
-        for(unsigned i = 1; i < _puissance; ++i)
+        for(unsigned i = 0; i < _puissance; ++i)
         {
             if(droite->est_praticable() && r_droite)
             {
@@ -106,13 +104,12 @@ void Idiot::attaquer_joueur()
     Case * bas = get_case()->get_case_bas();
     Joueur *joueur_bas;
     bool bas_att = false;
-    for(unsigned i = 1; i < _visibilite; ++i)
+    for(unsigned i = 0; i < _visibilite; ++i)
     {
         joueur_bas = dynamic_cast<Joueur *> (bas->get_objet());
         if(bas->est_praticable())
         {
-            bas_att = joueur_bas;
-            if(joueur_bas)break;
+            bas_att = bas_att || joueur_bas;
             bas = bas->get_case_bas();
         }
     }
@@ -121,7 +118,7 @@ void Idiot::attaquer_joueur()
     if(bas_att)
     {
         _coldown_att = IDIOT_COLDOWN_ATT;
-        for(unsigned i = 1; i < _puissance; ++i)
+        for(unsigned i = 0; i < _puissance; ++i)
         {
             if(bas->est_praticable() && r_bas)
             {
@@ -134,13 +131,12 @@ void Idiot::attaquer_joueur()
     Case * haut = get_case()->get_case_haut();
     Joueur *joueur_haut;
     bool haut_att = false;
-    for(unsigned i = 1; i < _visibilite; ++i)
+    for(unsigned i = 0; i < _visibilite; ++i)
     {
         joueur_haut = dynamic_cast<Joueur *> (haut->get_objet());
         if(haut->est_praticable())
         {
-            haut_att = joueur_haut;
-            if(joueur_haut)break;
+            haut_att = haut_att || (joueur_haut);
             haut = haut->get_case_haut();
         }
     }
@@ -149,7 +145,7 @@ void Idiot::attaquer_joueur()
     if(haut_att)
     {
         _coldown_att = IDIOT_COLDOWN_ATT;
-        for(unsigned i = 1; i < _puissance; ++i)
+        for(unsigned i = 0; i < _puissance; ++i)
         {
             if(haut->est_praticable() && r_haut)
             {
@@ -162,6 +158,10 @@ void Idiot::attaquer_joueur()
 
 void Idiot::mise_a_jour_ia()
 {
+    //
+    //#TODO
+    // pourquoi ce coldown est autant lent ???
+    LOG(_coldown_att);
     if(_coldown_att > 0)
         --_coldown_att;
     else

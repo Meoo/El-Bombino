@@ -63,8 +63,10 @@ void Bonus::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 void Bonus::mise_a_jour()
 {
-    if(_timer == 0)detruire();
-    --_timer;
+    if(_timer > 0)
+        --_timer;
+    else
+        detruire();
     if(_invesible > 0)--_invesible;
     Immobile::mise_a_jour();
 }
