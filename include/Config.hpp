@@ -68,6 +68,16 @@ const unsigned      BONUS_TIMER                         = 250;
 // IA
 const unsigned      IA_PROTECTION       = 50;               //!< Temps de protection d'une IA lorsqu'elle est touchée
 
+
+// Idiot
+const unsigned      IDIOT_PUISSANCE_DEFAULT     = 2;
+const unsigned      IDIOT_PUISSANCE_DELTA       = 1;
+const unsigned      IDIOT_PUISSANCE_MIN         = 1;
+const unsigned      IDIOT_PUISSANCE_MAX         = 4;
+const unsigned      IDIOT_VISIBILITE_DEFAULT    = 3;
+const unsigned      IDIOT_COLDOWN_ATT           = 25;
+
+
 // Ressources
 const std::string   RC_FOLDER           ("rc/");
 const std::string   RC_JEU              ("jeu.txt");

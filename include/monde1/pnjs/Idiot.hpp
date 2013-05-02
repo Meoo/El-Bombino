@@ -15,7 +15,9 @@ class Idiot : public MobileIA
 {
 private:
     Direction   _derniere_direction;
-    unsigned    _active_att;
+    unsigned    _coldown_att;
+    unsigned    _visibilite;
+    unsigned    _puissance;
 
 public:
     Idiot(Case * cse);
@@ -24,6 +26,8 @@ public:
     virtual void mise_a_jour_ia();
 
     virtual void    laisser_tomber_objet(Case * cse);
+
+    virtual void    appliquer_bonus(Bonus::bonus_t type_bonus);
 
     void attaquer_joueur();
 private:
