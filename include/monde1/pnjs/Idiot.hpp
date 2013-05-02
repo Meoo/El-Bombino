@@ -14,7 +14,8 @@
 class Idiot : public MobileIA
 {
 private:
-    Direction _derniere_direction;
+    Direction   _derniere_direction;
+    unsigned    _active_att;
 
 public:
     Idiot(Case * cse);
@@ -24,6 +25,7 @@ public:
 
     virtual void    laisser_tomber_objet(Case * cse);
 
+    void attaquer_joueur();
 private:
 
 };
