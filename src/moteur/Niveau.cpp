@@ -88,10 +88,13 @@ void Niveau::liberer()
 void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     assert(_pret);
-
-    target.setView(sf::View(
-                    sf::Vector2f(_largeur * TILE_SIZE / 2, _hauteur * TILE_SIZE / 2),
-                    sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)));
+    if(_largeur * TILE_SIZE <= WINDOW_WIDTH && _hauteur * TILE_SIZE <= WINDOW_HEIGHT)
+        target.setView(sf::View(
+                        sf::Vector2f(_largeur * TILE_SIZE / 2, _hauteur * TILE_SIZE / 2),
+                        sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)));
+    else if(_joueur != NULL)
+        target.setView(sf::View(sf::Vector2f(_joueur->get_case()->get_y() / 2 + WINDOW_WIDTH / 2, _joueur->get_case()->get_x() / 2 + WINDOW_HEIGHT / 2),
+                                sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)));
 
     // Dessiner toutes les cases de type sol
     for (unsigned i = 0; i < _hauteur * _largeur; ++i)
