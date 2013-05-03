@@ -15,7 +15,7 @@ Joueur::Joueur(Case * cse) :
         Mobile(cse, JOUEUR_VIT_DEFAULT), _sprite(Jeu::instance().get_texture("joueur")),
         _case_deposer_objet(NULL),_bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN),
         _nb_bombes_simultanee(JOUEUR_NB_BOMBES_DEFAULT), _puissance_bombe(BOMBE_POWER_DEFAULT),
-        _vies(JOUEUR_VIE_DEFAULT), _clignote(false), _protection(0)
+        _vies(JOUEUR_VIE_DEFAULT), _clignote(false), _protection(0), _bonus_soulevable(false), _bonus_bombe_special(false)
 {
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
             _sprite.getTexture()->getSize().y
@@ -110,7 +110,7 @@ void Joueur::mise_a_jour()
 
     // soulever l'objet present dans la direction
     // ou poser l'objet si il est en notre posetion
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && _bonus_soulevable)
     {
         if (_objet_souleve_cooldown == 0)
         {
@@ -227,6 +227,20 @@ void Joueur::appliquer_bonus(Bonus::bonus_t type_bonus)
                 set_vitesse(get_vitesse()-JOUEUR_VIT_DELTA);
             else
                 set_vitesse(JOUEUR_VIT_MIN);
+        case Bonus::SPECIAL_GANT:
+            if(!_bonus_soulevable)
+            {
+                _bonus_soulevable = true;
+                _bonus_bombe_special = false;
+            }
+            break;
+        case Bonus::SPECIAL_BOMBE_GLACEE:
+            if(!_bonus_bombe_special)
+            {
+                _bonus_bombe_special = true;
+                _bonus_soulevable = false;
+            }
+            break;
         default:
             break;
     }

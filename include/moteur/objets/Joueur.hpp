@@ -26,6 +26,9 @@ private:
     mutable bool        _clignote;
     unsigned            _protection;
 
+    bool                _bonus_soulevable;
+    bool                _bonus_bombe_special;
+
 public:
     explicit            Joueur(Case * cse);
     virtual             ~Joueur();
