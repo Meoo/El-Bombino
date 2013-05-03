@@ -7,6 +7,7 @@
 #define _CONFIG_HPP_
 
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Window.hpp>
 
 #include <string>
 #include <cassert>
@@ -82,6 +83,11 @@ const unsigned      IDIOT_COLDOWN_ATT           = 25;
 const std::string   RC_FOLDER           ("rc/");
 const std::string   RC_JEU              ("jeu.txt");
 const std::string   RC_ICON             ("icon.png");
+
+
+// Commande du jeu
+
+
 
 // Debug
 #ifdef NDEBUG

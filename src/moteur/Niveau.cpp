@@ -119,7 +119,7 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
         target.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
         // Dessiner l'interface
-        sf::RectangleShape rect(sf::Vector2f(250, 28));
+        sf::RectangleShape rect(sf::Vector2f(300, 28));
         rect.setFillColor(sf::Color(0,0,0,128));
 
         target.draw(rect);
@@ -177,6 +177,29 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
         sprite.setPosition(220, 5);
 
         target.draw(sprite);
+
+        // si bonus special
+        if(_joueur->get_bonus_soulevable())
+        {
+            sprite.setTexture(Jeu::instance().get_texture("bonus_gant"));
+            sprite.setPosition(260, 5);
+
+            target.draw(sprite);
+        }
+        else if(_joueur->get_bonus_bombe_spe())
+        {
+            sprite.setTexture(Jeu::instance().get_texture("bonus_bombe_special"));
+            sprite.setPosition(260, 5);
+
+            target.draw(sprite);
+        }
+        else
+        {
+            sprite.setTexture(Jeu::instance().get_texture("aucun_bonus_special"));
+            sprite.setPosition(260, 5);
+
+            target.draw(sprite);
+        }
     }
 
 }

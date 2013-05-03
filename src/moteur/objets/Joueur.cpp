@@ -295,3 +295,23 @@ unsigned Joueur::get_vie()
 {
     return _vies;
 }
+
+const bool Joueur::get_bonus_soulevable() const
+{
+    return _bonus_soulevable;
+}
+
+bool Joueur::get_bonus_soulevable()
+{
+    return _bonus_soulevable;
+}
+
+const bool Joueur::get_bonus_bombe_spe() const
+{
+    return _bonus_bombe_special;
+}
+
+bool Joueur::get_bonus_bombe_spe()
+{
+    return _bonus_bombe_special;
+}

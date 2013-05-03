@@ -57,6 +57,12 @@ public:
     const unsigned      get_vie() const;
     unsigned            get_vie();
 
+    const bool          get_bonus_soulevable() const;
+    bool                get_bonus_soulevable();
+
+    const bool          get_bonus_bombe_spe() const;
+    bool                get_bonus_bombe_spe();
+
 };
 // class Joueur
 
