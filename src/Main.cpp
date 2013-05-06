@@ -61,17 +61,17 @@ int main(int argc, char ** argv)
     text_menu_quitter.setOrigin(text_menu_quitter.getLocalBounds().width / 2, text_menu_quitter.getLocalBounds().height / 2);
     text_menu_quitter.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 6/ 8);
 
-    sf::RectangleShape fond_menu_play(sf::Vector2f(text_menu_play.getLocalBounds().width, text_menu_play.getLocalBounds().height));
-    fond_menu_play.setOrigin(text_menu_play.getLocalBounds().width / 2, text_menu_play.getLocalBounds().height / 2);
+    sf::RectangleShape fond_menu_play(sf::Vector2f(text_menu_play.getLocalBounds().width, text_menu_play.getGlobalBounds().height * 2));
+    fond_menu_play.setOrigin(text_menu_play.getOrigin());
     fond_menu_play.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 8);
     fond_menu_play.setFillColor(sf::Color::White);
 
-    sf::RectangleShape fond_menu_charger(sf::Vector2f(text_menu_charger.getLocalBounds().width, text_menu_charger.getLocalBounds().height));
+    sf::RectangleShape fond_menu_charger(sf::Vector2f(text_menu_charger.getLocalBounds().width, text_menu_charger.getLocalBounds().height * 2));
     fond_menu_charger.setOrigin(text_menu_charger.getLocalBounds().width / 2, text_menu_charger.getLocalBounds().height / 2);
     fond_menu_charger.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2/ 8);
     fond_menu_charger.setFillColor(sf::Color::White);
 
-    sf::RectangleShape fond_menu_quitter(sf::Vector2f(text_menu_quitter.getLocalBounds().width, text_menu_quitter.getLocalBounds().height));
+    sf::RectangleShape fond_menu_quitter(sf::Vector2f(text_menu_quitter.getLocalBounds().width, text_menu_quitter.getLocalBounds().height * 2));
     fond_menu_quitter.setOrigin(text_menu_quitter.getLocalBounds().width / 2, text_menu_quitter.getLocalBounds().height / 2);
     fond_menu_quitter.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 6/ 8);
     fond_menu_quitter.setFillColor(sf::Color::White);

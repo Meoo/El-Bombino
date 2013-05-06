@@ -163,8 +163,7 @@ void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 void Jeu::mise_a_jour()
 {
     assert(_pret && _monde_courant != NULL);
-
-    _monde_courant->mise_a_jour();
+        _monde_courant->mise_a_jour();
 }
 
 const sf::Font& Jeu::get_default_font() const
