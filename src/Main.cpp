@@ -19,9 +19,11 @@ int main(int argc, char ** argv)
 
     Jeu::instance().charger();
 
+    /*
     // TODO DEBUG Enlever
     Jeu::instance().set_monde_courant(0);
     Jeu::instance().get_monde_courant().set_niveau_courant(1);
+    */
 
     // Variables pour la Pause
     sf::Text texte_pause("PAUSE", Jeu::instance().get_default_font());
@@ -40,6 +42,48 @@ int main(int argc, char ** argv)
 
     bool pause = false;
     int pause_frame = 0;
+
+    sf::Text text_menu_play("NOUVELLE PARTIE", Jeu::instance().get_default_font());
+    text_menu_play.setCharacterSize(32);
+    text_menu_play.setColor(sf::Color::Black);
+    text_menu_play.setOrigin(text_menu_play.getLocalBounds().width / 2, text_menu_play.getLocalBounds().height / 2);
+    text_menu_play.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 8);
+
+    sf::Text text_menu_charger("CHARGER PARTIE", Jeu::instance().get_default_font());
+    text_menu_charger.setCharacterSize(32);
+    text_menu_charger.setColor(sf::Color::Black);
+    text_menu_charger.setOrigin(text_menu_charger.getLocalBounds().width / 2, text_menu_charger.getLocalBounds().height / 2);
+    text_menu_charger.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2/ 8);
+
+    sf::Text text_menu_quitter("QUITTER", Jeu::instance().get_default_font());
+    text_menu_quitter.setCharacterSize(32);
+    text_menu_quitter.setColor(sf::Color::Black);
+    text_menu_quitter.setOrigin(text_menu_quitter.getLocalBounds().width / 2, text_menu_quitter.getLocalBounds().height / 2);
+    text_menu_quitter.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 6/ 8);
+
+    sf::RectangleShape fond_menu_play(sf::Vector2f(text_menu_play.getLocalBounds().width, text_menu_play.getLocalBounds().height));
+    fond_menu_play.setOrigin(text_menu_play.getLocalBounds().width / 2, text_menu_play.getLocalBounds().height / 2);
+    fond_menu_play.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 8);
+    fond_menu_play.setFillColor(sf::Color::White);
+
+    sf::RectangleShape fond_menu_charger(sf::Vector2f(text_menu_charger.getLocalBounds().width, text_menu_charger.getLocalBounds().height));
+    fond_menu_charger.setOrigin(text_menu_charger.getLocalBounds().width / 2, text_menu_charger.getLocalBounds().height / 2);
+    fond_menu_charger.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2/ 8);
+    fond_menu_charger.setFillColor(sf::Color::White);
+
+    sf::RectangleShape fond_menu_quitter(sf::Vector2f(text_menu_quitter.getLocalBounds().width, text_menu_quitter.getLocalBounds().height));
+    fond_menu_quitter.setOrigin(text_menu_quitter.getLocalBounds().width / 2, text_menu_quitter.getLocalBounds().height / 2);
+    fond_menu_quitter.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 6/ 8);
+    fond_menu_quitter.setFillColor(sf::Color::White);
+
+    sf::RectangleShape fond_menu(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+    fond_menu.setFillColor(sf::Color(0,0,0,128));
+
+    bool menu = true;
+    bool quitter = false;
+    bool menu_configuration = false;
+    bool menu_charger = false;
+    bool jeu_actif = false;
 
     // Fenêtre
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
@@ -69,20 +113,35 @@ int main(int argc, char ** argv)
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Pause))
                 pause = !pause;
 
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    if(fond_menu_play.getGlobalBounds().contains(event.mouseButton.x,event.mouseButton.y))
+                    {
+                        jeu_actif = true;
+                        menu = false;
+                        Jeu::instance().set_monde_courant(0);
+                        Jeu::instance().get_monde_courant().set_niveau_courant(1);
+                    }
+                }
+            }
             // TODO DEBUG Enlever
 #ifndef NDEBUG
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::F1))
             {
+                jeu_actif = true;
+                menu = false;
                 Jeu::instance().liberer();
                 Jeu::instance().charger();
                 Jeu::instance().set_monde_courant(0);
-                Jeu::instance().get_monde_courant().set_niveau_courant(2);
+                Jeu::instance().get_monde_courant().set_niveau_courant(0);
             }
 #endif
         }
 
        // TODO DEBUG Enlever
-        if(Jeu::instance().get_monde_courant().get_niveau_courant().get_joueur()==NULL){
+       /* if(Jeu::instance().get_monde_courant().get_niveau_courant().get_joueur()==NULL){
             Jeu::instance().liberer();
             Jeu::instance().charger();
             Jeu::instance().set_monde_courant(0);
@@ -96,16 +155,17 @@ int main(int argc, char ** argv)
                     Jeu::instance().set_monde_courant(0);
                     Jeu::instance().get_monde_courant().set_niveau_courant(1);
         }
-        / **/
+        /**/
 
         window.clear(sf::Color::Black);
 
-        if (!pause)
+        if (jeu_actif)
         {
             Jeu::instance().mise_a_jour();
+            window.draw(Jeu::instance());
         }
 
-        window.draw(Jeu::instance());
+
 
         window.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
@@ -121,6 +181,16 @@ int main(int argc, char ** argv)
             window.draw(texte_pause);
         }
 
+        if(menu)
+        {
+            window.draw(fond_menu);
+            window.draw(fond_menu_play);
+            window.draw(text_menu_play);
+            window.draw(fond_menu_charger);
+            window.draw(text_menu_charger);
+            window.draw(fond_menu_quitter);
+            window.draw(text_menu_quitter);
+        }
         window.display();
     }
 
