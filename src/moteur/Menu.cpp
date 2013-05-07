@@ -11,6 +11,8 @@
 
 #include <Config.hpp>
 
+#include <SFML/Graphics.hpp>
+
 Menu::Menu(): _menu_principal(true), _menu_config(false)
 {
     //
@@ -46,14 +48,14 @@ Menu::Menu(): _menu_principal(true), _menu_config(false)
     _fond_mp_play.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 8);
     _fond_mp_play.setFillColor(sf::Color::White);
 
-    _fond_mp_charger = sf::RectangleShape(sf::Vector2f(_menu_principal_config.getLocalBounds().width, _menu_principal_config.getLocalBounds().height * 2));
-    _fond_mp_charger.setOrigin(_menu_principal_config.getLocalBounds().width / 2, _menu_principal_config.getLocalBounds().height / 2);
-    _fond_mp_charger.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 4/ 8);
+    _fond_mp_charger = sf::RectangleShape(sf::Vector2f(_menu_principal_charger.getLocalBounds().width, _menu_principal_charger.getLocalBounds().height * 2));
+    _fond_mp_charger.setOrigin(_menu_principal_charger.getLocalBounds().width / 2, _menu_principal_charger.getLocalBounds().height / 2);
+    _fond_mp_charger.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2/ 8);
     _fond_mp_charger.setFillColor(sf::Color::White);
 
-    _fond_mp_config = sf::RectangleShape(sf::Vector2f(_menu_principal_charger.getLocalBounds().width, _menu_principal_charger.getLocalBounds().height * 2));
-    _fond_mp_config.setOrigin(_menu_principal_charger.getLocalBounds().width / 2, _menu_principal_charger.getLocalBounds().height / 2);
-    _fond_mp_config.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2/ 8);
+    _fond_mp_config = sf::RectangleShape(sf::Vector2f(_menu_principal_config.getLocalBounds().width, _menu_principal_config.getLocalBounds().height * 2));
+    _fond_mp_config.setOrigin(_menu_principal_config.getLocalBounds().width / 2, _menu_principal_config.getLocalBounds().height / 2);
+    _fond_mp_config.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 4/ 8);
     _fond_mp_config.setFillColor(sf::Color::White);
 
     _fond_mp_quitter = sf::RectangleShape(sf::Vector2f(_menu_principal_quitter.getLocalBounds().width, _menu_principal_quitter.getLocalBounds().height * 2));
@@ -64,7 +66,16 @@ Menu::Menu(): _menu_principal(true), _menu_config(false)
     //
     // MENU CONFIGURATION
     //
+    _menu_config_retour = sf::Text("RETOUR", Jeu::instance().get_default_font());
+    _menu_config_retour.setCharacterSize(32);
+    _menu_config_retour.setColor(sf::Color::Black);
+    _menu_config_retour.setOrigin(_menu_config_retour.getLocalBounds().width / 2, _menu_config_retour.getLocalBounds().height / 2);
+    _menu_config_retour.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 6/ 8);
 
+    _fond_mc_retour = sf::RectangleShape(sf::Vector2f(_menu_config_retour.getLocalBounds().width, _menu_config_retour.getGlobalBounds().height * 2));
+    _fond_mc_retour.setOrigin(_menu_principal_play.getOrigin());
+    _fond_mc_retour.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 6/ 8);
+    _fond_mc_retour.setFillColor(sf::Color::White);
 
 
     fond_menu_picture.loadFromFile(RC_FOLDER + RC_FONDMENU);
