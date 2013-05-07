@@ -22,13 +22,13 @@ Menu::Menu(): _menu_principal(true), _menu_config(false)
     _menu_principal_play.setCharacterSize(32);
     _menu_principal_play.setColor(sf::Color::Black);
     _menu_principal_play.setOrigin(_menu_principal_play.getLocalBounds().width / 2, _menu_principal_play.getLocalBounds().height / 2);
-    _menu_principal_play.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 8);
+    _menu_principal_play.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2/ 8);
 
     _menu_principal_charger = sf::Text("CHARGER PARTIE", Jeu::instance().get_default_font());
     _menu_principal_charger.setCharacterSize(32);
     _menu_principal_charger.setColor(sf::Color::Black);
     _menu_principal_charger.setOrigin(_menu_principal_charger.getLocalBounds().width / 2, _menu_principal_charger.getLocalBounds().height / 2);
-    _menu_principal_charger.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2/ 8);
+    _menu_principal_charger.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 3/ 8);
 
     _menu_principal_config = sf::Text("CONFIGURATION",Jeu::instance().get_default_font());
     _menu_principal_config.setCharacterSize(32);
@@ -41,16 +41,16 @@ Menu::Menu(): _menu_principal(true), _menu_config(false)
     _menu_principal_quitter.setCharacterSize(32);
     _menu_principal_quitter.setColor(sf::Color::Black);
     _menu_principal_quitter.setOrigin(_menu_principal_quitter.getLocalBounds().width / 2, _menu_principal_quitter.getLocalBounds().height / 2);
-    _menu_principal_quitter.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 6/ 8);
+    _menu_principal_quitter.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 5/ 8);
 
     _fond_mp_play = sf::RectangleShape(sf::Vector2f(_menu_principal_play.getLocalBounds().width, _menu_principal_play.getGlobalBounds().height * 2));
     _fond_mp_play.setOrigin(_menu_principal_play.getOrigin());
-    _fond_mp_play.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 8);
+    _fond_mp_play.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2/ 8);
     _fond_mp_play.setFillColor(sf::Color::White);
 
     _fond_mp_charger = sf::RectangleShape(sf::Vector2f(_menu_principal_charger.getLocalBounds().width, _menu_principal_charger.getLocalBounds().height * 2));
     _fond_mp_charger.setOrigin(_menu_principal_charger.getLocalBounds().width / 2, _menu_principal_charger.getLocalBounds().height / 2);
-    _fond_mp_charger.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2/ 8);
+    _fond_mp_charger.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 3/ 8);
     _fond_mp_charger.setFillColor(sf::Color::White);
 
     _fond_mp_config = sf::RectangleShape(sf::Vector2f(_menu_principal_config.getLocalBounds().width, _menu_principal_config.getLocalBounds().height * 2));
@@ -60,7 +60,7 @@ Menu::Menu(): _menu_principal(true), _menu_config(false)
 
     _fond_mp_quitter = sf::RectangleShape(sf::Vector2f(_menu_principal_quitter.getLocalBounds().width, _menu_principal_quitter.getLocalBounds().height * 2));
     _fond_mp_quitter.setOrigin(_menu_principal_quitter.getLocalBounds().width / 2, _menu_principal_quitter.getLocalBounds().height / 2);
-    _fond_mp_quitter.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 6/ 8);
+    _fond_mp_quitter.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 5/ 8);
     _fond_mp_quitter.setFillColor(sf::Color::White);
 
     //
@@ -70,11 +70,11 @@ Menu::Menu(): _menu_principal(true), _menu_config(false)
     _menu_config_retour.setCharacterSize(32);
     _menu_config_retour.setColor(sf::Color::Black);
     _menu_config_retour.setOrigin(_menu_config_retour.getLocalBounds().width / 2, _menu_config_retour.getLocalBounds().height / 2);
-    _menu_config_retour.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 6/ 8);
+    _menu_config_retour.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 5/ 8);
 
     _fond_mc_retour = sf::RectangleShape(sf::Vector2f(_menu_config_retour.getLocalBounds().width, _menu_config_retour.getGlobalBounds().height * 2));
-    _fond_mc_retour.setOrigin(_menu_principal_play.getOrigin());
-    _fond_mc_retour.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 6/ 8);
+    _fond_mc_retour.setOrigin(_menu_config_retour.getOrigin());
+    _fond_mc_retour.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 5/ 8);
     _fond_mc_retour.setFillColor(sf::Color::White);
 
 

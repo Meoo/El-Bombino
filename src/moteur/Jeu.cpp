@@ -179,7 +179,7 @@ void Jeu::mise_a_jour()
 
 const sf::Font& Jeu::get_default_font() const
 {
-    // assert pret?
+    //assert (_pret);
 
     return _default_font;
 }
@@ -208,4 +208,14 @@ void Jeu::set_monde_courant(unsigned num)
 
     _monde_courant = _mondes[num];
     _monde_courant->charger();
+}
+
+const Menu * Jeu::get_menu() const
+{
+    return _menu;
+}
+
+Menu * Jeu::get_menu()
+{
+    return _menu;
 }

@@ -74,6 +74,9 @@ public:
 
     void                set_menu(Menu * value);
 
+    const Menu *       get_menu() const;
+    Menu *             get_menu();
+
 /*TODO protected:*/
     void                set_monde_courant(unsigned num);
 };

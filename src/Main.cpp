@@ -62,16 +62,16 @@ int main(int argc, char ** argv)
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            if (event.type == sf::Event::LostFocus)
+            if (event.type == sf::Event::LostFocus && !Jeu::instance().get_menu())
                 pause = true;
 
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
                 window.close();
 
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Pause))
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Pause) && !Jeu::instance().get_menu())
                 pause = !pause;
 
-            if (event.type == sf::Event::MouseButtonPressed)
+            if (event.type == sf::Event::MouseButtonPressed && Jeu::instance().get_menu())
             {
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
@@ -110,8 +110,10 @@ int main(int argc, char ** argv)
 
         window.clear(sf::Color::Black);
 
-
-        Jeu::instance().mise_a_jour();
+        if(!pause)
+        {
+            Jeu::instance().mise_a_jour();
+        }
         window.draw(Jeu::instance());
 
 
