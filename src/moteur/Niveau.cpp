@@ -305,4 +305,5 @@ void Niveau::mise_a_jour()
     // Mettre à jour les objets
     for (obj_vec_t::iterator i = objs.begin(); i != objs.end(); ++i)
         (*i)->mise_a_jour();
+
 }

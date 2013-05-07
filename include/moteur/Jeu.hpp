@@ -10,6 +10,7 @@
 #include "../Config.hpp"
 #include "Sauvegarde.hpp"
 #include "Monde.hpp"
+#include <moteur/Menu.hpp>
 
 #include <SFML/Graphics.hpp>
 
@@ -32,6 +33,8 @@ private:
     Monde **            _mondes;
     Monde *             _monde_courant;
     sf::Font            _default_font;
+
+    Menu *              _menu;
 
 #ifndef NDEBUG
     bool                _pret;
@@ -67,6 +70,7 @@ public:
 
     const sf::Font &    get_default_font() const;
 
+    void                clic(int x, int y);
 /*TODO protected:*/
     void                set_monde_courant(unsigned num);
 };

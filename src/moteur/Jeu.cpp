@@ -7,6 +7,7 @@
 #include <moteur/Jeu.hpp>
 #include <moteur/Monde.hpp>
 #include <moteur/exceptions/ExceptionRessource.hpp>
+#include <moteur/Menu.hpp>
 
 #include <vector>
 #include <fstream>
@@ -19,6 +20,7 @@ Jeu::Jeu() :
         , _pret(false)
 #endif
 {
+    _menu = new Menu();
 }
 
 Jeu::~Jeu()
@@ -155,20 +157,32 @@ const Monde & Jeu::get_monde_courant() const
 
 void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    assert(_pret && _monde_courant != NULL);
+    assert(_pret && (_monde_courant != NULL || _menu != NULL));
+    if(_menu)
+        target.draw(*_menu,states);
+    else
+        target.draw(*_monde_courant, states);
 
-    target.draw(*_monde_courant, states);
 }
 
 void Jeu::mise_a_jour()
 {
-    assert(_pret && _monde_courant != NULL);
+    assert(_pret && (_monde_courant != NULL || _menu != NULL));
+    if(_menu == NULL)
+    {
         _monde_courant->mise_a_jour();
+    }
 }
 
 const sf::Font& Jeu::get_default_font() const
 {
     return _default_font;
+}
+
+void Jeu::clic(int x, int y)
+{
+    if(_menu)
+        _menu->clic(x,y);
 }
 
 void Jeu::set_monde_courant(unsigned num)

@@ -83,7 +83,7 @@ const unsigned      IDIOT_COLDOWN_ATT           = 25;
 const std::string   RC_FOLDER           ("rc/");
 const std::string   RC_JEU              ("jeu.txt");
 const std::string   RC_ICON             ("icon.png");
-
+const std::string   RC_FONDMENU         ("menu.png");
 
 // Commande du jeu
 
