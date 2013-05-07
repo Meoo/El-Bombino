@@ -121,8 +121,6 @@ void Menu::clic(int x, int y)
         if(_fond_mp_charger.getGlobalBounds().contains(x,y))
         {
             //new Sauvegarde();
-            Jeu::instance().liberer();
-            Jeu::instance().charger();
             Jeu::instance().set_monde_courant(0);
             Jeu::instance().get_monde_courant().set_niveau_courant(1);
             _menu_config = false;
@@ -136,8 +134,6 @@ void Menu::clic(int x, int y)
         }
         else if (_fond_mp_play.getGlobalBounds().contains(x,y))
         {
-            Jeu::instance().liberer();
-            Jeu::instance().charger();
             Jeu::instance().set_monde_courant(0);
             Jeu::instance().get_monde_courant().set_niveau_courant(0);
             _menu_config = false;

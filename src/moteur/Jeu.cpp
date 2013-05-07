@@ -15,12 +15,11 @@
 Jeu Jeu::s_jeu;
 
 Jeu::Jeu() :
-        _mondes_count(0), _mondes(NULL), _monde_courant(NULL)
+        _mondes_count(0), _mondes(NULL), _monde_courant(NULL), _menu(NULL)
 #ifndef NDEBUG
         , _pret(false)
 #endif
 {
-    _menu = new Menu();
 }
 
 Jeu::~Jeu()
@@ -38,6 +37,8 @@ void Jeu::charger()
     assert(!_pret);
 
     _default_font.loadFromFile("C:/Windows/Fonts/arial.ttf");
+
+    _menu = new Menu();
 
     std::fstream fic((RC_FOLDER + RC_JEU).c_str(), std::ios_base::in);
     if (!fic)
@@ -111,9 +112,11 @@ void Jeu::charger()
 
 void Jeu::liberer()
 {
+    delete _menu;
     for (unsigned i = 0; i < _mondes_count; ++i)
         delete _mondes[i];
     delete _mondes;
+    _menu = NULL;
     _mondes = NULL;
     _mondes_count = 0;
     _monde_courant = NULL;
@@ -176,20 +179,25 @@ void Jeu::mise_a_jour()
 
 const sf::Font& Jeu::get_default_font() const
 {
+    assert(_pret);
+
     return _default_font;
 }
 
 void Jeu::clic(int x, int y)
 {
+    assert(_pret && _menu);
+
     if(_menu)
         _menu->clic(x,y);
 }
 
 void Jeu::set_menu(Menu * value)
 {
+    assert(_pret);
+
     _menu = value;
 }
-
 
 void Jeu::set_monde_courant(unsigned num)
 {
