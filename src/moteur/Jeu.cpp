@@ -179,7 +179,7 @@ void Jeu::mise_a_jour()
 
 const sf::Font& Jeu::get_default_font() const
 {
-    assert(_pret);
+    // assert pret?
 
     return _default_font;
 }
