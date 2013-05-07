@@ -43,9 +43,6 @@ int main(int argc, char ** argv)
     bool pause = false;
     int pause_frame = 0;
 
-
-    bool jeu_actif = false;
-
     // Fenêtre
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
     window.setFramerateLimit(WINDOW_FRAMERATE);
@@ -85,17 +82,17 @@ int main(int argc, char ** argv)
 #ifndef NDEBUG
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::F1))
             {
-                jeu_actif = true;
                 Jeu::instance().liberer();
                 Jeu::instance().charger();
                 Jeu::instance().set_monde_courant(0);
                 Jeu::instance().get_monde_courant().set_niveau_courant(0);
+                Jeu::instance().set_menu(NULL);
             }
 #endif
         }
 
        // TODO DEBUG Enlever
-        if(jeu_actif && Jeu::instance().get_monde_courant().get_niveau_courant().get_joueur()==NULL){
+       /* if(Jeu::instance().get_monde_courant().get_niveau_courant().get_joueur()==NULL){
             Jeu::instance().liberer();
             Jeu::instance().charger();
             Jeu::instance().set_monde_courant(0);

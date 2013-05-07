@@ -168,7 +168,7 @@ void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 void Jeu::mise_a_jour()
 {
     assert(_pret && (_monde_courant != NULL || _menu != NULL));
-    if(_menu == NULL)
+    if(!_menu)
     {
         _monde_courant->mise_a_jour();
     }
@@ -184,6 +184,12 @@ void Jeu::clic(int x, int y)
     if(_menu)
         _menu->clic(x,y);
 }
+
+void Jeu::set_menu(Menu * value)
+{
+    _menu = value;
+}
+
 
 void Jeu::set_monde_courant(unsigned num)
 {

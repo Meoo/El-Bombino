@@ -71,6 +71,9 @@ public:
     const sf::Font &    get_default_font() const;
 
     void                clic(int x, int y);
+
+    void                set_menu(Menu * value);
+
 /*TODO protected:*/
     void                set_monde_courant(unsigned num);
 };

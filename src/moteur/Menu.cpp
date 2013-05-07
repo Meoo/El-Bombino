@@ -87,6 +87,7 @@ Menu::~Menu()
 
 void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+
     sf::Sprite sp_fond(fond_menu_picture);
     target.draw(sp_fond);
 
@@ -125,6 +126,7 @@ void Menu::clic(int x, int y)
             Jeu::instance().get_monde_courant().set_niveau_courant(1);
             _menu_config = false;
             _menu_principal = false;
+            Jeu::instance().set_menu(NULL);
         }
         else if (_fond_mp_config.getGlobalBounds().contains(x,y))
         {
@@ -139,6 +141,7 @@ void Menu::clic(int x, int y)
             Jeu::instance().get_monde_courant().set_niveau_courant(0);
             _menu_config = false;
             _menu_principal = false;
+            Jeu::instance().set_menu(NULL);
         }
         else if (_fond_mp_quitter.getGlobalBounds().contains(x,y))
         {
@@ -153,4 +156,9 @@ void Menu::clic(int x, int y)
             _menu_principal = true;
         }
     }
+}
+
+bool Menu::est_actif()
+{
+    return _menu_config || _menu_principal;
 }

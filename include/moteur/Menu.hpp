@@ -41,6 +41,8 @@ public:
     virtual void    mise_a_jour();
 
     void            clic(int x, int y);
+
+    bool                est_actif();
 };
 
 
