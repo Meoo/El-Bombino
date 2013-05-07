@@ -111,6 +111,7 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 void Menu::mise_a_jour()
 {
+
 }
 
 void Menu::clic(int x, int y)
