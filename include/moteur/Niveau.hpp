@@ -31,6 +31,7 @@ private:
 	Joueur *                _joueur;
 	std::list<MobileIA *>   _pnjs;
 	std::list<Bombe *>      _bombes_actives;
+	bool                    _fini;
 
 #ifndef NDEBUG
     bool                _pret;
@@ -64,6 +65,8 @@ public:
 
     void                            delete_bombe(Bombe* bombe);
     void                            ajouter_bombe_active(Bombe* bombe);
+
+    bool                            est_fini();
 
     // Fonction d'affichage de Drawable
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;

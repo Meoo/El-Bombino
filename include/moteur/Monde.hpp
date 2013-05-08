@@ -35,6 +35,8 @@ private:
     unsigned            _niveaux_count;
     Niveau **           _niveaux;
     Niveau *            _niveau_courant;
+    unsigned            _num_niveau_courant;
+    bool                _fini;
 
     std::map<char, Tuile> _usine_cases;
 
@@ -61,6 +63,11 @@ public:
     virtual void        mise_a_jour();
 
     Case *              creer_case(unsigned x, unsigned y, char tuile) const;
+
+    const unsigned      get_num_niveau_courant() const;
+    unsigned            get_num_niveau_courant();
+
+    bool                est_fini();
 
 /*TODO protected:*/
     void                set_niveau_courant(unsigned num);

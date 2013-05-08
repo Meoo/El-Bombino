@@ -19,13 +19,6 @@ int main(int argc, char ** argv)
 
     Jeu::instance().charger();
 
-    /*
-    // TODO DEBUG Enlever
-    Jeu::instance().set_monde_courant(0);
-    Jeu::instance().get_monde_courant().set_niveau_courant(1);
-    */
-
-
     // Fenêtre
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
     window.setFramerateLimit(WINDOW_FRAMERATE);
@@ -73,45 +66,12 @@ int main(int argc, char ** argv)
             }
 #endif
         }
-
-       // TODO DEBUG Enlever
-       /* if(Jeu::instance().get_monde_courant().get_niveau_courant().get_joueur()==NULL){
-            Jeu::instance().liberer();
-            Jeu::instance().charger();
-            Jeu::instance().set_monde_courant(0);
-            Jeu::instance().get_monde_courant().set_niveau_courant(1);
-        }
-        //test de la liste de pnjs
-        /** /
-        if(Jeu::instance().get_monde_courant().get_niveau_courant().get_pnjs().empty()){
-                    Jeu::instance().liberer();
-                    Jeu::instance().charger();
-                    Jeu::instance().set_monde_courant(0);
-                    Jeu::instance().get_monde_courant().set_niveau_courant(1);
-        }
-        /**/
-
         window.clear(sf::Color::Black);
 
-        //
         Jeu::instance().mise_a_jour();
         window.draw(Jeu::instance());
 
-        //areter les mise_a_jour du jeu si la pause est active
-        /*if(!Jeu::instance().get_pause()->est_active())
-        {
-            Jeu::instance().mise_a_jour();
-        }
-        window.draw(Jeu::instance());*/
-
         window.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
-
-        //affichage de la pause dessus le jeu si elle est active
-        /*if (Jeu::instance().get_pause()->est_active())
-        {
-            Jeu::instance().get_pause()->mise_a_jour();
-            window.draw(*Jeu::instance().get_pause());
-        }*/
 
         window.display();
     }

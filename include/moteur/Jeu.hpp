@@ -35,6 +35,7 @@ private:
     sf::Font            _default_font;
 
     Menu *              _menu;
+    unsigned            _num_monde_courant;
 
 #ifndef NDEBUG
     bool                _pret;
@@ -78,6 +79,9 @@ public:
 
     const Menu *        get_menu() const;
     Menu *              get_menu();
+
+    const unsigned      get_num_monde_courant() const;
+    unsigned            get_num_monde_courant();
 
 /*TODO protected:*/
     void                set_monde_courant(unsigned num);

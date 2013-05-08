@@ -15,7 +15,7 @@
 Jeu Jeu::s_jeu;
 
 Jeu::Jeu() :
-        _mondes_count(0), _mondes(NULL), _monde_courant(NULL), _menu(NULL)
+        _mondes_count(0), _mondes(NULL), _monde_courant(NULL), _menu(NULL), _num_monde_courant(0)
 #ifndef NDEBUG
         , _pret(false)
 #endif
@@ -182,6 +182,23 @@ void Jeu::mise_a_jour()
     }
     else
         _menu->mise_a_jour();
+
+    /*
+    if(_monde_courant->est_fini() && _num_monde_courant + 1 == _mondes_count)
+    {
+        if(_num_monde_courant == _mondes_count)
+        {
+            //Jeu Fini #TODO
+            //_menu->active_menu(Menu::JEU_FINI);
+        }
+        else
+        {
+            //Monde suivant #TODO
+            //_menu->active_menu(Menu::MONDE_SUIVANT);
+        }
+
+    }
+    */
 }
 
 const sf::Font& Jeu::get_default_font() const
@@ -220,8 +237,19 @@ void Jeu::set_monde_courant(unsigned num)
     if (_monde_courant != NULL)
         _monde_courant->liberer();
 
+    _num_monde_courant = num;
     _monde_courant = _mondes[num];
     _monde_courant->charger();
+}
+
+const unsigned Jeu::get_num_monde_courant() const
+{
+    return _num_monde_courant;
+}
+
+unsigned Jeu::get_num_monde_courant()
+{
+    return _num_monde_courant;
 }
 
 const Menu * Jeu::get_menu() const

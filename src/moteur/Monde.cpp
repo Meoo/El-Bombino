@@ -14,7 +14,7 @@
 #include <cstdlib>
 
 Monde::Monde(const std::string & fic) :
-        _fichier_rc(fic), _niveaux_count(0), _niveaux(NULL), _niveau_courant(NULL)
+        _fichier_rc(fic), _niveaux_count(0), _niveaux(NULL), _niveau_courant(NULL), _num_niveau_courant(0)
 #ifndef NDEBUG
         , _pret(false)
 #endif
@@ -182,6 +182,22 @@ void Monde::mise_a_jour()
     assert(_pret && _niveau_courant != NULL);
 
     _niveau_courant->mise_a_jour();
+    /*
+    if(_niveau_courant->est_fini() && _num_niveau_courant == _niveaux_count)
+    {
+        if(_num_niveau_courant + 1 == _niveaux_count)
+        {
+            // Monde fini
+            _fini = true;
+        }
+        else
+        {
+            //Niveau fini
+            //Jeu::instance().get_menu()->active_menu(Menu::NIVEAU_SUIVANT);
+        }
+
+    }
+    */
 }
 
 Case * Monde::creer_case(unsigned x, unsigned y, char tuile) const
@@ -199,6 +215,21 @@ Case * Monde::creer_case(unsigned x, unsigned y, char tuile) const
     return cse;
 }
 
+const unsigned Monde::get_num_niveau_courant() const
+{
+    return _num_niveau_courant;
+}
+
+unsigned Monde::get_num_niveau_courant()
+{
+    return _num_niveau_courant;
+}
+
+bool Monde::est_fini()
+{
+    return _fini;
+}
+
 void Monde::set_niveau_courant(unsigned num)
 {
     assert(_pret && num < _niveaux_count);
@@ -206,6 +237,8 @@ void Monde::set_niveau_courant(unsigned num)
     if (_niveau_courant != NULL)
         _niveau_courant->liberer();
 
-    _niveau_courant = _niveaux[num];
+    _num_niveau_courant = num;
+    _niveau_courant     = _niveaux[num];
+
     _niveau_courant->charger(this);
 }

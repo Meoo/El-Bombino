@@ -16,7 +16,7 @@
 #include <fstream>
 
 Niveau::Niveau(const std::string & fic) :
-        _fichier_rc(fic), _largeur(0), _hauteur(0), _cases(NULL), _joueur(NULL)
+        _fichier_rc(fic), _largeur(0), _hauteur(0), _cases(NULL), _joueur(NULL), _fini(false)
 #ifndef NDEBUG
         , _pret(false)
 #endif
@@ -284,6 +284,11 @@ void Niveau::ajouter_joueur(Joueur* joueur)
     _joueur = joueur;
 }
 
+bool Niveau::est_fini()
+{
+    return _fini;
+}
+
 void Niveau::mise_a_jour()
 {
     assert(_pret);
@@ -305,5 +310,16 @@ void Niveau::mise_a_jour()
     // Mettre à jour les objets
     for (obj_vec_t::iterator i = objs.begin(); i != objs.end(); ++i)
         (*i)->mise_a_jour();
+
+    if(_pnjs.size() == 0 && _joueur)
+    {
+        //niveau fini #TODO
+        _fini = true;
+    }
+    if(!_joueur)
+    {
+        // game over, restart niveau #TODO
+        //Jeu::instance().get_menu()->active_menu(Menu::GAME_OVER_NIVEAU);
+    }
 
 }
