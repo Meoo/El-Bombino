@@ -25,6 +25,8 @@ public:
 
     virtual void mise_a_jour_ia();
 
+    virtual void mise_a_jour();
+
     virtual void    laisser_tomber_objet(Case * cse);
 
     virtual void    appliquer_bonus(Bonus::bonus_t type_bonus);

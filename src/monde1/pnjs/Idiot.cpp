@@ -158,14 +158,7 @@ void Idiot::attaquer_joueur()
 
 void Idiot::mise_a_jour_ia()
 {
-    //
-    //#TODO
-    // pourquoi ce coldown est autant lent ???
-    LOG(_coldown_att);
-    if(_coldown_att > 0)
-        --_coldown_att;
-    else
-        attaquer_joueur();
+
     //
     //Deplacement
     //
@@ -259,6 +252,17 @@ void Idiot::mise_a_jour_ia()
         return;
     }
     assert(false);
+}
+
+void Idiot::mise_a_jour()
+{
+    MobileIA::mise_a_jour();
+    //
+    //
+    if(_coldown_att > 0)
+        --_coldown_att;
+    else
+        attaquer_joueur();
 }
 
 void Idiot::laisser_tomber_objet(Case* cse)
