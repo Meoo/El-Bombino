@@ -59,20 +59,12 @@ void Idiot::attaquer_joueur()
             gauche = gauche->get_case_gauche();
         }
     }
-    gauche = get_case()->get_case_gauche();
-    bool r_gauche = true;
     if(gauche_att)
     {
         _coldown_att = IDIOT_COLDOWN_ATT;
-        for(unsigned i = 0; i < _puissance; ++i)
-        {
-            if(gauche->est_praticable() && r_gauche)
-            {
-                r_gauche = gauche->enflammer();
-                gauche = gauche->get_case_gauche();
-            }
-        }
+        get_case()->enflammer_direction(Case::GAUCHE, _puissance);
     }
+
 
     Case * droite = get_case()->get_case_droite();
     Joueur *joueur_droite;
@@ -86,20 +78,12 @@ void Idiot::attaquer_joueur()
             droite = droite->get_case_droite();
         }
     }
-    droite = get_case()->get_case_droite();
-    bool r_droite = true;
     if(droite_att)
     {
+        get_case()->enflammer_direction(Case::DROITE,_puissance);
         _coldown_att = IDIOT_COLDOWN_ATT;
-        for(unsigned i = 0; i < _puissance; ++i)
-        {
-            if(droite->est_praticable() && r_droite)
-            {
-                r_droite = droite->enflammer();
-                droite = droite->get_case_droite();
-            }
-        }
     }
+
 
     Case * bas = get_case()->get_case_bas();
     Joueur *joueur_bas;
@@ -113,20 +97,12 @@ void Idiot::attaquer_joueur()
             bas = bas->get_case_bas();
         }
     }
-    bas = get_case()->get_case_bas();
-    bool r_bas = true;
     if(bas_att)
     {
+        get_case()->enflammer_direction(Case::BAS, _puissance);
         _coldown_att = IDIOT_COLDOWN_ATT;
-        for(unsigned i = 0; i < _puissance; ++i)
-        {
-            if(bas->est_praticable() && r_bas)
-            {
-                r_bas = bas->enflammer();
-                bas = bas->get_case_bas();
-            }
-        }
     }
+
 
     Case * haut = get_case()->get_case_haut();
     Joueur *joueur_haut;
@@ -140,19 +116,10 @@ void Idiot::attaquer_joueur()
             haut = haut->get_case_haut();
         }
     }
-    haut = get_case()->get_case_haut();
-    bool r_haut = true;
     if(haut_att)
     {
         _coldown_att = IDIOT_COLDOWN_ATT;
-        for(unsigned i = 0; i < _puissance; ++i)
-        {
-            if(haut->est_praticable() && r_haut)
-            {
-                r_haut = haut->enflammer();
-                haut = haut->get_case_haut();
-            }
-        }
+        get_case()->enflammer_direction(Case::HAUT, _puissance);
     }
 }
 

@@ -64,8 +64,12 @@ void Bombe::exploser()
     //Faire exploser la bombe
     detruire();
     get_case()->enflammer();
+    get_case()->enflammer_direction(Case::HAUT, _puissance);
+    get_case()->enflammer_direction(Case::BAS, _puissance);
+    get_case()->enflammer_direction(Case::GAUCHE, _puissance);
+    get_case()->enflammer_direction(Case::DROITE, _puissance);
 
-    Case *droite = get_case()->get_case_droite();
+    /*Case *droite = get_case()->get_case_droite();
     Case *gauche = get_case()->get_case_gauche();
     Case *haut   = get_case()->get_case_haut();
     Case *bas    = get_case()->get_case_bas();
@@ -92,7 +96,7 @@ void Bombe::exploser()
             r_gauche = gauche->enflammer();
             gauche = gauche->get_case_gauche();
         }
-    }
+    }*/
 }
 
 void Bombe::blesser()

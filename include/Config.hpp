@@ -84,6 +84,7 @@ const std::string   RC_FOLDER           ("rc/");
 const std::string   RC_JEU              ("jeu.txt");
 const std::string   RC_ICON             ("icon.png");
 const std::string   RC_FONDMENU         ("menu.png");
+const std::string   RC_SAUVGARDE        ("sauvegarde.txt");
 
 // Commande du jeu
 

@@ -25,7 +25,13 @@ class Case : public sf::Drawable
 
     typedef void (Objet::* objet_effet_t) (void);
 
+public:
+    typedef enum direction
+    {
+        HAUT,BAS,DROITE,GAUCHE,
+    } direction_t;
 private:
+
     Objet *         _objet;
     const sf::Texture * _texture;
 
@@ -64,10 +70,17 @@ public:
                               const sf::Color & couleur = FEU_COLOR_DEFAULT,
                               objet_effet_t     effet   = &Objet::blesser);
 
+    virtual void    enflammer_direction( direction_t direction,
+                                        unsigned    puissance,
+                                        unsigned            duree   = FEU_TIME_DEFAULT,
+                                        const sf::Color &   couleur = FEU_COLOR_DEFAULT,
+                                        objet_effet_t effet         = &Objet::blesser);
+
     bool            est_en_feu() const;
     unsigned        get_duree_flammes() const;
 
     virtual bool    est_praticable();
+
 
     // Fonction d'affichage de Drawable
     virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;

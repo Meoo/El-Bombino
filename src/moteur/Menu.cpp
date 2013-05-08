@@ -271,6 +271,9 @@ void Menu::clic(int x, int y)
             if(_fond_mp_charger.getGlobalBounds().contains(x,y))
             {
                 // charger la sauvegarde #TODO
+                Sauvegarde sauv;
+                sauv.charger_sauvegarde();
+                active_menu(Menu::AUCUN_MENU);
             }
             else if (_fond_mp_config.getGlobalBounds().contains(x,y))
             {

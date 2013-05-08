@@ -20,6 +20,9 @@ public:
     Sauvegarde();
     virtual ~Sauvegarde();
 
+    void    charger_sauvegarde();
+
+    void    sauver_sauvegarde();
 };
 // class Sauvegarde
 

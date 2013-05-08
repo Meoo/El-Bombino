@@ -195,9 +195,9 @@ void Jeu::mise_a_jour()
     if(_menu->get_menu_type() == Menu::AUCUN_MENU)
     {
         _monde_courant->mise_a_jour();
-        if(_monde_courant->est_fini() && _num_monde_courant + 1 == _mondes_count)
+        if(_monde_courant->est_fini())
         {
-            if(_num_monde_courant == _mondes_count)
+            if(_num_monde_courant + 1 == _mondes_count)
             {
                 //Jeu Fini #TODO
                 _menu->active_menu(Menu::JEU_FINI);

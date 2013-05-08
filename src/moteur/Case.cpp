@@ -168,3 +168,61 @@ const Case * Case::get_case_bas() const
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x, _y + 1);
 }
+
+void    Case::enflammer_direction( direction_t direction,
+                                        unsigned    puissance,
+                                        unsigned            duree   /*= FEU_TIME_DEFAULT*/,
+                                        const sf::Color &   couleur /*= FEU_COLOR_DEFAULT*/,
+                                        objet_effet_t effet         /*= &Objet::blesser*/)
+{
+    Case *droite = get_case_droite();
+    Case *gauche = get_case_gauche();
+    Case *haut   = get_case_haut();
+    Case *bas    = get_case_bas();
+    bool r_bas = true, r_haut = true, r_droite = true, r_gauche = true;
+
+    switch (direction) {
+        case Case::HAUT:
+            for (unsigned i = 1; i <= puissance; ++i)
+            {
+                if(haut->est_praticable() && r_haut)
+                {
+                    r_haut = haut->enflammer(duree, couleur, effet);
+                    haut = haut->get_case_haut();
+                }
+            }
+            break;
+        case Case::BAS:
+            for (unsigned i = 1; i <= puissance; ++i)
+            {
+                if(bas->est_praticable() && r_bas)
+                {
+                    r_bas = bas->enflammer(duree, couleur, effet);
+                    bas = bas->get_case_bas();
+                }
+            }
+            break;
+        case Case::DROITE:
+            for (unsigned i = 1; i <= puissance; ++i)
+            {
+                if(droite->est_praticable() && r_droite)
+                {
+                    r_droite = droite->enflammer(duree, couleur, effet);
+                    droite = droite->get_case_droite();
+                }
+            }
+            break;
+        case Case::GAUCHE:
+            for (unsigned i = 1; i <= puissance; ++i)
+            {
+                if(gauche->est_praticable() && r_gauche)
+                {
+                    r_gauche = gauche->enflammer(duree, couleur, effet);
+                    gauche = gauche->get_case_gauche();
+                }
+            }
+            break;
+        default:
+            break;
+    }
+}
