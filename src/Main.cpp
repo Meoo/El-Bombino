@@ -45,16 +45,16 @@ int main(int argc, char ** argv)
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            if (event.type == sf::Event::LostFocus && !Jeu::instance().get_menu())
-                Jeu::instance().get_pause()->set_active(true);
+            if (event.type == sf::Event::LostFocus)
+                Jeu::instance().lost_focus();
 
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
                 window.close();
 
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Pause) && !Jeu::instance().get_menu())
-                Jeu::instance().get_pause()->set_active(!Jeu::instance().get_pause()->est_active());
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Pause))
+                Jeu::instance().press_pause();
 
-            if (event.type == sf::Event::MouseButtonPressed && (Jeu::instance().get_menu() || Jeu::instance().get_pause()->est_active()))
+            if (event.type == sf::Event::MouseButtonPressed)
             {
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
@@ -69,7 +69,7 @@ int main(int argc, char ** argv)
                 Jeu::instance().charger();
                 Jeu::instance().set_monde_courant(0);
                 Jeu::instance().get_monde_courant().set_niveau_courant(0);
-                Jeu::instance().set_menu(NULL);
+                Jeu::instance().get_menu()->active_menu(Menu::AUCUN_MENU);
             }
 #endif
         }
@@ -93,22 +93,25 @@ int main(int argc, char ** argv)
 
         window.clear(sf::Color::Black);
 
-        if(!Jeu::instance().get_pause()->est_active())
+        //
+        Jeu::instance().mise_a_jour();
+        window.draw(Jeu::instance());
+
+        //areter les mise_a_jour du jeu si la pause est active
+        /*if(!Jeu::instance().get_pause()->est_active())
         {
             Jeu::instance().mise_a_jour();
         }
-        window.draw(Jeu::instance());
-
-
-
+        window.draw(Jeu::instance());*/
 
         window.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
-        if (Jeu::instance().get_pause()->est_active())
+        //affichage de la pause dessus le jeu si elle est active
+        /*if (Jeu::instance().get_pause()->est_active())
         {
             Jeu::instance().get_pause()->mise_a_jour();
             window.draw(*Jeu::instance().get_pause());
-        }
+        }*/
 
         window.display();
     }

@@ -11,7 +11,6 @@
 #include "Sauvegarde.hpp"
 #include "Monde.hpp"
 #include <moteur/Menu.hpp>
-#include <moteur/Pause.hpp>
 
 #include <SFML/Graphics.hpp>
 
@@ -36,7 +35,6 @@ private:
     sf::Font            _default_font;
 
     Menu *              _menu;
-    Pause *             _pause;
 
 #ifndef NDEBUG
     bool                _pret;
@@ -74,13 +72,12 @@ public:
 
     void                clic(int x, int y);
 
-    void                set_menu(Menu * value);
+    void                lost_focus();
 
-    const Menu *       get_menu() const;
-    Menu *             get_menu();
+    void                press_pause();
 
-    const Pause *      get_pause() const;
-    Pause *            get_pause();
+    const Menu *        get_menu() const;
+    Menu *              get_menu();
 
 /*TODO protected:*/
     void                set_monde_courant(unsigned num);

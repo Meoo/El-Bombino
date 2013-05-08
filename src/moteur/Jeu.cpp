@@ -15,7 +15,7 @@
 Jeu Jeu::s_jeu;
 
 Jeu::Jeu() :
-        _mondes_count(0), _mondes(NULL), _monde_courant(NULL), _menu(NULL), _pause(NULL)
+        _mondes_count(0), _mondes(NULL), _monde_courant(NULL), _menu(NULL)
 #ifndef NDEBUG
         , _pret(false)
 #endif
@@ -39,7 +39,6 @@ void Jeu::charger()
     _default_font.loadFromFile("C:/Windows/Fonts/arial.ttf");
 
     _menu = new Menu();
-    _pause = new Pause();
 
     std::fstream fic((RC_FOLDER + RC_JEU).c_str(), std::ios_base::in);
     if (!fic)
@@ -162,8 +161,13 @@ const Monde & Jeu::get_monde_courant() const
 void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     assert(_pret && (_monde_courant != NULL || _menu != NULL));
-    if(_menu)
+    if(_menu->get_menu_type() == Menu::MENU_CONFIGURATION || _menu->get_menu_type() == Menu::MENU_PRINCIPAL)
         target.draw(*_menu,states);
+    else if (_menu->get_menu_type() == Menu::MENU_PAUSE)
+    {
+        target.draw(*_monde_courant, states);
+        target.draw(*_menu, states);
+    }
     else
         target.draw(*_monde_courant, states);
 
@@ -172,10 +176,12 @@ void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 void Jeu::mise_a_jour()
 {
     assert(_pret && (_monde_courant != NULL || _menu != NULL));
-    if(!_menu)
+    if(_menu->get_menu_type() == Menu::AUCUN_MENU)
     {
         _monde_courant->mise_a_jour();
     }
+    else
+        _menu->mise_a_jour();
 }
 
 const sf::Font& Jeu::get_default_font() const
@@ -187,22 +193,25 @@ const sf::Font& Jeu::get_default_font() const
 
 void Jeu::clic(int x, int y)
 {
-    assert(_pret && (_menu || _pause));
+    assert(_pret && (_menu));
 
     if(_menu)
         _menu->clic(x,y);
-    else if(_pause->est_active())
-        _pause->clic(x,y);
 }
 
-void Jeu::set_menu(Menu * value)
+void Jeu::lost_focus()
 {
-    assert(_pret);
+    assert(_pret && _menu);
 
-    _menu = value;
+    _menu->lost_focus();
 }
 
+void Jeu::press_pause()
+{
+    assert(_pret && _menu);
 
+    _menu->press_pause();
+}
 
 void Jeu::set_monde_courant(unsigned num)
 {
@@ -225,12 +234,3 @@ Menu * Jeu::get_menu()
     return _menu;
 }
 
-const Pause* Jeu::get_pause() const
-{
-    return _pause;
-}
-
-Pause* Jeu::get_pause()
-{
-    return _pause;
-}
