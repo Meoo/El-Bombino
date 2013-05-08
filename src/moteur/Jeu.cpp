@@ -161,15 +161,31 @@ const Monde & Jeu::get_monde_courant() const
 void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     assert(_pret && (_monde_courant != NULL || _menu != NULL));
-    if(_menu->get_menu_type() == Menu::MENU_CONFIGURATION || _menu->get_menu_type() == Menu::MENU_PRINCIPAL)
-        target.draw(*_menu,states);
-    else if (_menu->get_menu_type() == Menu::MENU_PAUSE)
-    {
-        target.draw(*_monde_courant, states);
-        target.draw(*_menu, states);
+
+    switch (_menu->get_menu_type()) {
+        case Menu::MENU_PAUSE:
+            target.draw(*_monde_courant, states);
+            target.draw(*_menu, states);
+            break;
+        case Menu::NIVEAU_SUIVANT:
+            target.draw(*_monde_courant, states);
+            target.draw(*_menu, states);
+            break;
+        case Menu::MONDE_SUIVANT:
+            target.draw(*_monde_courant, states);
+            target.draw(*_menu, states);
+            break;
+        case Menu::AUCUN_MENU:
+            target.draw(*_monde_courant);
+            break;
+        case Menu::GAME_OVER:
+            target.draw(*_monde_courant);
+            target.draw(*_menu, states);
+            break;
+        default:
+            target.draw(*_menu, states);
+            break;
     }
-    else
-        target.draw(*_monde_courant, states);
 
 }
 
@@ -179,26 +195,23 @@ void Jeu::mise_a_jour()
     if(_menu->get_menu_type() == Menu::AUCUN_MENU)
     {
         _monde_courant->mise_a_jour();
+        if(_monde_courant->est_fini() && _num_monde_courant + 1 == _mondes_count)
+        {
+            if(_num_monde_courant == _mondes_count)
+            {
+                //Jeu Fini #TODO
+                _menu->active_menu(Menu::JEU_FINI);
+            }
+            else
+            {
+                //Monde suivant #TODO
+                _menu->active_menu(Menu::MONDE_SUIVANT);
+            }
+
+        }
     }
     else
         _menu->mise_a_jour();
-
-    /*
-    if(_monde_courant->est_fini() && _num_monde_courant + 1 == _mondes_count)
-    {
-        if(_num_monde_courant == _mondes_count)
-        {
-            //Jeu Fini #TODO
-            //_menu->active_menu(Menu::JEU_FINI);
-        }
-        else
-        {
-            //Monde suivant #TODO
-            //_menu->active_menu(Menu::MONDE_SUIVANT);
-        }
-
-    }
-    */
 }
 
 const sf::Font& Jeu::get_default_font() const

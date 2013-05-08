@@ -32,6 +32,8 @@ private:
 	std::list<MobileIA *>   _pnjs;
 	std::list<Bombe *>      _bombes_actives;
 	bool                    _fini;
+	unsigned                _timer_fini;
+	unsigned                _timer_game_over;
 
 #ifndef NDEBUG
     bool                _pret;

@@ -7,6 +7,7 @@
 #include <moteur/Niveau.hpp>
 #include <moteur/exceptions/ExceptionRessource.hpp>
 #include <moteur/Jeu.hpp>
+#include <moteur/Menu.hpp>
 #include <moteur/Monde.hpp>
 #include <moteur/Case.hpp>
 #include <moteur/objets/Joueur.hpp>
@@ -16,7 +17,7 @@
 #include <fstream>
 
 Niveau::Niveau(const std::string & fic) :
-        _fichier_rc(fic), _largeur(0), _hauteur(0), _cases(NULL), _joueur(NULL), _fini(false)
+        _fichier_rc(fic), _largeur(0), _hauteur(0), _cases(NULL), _joueur(NULL), _fini(false), _timer_fini(50), _timer_game_over(50)
 #ifndef NDEBUG
         , _pret(false)
 #endif
@@ -314,12 +315,18 @@ void Niveau::mise_a_jour()
     if(_pnjs.size() == 0 && _joueur)
     {
         //niveau fini #TODO
-        _fini = true;
+        if(_timer_fini == 0)
+            _fini = true;
+        else if (_timer_fini > 0)
+            --_timer_fini;
     }
     if(!_joueur)
     {
         // game over, restart niveau #TODO
-        //Jeu::instance().get_menu()->active_menu(Menu::GAME_OVER_NIVEAU);
+        if(_timer_game_over == 0)
+            Jeu::instance().get_menu()->active_menu(Menu::GAME_OVER);
+        else
+            --_timer_game_over;
     }
 
 }

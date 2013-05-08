@@ -7,6 +7,8 @@
 #include <moteur/Monde.hpp>
 #include <moteur/Niveau.hpp>
 #include <moteur/Usine.hpp>
+#include <moteur/Menu.hpp>
+#include <moteur/Jeu.hpp>
 #include <moteur/exceptions/ExceptionRessource.hpp>
 
 #include <vector>
@@ -14,7 +16,7 @@
 #include <cstdlib>
 
 Monde::Monde(const std::string & fic) :
-        _fichier_rc(fic), _niveaux_count(0), _niveaux(NULL), _niveau_courant(NULL), _num_niveau_courant(0)
+        _fichier_rc(fic), _niveaux_count(0), _niveaux(NULL), _niveau_courant(NULL), _num_niveau_courant(0), _fini(false)
 #ifndef NDEBUG
         , _pret(false)
 #endif
@@ -182,22 +184,22 @@ void Monde::mise_a_jour()
     assert(_pret && _niveau_courant != NULL);
 
     _niveau_courant->mise_a_jour();
-    /*
-    if(_niveau_courant->est_fini() && _num_niveau_courant == _niveaux_count)
+
+    if(_niveau_courant->est_fini())
     {
         if(_num_niveau_courant + 1 == _niveaux_count)
         {
-            // Monde fini
+            // Monde fini #TODO
             _fini = true;
         }
         else
         {
-            //Niveau fini
-            //Jeu::instance().get_menu()->active_menu(Menu::NIVEAU_SUIVANT);
+            // #TODO
+            Jeu::instance().get_menu()->active_menu(Menu::NIVEAU_SUIVANT);
         }
 
     }
-    */
+
 }
 
 Case * Monde::creer_case(unsigned x, unsigned y, char tuile) const

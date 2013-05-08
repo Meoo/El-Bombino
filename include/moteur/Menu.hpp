@@ -17,12 +17,15 @@ public:
         MENU_PRINCIPAL,
         MENU_CONFIGURATION,
         MENU_PAUSE,
+        NIVEAU_SUIVANT,
+        MONDE_SUIVANT,
+        GAME_OVER,
+        JEU_FINI,
         AUCUN_MENU,
     };
 private:
-    bool    _menu_principal;
-    bool    _menu_config;
-    bool    _menu_pause;
+
+    menu_type   _menu_type;
 
     sf::Text _menu_principal_play;
     sf::Text _menu_principal_charger;
@@ -42,11 +45,22 @@ private:
 
 
     //MENU PAUSE
-    sf::Text            texte_pause;
-    sf::Text            texte_pause_fond;
-    sf::RectangleShape  fond_pause;
+    sf::Text            _texte_pause;
+    sf::Text            _texte_pause_fond;
+    sf::RectangleShape  _fond_pause;
     int                 _pause_frame;
 
+    sf::Text _niveau_suivant;
+    sf::RectangleShape  _niveau_suivant_fond;
+
+    sf::Text _monde_suivant;
+    sf::RectangleShape  _monde_suivant_fond;
+
+    sf::Text _game_over;
+    sf::RectangleShape  _game_over_fond;
+
+    sf::Text _fin_jeu;
+    sf::RectangleShape  _fin_jeu_fond;
 public:
                     Menu();
     virtual         ~Menu();

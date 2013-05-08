@@ -17,7 +17,7 @@
 
 #include <SFML/Graphics.hpp>
 
-Menu::Menu(): _menu_principal(true), _menu_config(false), _menu_pause(false), _pause_frame(0)
+Menu::Menu():  _menu_type(MENU_PRINCIPAL), _pause_frame(0)
 {
     //
     // MENU PRINCIPAL
@@ -87,19 +87,80 @@ Menu::Menu(): _menu_principal(true), _menu_config(false), _menu_pause(false), _p
     //
     // MENU PAUSE
     //
-    texte_pause = sf::Text("PAUSE", Jeu::instance().get_default_font());
-    texte_pause.setCharacterSize(128);
-    texte_pause.setColor(sf::Color::White);
-    texte_pause.setOrigin(texte_pause.getLocalBounds().width / 2, texte_pause.getLocalBounds().height / 2);
-    texte_pause.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+    _texte_pause = sf::Text("PAUSE", Jeu::instance().get_default_font());
+    _texte_pause.setCharacterSize(128);
+    _texte_pause.setColor(sf::Color::White);
+    _texte_pause.setOrigin(_texte_pause.getLocalBounds().width / 2, _texte_pause.getLocalBounds().height / 2);
+    _texte_pause.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 
-    texte_pause_fond = sf::Text(texte_pause);
-    texte_pause_fond.move(4, 4);
-    texte_pause_fond.setColor(sf::Color::Black);
-    texte_pause_fond.setStyle(sf::Text::Bold);
+    _texte_pause_fond = sf::Text(_texte_pause);
+    _texte_pause_fond.move(4, 4);
+    _texte_pause_fond.setColor(sf::Color::Black);
+    _texte_pause_fond.setStyle(sf::Text::Bold);
 
-    fond_pause = sf::RectangleShape(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
-    fond_pause.setFillColor(sf::Color(0, 0, 0, 128));
+    _fond_pause = sf::RectangleShape(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+    _fond_pause.setFillColor(sf::Color(0, 0, 0, 128));
+
+
+    //
+    // NIVEAU SUIVANT
+    //
+    _niveau_suivant = sf::Text("NIVEAU SUIVANT",Jeu::instance().get_default_font());
+    _niveau_suivant.setCharacterSize(32);
+    _niveau_suivant.setColor(sf::Color::Black);
+    _niveau_suivant.setOrigin(_niveau_suivant.getLocalBounds().width / 2, _niveau_suivant.getLocalBounds().height / 2);
+    _niveau_suivant.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+
+
+    _niveau_suivant_fond = sf::RectangleShape(sf::Vector2f(_niveau_suivant.getLocalBounds().width, _niveau_suivant.getGlobalBounds().height * 2));
+    _niveau_suivant_fond.setOrigin(_niveau_suivant.getOrigin());
+    _niveau_suivant_fond.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+    _niveau_suivant_fond.setFillColor(sf::Color(255, 255, 255, 128));
+
+    //
+    // MONDE SUIVANT
+    //
+    _monde_suivant = sf::Text("MONDE SUIVANT",Jeu::instance().get_default_font());
+    _monde_suivant.setCharacterSize(32);
+    _monde_suivant.setColor(sf::Color::Black);
+    _monde_suivant.setOrigin(_monde_suivant.getLocalBounds().width / 2, _monde_suivant.getLocalBounds().height / 2);
+    _monde_suivant.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+
+
+    _monde_suivant_fond = sf::RectangleShape(sf::Vector2f(_monde_suivant.getLocalBounds().width, _monde_suivant.getGlobalBounds().height * 2));
+    _monde_suivant_fond.setOrigin(_monde_suivant.getOrigin());
+    _monde_suivant_fond.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+    _monde_suivant_fond.setFillColor(sf::Color(255, 255, 255, 128));
+
+    //
+    // GAME OVER
+    //
+    _game_over = sf::Text("GAME OVER RECOMMENCER",Jeu::instance().get_default_font());
+    _game_over.setCharacterSize(32);
+    _game_over.setColor(sf::Color::Black);
+    _game_over.setOrigin(_game_over.getLocalBounds().width / 2, _game_over.getLocalBounds().height / 2);
+    _game_over.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+
+
+    _game_over_fond = sf::RectangleShape(sf::Vector2f(_game_over.getLocalBounds().width, _game_over.getGlobalBounds().height * 2));
+    _game_over_fond.setOrigin(_game_over.getOrigin());
+    _game_over_fond.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+    _game_over_fond.setFillColor(sf::Color(255, 255, 255, 128));
+
+    //
+    // JEU FINI
+    //
+    _fin_jeu = sf::Text("FIN DU JEU FELICITATION",Jeu::instance().get_default_font());
+    _fin_jeu.setCharacterSize(32);
+    _fin_jeu.setColor(sf::Color::Black);
+    _fin_jeu.setOrigin(_fin_jeu.getLocalBounds().width / 2, _fin_jeu.getLocalBounds().height / 2);
+    _fin_jeu.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+
+
+    _fin_jeu_fond = sf::RectangleShape(sf::Vector2f(_fin_jeu.getLocalBounds().width, _fin_jeu.getGlobalBounds().height * 2));
+    _fin_jeu_fond.setOrigin(_fin_jeu.getOrigin());
+    _fin_jeu_fond.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+    _fin_jeu_fond.setFillColor(sf::Color(255, 255, 255, 128));
 }
 
 Menu::~Menu()
@@ -109,89 +170,167 @@ Menu::~Menu()
 void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     sf::Sprite sp_fond(fond_menu_picture);
+    switch (_menu_type) {
+        case MENU_CONFIGURATION:
+            target.draw(sp_fond);
+            target.draw(_fond_mc_retour);
+            target.draw(_menu_config_retour);
+            break;
+        case MENU_PAUSE:
+            target.draw(_fond_pause);
 
-    if(_menu_principal)
-    {
-        target.draw(sp_fond);
-        target.draw(_fond_mp_play);
-        target.draw(_menu_principal_play);
-        target.draw(_fond_mp_charger);
-        target.draw(_menu_principal_charger);
-        target.draw(_fond_mp_config);
-        target.draw(_menu_principal_config);
-        target.draw(_fond_mp_quitter);
-        target.draw(_menu_principal_quitter);
-    }
-    else if (_menu_config)
-    {
-        target.draw(sp_fond);
-        target.draw(_fond_mc_retour);
-        target.draw(_menu_config_retour);
-    }
-    else if (_menu_pause)
-    {
-        target.draw(fond_pause);
-
-        target.draw(texte_pause_fond);
-        target.draw(texte_pause);
+            target.draw(_texte_pause_fond);
+            target.draw(_texte_pause);
+            break;
+        case MENU_PRINCIPAL:
+            target.draw(sp_fond);
+            target.draw(_fond_mp_play);
+            target.draw(_menu_principal_play);
+            target.draw(_fond_mp_charger);
+            target.draw(_menu_principal_charger);
+            target.draw(_fond_mp_config);
+            target.draw(_menu_principal_config);
+            target.draw(_fond_mp_quitter);
+            target.draw(_menu_principal_quitter);
+            break;
+        case NIVEAU_SUIVANT:
+            target.draw(_fond_pause);
+            target.draw(_niveau_suivant_fond);
+            target.draw(_niveau_suivant);
+            break;
+        case MONDE_SUIVANT:
+            target.draw(_fond_pause);
+            target.draw(_monde_suivant_fond);
+            target.draw(_monde_suivant);
+            break;
+        case GAME_OVER:
+            target.draw(_fond_pause);
+            target.draw(_game_over_fond);
+            target.draw(_game_over);
+            break;
+        case JEU_FINI:
+            target.draw(_fond_pause);
+            target.draw(_fin_jeu_fond);
+            target.draw(_fin_jeu);
+            break;
+        case AUCUN_MENU:
+        default:
+            break;
     }
 }
 
 void Menu::mise_a_jour()
 {
-    if(_menu_pause)
-    {
-        float a = std::sin(_pause_frame++ * 0.015f) * 3.f;
-        texte_pause.setRotation(a);
-        texte_pause_fond.setRotation(a);
+    float a;
+    switch (_menu_type) {
+        case MENU_CONFIGURATION:
+
+            break;
+        case MENU_PAUSE:
+             a = std::sin(_pause_frame++ * 0.015f) * 3.f;
+            _texte_pause.setRotation(a);
+            _texte_pause_fond.setRotation(a);
+            break;
+        case MENU_PRINCIPAL:
+
+            break;
+        case NIVEAU_SUIVANT:
+
+            break;
+        case MONDE_SUIVANT:
+
+            break;
+        case GAME_OVER:
+
+            break;
+        case JEU_FINI:
+
+            break;
+        case AUCUN_MENU:
+        default:
+            break;
     }
 }
 
 void Menu::clic(int x, int y)
 {
-    if(_menu_principal)
-    {
-        if(_fond_mp_charger.getGlobalBounds().contains(x,y))
-        {
-            //new Sauvegarde();
-            Jeu::instance().set_monde_courant(0);
-            Jeu::instance().get_monde_courant().set_niveau_courant(1);
-            _pause_frame = 0;
-            active_menu(Menu::AUCUN_MENU);
-        }
-        else if (_fond_mp_config.getGlobalBounds().contains(x,y))
-        {
-            active_menu(Menu::MENU_CONFIGURATION);
-        }
-        else if (_fond_mp_play.getGlobalBounds().contains(x,y))
-        {
-            Jeu::instance().set_monde_courant(0);
-            Jeu::instance().get_monde_courant().set_niveau_courant(0);
-            _pause_frame = 0;
-            active_menu(Menu::AUCUN_MENU);
-        }
-        else if (_fond_mp_quitter.getGlobalBounds().contains(x,y))
-        {
+    unsigned niveau_courant;
+    unsigned monde_courant;
+    switch (_menu_type) {
+        case MENU_CONFIGURATION:
+            if(_fond_mc_retour.getGlobalBounds().contains(x,y))
+            {
+                active_menu(Menu::MENU_PRINCIPAL);
+            }
+            break;
+        case MENU_PAUSE:
+            // #TODO ajouter une option sauvegarde
+            // retour au menu principal ?
+            break;
+        case MENU_PRINCIPAL:
+            if(_fond_mp_charger.getGlobalBounds().contains(x,y))
+            {
+                // charger la sauvegarde #TODO
+            }
+            else if (_fond_mp_config.getGlobalBounds().contains(x,y))
+            {
+                active_menu(Menu::MENU_CONFIGURATION);
+            }
+            else if (_fond_mp_play.getGlobalBounds().contains(x,y))
+            {
+                Jeu::instance().set_monde_courant(0);
+                Jeu::instance().get_monde_courant().set_niveau_courant(0);
+                _pause_frame = 0;
+                active_menu(Menu::AUCUN_MENU);
+            }
+            else if (_fond_mp_quitter.getGlobalBounds().contains(x,y))
+            {
 
-        }
-    }
-    else if (_menu_config)
-    {
-        if(_fond_mc_retour.getGlobalBounds().contains(x,y))
-        {
-            active_menu(Menu::MENU_PRINCIPAL);
-        }
-    }
-    else if (_menu_pause)
-    {
-
+            }
+            break;
+        case NIVEAU_SUIVANT:
+            // recuperer les bonnus et valeur du joueur #TODO
+            //monde_courant = Jeu::instance().get_num_monde_courant();
+           niveau_courant = Jeu::instance().get_monde_courant().get_num_niveau_courant();
+           Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+           Jeu::instance().get_monde_courant().set_niveau_courant(niveau_courant + 1);
+           active_menu(Menu::AUCUN_MENU);
+            break;
+        case MONDE_SUIVANT:
+            // recuperer les bonnus et valeur du joueur #TODO
+           monde_courant = Jeu::instance().get_num_monde_courant();
+           Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+           Jeu::instance().get_monde_courant().liberer();
+           Jeu::instance().set_monde_courant(monde_courant + 1);
+           active_menu(Menu::AUCUN_MENU);
+            break;
+        case GAME_OVER:
+            if(_game_over_fond.getGlobalBounds().contains(x,y))
+            {
+                //unsigned monde_courant = Jeu::instance().get_num_monde_courant();
+                niveau_courant = Jeu::instance().get_monde_courant().get_num_niveau_courant();
+                Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+                Jeu::instance().get_monde_courant().set_niveau_courant(niveau_courant);
+                active_menu(Menu::AUCUN_MENU);
+            }
+            break;
+        case JEU_FINI:
+            if(_fin_jeu_fond.getGlobalBounds().contains(x,y))
+            {
+                Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+                Jeu::instance().get_monde_courant().liberer();
+                active_menu(Menu::MENU_PRINCIPAL);
+            }
+            break;
+        default:
+            break;
     }
 }
 
 
 void Menu::lost_focus()
 {
-    if(!_menu_config && !_menu_principal)
+    if(_menu_type == AUCUN_MENU)
     {
         active_menu(Menu::MENU_PAUSE);
     }
@@ -199,11 +338,11 @@ void Menu::lost_focus()
 
 void Menu::press_pause()
 {
-    if(!_menu_config && !_menu_principal && !_menu_pause)
+    if(_menu_type == AUCUN_MENU)
     {
         active_menu(Menu::MENU_PAUSE);
     }
-    else if (!_menu_config &&  !_menu_principal && _menu_pause)
+    else if (_menu_type == MENU_PAUSE)
     {
         active_menu(Menu::AUCUN_MENU);
     }
@@ -211,34 +350,35 @@ void Menu::press_pause()
 
 Menu::menu_type Menu::get_menu_type()
 {
-    if(_menu_principal)return Menu::MENU_PRINCIPAL;
-    else if (_menu_config)return Menu::MENU_CONFIGURATION;
-    else if (_menu_pause)return Menu::MENU_PAUSE;
-    else return Menu::AUCUN_MENU;
+    return _menu_type;
 }
 
 void Menu::active_menu(Menu::menu_type type)
 {
     switch (type) {
         case MENU_CONFIGURATION:
-            _menu_config = true;
-            _menu_pause = false;
-            _menu_principal = false;
+            _menu_type = MENU_CONFIGURATION;
             break;
         case MENU_PRINCIPAL:
-            _menu_config = false;
-            _menu_pause = false;
-            _menu_principal = true;
+            _menu_type = MENU_PRINCIPAL;
             break;
         case MENU_PAUSE:
-            _menu_config = false;
-            _menu_principal = false;
-            _menu_pause = true;
+            _menu_type = MENU_PAUSE;
             break;
         case AUCUN_MENU:
-            _menu_config = false;
-            _menu_pause = false;
-            _menu_principal = false;
+            _menu_type = AUCUN_MENU;
+            break;
+        case NIVEAU_SUIVANT:
+            _menu_type = NIVEAU_SUIVANT;
+            break;
+        case MONDE_SUIVANT:
+            _menu_type = MONDE_SUIVANT;
+            break;
+        case GAME_OVER:
+            _menu_type = GAME_OVER;
+            break;
+        case JEU_FINI:
+            _menu_type = JEU_FINI;
             break;
         default:
             break;
