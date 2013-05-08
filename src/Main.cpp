@@ -25,23 +25,6 @@ int main(int argc, char ** argv)
     Jeu::instance().get_monde_courant().set_niveau_courant(1);
     */
 
-    // Variables pour la Pause
-    sf::Text texte_pause("PAUSE", Jeu::instance().get_default_font());
-    texte_pause.setCharacterSize(128);
-    texte_pause.setColor(sf::Color::White);
-    texte_pause.setOrigin(texte_pause.getLocalBounds().width / 2, texte_pause.getLocalBounds().height / 2);
-    texte_pause.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-
-    sf::Text texte_pause_fond(texte_pause);
-    texte_pause_fond.move(4, 4);
-    texte_pause_fond.setColor(sf::Color::Black);
-    texte_pause_fond.setStyle(sf::Text::Bold);
-
-    sf::RectangleShape fond_pause(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
-    fond_pause.setFillColor(sf::Color(0, 0, 0, 128));
-
-    bool pause = false;
-    int pause_frame = 0;
 
     // Fenêtre
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
@@ -63,15 +46,15 @@ int main(int argc, char ** argv)
                 window.close();
 
             if (event.type == sf::Event::LostFocus && !Jeu::instance().get_menu())
-                pause = true;
+                Jeu::instance().get_pause()->set_active(true);
 
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
                 window.close();
 
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Pause) && !Jeu::instance().get_menu())
-                pause = !pause;
+                Jeu::instance().get_pause()->set_active(!Jeu::instance().get_pause()->est_active());
 
-            if (event.type == sf::Event::MouseButtonPressed && Jeu::instance().get_menu())
+            if (event.type == sf::Event::MouseButtonPressed && (Jeu::instance().get_menu() || Jeu::instance().get_pause()->est_active()))
             {
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
@@ -110,7 +93,7 @@ int main(int argc, char ** argv)
 
         window.clear(sf::Color::Black);
 
-        if(!pause)
+        if(!Jeu::instance().get_pause()->est_active())
         {
             Jeu::instance().mise_a_jour();
         }
@@ -121,16 +104,10 @@ int main(int argc, char ** argv)
 
         window.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
-        if (pause)
+        if (Jeu::instance().get_pause()->est_active())
         {
-            window.draw(fond_pause);
-
-            float a = std::sin(pause_frame++ * 0.015f) * 3.f;
-            texte_pause.setRotation(a);
-            texte_pause_fond.setRotation(a);
-
-            window.draw(texte_pause_fond);
-            window.draw(texte_pause);
+            Jeu::instance().get_pause()->mise_a_jour();
+            window.draw(*Jeu::instance().get_pause());
         }
 
         window.display();
