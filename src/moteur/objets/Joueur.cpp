@@ -12,10 +12,11 @@
 #include <SFML/Window.hpp>
 
 Joueur::Joueur(Case * cse) :
-        Mobile(cse, JOUEUR_VIT_DEFAULT), _sprite(Jeu::instance().get_texture("joueur")),
+        Mobile(cse, Jeu::instance().get_vitesse_joueur()), _sprite(Jeu::instance().get_texture("joueur")),
         _case_deposer_objet(NULL),_bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN),
-        _nb_bombes_simultanee(JOUEUR_NB_BOMBES_DEFAULT), _puissance_bombe(BOMBE_POWER_DEFAULT),
-        _vies(JOUEUR_VIE_DEFAULT), _clignote(false), _protection(0), _bonus_soulevable(false), _bonus_bombe_special(false)
+        _nb_bombes_simultanee(Jeu::instance().get_nb_bombe_joueur()), _puissance_bombe(Jeu::instance().get_puissance_joueur()),
+        _vies(Jeu::instance().get_vie_joueur()), _clignote(false), _protection(0), _bonus_soulevable(Jeu::instance().get_bonus_soulevable_joueur()),
+        _bonus_bombe_special(Jeu::instance().get_bonus_bombe_special_joueur())
 {
     _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
             _sprite.getTexture()->getSize().y

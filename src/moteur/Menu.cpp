@@ -8,6 +8,7 @@
 
 #include <moteur/Menu.hpp>
 #include <moteur/Jeu.hpp>
+#include <moteur/objets/Joueur.hpp>
 
 #include <Config.hpp>
 
@@ -294,18 +295,20 @@ void Menu::clic(int x, int y)
         case NIVEAU_SUIVANT:
             // recuperer les bonnus et valeur du joueur #TODO
             //monde_courant = Jeu::instance().get_num_monde_courant();
-           niveau_courant = Jeu::instance().get_monde_courant().get_num_niveau_courant();
-           Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
-           Jeu::instance().get_monde_courant().set_niveau_courant(niveau_courant + 1);
-           active_menu(Menu::AUCUN_MENU);
+            Jeu::instance().sauve_donnees_joueur();
+            niveau_courant = Jeu::instance().get_monde_courant().get_num_niveau_courant();
+            Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+            Jeu::instance().get_monde_courant().set_niveau_courant(niveau_courant + 1);
+            active_menu(Menu::AUCUN_MENU);
             break;
         case MONDE_SUIVANT:
             // recuperer les bonnus et valeur du joueur #TODO
-           monde_courant = Jeu::instance().get_num_monde_courant();
-           Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
-           Jeu::instance().get_monde_courant().liberer();
-           Jeu::instance().set_monde_courant(monde_courant + 1);
-           active_menu(Menu::AUCUN_MENU);
+            Jeu::instance().sauve_donnees_joueur();
+            monde_courant = Jeu::instance().get_num_monde_courant();
+            Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+            Jeu::instance().get_monde_courant().liberer();
+            Jeu::instance().set_monde_courant(monde_courant + 1);
+            active_menu(Menu::AUCUN_MENU);
             break;
         case GAME_OVER:
             if(_game_over_fond.getGlobalBounds().contains(x,y))

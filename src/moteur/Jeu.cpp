@@ -8,6 +8,7 @@
 #include <moteur/Monde.hpp>
 #include <moteur/exceptions/ExceptionRessource.hpp>
 #include <moteur/Menu.hpp>
+#include <moteur/objets/Joueur.hpp>
 
 #include <vector>
 #include <fstream>
@@ -15,7 +16,9 @@
 Jeu Jeu::s_jeu;
 
 Jeu::Jeu() :
-        _mondes_count(0), _mondes(NULL), _monde_courant(NULL), _menu(NULL), _num_monde_courant(0)
+        _mondes_count(0), _mondes(NULL), _monde_courant(NULL), _menu(NULL), _num_monde_courant(0),
+        _vitesse_joueur(JOUEUR_VIT_DEFAULT),  _nb_bombe_joueur(JOUEUR_NB_BOMBES_DEFAULT), _puissance_joueur(BOMBE_POWER_DEFAULT),
+        _vie_joueur(JOUEUR_VIE_DEFAULT),  _bonus_soulevable_joueur(false),  _bonus_bombe_special_joueur(false)
 #ifndef NDEBUG
         , _pret(false)
 #endif
@@ -243,6 +246,66 @@ void Jeu::press_pause()
     _menu->press_pause();
 }
 
+const float Jeu::get_vitesse_joueur() const
+{
+    return _vitesse_joueur;
+}
+
+float Jeu::get_vitesse_joueur()
+{
+    return _vitesse_joueur;
+}
+
+const unsigned Jeu::get_nb_bombe_joueur() const
+{
+    return _nb_bombe_joueur;
+}
+
+unsigned Jeu::get_nb_bombe_joueur()
+{
+    return _nb_bombe_joueur;
+}
+
+const unsigned Jeu::get_puissance_joueur() const
+{
+    return _puissance_joueur;
+}
+
+unsigned Jeu::get_puissance_joueur()
+{
+    return _puissance_joueur;
+}
+
+const unsigned Jeu::get_vie_joueur() const
+{
+    return _vie_joueur;
+}
+
+unsigned Jeu::get_vie_joueur()
+{
+    return _vie_joueur;
+}
+
+const bool Jeu::get_bonus_soulevable_joueur() const
+{
+    return _bonus_soulevable_joueur;
+}
+
+bool Jeu::get_bonus_soulevable_joueur()
+{
+    return _bonus_soulevable_joueur;
+}
+
+const bool Jeu::get_bonus_bombe_special_joueur() const
+{
+    return _bonus_bombe_special_joueur;
+}
+
+bool Jeu::get_bonus_bombe_special_joueur()
+{
+    return _bonus_bombe_special_joueur;
+}
+
 void Jeu::set_monde_courant(unsigned num)
 {
     assert(_pret && num < _mondes_count);
@@ -275,3 +338,24 @@ Menu * Jeu::get_menu()
     return _menu;
 }
 
+void    Jeu::sauve_donnees_joueur()
+{
+    _vitesse_joueur     =   _monde_courant->get_niveau_courant().get_joueur()->get_vitesse();
+    _vie_joueur         =   _monde_courant->get_niveau_courant().get_joueur()->get_vie();
+    _nb_bombe_joueur    =   _monde_courant->get_niveau_courant().get_joueur()->get_nb_bombe_simultanee();
+    _puissance_joueur   =   _monde_courant->get_niveau_courant().get_joueur()->get_puissance_bombe();
+    _bonus_bombe_special_joueur =    _monde_courant->get_niveau_courant().get_joueur()->get_bonus_bombe_spe();
+    _bonus_soulevable_joueur    =    _monde_courant->get_niveau_courant().get_joueur()->get_bonus_soulevable();
+}
+
+void   Jeu::charger_donnees_joueur(float vitesse_joueur, unsigned nb_bombe_joueur,
+                                   unsigned puissance_joueur, unsigned vie_joueur,
+                                   bool bonus_soulevable_joueur, bool  bonus_bombe_special_joueur)
+{
+    _vie_joueur         = vitesse_joueur;
+    _nb_bombe_joueur    = nb_bombe_joueur;
+    _puissance_joueur   = puissance_joueur;
+    _vie_joueur         = vie_joueur;
+    _bonus_bombe_special_joueur     = bonus_bombe_special_joueur;
+    _bonus_soulevable_joueur        = bonus_soulevable_joueur;
+}

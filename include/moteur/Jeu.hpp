@@ -37,6 +37,15 @@ private:
     Menu *              _menu;
     unsigned            _num_monde_courant;
 
+
+    //Sauvegarde des données du joueur
+    float               _vitesse_joueur;
+    unsigned            _nb_bombe_joueur;
+    unsigned            _puissance_joueur;
+    unsigned            _vie_joueur;
+    bool                _bonus_soulevable_joueur;
+    bool                _bonus_bombe_special_joueur;
+
 #ifndef NDEBUG
     bool                _pret;
 #endif
@@ -80,9 +89,34 @@ public:
     const Menu *        get_menu() const;
     Menu *              get_menu();
 
+    //
+    // sauvegarde donnée du joueur
     const unsigned      get_num_monde_courant() const;
     unsigned            get_num_monde_courant();
 
+    const float         get_vitesse_joueur() const;
+    float               get_vitesse_joueur();
+
+    const unsigned      get_nb_bombe_joueur() const;
+    unsigned            get_nb_bombe_joueur();
+
+    const unsigned      get_puissance_joueur() const;
+    unsigned            get_puissance_joueur();
+
+    const unsigned      get_vie_joueur() const;
+    unsigned            get_vie_joueur();
+
+    const bool          get_bonus_soulevable_joueur() const;
+    bool                get_bonus_soulevable_joueur();
+
+    const bool          get_bonus_bombe_special_joueur() const;
+    bool                get_bonus_bombe_special_joueur();
+
+    void                sauve_donnees_joueur();
+
+    void                charger_donnees_joueur(float vitesse_joueur, unsigned nb_bombe_joueur,
+                                               unsigned puissance_joueur, unsigned vie_joueur,
+                                               bool bonus_soulevable_joueur, bool  bonus_bombe_special_joueur);
 /*TODO protected:*/
     void                set_monde_courant(unsigned num);
 };
