@@ -359,3 +359,8 @@ void   Jeu::charger_donnees_joueur(float vitesse_joueur, unsigned nb_bombe_joueu
     _bonus_bombe_special_joueur     = bonus_bombe_special_joueur;
     _bonus_soulevable_joueur        = bonus_soulevable_joueur;
 }
+
+void        Jeu::set_num_monde_courant(unsigned num)
+{
+    _num_monde_courant = num;
+}

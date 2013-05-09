@@ -117,6 +117,8 @@ public:
     void                charger_donnees_joueur(float vitesse_joueur, unsigned nb_bombe_joueur,
                                                unsigned puissance_joueur, unsigned vie_joueur,
                                                bool bonus_soulevable_joueur, bool  bonus_bombe_special_joueur);
+
+    void                set_num_monde_courant(unsigned num);
 /*TODO protected:*/
     void                set_monde_courant(unsigned num);
 };

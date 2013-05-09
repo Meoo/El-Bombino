@@ -89,7 +89,7 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _pause_frame(0)
     // MENU PAUSE
     //
     _sauvegarder = sf::Text("SAUVEGARDER",Jeu::instance().get_default_font());
-    _sauvegarder.setCharacterSize(32);
+    _sauvegarder.setCharacterSize(28);
     _sauvegarder.setColor(sf::Color::Black);
     _sauvegarder.setOrigin(_sauvegarder.getLocalBounds().width / 2, _sauvegarder.getLocalBounds().height / 2);
     _sauvegarder.setPosition(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 4);
@@ -99,6 +99,18 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _pause_frame(0)
     _sauvegarder_fond.setOrigin(_sauvegarder.getOrigin());
     _sauvegarder_fond.setPosition(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 4);
     _sauvegarder_fond.setFillColor(sf::Color(255, 255, 255, 128));
+
+    _retour_menu_principal = sf::Text("RETOUR MENU PRINCIPAL",Jeu::instance().get_default_font());
+    _retour_menu_principal.setCharacterSize(28);
+    _retour_menu_principal.setColor(sf::Color::Black);
+    _retour_menu_principal.setOrigin(_retour_menu_principal.getLocalBounds().width / 2, _retour_menu_principal.getLocalBounds().height / 2);
+    _retour_menu_principal.setPosition(WINDOW_WIDTH * 3 / 4, WINDOW_HEIGHT / 4);
+
+
+    _retour_menu_principal_fond = sf::RectangleShape(sf::Vector2f(_retour_menu_principal.getLocalBounds().width, _retour_menu_principal.getGlobalBounds().height * 2));
+    _retour_menu_principal_fond.setOrigin(_retour_menu_principal.getOrigin());
+    _retour_menu_principal_fond.setPosition(WINDOW_WIDTH * 3/ 4, WINDOW_HEIGHT / 4);
+    _retour_menu_principal_fond.setFillColor(sf::Color(255, 255, 255, 128));
 
     _texte_pause = sf::Text("PAUSE", Jeu::instance().get_default_font());
     _texte_pause.setCharacterSize(128);
@@ -209,6 +221,8 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
             target.draw(_sauvegarder_fond);
             target.draw(_sauvegarder);
+            target.draw(_retour_menu_principal_fond);
+            target.draw(_retour_menu_principal);
             target.draw(_texte_pause_fond);
             target.draw(_texte_pause);
             break;
@@ -305,6 +319,13 @@ void Menu::clic(int x, int y)
             {
                 Sauvegarde sauv;
                 sauv.sauver_sauvegarde();
+            }
+            else if (_retour_menu_principal_fond.getGlobalBounds().contains(x,y))
+            {
+                Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+                Jeu::instance().get_monde_courant().liberer();
+                Jeu::instance().charger_donnees_joueur(JOUEUR_VIT_DEFAULT, JOUEUR_NB_BOMBES_DEFAULT, BOMBE_POWER_DEFAULT, JOUEUR_VIE_DEFAULT, false, false);
+                active_menu(Menu::MENU_PRINCIPAL);
             }
             break;
         case MENU_PRINCIPAL:

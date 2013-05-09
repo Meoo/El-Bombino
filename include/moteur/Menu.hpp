@@ -48,6 +48,8 @@ private:
     //MENU PAUSE
     sf::Text            _sauvegarder;
     sf::RectangleShape  _sauvegarder_fond;
+    sf::Text            _retour_menu_principal;
+    sf::RectangleShape  _retour_menu_principal_fond;
     sf::Text            _texte_pause;
     sf::Text            _texte_pause_fond;
     sf::RectangleShape  _fond_pause;
