@@ -58,7 +58,6 @@ int main(int argc, char ** argv)
                     Jeu::instance().clic(event.mouseButton.x,event.mouseButton.y);
                 }
             }
-
         }
 
         //option quitter du menu principal
