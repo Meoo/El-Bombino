@@ -145,6 +145,7 @@ void Monde::liberer()
     _niveaux_count = 0;
     _niveau_courant = NULL;
 
+    _fini = false;
     _textures.clear();
 
 #ifndef NDEBUG

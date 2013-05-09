@@ -79,6 +79,7 @@ void Niveau::liberer()
     _cases = NULL;
     _largeur = 0;
     _hauteur = 0;
+    _fini = false;
     _pnjs.clear();
 
 #ifndef NDEBUG
