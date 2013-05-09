@@ -27,6 +27,11 @@ public:
                         MobileIA(Case * cse, float vitesse, unsigned vies, const sf::Texture & texture);
     virtual             ~MobileIA();
 
+    const unsigned      get_vies() const;
+    unsigned            get_vies();
+
+    void                set_vies(unsigned vies);
+
     // Fonction d'affichage de Drawable
     virtual void        draw(sf::RenderTarget & target, sf::RenderStates states) const;
 

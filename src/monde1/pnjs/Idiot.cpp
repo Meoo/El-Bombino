@@ -12,7 +12,7 @@
 
 #include <vector>
 
-Idiot::Idiot(Case * cse) : MobileIA(cse, 1.f, 2, Jeu::instance().get_texture("idiot")), _derniere_direction((Direction) -1), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT)
+Idiot::Idiot(Case * cse) : MobileIA(cse, 1.f, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("idiot")), _derniere_direction((Direction) -1), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT)
 {
 }
 
@@ -22,8 +22,8 @@ Idiot::~Idiot()
 
 void Idiot::appliquer_bonus(Bonus::bonus_t type_bonus)
 {
-    MobileIA::appliquer_bonus(type_bonus);
     switch (type_bonus) {
+
         case (Bonus::BONUS_PUISSANCE):
             if(_puissance + IDIOT_PUISSANCE_DELTA < IDIOT_PUISSANCE_MAX)
                 _puissance += IDIOT_PUISSANCE_DELTA;
@@ -36,6 +36,28 @@ void Idiot::appliquer_bonus(Bonus::bonus_t type_bonus)
             else
                 _puissance = IDIOT_PUISSANCE_MIN;
             break;
+        case Bonus::BONUS_BOMBE:
+           break;
+       case Bonus::BONUS_VIE:
+           if(get_vies()+IDIOT_VIE_DELTA < IDIOT_VIE_MAX)
+               set_vitesse(get_vies()+ IDIOT_VIE_DELTA);
+           else
+               set_vitesse(IDIOT_VIE_MAX);
+           break;
+       case Bonus::BONUS_VITESSE:
+           if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
+               set_vitesse(get_vitesse()+ JOUEUR_VIT_DELTA);
+           else
+               set_vitesse(JOUEUR_VIT_MAX);
+           break;
+       case Bonus::MALUS_BOMBE:
+           break;
+       case Bonus::MALUS_VITESSE:
+           if(get_vitesse() - JOUEUR_VIT_DELTA > JOUEUR_VIT_MIN)
+               set_vitesse(get_vitesse() - JOUEUR_VIT_DELTA);
+           else
+               set_vitesse(JOUEUR_VIT_MIN);
+           break;
         default:
             break;
     }

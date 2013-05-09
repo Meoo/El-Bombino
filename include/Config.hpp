@@ -71,12 +71,16 @@ const unsigned      IA_PROTECTION       = 50;               //!< Temps de protec
 
 
 // Idiot
-const unsigned      IDIOT_PUISSANCE_DEFAULT     = 2;
+const unsigned      IDIOT_VIE_DEFAULT           = 1;
+const unsigned      IDIOT_VIE_DELTA             = 1;
+const unsigned      IDIOT_VIE_MAX               = 2;
+const unsigned      IDIOT_VIE_MIN               = 1;
+const unsigned      IDIOT_PUISSANCE_DEFAULT     = 1;
 const unsigned      IDIOT_PUISSANCE_DELTA       = 1;
 const unsigned      IDIOT_PUISSANCE_MIN         = 1;
-const unsigned      IDIOT_PUISSANCE_MAX         = 4;
+const unsigned      IDIOT_PUISSANCE_MAX         = 2;
 const unsigned      IDIOT_VISIBILITE_DEFAULT    = 3;
-const unsigned      IDIOT_COLDOWN_ATT           = 250;
+const unsigned      IDIOT_COLDOWN_ATT           = 500;
 
 
 // Ressources

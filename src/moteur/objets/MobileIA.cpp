@@ -68,6 +68,22 @@ void MobileIA::blesser()
     }
 }
 
+const unsigned MobileIA::get_vies() const
+{
+    return _vies;
+}
+
+unsigned MobileIA::get_vies()
+{
+    return _vies;
+}
+
+void MobileIA::set_vies(unsigned vies)
+{
+    assert(vies <= 0);
+    _vies = vies;
+}
+
 void MobileIA::appliquer_bonus(Bonus::bonus_t type_bonus)
 {
     switch (type_bonus) {
