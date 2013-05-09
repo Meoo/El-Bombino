@@ -1,6 +1,7 @@
 /**
  * @file   Objet.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef _OBJET_HPP_

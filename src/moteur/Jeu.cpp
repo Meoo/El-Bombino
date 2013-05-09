@@ -25,15 +25,18 @@ Jeu::Jeu() :
 {
 }
 
+
 Jeu::~Jeu()
 {
     liberer();
 }
 
+
 Jeu& Jeu::instance()
 {
     return s_jeu;
-}
+}// instance()
+
 
 void Jeu::charger()
 {
@@ -111,7 +114,8 @@ void Jeu::charger()
 #ifndef NDEBUG
     _pret = true;
 #endif
-}
+}// charger()
+
 
 void Jeu::liberer()
 {
@@ -129,7 +133,8 @@ void Jeu::liberer()
 #ifndef NDEBUG
     _pret = false;
 #endif
-}
+}// liberer()
+
 
 const sf::Texture & Jeu::get_texture(const std::string & res) const
 {
@@ -145,21 +150,24 @@ const sf::Texture & Jeu::get_texture(const std::string & res) const
     }
 
     throw ExceptionRessource(res, "La ressource demandée n'existe pas");
-}
+}// get_texture()
+
 
 Monde & Jeu::get_monde_courant()
 {
     assert(_pret && _monde_courant != NULL);
 
     return *_monde_courant;
-}
+}// get_monde_courant()
+
 
 const Monde & Jeu::get_monde_courant() const
 {
     assert(_pret && _monde_courant != NULL);
 
     return *_monde_courant;
-}
+}// get_monde_courant()
+
 
 void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -190,7 +198,8 @@ void Jeu::draw(sf::RenderTarget& target, sf::RenderStates states) const
             break;
     }
 
-}
+}// draw()
+
 
 void Jeu::mise_a_jour()
 {
@@ -215,14 +224,16 @@ void Jeu::mise_a_jour()
     }
     else
         _menu->mise_a_jour();
-}
+}// mise_a_jour()
+
 
 const sf::Font& Jeu::get_default_font() const
 {
     //assert (_pret);
 
     return _default_font;
-}
+}// get_default_font()
+
 
 void Jeu::clic(int x, int y)
 {
@@ -230,81 +241,96 @@ void Jeu::clic(int x, int y)
 
     if(_menu)
         _menu->clic(x,y);
-}
+}// clic()
+
 
 void Jeu::lost_focus()
 {
     assert(_pret && _menu);
 
     _menu->lost_focus();
-}
+}// lost_focus()
+
 
 void Jeu::press_pause()
 {
     assert(_pret && _menu);
 
     _menu->press_pause();
-}
+}// press_pause()
+
 
 const float Jeu::get_vitesse_joueur() const
 {
     return _vitesse_joueur;
-}
+}// get_vitesse_joueur()
+
 
 float Jeu::get_vitesse_joueur()
 {
     return _vitesse_joueur;
-}
+}// get_vitesse_joueur()
+
 
 const unsigned Jeu::get_nb_bombe_joueur() const
 {
     return _nb_bombe_joueur;
-}
+}// get_nb_bombe_joueur()
+
 
 unsigned Jeu::get_nb_bombe_joueur()
 {
     return _nb_bombe_joueur;
-}
+}// get_nb_bombe_joueur()
+
 
 const unsigned Jeu::get_puissance_joueur() const
 {
     return _puissance_joueur;
-}
+}// get_puissance_joueur()
+
 
 unsigned Jeu::get_puissance_joueur()
 {
     return _puissance_joueur;
-}
+}// get_puissance_joueur()
+
 
 const unsigned Jeu::get_vie_joueur() const
 {
     return _vie_joueur;
-}
+}// get_vie_joueur()
+
 
 unsigned Jeu::get_vie_joueur()
 {
     return _vie_joueur;
-}
+}// get_vie_joueur()
+
 
 const bool Jeu::get_bonus_soulevable_joueur() const
 {
     return _bonus_soulevable_joueur;
-}
+}// get_bonus_soulevable_joueur()
+
 
 bool Jeu::get_bonus_soulevable_joueur()
 {
     return _bonus_soulevable_joueur;
-}
+}// get_bonus_soulevable_joueur()
+
 
 const bool Jeu::get_bonus_bombe_special_joueur() const
 {
     return _bonus_bombe_special_joueur;
-}
+}// get_bonus_bombe_special_joueur()
+
 
 bool Jeu::get_bonus_bombe_special_joueur()
 {
     return _bonus_bombe_special_joueur;
-}
+}// get_bonus_bombe_special_joueur()
+
 
 void Jeu::set_monde_courant(unsigned num)
 {
@@ -316,27 +342,32 @@ void Jeu::set_monde_courant(unsigned num)
     _num_monde_courant = num;
     _monde_courant = _mondes[num];
     _monde_courant->charger();
-}
+}// set_monde_courant()
+
 
 const unsigned Jeu::get_num_monde_courant() const
 {
     return _num_monde_courant;
-}
+}// get_num_monde_courant()
+
 
 unsigned Jeu::get_num_monde_courant()
 {
     return _num_monde_courant;
-}
+}// get_num_monde_courant()
+
 
 const Menu * Jeu::get_menu() const
 {
     return _menu;
-}
+}// get_menu()
+
 
 Menu * Jeu::get_menu()
 {
     return _menu;
-}
+}// get_menu()
+
 
 void    Jeu::sauve_donnees_joueur()
 {
@@ -346,7 +377,8 @@ void    Jeu::sauve_donnees_joueur()
     _puissance_joueur   =   _monde_courant->get_niveau_courant().get_joueur()->get_puissance_bombe();
     _bonus_bombe_special_joueur =    _monde_courant->get_niveau_courant().get_joueur()->get_bonus_bombe_spe();
     _bonus_soulevable_joueur    =    _monde_courant->get_niveau_courant().get_joueur()->get_bonus_soulevable();
-}
+}// sauve_donnees_joueur()
+
 
 void   Jeu::charger_donnees_joueur(float vitesse_joueur, unsigned nb_bombe_joueur,
                                    unsigned puissance_joueur, unsigned vie_joueur,
@@ -358,9 +390,13 @@ void   Jeu::charger_donnees_joueur(float vitesse_joueur, unsigned nb_bombe_joueu
     _vie_joueur         = vie_joueur;
     _bonus_bombe_special_joueur     = bonus_bombe_special_joueur;
     _bonus_soulevable_joueur        = bonus_soulevable_joueur;
-}
+}// charger_donnees_joueur()
+
 
 void        Jeu::set_num_monde_courant(unsigned num)
 {
     _num_monde_courant = num;
-}
+}// set_num_monde_courant()
+
+
+// fin implementation class Jeu

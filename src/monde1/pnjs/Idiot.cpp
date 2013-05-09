@@ -1,6 +1,7 @@
 /**
  * @file   Idiot.cpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #include <monde1/pnjs/Idiot.hpp>
@@ -61,7 +62,8 @@ void Idiot::appliquer_bonus(Bonus::bonus_t type_bonus)
         default:
             break;
     }
-}
+}// appliquer_bonus()
+
 
 void Idiot::attaquer_joueur()
 {
@@ -143,7 +145,8 @@ void Idiot::attaquer_joueur()
         _coldown_att = IDIOT_COLDOWN_ATT;
         get_case()->enflammer_direction(Case::HAUT, _puissance);
     }
-}
+}// attaquer_joueur()
+
 
 void Idiot::mise_a_jour_ia()
 {
@@ -241,7 +244,8 @@ void Idiot::mise_a_jour_ia()
         return;
     }
     assert(false);
-}
+}// mise_a_jour_ia()
+
 
 void Idiot::mise_a_jour()
 {
@@ -252,7 +256,8 @@ void Idiot::mise_a_jour()
         --_coldown_att;
     else
         attaquer_joueur();
-}
+}// mise_a_jour()
+
 
 void Idiot::laisser_tomber_objet(Case* cse)
 {
@@ -267,4 +272,7 @@ void Idiot::laisser_tomber_objet(Case* cse)
         default:
             break;
     }
-}
+}// laisser_tomber_objet()
+
+
+//fin implementation class Idiot

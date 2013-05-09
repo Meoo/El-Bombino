@@ -23,22 +23,26 @@ Monde::Monde(const std::string & fic) :
 {
 }
 
+
 Monde::~Monde()
 {
     liberer();
 }
 
+
 Niveau & Monde::get_niveau_courant()
 {
     assert(_niveau_courant != NULL);
     return *_niveau_courant;
-}
+}// get_niveau_courant()
+
 
 const Niveau & Monde::get_niveau_courant() const
 {
     assert(_niveau_courant != NULL);
     return *_niveau_courant;
-}
+}// get_niveau_courant()
+
 
 void Monde::charger()
 {
@@ -134,7 +138,8 @@ void Monde::charger()
 #ifndef NDEBUG
     _pret = true;
 #endif
-}
+}// charger()
+
 
 void Monde::liberer()
 {
@@ -151,14 +156,16 @@ void Monde::liberer()
 #ifndef NDEBUG
     _pret = false;
 #endif
-}
+}// liberer()
+
 
 bool Monde::has_texture(const std::string & res) const
 {
     assert(_pret);
 
     return _textures.count(res) > 0;
-}
+}// has_texture()
+
 
 const sf::Texture & Monde::get_texture(const std::string & res) const
 {
@@ -171,14 +178,16 @@ const sf::Texture & Monde::get_texture(const std::string & res) const
     }
 
     throw ExceptionRessource(res, "La ressource demandée n'existe pas");
-}
+}// get_texture()
+
 
 void Monde::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     assert(_pret && _niveau_courant != NULL);
 
     target.draw(*_niveau_courant, states);
-}
+}// draw()
+
 
 void Monde::mise_a_jour()
 {
@@ -201,7 +210,8 @@ void Monde::mise_a_jour()
 
     }
 
-}
+}// mise_a_jour()
+
 
 Case * Monde::creer_case(unsigned x, unsigned y, char tuile) const
 {
@@ -216,22 +226,26 @@ Case * Monde::creer_case(unsigned x, unsigned y, char tuile) const
         Usine::creer_objet(tuile_dat.classe_objet, cse);
 
     return cse;
-}
+}// creer_case()
+
 
 const unsigned Monde::get_num_niveau_courant() const
 {
     return _num_niveau_courant;
-}
+}// get_num_niveau_courant()
+
 
 unsigned Monde::get_num_niveau_courant()
 {
     return _num_niveau_courant;
-}
+}// get_num_niveau_courant()
+
 
 bool Monde::est_fini()
 {
     return _fini;
-}
+}// est_fini()
+
 
 void Monde::set_niveau_courant(unsigned num)
 {
@@ -244,4 +258,7 @@ void Monde::set_niveau_courant(unsigned num)
     _niveau_courant     = _niveaux[num];
 
     _niveau_courant->charger(this);
-}
+}// set_niveau_courant()
+
+
+//fin implementation class Monde

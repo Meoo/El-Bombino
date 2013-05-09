@@ -13,21 +13,25 @@ Case::Case(unsigned x, unsigned y, const sf::Texture & texture) :
 {
 }
 
+
 Case::~Case()
 {
     if (_objet != NULL)
         delete _objet;
 }
 
+
 Objet * Case::get_objet()
 {
     return _objet;
-}
+}// get_objet()
+
 
 const Objet * Case::get_objet() const
 {
     return _objet;
-}
+}// get_objet()
+
 
 bool Case::enflammer(unsigned duree, const sf::Color& couleur, objet_effet_t effet)
 {
@@ -42,22 +46,26 @@ bool Case::enflammer(unsigned duree, const sf::Color& couleur, objet_effet_t eff
     }
 
     return true;
-}
+}// enflammer()
+
 
 bool Case::est_en_feu() const
 {
     return _feu_duree > 10;
-}
+}// est_en_feu()
+
 
 unsigned Case::get_duree_flammes() const
 {
     return _feu_duree;
-}
+}// get_duree_flammes()
+
 
 bool Case::est_praticable()
 {
     return true;
-}
+}// est_particable()
+
 
 void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -80,24 +88,28 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
         feu.setColor(col);
         target.draw(feu, states);
     }
-}
+}// draw()
+
 
 void Case::set_objet(Objet * objet)
 {
     assert(objet == NULL || _objet == NULL);
 
     _objet = objet;
-}
+}// set_objet()
+
 
 unsigned Case::get_x() const
 {
     return _x;
-}
+}// get_x()
+
 
 unsigned Case::get_y() const
 {
     return _y;
-}
+}// get_y()
+
 
 void Case::mise_a_jour()
 {
@@ -119,55 +131,64 @@ void Case::mise_a_jour()
 
     if (_feu_duree > 0)
         _feu_duree--;
-}
+}// mise_a_jour()
+
 
 Case * Case::get_case_droite()
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x + 1, _y);
-}
+}// get_case_droite()
+
 
 const Case * Case::get_case_droite() const
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x + 1, _y);
-}
+}// get_case_droite()
+
 
 Case * Case::get_case_gauche()
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x - 1, _y);
-}
+}// get_case_gauche()
+
 
 const Case * Case::get_case_gauche() const
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x - 1, _y);
-}
+}// get_case_gauche()
+
 
 Case * Case::get_case_haut()
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x, _y - 1);
-}
+}// get_case_haut()
+
 
 const Case * Case::get_case_haut() const
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x, _y - 1);
-}
+}// get_case_haut()
+
 
 Case * Case::get_case_bas()
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x, _y + 1);
-}
+}// get_case_bas()
+
 
 const Case * Case::get_case_bas() const
 {
     return Jeu::instance().get_monde_courant().
                 get_niveau_courant().get_case(_x, _y + 1);
-}
+}// get_case_bas()
+
 
 void    Case::enflammer_direction( direction_t direction,
                                         unsigned    puissance,
@@ -225,4 +246,7 @@ void    Case::enflammer_direction( direction_t direction,
         default:
             break;
     }
-}
+}// enflammer_direction()
+
+
+// fin implementation class Case

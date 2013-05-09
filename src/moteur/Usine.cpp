@@ -35,7 +35,8 @@ namespace Usine
         if (classe_case.compare("Vide") == 0)
             return new Vide(x,y,Jeu::instance().get_texture(texture_case));
         throw ExceptionRessource(classe_case, "Classe de Case invalide");
-    }
+    }// creer_case()
+
 
     Objet * creer_objet(const std::string & classe_objet, Case * cse)
     {
@@ -49,5 +50,5 @@ namespace Usine
             return new Idiot(cse);
 
         throw ExceptionRessource(classe_objet, "Classe d'Objet invalide");
-    }
+    }// creer_objet()
 }

@@ -19,4 +19,7 @@ Vide::~Vide()
 bool Vide::est_praticable()
 {
     return false;
-}
+}// est_praticable()
+
+
+// fin implementation class Vide

@@ -1,8 +1,7 @@
-/*
- * Sauvegarde.cpp
- *
- *  Created on: 9 mai 2013
- *      Author: Sanpas
+/**
+ * @file   Sauvegarde.cpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #include <moteur/Sauvegarde.hpp>
@@ -18,9 +17,11 @@ Sauvegarde::Sauvegarde()
 {
 }
 
+
 Sauvegarde::~Sauvegarde()
 {
 }
+
 
 void Sauvegarde::charger_sauvegarde()
 {
@@ -131,7 +132,8 @@ void Sauvegarde::charger_sauvegarde()
     Jeu::instance().charger_donnees_joueur(vitesse, nb_bombe, puissance, vies, bonus_soulevable, bonus_bombe);
     Jeu::instance().set_monde_courant(monde);
     Jeu::instance().get_monde_courant().set_niveau_courant(niveau);
-}
+}// charger_sauvegarde()
+
 
 void Sauvegarde::sauver_sauvegarde()
 {
@@ -159,4 +161,7 @@ void Sauvegarde::sauver_sauvegarde()
     fic << "BONUS_BOMBE" << std::endl;
     fic << Jeu::instance().get_bonus_bombe_special_joueur();
 
-}
+}// sauver_sauvegarde()
+
+
+// fin implementation class Sauvegarde

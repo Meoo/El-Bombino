@@ -1,6 +1,7 @@
 /**
  * @file   Config.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef _CONFIG_HPP_
@@ -102,4 +103,5 @@ const std::string   RC_SAUVGARDE        ("sauvegarde.txt");
 #   define LOG(x) std::cout << ( x ) << std::endl;
 #endif
 
+// fichier config
 #endif // _CONFIG_HPP_

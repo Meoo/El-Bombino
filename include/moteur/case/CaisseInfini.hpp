@@ -1,8 +1,7 @@
-/*
- * CaisseInfini.hpp
- *
- *  Created on: 24 avr. 2013
- *      Author: Sanpas
+/**
+ * @file   CaisseInfini.hpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef CAISSEINFINI_HPP_

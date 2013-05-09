@@ -24,10 +24,12 @@ Joueur::Joueur(Case * cse) :
     Jeu::instance().get_monde_courant().get_niveau_courant().ajouter_joueur(this);
 }
 
+
 Joueur::~Joueur()
 {
     Jeu::instance().get_monde_courant().get_niveau_courant().delete_joueur();
 }
+
 
 void Joueur::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
@@ -49,7 +51,8 @@ void Joueur::draw(sf::RenderTarget & target, sf::RenderStates states) const
     }
     else
         target.draw(_sprite, states);
-}
+}// draw()
+
 
 const sf::Vector2f Joueur::get_position_objet_souleve() const
 {
@@ -61,7 +64,8 @@ const sf::Vector2f Joueur::get_position_objet_souleve() const
                         + TILE_SIZE / 2);
     else
         return Mobile::get_position_objet_souleve();
-}
+}// get_position_objet_souleve()
+
 
 void Joueur::mise_a_jour()
 {
@@ -185,7 +189,8 @@ void Joueur::mise_a_jour()
     // TODO Gérer la direction
     _sprite.setPosition(get_position_ecran());
 
-}
+}// mise_a_jour()
+
 
 void Joueur::appliquer_bonus(Bonus::bonus_t type_bonus)
 {
@@ -245,7 +250,8 @@ void Joueur::appliquer_bonus(Bonus::bonus_t type_bonus)
         default:
             break;
     }
-}
+}// appliquer_bonus()
+
 
 void Joueur::blesser()
 {
@@ -260,59 +266,73 @@ void Joueur::blesser()
         else
             _protection = IA_PROTECTION;
     }
-}
+}// blesser()
+
 
 bool Joueur::est_joueur()
 {
     return true;
-}
+}// est_joueur()
+
 
 const unsigned Joueur::get_nb_bombe_simultanee() const
 {
     return _nb_bombes_simultanee;
-}
+}// get_nb_bombe_simultanee()
+
 
 unsigned Joueur::get_nb_bombe_simultanee()
 {
     return _nb_bombes_simultanee;
-}
+}// get_nb_bombe_simultanee()
+
 
 const unsigned Joueur::get_puissance_bombe() const
 {
     return _puissance_bombe;
-}
+}// get_puissance_bombe()
+
 
 unsigned Joueur::get_puissance_bombe()
 {
     return _puissance_bombe;
-}
+}// get_puissance_bombe()
+
 
 const unsigned Joueur::get_vie() const
 {
     return _vies;
-}
+}// get_vie()
+
 
 unsigned Joueur::get_vie()
 {
     return _vies;
-}
+}// get_vie()
+
 
 const bool Joueur::get_bonus_soulevable() const
 {
     return _bonus_soulevable;
-}
+}// get_bonus_soulevable()
+
 
 bool Joueur::get_bonus_soulevable()
 {
     return _bonus_soulevable;
-}
+}// get_bonus_soulevable()
+
 
 const bool Joueur::get_bonus_bombe_spe() const
 {
     return _bonus_bombe_special;
-}
+}// get_bonus_bombe_spe()
+
 
 bool Joueur::get_bonus_bombe_spe()
 {
     return _bonus_bombe_special;
-}
+}// get_bonus_bombe_spe()
+
+
+// fin implementation class Joueur

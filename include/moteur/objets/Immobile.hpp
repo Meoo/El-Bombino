@@ -1,7 +1,9 @@
 /**
  * @file   Immobile.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
+
 
 #ifndef _IMMOBILE_HPP_
 #define _IMMOBILE_HPP_

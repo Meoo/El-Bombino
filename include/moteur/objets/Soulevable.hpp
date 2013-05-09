@@ -1,6 +1,7 @@
 /**
  * @file   Soulevable.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef _SOULEVABLE_HPP_

@@ -1,8 +1,7 @@
-/*
- * Menu.hpp
- *
- *  Created on: 7 mai 2013
- *      Author: Sanpas
+/**
+ * @file   Menu.hpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef MENU_HPP_
@@ -90,6 +89,7 @@ public:
 
     void            active_menu(menu_type type);
 };
+// class Menu
 
 
 #endif /* MENU_HPP_ */

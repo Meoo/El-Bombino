@@ -13,6 +13,7 @@ Soulevable::Soulevable(Case * cse) :
 {
 }
 
+
 Soulevable::Soulevable(Mobile * porteur) :
         Objet(), _porteur(porteur)
 {
@@ -20,19 +21,23 @@ Soulevable::Soulevable(Mobile * porteur) :
     porteur->_objet_souleve = this;
 }
 
+
 Soulevable::~Soulevable()
 {
 }
 
+
 Mobile* Soulevable::get_porteur()
 {
     return _porteur;
-}
+}// get_porteur()
+
 
 const Mobile* Soulevable::get_porteur() const
 {
     return _porteur;
-}
+}// get_porteur()
+
 
 void Soulevable::set_porteur(Mobile * porteur)
 {
@@ -53,7 +58,8 @@ void Soulevable::set_porteur(Mobile * porteur)
     // Attacher l'objet au porteur
     _porteur = porteur;
     porteur->_objet_souleve = this;
-}
+}// set_porteur()
+
 
 void Soulevable::deposer(Case * cse)
 {
@@ -66,18 +72,23 @@ void Soulevable::deposer(Case * cse)
         _porteur->_objet_souleve = NULL;
         _porteur = NULL;
     }
-}
+}// deposer()
+
 
 Case * Soulevable::get_case()
 {
     if (_porteur != NULL)
         return _porteur->get_case();
     return _case;
-}
+}// get_case()
+
 
 const Case * Soulevable::get_case() const
 {
     if (_porteur != NULL)
         return _porteur->get_case();
     return _case;
-}
+}// get_case()
+
+
+// fin implementation class Soulevable

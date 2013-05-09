@@ -18,21 +18,25 @@ Mobile::Mobile(Case * cse, float vitesse) :
     assert(vitesse > 0);
 }
 
+
 Mobile::~Mobile()
 {
     if (_objet_souleve != NULL)
         delete _objet_souleve;
 }
 
+
 Soulevable * Mobile::get_objet_souleve()
 {
     return _objet_souleve;
-}
+}// get_objet_souleve()
+
 
 const Soulevable * Mobile::get_objet_souleve() const
 {
     return _objet_souleve;
-}
+}// get_objet_souleve()
+
 
 void Mobile::bouger(Direction dir)
 {
@@ -55,38 +59,45 @@ void Mobile::bouger(Direction dir)
     {
         _bouge = true;
     }
-}
+}// bouger()
+
 
 bool Mobile::est_en_mouvement() const
 {
     return _bouge;
-}
+}// est_en_mouvement()
+
 
 float Mobile::get_vitesse() const
 {
     return _vitesse;
-}
+}// get_vitesse()
+
 
 void Mobile::set_vitesse(float vitesse)
 {
     assert(vitesse > 0);
     _vitesse = vitesse;
-}
+}// set_vitesse()
+
 
 Mobile::Direction Mobile::get_direction() const
 {
     return _direction;
-}
+}// get_direction()
+
 
 const sf::Vector2f & Mobile::get_position_ecran() const
 {
     return _position_ecran;
-}
+}// get_position_ecran()
+
 
 const sf::Vector2f Mobile::get_position_objet_souleve() const
 {
     return get_position_ecran() + sf::Vector2f(0, -32);
-}
+}// get_position_objet_souleve()
+
 
 void Mobile::mise_a_jour()
 {
@@ -167,7 +178,8 @@ void Mobile::mise_a_jour()
             _objet_souleve = NULL;
         }
     }
-}
+}// mise_a_jour()
+
 
 void Mobile::blesser()
 {
@@ -175,14 +187,19 @@ void Mobile::blesser()
         _objet_souleve->blesser();
 
     detruire();
-}
+}// blesser()
+
 
 void Mobile::appliquer_bonus(Bonus::bonus_t type_bonus)
 {
 
-}
+}// appliquer_bonus()
+
 
 bool Mobile::est_joueur()
 {
     return false;
-}
+}// est_joueur()
+
+
+// fin implementation class Mobile

@@ -18,4 +18,7 @@ Mur::~Mur()
 bool Mur::est_praticable()
 {
     return false;
-}
+}// est_praticable()
+
+
+// fin impementation class Mur

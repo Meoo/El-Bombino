@@ -1,8 +1,7 @@
-/*
- * Menu.cpp
- *
- *  Created on: 7 mai 2013
- *      Author: Sanpas
+/**
+ * @file   Jeu.cpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 
@@ -203,9 +202,11 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _pause_frame(0)
     _quitter_2.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2 / 4);
 }
 
+
 Menu::~Menu()
 {
 }
+
 
 void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -266,7 +267,8 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
         default:
             break;
     }
-}
+}// draw()
+
 
 void Menu::mise_a_jour()
 {
@@ -299,7 +301,8 @@ void Menu::mise_a_jour()
         default:
             break;
     }
-}
+}// mise_a_jour()
+
 
 void Menu::clic(int x, int y)
 {
@@ -392,7 +395,7 @@ void Menu::clic(int x, int y)
         default:
             break;
     }
-}
+}// clic()
 
 
 void Menu::lost_focus()
@@ -401,7 +404,8 @@ void Menu::lost_focus()
     {
         active_menu(Menu::MENU_PAUSE);
     }
-}
+}// lost_focus()
+
 
 void Menu::press_pause()
 {
@@ -413,12 +417,14 @@ void Menu::press_pause()
     {
         active_menu(Menu::AUCUN_MENU);
     }
-}
+}// press_pause()
+
 
 Menu::menu_type Menu::get_menu_type()
 {
     return _menu_type;
-}
+}// get_menu_type()
+
 
 void Menu::active_menu(Menu::menu_type type)
 {
@@ -454,4 +460,7 @@ void Menu::active_menu(Menu::menu_type type)
             _menu_type = AUCUN_MENU;
             break;
     }
-}
+}// active_menu()
+
+
+// fin implementation class Menu

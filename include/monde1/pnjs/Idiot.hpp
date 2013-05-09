@@ -1,6 +1,7 @@
 /**
  * @file   Idiot.hpp
  * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef _IDIOT_HPP_

@@ -19,14 +19,17 @@ Caisse::Caisse(Case * cse) :
             get_case()->get_y() * TILE_SIZE + TILE_SIZE / 2);
 }
 
+
 Caisse::~Caisse()
 {
 }
 
+
 void Caisse::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
-}
+}// draw()
+
 
 void Caisse::mise_a_jour()
 {
@@ -41,7 +44,8 @@ void Caisse::mise_a_jour()
     {
         _sprite.setPosition(get_porteur()->get_position_objet_souleve());
     }
-}
+}// mise_a_jour()
+
 
 void Caisse::laisser_tomber_objet(Case* cse)
 {
@@ -82,4 +86,7 @@ void Caisse::laisser_tomber_objet(Case* cse)
             }
         }
     }
-}
+}// laisser_tomber_objet()
+
+
+// fin implementation class Caisse

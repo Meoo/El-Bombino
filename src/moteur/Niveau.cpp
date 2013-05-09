@@ -24,10 +24,12 @@ Niveau::Niveau(const std::string & fic) :
 {
 }
 
+
 Niveau::~Niveau()
 {
     liberer();
 }
+
 
 void Niveau::charger(const Monde * parent)
 {
@@ -69,7 +71,8 @@ void Niveau::charger(const Monde * parent)
 #ifndef NDEBUG
     _pret = true;
 #endif
-}
+}// charger()
+
 
 void Niveau::liberer()
 {
@@ -85,7 +88,8 @@ void Niveau::liberer()
 #ifndef NDEBUG
     _pret = false;
 #endif
-}
+}// liberer()
+
 
 void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -204,7 +208,8 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
         }
     }
 
-}
+}// draw()
+
 
 Case * Niveau::get_case(unsigned x, unsigned y)
 {
@@ -213,7 +218,8 @@ Case * Niveau::get_case(unsigned x, unsigned y)
     assert(y >= 0 && y < _hauteur);
 
     return _cases[y*_largeur + x];
-}
+}// get_case()
+
 
 const Case * Niveau::get_case(unsigned x, unsigned y) const
 {
@@ -222,74 +228,88 @@ const Case * Niveau::get_case(unsigned x, unsigned y) const
     assert(y >= 0 && y < _hauteur);
 
     return _cases[y*_largeur + x];
-}
+}// get_case()
+
 
 Joueur* Niveau::get_joueur()
 {
     return _joueur;
-}
+}// get_joueur()
+
 
 const Joueur* Niveau::get_joueur() const
 {
     return _joueur;
-}
+}// get_joueur()
+
 
 void Niveau::delete_joueur()
 {
     _joueur = NULL;
-}
+}// delete_joueur()
+
 
 std::list<MobileIA*>& Niveau::get_pnjs()
 {
     return _pnjs;
-}
+}// get_pnjs()
+
 
 const std::list<MobileIA*>& Niveau::get_pnjs() const
 {
     return _pnjs;
-}
+}// get_pnjs()
+
 
 void Niveau::delete_pnj(MobileIA* pnj)
 {
     _pnjs.remove(pnj);
-}
+}// delete_pnj()
+
 
 std::list<Bombe*>& Niveau::get_bombes_actives()
 {
     return _bombes_actives;
-}
+}// get_bombes_actives()
+
 
 const std::list<Bombe*>& Niveau::get_bombes_actives() const
 {
     return _bombes_actives;
-}
+}// get_bombes_actives()
+
 
 void Niveau::delete_bombe(Bombe* bombe)
 {
     _bombes_actives.remove(bombe);
-}
+}// delete_bombe()
+
 
 void Niveau::ajouter_bombe_active(Bombe *bombe)
 {
     _bombes_actives.push_back(bombe);
-}
+}// ajouter_bombe_active()
+
 
 void Niveau::ajouter_pnj(MobileIA* pnj)
 {
     _pnjs.push_back(pnj);
-}
+}// ajouter_pnj()
+
 
 void Niveau::ajouter_joueur(Joueur* joueur)
 {
     assert(_joueur == NULL);
 
     _joueur = joueur;
-}
+}// ajouter_joueur()
+
 
 bool Niveau::est_fini()
 {
     return _fini;
-}
+}// est_fini()
+
 
 void Niveau::mise_a_jour()
 {
@@ -330,4 +350,7 @@ void Niveau::mise_a_jour()
             --_timer_game_over;
     }
 
-}
+}// mise_a_jour()
+
+
+// fin implementation class Niveau

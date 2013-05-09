@@ -17,5 +17,6 @@ namespace Usine
     Case * creer_case(const std::string & classe_case, unsigned x, unsigned y, const std::string & texture_case);
     Objet * creer_objet(const std::string & classe_objet, Case * cse);
 }
+// namespace Usine
 
 #endif /* _USINE_HPP_ */

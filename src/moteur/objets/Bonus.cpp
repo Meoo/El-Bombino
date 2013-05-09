@@ -50,16 +50,19 @@ Bonus::Bonus(Case* cse, bonus_t type_bonus) : Immobile(cse), _timer(BONUS_TIMER)
                 get_case()->get_y() * TILE_SIZE + TILE_SIZE / 2);
 }
 
+
 Bonus::~Bonus()
 {
 }
+
 
 void Bonus::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     _clignote = !_clignote;
     if (_timer < 50 && _clignote) return;
     target.draw(_sprite, states);
-}
+}// draw()
+
 
 void Bonus::mise_a_jour()
 {
@@ -69,16 +72,21 @@ void Bonus::mise_a_jour()
         detruire();
     if(_invesible > 0)--_invesible;
     Immobile::mise_a_jour();
-}
+}// mise_a_jour()
+
 
 void Bonus::blesser()
 {
     if(_invesible == 0)
         detruire();
-}
+}// blesser()
+
 
 void Bonus::utiliser(Mobile * mobile)
 {
     mobile->appliquer_bonus(_type_bonus);
     detruire();
-}
+}// utiliser()
+
+
+// fin implementation class Bonus

@@ -13,11 +13,13 @@ Objet::Objet() :
 {
 }
 
+
 Objet::Objet(Case * cse) :
         _case(NULL), _valide(true)
 {
     set_case(cse);
 }
+
 
 Objet::~Objet()
 {
@@ -25,15 +27,18 @@ Objet::~Objet()
         _case->set_objet(NULL);
 }
 
+
 Case * Objet::get_case()
 {
     return _case;
-}
+}// get_case()
+
 
 const Case * Objet::get_case() const
 {
     return _case;
-}
+}// get_case()
+
 
 void Objet::set_case(Case * cse)
 {
@@ -46,27 +51,35 @@ void Objet::set_case(Case * cse)
 
     _case = cse;
     cse->set_objet(this);
-}
+}// set_case()
+
 
 bool Objet::est_valide() const
 {
     return _valide;
-}
+}// est_valide()
+
 
 void Objet::mise_a_jour()
 {
-}
+}// mise_a_jour()
+
 
 void Objet::blesser()
 {
     detruire();
-}
+}// blesser()
+
 
 void Objet::laisser_tomber_objet(Case* cse)
 {
-}
+}// laisser_tomber_objet()
+
 
 void Objet::detruire()
 {
     _valide = false;
-}
+}// detruire()
+
+
+// fin implementation class Objet

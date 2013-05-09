@@ -17,10 +17,12 @@ MobileIA::MobileIA(Case* cse, float vitesse, unsigned vies, const sf::Texture & 
     Jeu::instance().get_monde_courant().get_niveau_courant().ajouter_pnj(this);
 }
 
+
 MobileIA::~MobileIA()
 {
     Jeu::instance().get_monde_courant().get_niveau_courant().delete_pnj(this);
 }
+
 
 void MobileIA::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -35,7 +37,8 @@ void MobileIA::draw(sf::RenderTarget& target, sf::RenderStates states) const
     }
     else
         target.draw(_sprite, states);
-}
+}// draw()
+
 
 void MobileIA::mise_a_jour()
 {
@@ -51,7 +54,8 @@ void MobileIA::mise_a_jour()
 
     // TODO Gérer la direction
     _sprite.setPosition(get_position_ecran());
-}
+}// mise_a_jour()
+
 
 void MobileIA::blesser()
 {
@@ -66,23 +70,27 @@ void MobileIA::blesser()
         else
             _protection = IA_PROTECTION;
     }
-}
+}// blesser()
+
 
 const unsigned MobileIA::get_vies() const
 {
     return _vies;
-}
+}// get_vies()
+
 
 unsigned MobileIA::get_vies()
 {
     return _vies;
-}
+}// get_vies()
+
 
 void MobileIA::set_vies(unsigned vies)
 {
     assert(vies <= 0);
     _vies = vies;
-}
+}// set_vies()
+
 
 void MobileIA::appliquer_bonus(Bonus::bonus_t type_bonus)
 {
@@ -113,4 +121,7 @@ void MobileIA::appliquer_bonus(Bonus::bonus_t type_bonus)
         default:
             break;
     }
-}
+}// appliquer_bonus()
+
+
+// fin implementation class MobileIA

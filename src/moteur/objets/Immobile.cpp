@@ -6,15 +6,21 @@
 
 #include <moteur/objets/Immobile.hpp>
 
+
 Immobile::Immobile(Case * cse) :
         Objet(cse)
 {
 }
 
+
 Immobile::~Immobile()
 {
 }
 
+
 void Immobile::mise_a_jour()
 {
-}
+}// mise_a_jour()
+
+
+// fin implementation class Immobile

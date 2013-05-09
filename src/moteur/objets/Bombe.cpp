@@ -19,15 +19,18 @@ Bombe::Bombe(Mobile* porteur, unsigned timer, unsigned puissance) :
         Jeu::instance().get_monde_courant().get_niveau_courant().ajouter_bombe_active(this);
 }
 
+
 Bombe::~Bombe()
 {
     Jeu::instance().get_monde_courant().get_niveau_courant().delete_bombe(this);
 }
 
+
 void Bombe::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
-}
+}// draw()
+
 
 void Bombe::mise_a_jour()
 {
@@ -55,7 +58,8 @@ void Bombe::mise_a_jour()
 
     _timer -= 1;
     if (_timer == 0) exploser();
-}
+}// mse_a_jour()
+
 
 void Bombe::exploser()
 {
@@ -68,36 +72,8 @@ void Bombe::exploser()
     get_case()->enflammer_direction(Case::BAS, _puissance);
     get_case()->enflammer_direction(Case::GAUCHE, _puissance);
     get_case()->enflammer_direction(Case::DROITE, _puissance);
+}// exploser()
 
-    /*Case *droite = get_case()->get_case_droite();
-    Case *gauche = get_case()->get_case_gauche();
-    Case *haut   = get_case()->get_case_haut();
-    Case *bas    = get_case()->get_case_bas();
-    bool r_bas = true, r_haut = true, r_droite = true, r_gauche = true;
-    for (unsigned i = 1; i <= _puissance; ++i)
-    {
-        if(bas->est_praticable() && r_bas)
-        {
-            r_bas = bas->enflammer();
-            bas = bas->get_case_bas();
-        }
-        if(haut->est_praticable() && r_haut)
-        {
-            r_haut = haut->enflammer();
-            haut = haut->get_case_haut();
-        }
-        if(droite->est_praticable() && r_droite)
-        {
-            r_droite = droite->enflammer();
-            droite = droite->get_case_droite();
-        }
-        if(gauche->est_praticable() && r_gauche)
-        {
-            r_gauche = gauche->enflammer();
-            gauche = gauche->get_case_gauche();
-        }
-    }*/
-}
 
 void Bombe::blesser()
 {
@@ -106,4 +82,7 @@ void Bombe::blesser()
 
     else if (_timer > 4)
         _timer = 4;
-}
+}// blesser()
+
+
+// fin implementation class Bombe

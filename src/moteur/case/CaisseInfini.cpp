@@ -1,8 +1,7 @@
-/*
-* CaisseInfini.cpp
- *
- *  Created on: 24 avr. 2013
- *      Author: Sanpas
+/**
+ * @file   CaisseInfini.cpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #include <moteur/Case.hpp>
@@ -39,4 +38,7 @@ void CaisseInfini::mise_a_jour()
             new Caisse(this);
         }
     }
-}
+}// mise_a_jour()
+
+
+// fin implementation class CaisseInfini
