@@ -19,6 +19,9 @@ int main(int argc, char ** argv)
 
     Jeu::instance().charger();
 
+
+    unsigned timer_close = 500;
+
     // Fenêtre
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
     window.setFramerateLimit(WINDOW_FRAMERATE);
@@ -32,6 +35,7 @@ int main(int argc, char ** argv)
 
     while (window.isOpen())
     {
+        //gestion des different evenement
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -54,18 +58,23 @@ int main(int argc, char ** argv)
                     Jeu::instance().clic(event.mouseButton.x,event.mouseButton.y);
                 }
             }
-            // TODO DEBUG Enlever
-#ifndef NDEBUG
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::F1))
+
+        }
+
+        //option quitter du menu principal
+        if (Jeu::instance().get_menu()->get_menu_type() == Menu::QUITTER)
+        {
+            if (timer_close == 0)
             {
                 Jeu::instance().liberer();
-                Jeu::instance().charger();
-                Jeu::instance().set_monde_courant(0);
-                Jeu::instance().get_monde_courant().set_niveau_courant(0);
-                Jeu::instance().get_menu()->active_menu(Menu::AUCUN_MENU);
+                window.close();
             }
-#endif
+            else
+                --timer_close;
         }
+
+
+        //affichage du jeu
         window.clear(sf::Color::Black);
 
         Jeu::instance().mise_a_jour();

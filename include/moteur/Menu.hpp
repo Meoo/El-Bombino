@@ -22,6 +22,7 @@ public:
         GAME_OVER,
         JEU_FINI,
         AUCUN_MENU,
+        QUITTER,
     };
 private:
 
@@ -45,10 +46,14 @@ private:
 
 
     //MENU PAUSE
+    sf::Text            _sauvegarder;
+    sf::RectangleShape  _sauvegarder_fond;
     sf::Text            _texte_pause;
     sf::Text            _texte_pause_fond;
     sf::RectangleShape  _fond_pause;
     int                 _pause_frame;
+
+
 
     sf::Text _niveau_suivant;
     sf::RectangleShape  _niveau_suivant_fond;
@@ -61,6 +66,10 @@ private:
 
     sf::Text _fin_jeu;
     sf::RectangleShape  _fin_jeu_fond;
+
+    //QUITTER
+    sf::Text    _quitter_1;
+    sf::Text    _quitter_2;
 public:
                     Menu();
     virtual         ~Menu();

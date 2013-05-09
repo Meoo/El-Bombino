@@ -88,6 +88,18 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _pause_frame(0)
     //
     // MENU PAUSE
     //
+    _sauvegarder = sf::Text("SAUVEGARDER",Jeu::instance().get_default_font());
+    _sauvegarder.setCharacterSize(32);
+    _sauvegarder.setColor(sf::Color::Black);
+    _sauvegarder.setOrigin(_sauvegarder.getLocalBounds().width / 2, _sauvegarder.getLocalBounds().height / 2);
+    _sauvegarder.setPosition(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 4);
+
+
+    _sauvegarder_fond = sf::RectangleShape(sf::Vector2f(_sauvegarder.getLocalBounds().width, _sauvegarder.getGlobalBounds().height * 2));
+    _sauvegarder_fond.setOrigin(_sauvegarder.getOrigin());
+    _sauvegarder_fond.setPosition(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 4);
+    _sauvegarder_fond.setFillColor(sf::Color(255, 255, 255, 128));
+
     _texte_pause = sf::Text("PAUSE", Jeu::instance().get_default_font());
     _texte_pause.setCharacterSize(128);
     _texte_pause.setColor(sf::Color::White);
@@ -162,6 +174,21 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _pause_frame(0)
     _fin_jeu_fond.setOrigin(_fin_jeu.getOrigin());
     _fin_jeu_fond.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
     _fin_jeu_fond.setFillColor(sf::Color(255, 255, 255, 128));
+
+    //
+    //QUITTER
+    //
+    _quitter_1 = sf::Text("Jeu realiser dans le cadre du projet de fin de quatrieme annees",Jeu::instance().get_default_font());
+    _quitter_1.setCharacterSize(28);
+    _quitter_1.setColor(sf::Color::White);
+    _quitter_1.setOrigin(_quitter_1.getLocalBounds().width / 2, _quitter_1.getLocalBounds().height / 2);
+    _quitter_1.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 4);
+
+    _quitter_2 = sf::Text("Bastien & Pascal-Pierre (r) Polytech'Marseille",Jeu::instance().get_default_font());
+    _quitter_2.setCharacterSize(28);
+    _quitter_2.setColor(sf::Color::White);
+    _quitter_2.setOrigin(_quitter_2.getLocalBounds().width / 2, _quitter_2.getLocalBounds().height / 2);
+    _quitter_2.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2 / 4);
 }
 
 Menu::~Menu()
@@ -180,6 +207,8 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
         case MENU_PAUSE:
             target.draw(_fond_pause);
 
+            target.draw(_sauvegarder_fond);
+            target.draw(_sauvegarder);
             target.draw(_texte_pause_fond);
             target.draw(_texte_pause);
             break;
@@ -215,6 +244,11 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
             target.draw(_fin_jeu);
             break;
         case AUCUN_MENU:
+            break;
+        case QUITTER:
+            target.draw(_quitter_1);
+            target.draw(_quitter_2);
+            break;
         default:
             break;
     }
@@ -267,6 +301,11 @@ void Menu::clic(int x, int y)
         case MENU_PAUSE:
             // #TODO ajouter une option sauvegarde
             // retour au menu principal ?
+            if(_sauvegarder_fond.getGlobalBounds().contains(x,y))
+            {
+                Sauvegarde sauv;
+                sauv.sauver_sauvegarde();
+            }
             break;
         case MENU_PRINCIPAL:
             if(_fond_mp_charger.getGlobalBounds().contains(x,y))
@@ -289,7 +328,7 @@ void Menu::clic(int x, int y)
             }
             else if (_fond_mp_quitter.getGlobalBounds().contains(x,y))
             {
-
+                active_menu(Menu::QUITTER);
             }
             break;
         case NIVEAU_SUIVANT:
@@ -308,6 +347,7 @@ void Menu::clic(int x, int y)
             Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
             Jeu::instance().get_monde_courant().liberer();
             Jeu::instance().set_monde_courant(monde_courant + 1);
+            Jeu::instance().get_monde_courant().set_niveau_courant(0);
             active_menu(Menu::AUCUN_MENU);
             break;
         case GAME_OVER:
@@ -386,7 +426,11 @@ void Menu::active_menu(Menu::menu_type type)
         case JEU_FINI:
             _menu_type = JEU_FINI;
             break;
+        case QUITTER:
+            _menu_type = QUITTER;
+            break;
         default:
+            _menu_type = AUCUN_MENU;
             break;
     }
 }
