@@ -69,7 +69,7 @@ int main(int argc, char ** argv)
         {
             if (timer_close == 0)
             {
-                Jeu::instance().liberer();
+                //Jeu::instance().liberer();
                 window.close();
             }
             else
