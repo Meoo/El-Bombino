@@ -293,14 +293,21 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
             //target.draw(sp_fond);
 
             texte_bas  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdBas()),Jeu::instance().get_default_font(), 20);
-            texte_bas.setColor(sf::Color::Red);
+            if(_mc_modif_bas)
+                texte_bas.setColor(sf::Color::Green);
+            else
+                texte_bas.setColor(sf::Color::Red);
             texte_bas.setPosition(300, WINDOW_HEIGHT / 16);
             target.draw(_fond_mc_bas);
             target.draw(_menu_config_bas);
             target.draw(texte_bas);
 
             texte_haut  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdHaut()),Jeu::instance().get_default_font(), 20);
-            texte_haut.setColor(sf::Color::Red);
+            if(_mc_modif_haut)
+                texte_haut.setColor(sf::Color::Green);
+            else
+                texte_haut.setColor(sf::Color::Red);
+
             texte_haut.setPosition(300, WINDOW_HEIGHT * 2/ 16);
             target.draw(_fond_mc_haut);
             target.draw(_menu_config_haut);
@@ -308,7 +315,10 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 
             texte_droite  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdDroite()),Jeu::instance().get_default_font(), 20);
-            texte_droite.setColor(sf::Color::Red);
+            if(_mc_modif_droite)
+                texte_droite.setColor(sf::Color::Green);
+            else
+                texte_droite.setColor(sf::Color::Red);
             texte_droite.setPosition(300, WINDOW_HEIGHT * 3/ 16);
             target.draw(_fond_mc_droite);
             target.draw(_menu_config_droite);
@@ -316,21 +326,33 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 
             texte_gauche  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdGauche()),Jeu::instance().get_default_font(), 20);
-            texte_gauche.setColor(sf::Color::Red);
+
+            if(_mc_modif_gauche)
+                texte_gauche.setColor(sf::Color::Green);
+            else
+                texte_gauche.setColor(sf::Color::Red);
             texte_gauche.setPosition(300, WINDOW_HEIGHT * 4/ 16);
             target.draw(_fond_mc_gauche);
             target.draw(_menu_config_gauche);
             target.draw(texte_gauche);
 
             texte_bombe  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdBombe()),Jeu::instance().get_default_font(), 20);
-            texte_bombe.setColor(sf::Color::Red);
+
+            if(_mc_modif_bombe)
+                texte_bombe.setColor(sf::Color::Green);
+            else
+                texte_bombe.setColor(sf::Color::Red);
             texte_bombe.setPosition(300, WINDOW_HEIGHT * 5/ 16);
             target.draw(_fond_mc_bombe);
             target.draw(_menu_config_bombe);
             target.draw(texte_bombe);
 
             texte_special  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdSpecial()),Jeu::instance().get_default_font(), 20);
-            texte_special.setColor(sf::Color::Red);
+
+            if(_mc_modif_special)
+                texte_special.setColor(sf::Color::Green);
+            else
+                texte_special.setColor(sf::Color::Red);
             texte_special.setPosition(300, WINDOW_HEIGHT * 6/ 16);
             target.draw(_fond_mc_special);
             target.draw(_menu_config_special);
@@ -442,10 +464,20 @@ void Menu::clic(int x, int y)
             else if(_fond_mc_bas.getGlobalBounds().contains(x,y))
             {
                 _mc_modif_bas = true;
+                _mc_modif_bombe = false;
+                _mc_modif_droite = false;
+                _mc_modif_gauche = false;
+                _mc_modif_haut = false;
+                _mc_modif_special = false;
             }
             else if(_fond_mc_bombe.getGlobalBounds().contains(x,y))
             {
                 _mc_modif_bombe = true;
+                _mc_modif_bas = false;
+                _mc_modif_droite = false;
+                _mc_modif_gauche = false;
+                _mc_modif_haut = false;
+                _mc_modif_special = false;
             }
             else if(_fond_mc_default.getGlobalBounds().contains(x,y))
             {
@@ -459,18 +491,38 @@ void Menu::clic(int x, int y)
             else if (_fond_mc_droite.getGlobalBounds().contains(x,y))
             {
                 _mc_modif_droite = true;
+                _mc_modif_bas = false;
+                _mc_modif_bombe = false;
+                _mc_modif_gauche = false;
+                _mc_modif_haut = false;
+                _mc_modif_special = false;
             }
             else if(_fond_mc_gauche.getGlobalBounds().contains(x,y))
             {
                 _mc_modif_gauche = true;
+                _mc_modif_bas = false;
+                _mc_modif_bombe = false;
+                _mc_modif_droite = false;
+                _mc_modif_haut = false;
+                _mc_modif_special = false;
             }
             else if(_fond_mc_haut.getGlobalBounds().contains(x,y))
             {
                 _mc_modif_haut = true;
+                _mc_modif_bas = false;
+                _mc_modif_bombe = false;
+                _mc_modif_droite = false;
+                _mc_modif_gauche = false;
+                _mc_modif_special = false;
             }
             else if(_fond_mc_special.getGlobalBounds().contains(x,y))
             {
                 _mc_modif_special = true;
+                _mc_modif_bas = false;
+                _mc_modif_bombe = false;
+                _mc_modif_droite = false;
+                _mc_modif_gauche = false;
+                _mc_modif_haut = false;
             }
             break;
         case MENU_PAUSE:
