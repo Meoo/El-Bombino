@@ -86,8 +86,6 @@ public:
         CMD_SPECIAL = cmdSpecial;
     }
 
-    ;
-
 
 };
 

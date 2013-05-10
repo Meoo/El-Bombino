@@ -125,7 +125,7 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _mc_modif_haut(false), _mc_modif_bas(
     _fond_mc_gauche.setPosition(100, WINDOW_HEIGHT * 4/ 16);
     _fond_mc_gauche.setFillColor(sf::Color::White);
 
-    _menu_config_bombe = sf::Text(" GAUCHE :", Jeu::instance().get_default_font(),20);
+    _menu_config_bombe = sf::Text(" BOMBE :", Jeu::instance().get_default_font(),20);
     _menu_config_bombe.setColor(sf::Color::Black);
     _menu_config_bombe.setPosition(100, WINDOW_HEIGHT * 5/ 16);
 
