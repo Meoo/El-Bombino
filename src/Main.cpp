@@ -11,6 +11,7 @@
 #include <cstdlib>
 
 #include <Config.hpp>
+
 #include <moteur/Jeu.hpp>
 
 int main(int argc, char ** argv)

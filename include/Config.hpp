@@ -13,6 +13,7 @@
 #include <string>
 #include <cassert>
 
+
 // Fenêtre principale
 const std::string   WINDOW_NAME         ("El Bombino");
 const unsigned      WINDOW_WIDTH        = 960;

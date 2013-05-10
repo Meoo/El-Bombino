@@ -9,7 +9,7 @@
 #include <moteur/exceptions/ExceptionRessource.hpp>
 #include <moteur/Menu.hpp>
 #include <moteur/objets/Joueur.hpp>
-
+#include <ConfigCMD.hpp>
 #include <vector>
 #include <fstream>
 
@@ -18,7 +18,7 @@ Jeu Jeu::s_jeu;
 Jeu::Jeu() :
         _mondes_count(0), _mondes(NULL), _monde_courant(NULL), _menu(NULL), _num_monde_courant(0),
         _vitesse_joueur(JOUEUR_VIT_DEFAULT),  _nb_bombe_joueur(JOUEUR_NB_BOMBES_DEFAULT), _puissance_joueur(BOMBE_POWER_DEFAULT),
-        _vie_joueur(JOUEUR_VIE_DEFAULT),  _bonus_soulevable_joueur(false),  _bonus_bombe_special_joueur(false)
+        _vie_joueur(JOUEUR_VIE_DEFAULT),  _bonus_soulevable_joueur(false),  _bonus_bombe_special_joueur(false), _cmd(NULL)
 #ifndef NDEBUG
         , _pret(false)
 #endif
@@ -45,6 +45,8 @@ void Jeu::charger()
     _default_font.loadFromFile("C:/Windows/Fonts/arial.ttf");
 
     _menu = new Menu();
+
+    _cmd = new ConfigCMD();
 
     std::fstream fic((RC_FOLDER + RC_JEU).c_str(), std::ios_base::in);
     if (!fic)
@@ -337,6 +339,11 @@ void Jeu::press_touch(sf::Event::KeyEvent key)
 
     _menu->press_touch(key);
 }// press_touch()
+
+ConfigCMD* Jeu::get_cmd()
+{
+    return _cmd;
+}
 
 void Jeu::set_monde_courant(unsigned num)
 {

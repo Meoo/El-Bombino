@@ -11,7 +11,7 @@
 #include <moteur/Utile.hpp>
 
 #include <Config.hpp>
-#include <ConfigCMD.hpp>
+
 
 #include <cmath>
 #include <ctime>
@@ -21,7 +21,9 @@
 
 #include <SFML/Graphics.hpp>
 
-Menu::Menu():  _menu_type(MENU_PRINCIPAL), _pause_frame(0)
+Menu::Menu():  _menu_type(MENU_PRINCIPAL), _mc_modif_haut(false), _mc_modif_bas(false), _mc_modif_droite(false),
+                                        _mc_modif_gauche(false),_mc_modif_bombe(false),
+                                        _mc_modif_special(false), _pause_frame(0)
 {
     //
     // MENU PRINCIPAL
@@ -290,14 +292,14 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
         case MENU_CONFIGURATION:
             //target.draw(sp_fond);
 
-            texte_bas  = sf::Text(nsUtil::SFKeyToString(CMD_BAS),Jeu::instance().get_default_font(), 20);
+            texte_bas  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdBas()),Jeu::instance().get_default_font(), 20);
             texte_bas.setColor(sf::Color::Red);
             texte_bas.setPosition(300, WINDOW_HEIGHT / 16);
             target.draw(_fond_mc_bas);
             target.draw(_menu_config_bas);
             target.draw(texte_bas);
 
-            texte_haut  = sf::Text(nsUtil::SFKeyToString(CMD_HAUT),Jeu::instance().get_default_font(), 20);
+            texte_haut  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdHaut()),Jeu::instance().get_default_font(), 20);
             texte_haut.setColor(sf::Color::Red);
             texte_haut.setPosition(300, WINDOW_HEIGHT * 2/ 16);
             target.draw(_fond_mc_haut);
@@ -305,7 +307,7 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
             target.draw(texte_haut);
 
 
-            texte_droite  = sf::Text(nsUtil::SFKeyToString(CMD_DROITE),Jeu::instance().get_default_font(), 20);
+            texte_droite  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdDroite()),Jeu::instance().get_default_font(), 20);
             texte_droite.setColor(sf::Color::Red);
             texte_droite.setPosition(300, WINDOW_HEIGHT * 3/ 16);
             target.draw(_fond_mc_droite);
@@ -313,21 +315,21 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
             target.draw(texte_droite);
 
 
-            texte_gauche  = sf::Text(nsUtil::SFKeyToString(CMD_GAUCHE),Jeu::instance().get_default_font(), 20);
+            texte_gauche  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdGauche()),Jeu::instance().get_default_font(), 20);
             texte_gauche.setColor(sf::Color::Red);
             texte_gauche.setPosition(300, WINDOW_HEIGHT * 4/ 16);
             target.draw(_fond_mc_gauche);
             target.draw(_menu_config_gauche);
             target.draw(texte_gauche);
 
-            texte_bombe  = sf::Text(nsUtil::SFKeyToString(CMD_BOMBE),Jeu::instance().get_default_font(), 20);
+            texte_bombe  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdBombe()),Jeu::instance().get_default_font(), 20);
             texte_bombe.setColor(sf::Color::Red);
             texte_bombe.setPosition(300, WINDOW_HEIGHT * 5/ 16);
             target.draw(_fond_mc_bombe);
             target.draw(_menu_config_bombe);
             target.draw(texte_bombe);
 
-            texte_special  = sf::Text(nsUtil::SFKeyToString(CMD_SPECIAL),Jeu::instance().get_default_font(), 20);
+            texte_special  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdSpecial()),Jeu::instance().get_default_font(), 20);
             texte_special.setColor(sf::Color::Red);
             texte_special.setPosition(300, WINDOW_HEIGHT * 6/ 16);
             target.draw(_fond_mc_special);
@@ -447,12 +449,12 @@ void Menu::clic(int x, int y)
             }
             else if(_fond_mc_default.getGlobalBounds().contains(x,y))
             {
-                CMD_BAS = CMD_BAS_DEFAULT;
-                CMD_BOMBE = CMD_BOMBE_DEFAULT;
-                CMD_DROITE = CMD_DROITE_DEFAULT;
-                CMD_GAUCHE = CMD_GAUCHE_DEFAULT;
-                CMD_HAUT = CMD_HAUT_DEFAULT;
-                CMD_SPECIAL = CMD_SPECIA_DEFAULTL;
+                Jeu::instance().get_cmd()->setCmdHaut(CMD_HAUT_DEFAULT);
+                Jeu::instance().get_cmd()->setCmdBas(CMD_BAS_DEFAULT);
+                Jeu::instance().get_cmd()->setCmdBombe(CMD_BOMBE_DEFAULT);
+                Jeu::instance().get_cmd()->setCmdDroite(CMD_DROITE_DEFAULT);
+                Jeu::instance().get_cmd()->setCmdGauche(CMD_GAUCHE_DEFAULT);
+                Jeu::instance().get_cmd()->setCmdSpecial(CMD_SPECIA_DEFAULTL);
             }
             else if (_fond_mc_droite.getGlobalBounds().contains(x,y))
             {
@@ -587,32 +589,32 @@ void Menu::press_touch(sf::Event::KeyEvent key)
     {
         if(_mc_modif_bas)
         {
-            CMD_BAS = key.code;
+            Jeu::instance().get_cmd()->setCmdBas(key.code);
             _mc_modif_bas = false;
         }
         else if (_mc_modif_bombe)
         {
-            CMD_BOMBE = key.code;
+            Jeu::instance().get_cmd()->setCmdBombe(key.code);
             _mc_modif_bombe = false;
         }
         else if(_mc_modif_droite)
         {
-            CMD_DROITE = key.code;
+            Jeu::instance().get_cmd()->setCmdDroite(key.code);
             _mc_modif_droite = false;
         }
         else if(_mc_modif_gauche)
         {
-            CMD_GAUCHE = key.code;
+            Jeu::instance().get_cmd()->setCmdGauche(key.code);
             _mc_modif_gauche = false;
         }
         else if(_mc_modif_haut)
         {
-            CMD_HAUT = key.code;
+            Jeu::instance().get_cmd()->setCmdHaut(key.code);
             _mc_modif_haut = false;
         }
         else if(_mc_modif_special)
         {
-            CMD_SPECIAL = key.code;
+            Jeu::instance().get_cmd()->setCmdSpecial(key.code);
             _mc_modif_special = false;
         }
     }

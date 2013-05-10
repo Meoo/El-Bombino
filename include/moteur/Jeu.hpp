@@ -11,6 +11,7 @@
 #include "Sauvegarde.hpp"
 #include "Monde.hpp"
 #include <moteur/Menu.hpp>
+#include <ConfigCMD.hpp>
 
 #include <SFML/Graphics.hpp>
 
@@ -46,6 +47,7 @@ private:
     bool                _bonus_soulevable_joueur;
     bool                _bonus_bombe_special_joueur;
 
+    ConfigCMD *         _cmd;
 #ifndef NDEBUG
     bool                _pret;
 #endif
@@ -121,6 +123,8 @@ public:
                                                bool bonus_soulevable_joueur, bool  bonus_bombe_special_joueur);
 
     void                set_num_monde_courant(unsigned num);
+
+    ConfigCMD*          get_cmd();
 /*TODO protected:*/
     void                set_monde_courant(unsigned num);
 };

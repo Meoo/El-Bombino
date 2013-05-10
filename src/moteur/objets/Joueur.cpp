@@ -9,7 +9,6 @@
 #include <moteur/Jeu.hpp>
 #include <moteur/Case.hpp>
 
-#include <ConfigCMD.hpp>
 
 #include <SFML/Window.hpp>
 
@@ -85,21 +84,21 @@ void Joueur::mise_a_jour()
     // Gérer déplacement
     if (!est_en_mouvement())
     {
-        if (sf::Keyboard::isKeyPressed(CMD_HAUT))
+        if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdHaut()))
             bouger(HAUT);
 
-        else if (sf::Keyboard::isKeyPressed(CMD_BAS))
+        else if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdBas()))
             bouger(BAS);
 
-        else if (sf::Keyboard::isKeyPressed(CMD_GAUCHE))
+        else if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdGauche()))
             bouger(GAUCHE);
 
-        else if (sf::Keyboard::isKeyPressed(CMD_DROITE))
+        else if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdDroite()))
             bouger(DROITE);
     }
 
     // Gérer charger une bombe
-    if (sf::Keyboard::isKeyPressed(CMD_BOMBE))
+    if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdBombe()))
     {
         // Si le joueur ne porte pas d'objets
         if (get_objet_souleve() == NULL)
@@ -117,7 +116,7 @@ void Joueur::mise_a_jour()
 
     // soulever l'objet present dans la direction
     // ou poser l'objet si il est en notre posetion
-    if(sf::Keyboard::isKeyPressed(CMD_SPECIAL) && _bonus_soulevable)
+    if(sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdSpecial()) && _bonus_soulevable)
     {
         if (_objet_souleve_cooldown == 0)
         {
