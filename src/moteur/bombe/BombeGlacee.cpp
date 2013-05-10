@@ -23,9 +23,9 @@ void BombeGlacee::exploser()
 
     //Faire exploser la bombe
     detruire();
-    get_case()->enflammer();
+    get_case()->enflammer(FEU_TIME_DEFAULT, sf::Color::Blue, &Objet::glacee);
     get_case()->enflammer_direction(Case::HAUT, get_puissance(), FEU_TIME_DEFAULT, sf::Color::Blue, &Objet::glacee);
     get_case()->enflammer_direction(Case::BAS, get_puissance(),  FEU_TIME_DEFAULT, sf::Color::Blue, &Objet::glacee);
     get_case()->enflammer_direction(Case::GAUCHE, get_puissance(),  FEU_TIME_DEFAULT, sf::Color::Blue, &Objet::glacee);
     get_case()->enflammer_direction(Case::DROITE, get_puissance(),  FEU_TIME_DEFAULT, sf::Color::Blue, &Objet::glacee);
-}
+}// exploser()

@@ -670,7 +670,7 @@ void Menu::press_touch(sf::Event::KeyEvent key)
             _mc_modif_special = false;
         }
     }
-}
+}// press_touch()
 
 void Menu::active_menu(Menu::menu_type type)
 {

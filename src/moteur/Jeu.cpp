@@ -343,7 +343,7 @@ void Jeu::press_touch(sf::Event::KeyEvent key)
 ConfigCMD* Jeu::get_cmd()
 {
     return _cmd;
-}
+}// get_cmd()
 
 void Jeu::set_monde_courant(unsigned num)
 {

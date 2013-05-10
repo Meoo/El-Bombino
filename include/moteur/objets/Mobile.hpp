@@ -60,6 +60,8 @@ public:
 
     virtual void        blesser();
 
+    virtual void        glacee();
+
     virtual void        appliquer_bonus(Bonus::bonus_t type_bonus);
 
     virtual bool        est_joueur();

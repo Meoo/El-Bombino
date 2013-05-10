@@ -89,4 +89,5 @@ void Bombe::blesser()
 
 unsigned Bombe::get_puissance()
 {
-}
+    return _puissance;
+}// gat_puissance()
