@@ -192,13 +192,7 @@ void Mobile::blesser()
 
 void Mobile::glacee()
 {
-    if (_objet_souleve != NULL && _objet_souleve->est_valide())
-        _objet_souleve->glacee();
 
-    if(_vitesse / 2 > JOUEUR_VIT_MIN)
-        _vitesse /= 2;
-    else
-        _vitesse = JOUEUR_VIT_MIN;
 }// glacee()
 
 void Mobile::appliquer_bonus(Bonus::bonus_t type_bonus)

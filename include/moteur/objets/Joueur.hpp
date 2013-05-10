@@ -46,6 +46,8 @@ public:
 
     virtual void        blesser();
 
+    virtual void        glacee();
+
     // Fonction utile pour l'affichage d'information du Joueur
     // < get_Vie, get_Puissance, get_BombeDisponible>
     const unsigned      get_nb_bombe_simultanee()const;

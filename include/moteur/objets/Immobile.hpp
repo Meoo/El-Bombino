@@ -22,6 +22,7 @@ public:
     virtual ~Immobile();
 
     virtual void mise_a_jour();
+
 };
 // class Immobile
 

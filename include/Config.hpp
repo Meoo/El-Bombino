@@ -38,6 +38,8 @@ const unsigned      BOMBE_POWER_MIN     = 1;
 const unsigned      BOMBE_POWER_MAX     = 10;
 const unsigned      BOMBE_POWER_DELTA   = 1;
 
+const float         BOMBE_GLACEE_DELTA  = 0.2;
+
 // Objet souleve
 // > Timer
 const unsigned      OBJET_SOULEVE_COOLDOWN  = 10;
@@ -51,7 +53,7 @@ const unsigned      CAISSEINFINI_COLDOWN    = 250;
 const float         JOUEUR_VIT_DEFAULT  = 3;                //!< En pixels par affichage
 const float         JOUEUR_VIT_MIN      = 2;
 const float         JOUEUR_VIT_MAX      = 4;
-const float         JOUEUR_VIT_DELTA    = 0.5;              //!< Variation lorsque le joueur prend un bonus ou malus
+const float         JOUEUR_VIT_DELTA    = 0.2;              //!< Variation lorsque le joueur prend un bonus ou malus
 const unsigned      JOUEUR_NB_BOMBES_DEFAULT    = 2;
 const unsigned      JOUEUR_NB_BOMBES_DELTA      = 1;
 const unsigned      JOUEUR_NB_BOMBES_MIN        = 1;
@@ -70,6 +72,12 @@ const unsigned      BONUS_TIMER                         = 250;
 
 // IA
 const unsigned      IA_PROTECTION       = 50;               //!< Temps de protection d'une IA lorsqu'elle est touchée
+
+const float      IA_VIT_DELTA        = 0.2;
+const float      IA_VIT_MAX          = 2;
+const float      IA_VIT_MIN          = 1;
+const float      IA_VIT_DEFAULT      = 1;
+
 
 
 // Idiot

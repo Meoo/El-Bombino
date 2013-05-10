@@ -73,6 +73,17 @@ void MobileIA::blesser()
 }// blesser()
 
 
+void MobileIA::glacee()
+{
+    if (get_objet_souleve() != NULL && get_objet_souleve()->est_valide())
+        get_objet_souleve()->glacee();
+
+    if(get_vitesse() - BOMBE_GLACEE_DELTA > IA_VIT_MIN)
+        set_vitesse(get_vitesse() - BOMBE_GLACEE_DELTA);
+    else
+        set_vitesse(IA_VIT_MIN);
+}
+
 const unsigned MobileIA::get_vies() const
 {
     return _vies;
@@ -103,20 +114,20 @@ void MobileIA::appliquer_bonus(Bonus::bonus_t type_bonus)
             ++_vies;
             break;
         case Bonus::BONUS_VITESSE:
-            if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
-                set_vitesse(get_vitesse()+ JOUEUR_VIT_DELTA);
+            if(get_vitesse()+IA_VIT_DELTA < IA_VIT_MAX)
+                set_vitesse(get_vitesse()+ IA_VIT_DELTA);
             else
-                set_vitesse(JOUEUR_VIT_MAX);
+                set_vitesse(IA_VIT_MAX);
             break;
         case Bonus::MALUS_BOMBE:
             break;
         case Bonus::MALUS_PUISSANCE:
             break;
         case Bonus::MALUS_VITESSE:
-            if(get_vitesse() - JOUEUR_VIT_DELTA > JOUEUR_VIT_MIN)
-                set_vitesse(get_vitesse() - JOUEUR_VIT_DELTA);
+            if(get_vitesse() - IA_VIT_DELTA > IA_VIT_MIN)
+                set_vitesse(get_vitesse() - IA_VIT_DELTA);
             else
-                set_vitesse(JOUEUR_VIT_MIN);
+                set_vitesse(IA_VIT_MIN);
             break;
         default:
             break;

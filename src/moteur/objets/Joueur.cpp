@@ -354,5 +354,15 @@ bool Joueur::get_bonus_bombe_spe()
     return _bonus_bombe_special;
 }// get_bonus_bombe_spe()
 
+void    Joueur::glacee()
+{
+    if (get_objet_souleve() != NULL && get_objet_souleve()->est_valide())
+        get_objet_souleve()->glacee();
+
+    if(get_vitesse() - BOMBE_GLACEE_DELTA > JOUEUR_VIT_MIN)
+        set_vitesse(get_vitesse() - BOMBE_GLACEE_DELTA);
+    else
+        set_vitesse(JOUEUR_VIT_MIN);
+}
 
 // fin implementation class Joueur
