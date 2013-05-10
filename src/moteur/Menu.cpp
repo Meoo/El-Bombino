@@ -230,7 +230,7 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _mc_modif_haut(false), _mc_modif_bas(
     //
     // GAME OVER
     //
-    _game_over = sf::Text("GAME OVER RECOMMENCER",Jeu::instance().get_default_font());
+    _game_over = sf::Text("GAME OVER : RECOMMENCER",Jeu::instance().get_default_font());
     _game_over.setCharacterSize(32);
     _game_over.setColor(sf::Color::Black);
     _game_over.setOrigin(_game_over.getLocalBounds().width / 2, _game_over.getLocalBounds().height / 2);
@@ -245,7 +245,7 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _mc_modif_haut(false), _mc_modif_bas(
     //
     // JEU FINI
     //
-    _fin_jeu = sf::Text("FIN DU JEU FELICITATION",Jeu::instance().get_default_font());
+    _fin_jeu = sf::Text("FIN DU JEU : FELICITATION",Jeu::instance().get_default_font());
     _fin_jeu.setCharacterSize(32);
     _fin_jeu.setColor(sf::Color::Black);
     _fin_jeu.setOrigin(_fin_jeu.getLocalBounds().width / 2, _fin_jeu.getLocalBounds().height / 2);
@@ -260,7 +260,7 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _mc_modif_haut(false), _mc_modif_bas(
     //
     //QUITTER
     //
-    _quitter_1 = sf::Text("Jeu realiser dans le cadre du projet de fin de quatrieme annees",Jeu::instance().get_default_font());
+    _quitter_1 = sf::Text(L"Jeu realisé dans le cadre du projet de fin de quatrième année",Jeu::instance().get_default_font());
     _quitter_1.setCharacterSize(28);
     _quitter_1.setColor(sf::Color::White);
     _quitter_1.setOrigin(_quitter_1.getLocalBounds().width / 2, _quitter_1.getLocalBounds().height / 2);
