@@ -8,12 +8,15 @@
 #include <moteur/Menu.hpp>
 #include <moteur/Jeu.hpp>
 #include <moteur/objets/Joueur.hpp>
+#include <moteur/Utile.hpp>
 
 #include <Config.hpp>
 
 #include <cmath>
 #include <ctime>
 #include <cstdlib>
+
+#include <fstream>
 
 #include <SFML/Graphics.hpp>
 
@@ -71,15 +74,71 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _pause_frame(0)
     // MENU CONFIGURATION
     //
     _menu_config_retour = sf::Text("RETOUR", Jeu::instance().get_default_font());
-    _menu_config_retour.setCharacterSize(32);
+    _menu_config_retour.setCharacterSize(28);
     _menu_config_retour.setColor(sf::Color::Black);
     _menu_config_retour.setOrigin(_menu_config_retour.getLocalBounds().width / 2, _menu_config_retour.getLocalBounds().height / 2);
-    _menu_config_retour.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 5/ 8);
+    _menu_config_retour.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 14/ 16);
 
     _fond_mc_retour = sf::RectangleShape(sf::Vector2f(_menu_config_retour.getLocalBounds().width, _menu_config_retour.getGlobalBounds().height * 2));
     _fond_mc_retour.setOrigin(_menu_config_retour.getOrigin());
-    _fond_mc_retour.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 5/ 8);
+    _fond_mc_retour.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 14/ 16);
     _fond_mc_retour.setFillColor(sf::Color::White);
+
+
+    _menu_config_bas = sf::Text(" BAS :", Jeu::instance().get_default_font(),20);
+    _menu_config_bas.setColor(sf::Color::Black);
+    _menu_config_bas.setPosition(100, WINDOW_HEIGHT / 16);
+
+    _fond_mc_bas = sf::RectangleShape(sf::Vector2f(_menu_config_bas.getLocalBounds().width, _menu_config_bas.getGlobalBounds().height * 2));
+    _fond_mc_bas.setOrigin(_menu_config_bas.getOrigin());
+    _fond_mc_bas.setPosition(100, WINDOW_HEIGHT / 16);
+    _fond_mc_bas.setFillColor(sf::Color::White);
+
+
+    _menu_config_haut = sf::Text(" HAUT :", Jeu::instance().get_default_font(),20);
+    _menu_config_haut.setColor(sf::Color::Black);
+    _menu_config_haut.setPosition(100, WINDOW_HEIGHT * 2/ 16);
+
+    _fond_mc_haut = sf::RectangleShape(sf::Vector2f(_menu_config_haut.getLocalBounds().width, _menu_config_haut.getGlobalBounds().height * 2));
+    _fond_mc_haut.setOrigin(_menu_config_haut.getOrigin());
+    _fond_mc_haut.setPosition(100, WINDOW_HEIGHT * 2/ 16);
+    _fond_mc_haut.setFillColor(sf::Color::White);
+
+    _menu_config_droite = sf::Text(" DROITE :", Jeu::instance().get_default_font(),20);
+    _menu_config_droite.setColor(sf::Color::Black);
+    _menu_config_droite.setPosition(100, WINDOW_HEIGHT * 3/ 16);
+
+    _fond_mc_droite = sf::RectangleShape(sf::Vector2f(_menu_config_droite.getLocalBounds().width, _menu_config_droite.getGlobalBounds().height * 2));
+    _fond_mc_droite.setOrigin(_menu_config_droite.getOrigin());
+    _fond_mc_droite.setPosition(100, WINDOW_HEIGHT * 3/ 16);
+    _fond_mc_droite.setFillColor(sf::Color::White);
+
+    _menu_config_gauche = sf::Text(" GAUCHE :", Jeu::instance().get_default_font(),20);
+    _menu_config_gauche.setColor(sf::Color::Black);
+    _menu_config_gauche.setPosition(100, WINDOW_HEIGHT * 4/ 16);
+
+    _fond_mc_gauche = sf::RectangleShape(sf::Vector2f(_menu_config_gauche.getLocalBounds().width, _menu_config_gauche.getGlobalBounds().height * 2));
+    _fond_mc_gauche.setOrigin(_menu_config_gauche.getOrigin());
+    _fond_mc_gauche.setPosition(100, WINDOW_HEIGHT * 4/ 16);
+    _fond_mc_gauche.setFillColor(sf::Color::White);
+
+    _menu_config_bombe = sf::Text(" GAUCHE :", Jeu::instance().get_default_font(),20);
+    _menu_config_bombe.setColor(sf::Color::Black);
+    _menu_config_bombe.setPosition(100, WINDOW_HEIGHT * 5/ 16);
+
+    _fond_mc_bombe = sf::RectangleShape(sf::Vector2f(_menu_config_bombe.getLocalBounds().width, _menu_config_bombe.getGlobalBounds().height * 2));
+    _fond_mc_bombe.setOrigin(_menu_config_bombe.getOrigin());
+    _fond_mc_bombe.setPosition(100, WINDOW_HEIGHT * 5/ 16);
+    _fond_mc_bombe.setFillColor(sf::Color::White);
+
+    _menu_config_special = sf::Text(" SPECIAL :", Jeu::instance().get_default_font(),20);
+    _menu_config_special.setColor(sf::Color::Black);
+    _menu_config_special.setPosition(100, WINDOW_HEIGHT * 6/ 16);
+
+    _fond_mc_special = sf::RectangleShape(sf::Vector2f(_menu_config_special.getLocalBounds().width, _menu_config_special.getGlobalBounds().height * 2));
+    _fond_mc_special.setOrigin(_menu_config_special.getOrigin());
+    _fond_mc_special.setPosition(100, WINDOW_HEIGHT * 6/ 16);
+    _fond_mc_special.setFillColor(sf::Color::White);
 
 
     fond_menu_picture.loadFromFile(RC_FOLDER + RC_FONDMENU);
@@ -211,9 +270,44 @@ Menu::~Menu()
 void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     sf::Sprite sp_fond(fond_menu_picture);
+    sf::Text texte_bas;
+    sf::Text texte_haut;
+    sf::Text texte_droite;
+    sf::Text texte_gauche;
     switch (_menu_type) {
         case MENU_CONFIGURATION:
-            target.draw(sp_fond);
+            //target.draw(sp_fond);
+
+            texte_bas  = sf::Text(nsUtil::SFKeyToString(CMD_BAS),Jeu::instance().get_default_font(), 20);
+            texte_bas.setColor(sf::Color::Red);
+            texte_bas.setPosition(300, WINDOW_HEIGHT / 16);
+            target.draw(_fond_mc_bas);
+            target.draw(_menu_config_bas);
+            target.draw(texte_bas);
+
+            texte_haut  = sf::Text(nsUtil::SFKeyToString(CMD_HAUT),Jeu::instance().get_default_font(), 20);
+            texte_haut.setColor(sf::Color::Red);
+            texte_haut.setPosition(300, WINDOW_HEIGHT * 2/ 16);
+            target.draw(_fond_mc_haut);
+            target.draw(_menu_config_haut);
+            target.draw(texte_haut);
+
+
+            texte_droite  = sf::Text(nsUtil::SFKeyToString(CMD_DROITE),Jeu::instance().get_default_font(), 20);
+            texte_droite.setColor(sf::Color::Red);
+            texte_droite.setPosition(300, WINDOW_HEIGHT * 3/ 16);
+            target.draw(_fond_mc_droite);
+            target.draw(_menu_config_droite);
+            target.draw(texte_droite);
+
+
+            texte_gauche  = sf::Text(nsUtil::SFKeyToString(CMD_GAUCHE),Jeu::instance().get_default_font(), 20);
+            texte_gauche.setColor(sf::Color::Red);
+            texte_gauche.setPosition(300, WINDOW_HEIGHT * 4/ 16);
+            target.draw(_fond_mc_gauche);
+            target.draw(_menu_config_gauche);
+            target.draw(texte_gauche);
+
             target.draw(_fond_mc_retour);
             target.draw(_menu_config_retour);
             break;
@@ -228,7 +322,7 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
             target.draw(_texte_pause);
             break;
         case MENU_PRINCIPAL:
-            target.draw(sp_fond);
+            //target.draw(sp_fond);
             target.draw(_fond_mp_play);
             target.draw(_menu_principal_play);
             target.draw(_fond_mp_charger);

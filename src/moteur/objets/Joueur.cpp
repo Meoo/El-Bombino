@@ -83,21 +83,21 @@ void Joueur::mise_a_jour()
     // Gérer déplacement
     if (!est_en_mouvement())
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        if (sf::Keyboard::isKeyPressed(CMD_HAUT))
             bouger(HAUT);
 
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        else if (sf::Keyboard::isKeyPressed(CMD_BAS))
             bouger(BAS);
 
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        else if (sf::Keyboard::isKeyPressed(CMD_GAUCHE))
             bouger(GAUCHE);
 
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        else if (sf::Keyboard::isKeyPressed(CMD_DROITE))
             bouger(DROITE);
     }
 
     // Gérer charger une bombe
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    if (sf::Keyboard::isKeyPressed(CMD_BOMBE))
     {
         // Si le joueur ne porte pas d'objets
         if (get_objet_souleve() == NULL)
@@ -115,7 +115,7 @@ void Joueur::mise_a_jour()
 
     // soulever l'objet present dans la direction
     // ou poser l'objet si il est en notre posetion
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && _bonus_soulevable)
+    if(sf::Keyboard::isKeyPressed(CMD_SPECIAL) && _bonus_soulevable)
     {
         if (_objet_souleve_cooldown == 0)
         {

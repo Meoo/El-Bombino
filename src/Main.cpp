@@ -77,6 +77,7 @@ int main(int argc, char ** argv)
         window.clear(sf::Color::Black);
 
         Jeu::instance().mise_a_jour();
+
         window.draw(Jeu::instance());
 
         window.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));

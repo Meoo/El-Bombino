@@ -92,7 +92,12 @@ const std::string   RC_FONDMENU         ("menu.png");
 const std::string   RC_SAUVGARDE        ("sauvegarde.txt");
 
 // Commande du jeu
-
+static sf::Keyboard::Key   CMD_HAUT        = sf::Keyboard::Up;
+static sf::Keyboard::Key   CMD_BAS         = sf::Keyboard::Down;
+static sf::Keyboard::Key   CMD_DROITE      = sf::Keyboard::Right;
+static sf::Keyboard::Key   CMD_GAUCHE      = sf::Keyboard::Left;
+static sf::Keyboard::Key   CMD_BOMBE       = sf::Keyboard::Space;
+static sf::Keyboard::Key   CMD_SPECIAL     = sf::Keyboard::E;
 
 
 // Debug

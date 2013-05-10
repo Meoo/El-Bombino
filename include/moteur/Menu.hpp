@@ -32,14 +32,29 @@ private:
     sf::Text _menu_principal_config;
     sf::Text _menu_principal_quitter;
 
-    sf::Text _menu_config_retour;
+
 
     sf::RectangleShape  _fond_mp_play;
     sf::RectangleShape  _fond_mp_charger;
     sf::RectangleShape  _fond_mp_config;
     sf::RectangleShape  _fond_mp_quitter;
 
+
+    sf::Text    _menu_config_retour;
+    sf::Text    _menu_config_haut;
+    sf::Text    _menu_config_bas;
+    sf::Text    _menu_config_droite;
+    sf::Text    _menu_config_gauche;
+    sf::Text    _menu_config_bombe;
+    sf::Text    _menu_config_special;
+
     sf::RectangleShape  _fond_mc_retour;
+    sf::RectangleShape  _fond_mc_haut;
+    sf::RectangleShape  _fond_mc_bas;
+    sf::RectangleShape  _fond_mc_gauche;
+    sf::RectangleShape  _fond_mc_droite;
+    sf::RectangleShape  _fond_mc_bombe;
+    sf::RectangleShape  _fond_mc_special;
 
     sf::Texture         fond_menu_picture;
 
