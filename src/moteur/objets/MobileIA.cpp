@@ -75,13 +75,17 @@ void MobileIA::blesser()
 
 void MobileIA::glacee()
 {
-    if (get_objet_souleve() != NULL && get_objet_souleve()->est_valide())
-        get_objet_souleve()->glacee();
+    if (_protection == 0)
+    {
+        if (get_objet_souleve() != NULL && get_objet_souleve()->est_valide())
+            get_objet_souleve()->glacee();
 
-    if(get_vitesse() - BOMBE_GLACEE_DELTA > IA_VIT_MIN)
-        set_vitesse(get_vitesse() - BOMBE_GLACEE_DELTA);
-    else
-        set_vitesse(IA_VIT_MIN);
+        if(get_vitesse() - BOMBE_GLACEE_DELTA > IA_VIT_MIN)
+            set_vitesse(get_vitesse() - BOMBE_GLACEE_DELTA);
+        else
+            set_vitesse(IA_VIT_MIN);
+        _protection = IA_PROTECTION;
+    }
 }
 
 const unsigned MobileIA::get_vies() const
