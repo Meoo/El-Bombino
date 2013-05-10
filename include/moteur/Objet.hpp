@@ -44,6 +44,8 @@ public:
 
     virtual void    blesser();
 
+    virtual void    glacee();
+
     virtual void    laisser_tomber_objet(Case * cse);
 
 protected:

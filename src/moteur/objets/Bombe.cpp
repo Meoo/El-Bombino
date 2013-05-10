@@ -86,3 +86,7 @@ void Bombe::blesser()
 
 
 // fin implementation class Bombe
+
+unsigned Bombe::get_puissance()
+{
+}

@@ -75,6 +75,9 @@ void Objet::laisser_tomber_objet(Case* cse)
 {
 }// laisser_tomber_objet()
 
+void Objet::glacee()
+{
+}
 
 void Objet::detruire()
 {

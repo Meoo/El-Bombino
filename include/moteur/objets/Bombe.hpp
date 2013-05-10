@@ -24,7 +24,7 @@ public:
                     Bombe(Mobile * porteur, unsigned timer, unsigned puissance);
     virtual         ~Bombe();
 
-    void            exploser();
+    virtual void            exploser();
 
     // Fonction d'affichage de Drawable
     virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
@@ -33,6 +33,7 @@ public:
 
     virtual void    blesser();
 
+    unsigned        get_puissance();
 };
 // class Bombe
 

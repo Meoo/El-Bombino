@@ -6,6 +6,7 @@
 
 #include <moteur/objets/Joueur.hpp>
 #include <moteur/objets/Bombe.hpp>
+#include <moteur/bombe/BombeGlacee.hpp>
 #include <moteur/Jeu.hpp>
 #include <moteur/Case.hpp>
 
@@ -110,6 +111,24 @@ void Joueur::mise_a_jour()
                 _case_deposer_objet = this->get_case();
                 _bombe_cooldown = BOMBE_COOLDOWN;
                 new Bombe(this, BOMBE_TIMER_DEFAULT, _puissance_bombe);
+            }
+        }
+    }
+
+
+
+    if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdSpecial()) && _bonus_bombe_special )
+    {
+        // Si le joueur ne porte pas d'objets
+        if (get_objet_souleve() == NULL)
+        {
+            // Petit cooldown
+            if (_bombe_cooldown == 0 && Jeu::instance().get_monde_courant().get_niveau_courant().get_bombes_actives().size() < _nb_bombes_simultanee)
+            {
+                // Alors il peut sortir une bombe
+                _case_deposer_objet = this->get_case();
+                _bombe_cooldown = BOMBE_COOLDOWN;
+                new BombeGlacee(this, BOMBE_TIMER_DEFAULT, _puissance_bombe);
             }
         }
     }
