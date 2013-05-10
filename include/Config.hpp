@@ -25,7 +25,7 @@ const unsigned      TILE_SIZE           = 48;
 
 // Flammes
 const unsigned      FEU_TIME_DEFAULT    = 25;               //!< En nombre d'affichages
-const sf::Color     FEU_COLOR_DEFAULT  (0xFF, 0xCC, 0xBB);  //!< Rouge légèrement orangé
+const sf::Color     FEU_COLOR_DEFAULT  (sf::Color(254, 27, 0));  //!< Rouge légèrement orangé
 
 // Bombe
 // > Timer
