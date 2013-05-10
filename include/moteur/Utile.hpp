@@ -14,6 +14,8 @@
 
 namespace nsUtil
 {
+    std::string convertInt(int number);
+
     std::string SFKeyToString(sf::Keyboard::Key keycode);
 }
 

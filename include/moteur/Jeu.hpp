@@ -86,6 +86,8 @@ public:
 
     void                press_pause();
 
+    void                press_touch(sf::Event::KeyEvent key);
+
     const Menu *        get_menu() const;
     Menu *              get_menu();
 

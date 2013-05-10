@@ -9,6 +9,8 @@
 #include <moteur/Jeu.hpp>
 #include <moteur/Case.hpp>
 
+#include <ConfigCMD.hpp>
+
 #include <SFML/Window.hpp>
 
 Joueur::Joueur(Case * cse) :

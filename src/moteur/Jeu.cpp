@@ -331,6 +331,12 @@ bool Jeu::get_bonus_bombe_special_joueur()
     return _bonus_bombe_special_joueur;
 }// get_bonus_bombe_special_joueur()
 
+void Jeu::press_touch(sf::Event::KeyEvent key)
+{
+    assert(_pret && _menu);
+
+    _menu->press_touch(key);
+}// press_touch()
 
 void Jeu::set_monde_courant(unsigned num)
 {

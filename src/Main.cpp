@@ -20,7 +20,7 @@ int main(int argc, char ** argv)
     Jeu::instance().charger();
 
 
-    unsigned timer_close = 500;
+    unsigned timer_close = 200;
 
     // Fenêtre
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
@@ -39,6 +39,9 @@ int main(int argc, char ** argv)
         sf::Event event;
         while (window.pollEvent(event))
         {
+            if((event.type == sf::Event::KeyPressed) && Jeu::instance().get_menu()->get_menu_type() == Menu::MENU_CONFIGURATION)
+                Jeu::instance().press_touch(event.key);
+
             if (event.type == sf::Event::Closed)
                 window.close();
 

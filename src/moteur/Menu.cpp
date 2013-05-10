@@ -11,6 +11,7 @@
 #include <moteur/Utile.hpp>
 
 #include <Config.hpp>
+#include <ConfigCMD.hpp>
 
 #include <cmath>
 #include <ctime>
@@ -140,6 +141,15 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _pause_frame(0)
     _fond_mc_special.setPosition(100, WINDOW_HEIGHT * 6/ 16);
     _fond_mc_special.setFillColor(sf::Color::White);
 
+
+    _menu_config_default = sf::Text("DEFAULT", Jeu::instance().get_default_font(),20);
+    _menu_config_default.setColor(sf::Color::Black);
+    _menu_config_default.setPosition(200, WINDOW_HEIGHT * 8/ 16);
+
+    _fond_mc_default = sf::RectangleShape(sf::Vector2f(_menu_config_default.getLocalBounds().width, _menu_config_default.getGlobalBounds().height * 2));
+    _fond_mc_default.setOrigin(_menu_config_default.getOrigin());
+    _fond_mc_default.setPosition(200, WINDOW_HEIGHT * 8/ 16);
+    _fond_mc_default.setFillColor(sf::Color::White);
 
     fond_menu_picture.loadFromFile(RC_FOLDER + RC_FONDMENU);
 
@@ -274,6 +284,8 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     sf::Text texte_haut;
     sf::Text texte_droite;
     sf::Text texte_gauche;
+    sf::Text texte_bombe;
+    sf::Text texte_special;
     switch (_menu_type) {
         case MENU_CONFIGURATION:
             //target.draw(sp_fond);
@@ -307,6 +319,24 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
             target.draw(_fond_mc_gauche);
             target.draw(_menu_config_gauche);
             target.draw(texte_gauche);
+
+            texte_bombe  = sf::Text(nsUtil::SFKeyToString(CMD_BOMBE),Jeu::instance().get_default_font(), 20);
+            texte_bombe.setColor(sf::Color::Red);
+            texte_bombe.setPosition(300, WINDOW_HEIGHT * 5/ 16);
+            target.draw(_fond_mc_bombe);
+            target.draw(_menu_config_bombe);
+            target.draw(texte_bombe);
+
+            texte_special  = sf::Text(nsUtil::SFKeyToString(CMD_SPECIAL),Jeu::instance().get_default_font(), 20);
+            texte_special.setColor(sf::Color::Red);
+            texte_special.setPosition(300, WINDOW_HEIGHT * 6/ 16);
+            target.draw(_fond_mc_special);
+            target.draw(_menu_config_special);
+            target.draw(texte_special);
+
+
+            target.draw(_fond_mc_default);
+            target.draw(_menu_config_default);
 
             target.draw(_fond_mc_retour);
             target.draw(_menu_config_retour);
@@ -369,7 +399,6 @@ void Menu::mise_a_jour()
     float a;
     switch (_menu_type) {
         case MENU_CONFIGURATION:
-
             break;
         case MENU_PAUSE:
              a = std::sin(_pause_frame++ * 0.015f) * 3.f;
@@ -407,6 +436,39 @@ void Menu::clic(int x, int y)
             if(_fond_mc_retour.getGlobalBounds().contains(x,y))
             {
                 active_menu(Menu::MENU_PRINCIPAL);
+            }
+            else if(_fond_mc_bas.getGlobalBounds().contains(x,y))
+            {
+                _mc_modif_bas = true;
+            }
+            else if(_fond_mc_bombe.getGlobalBounds().contains(x,y))
+            {
+                _mc_modif_bombe = true;
+            }
+            else if(_fond_mc_default.getGlobalBounds().contains(x,y))
+            {
+                CMD_BAS = CMD_BAS_DEFAULT;
+                CMD_BOMBE = CMD_BOMBE_DEFAULT;
+                CMD_DROITE = CMD_DROITE_DEFAULT;
+                CMD_GAUCHE = CMD_GAUCHE_DEFAULT;
+                CMD_HAUT = CMD_HAUT_DEFAULT;
+                CMD_SPECIAL = CMD_SPECIA_DEFAULTL;
+            }
+            else if (_fond_mc_droite.getGlobalBounds().contains(x,y))
+            {
+                _mc_modif_droite = true;
+            }
+            else if(_fond_mc_gauche.getGlobalBounds().contains(x,y))
+            {
+                _mc_modif_gauche = true;
+            }
+            else if(_fond_mc_haut.getGlobalBounds().contains(x,y))
+            {
+                _mc_modif_haut = true;
+            }
+            else if(_fond_mc_special.getGlobalBounds().contains(x,y))
+            {
+                _mc_modif_special = true;
             }
             break;
         case MENU_PAUSE:
@@ -519,6 +581,42 @@ Menu::menu_type Menu::get_menu_type()
     return _menu_type;
 }// get_menu_type()
 
+void Menu::press_touch(sf::Event::KeyEvent key)
+{
+    if(_menu_type == MENU_CONFIGURATION)
+    {
+        if(_mc_modif_bas)
+        {
+            CMD_BAS = key.code;
+            _mc_modif_bas = false;
+        }
+        else if (_mc_modif_bombe)
+        {
+            CMD_BOMBE = key.code;
+            _mc_modif_bombe = false;
+        }
+        else if(_mc_modif_droite)
+        {
+            CMD_DROITE = key.code;
+            _mc_modif_droite = false;
+        }
+        else if(_mc_modif_gauche)
+        {
+            CMD_GAUCHE = key.code;
+            _mc_modif_gauche = false;
+        }
+        else if(_mc_modif_haut)
+        {
+            CMD_HAUT = key.code;
+            _mc_modif_haut = false;
+        }
+        else if(_mc_modif_special)
+        {
+            CMD_SPECIAL = key.code;
+            _mc_modif_special = false;
+        }
+    }
+}
 
 void Menu::active_menu(Menu::menu_type type)
 {

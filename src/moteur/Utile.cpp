@@ -10,9 +10,43 @@
 #include <SFML/Window/Keyboard.hpp>
 
 #include <string>
+#include <sstream>
+
+std::string nsUtil::convertInt(int number)
+{
+   std::stringstream ss;//create a stringstream
+   ss << number;//add number to the stream
+   return ss.str();//return a string with the contents of the stream
+}
+
 
 std::string nsUtil::SFKeyToString(sf::Keyboard::Key keycode) {
     switch (keycode) {
+        case sf::Keyboard::A: return "A"; break;
+        case sf::Keyboard::B: return "B"; break;
+        case sf::Keyboard::C: return "C"; break;
+        case sf::Keyboard::D: return "D"; break;
+        case sf::Keyboard::E: return "E"; break;
+        case sf::Keyboard::F: return "F"; break;
+        case sf::Keyboard::G: return "G"; break;
+        case sf::Keyboard::H: return "H"; break;
+        case sf::Keyboard::I: return "I"; break;
+        case sf::Keyboard::J: return "J"; break;
+        case sf::Keyboard::K: return "K"; break;
+        case sf::Keyboard::L: return "L"; break;
+        case sf::Keyboard::M: return "M"; break;
+        case sf::Keyboard::N: return "N"; break;
+        case sf::Keyboard::O: return "O"; break;
+        case sf::Keyboard::P: return "P"; break;
+        case sf::Keyboard::Q: return "Q"; break;
+        case sf::Keyboard::R: return "R"; break;
+        case sf::Keyboard::S: return "S"; break;
+        case sf::Keyboard::T: return "T"; break;
+        case sf::Keyboard::V: return "V"; break;
+        case sf::Keyboard::W: return "W"; break;
+        case sf::Keyboard::X: return "X"; break;
+        case sf::Keyboard::Y: return "Y"; break;
+        case sf::Keyboard::Z: return "Z"; break;
         case sf::Keyboard::Escape: return"Escape";
         case sf::Keyboard::LControl: return"LControl"; break;
         case sf::Keyboard::LShift: return"LShift"; break;
@@ -76,9 +110,9 @@ std::string nsUtil::SFKeyToString(sf::Keyboard::Key keycode) {
         case sf::Keyboard::F13: return"F13"; break;
         case sf::Keyboard::F14: return"F14"; break;
         case sf::Keyboard::F15: return"F15"; break;
-        case sf::Keyboard::Pause: return"Paues"; break;
+        case sf::Keyboard::Pause: return"Pause"; break;
 
         default:
-            return "";
+            return convertInt(int(keycode + 'A')).c_str();
     }
 }
