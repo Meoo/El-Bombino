@@ -34,6 +34,10 @@ public:
     virtual void    blesser();
 
     unsigned        get_puissance();
+
+protected:
+    sf::Sprite &    get_sprite();
+
 };
 // class Bombe
 

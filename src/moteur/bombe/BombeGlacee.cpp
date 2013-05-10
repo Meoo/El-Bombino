@@ -11,6 +11,7 @@
 
 BombeGlacee::BombeGlacee(Mobile* porteur, unsigned timer, unsigned puissance): Bombe(porteur, timer, puissance)
 {
+    get_sprite().setColor(sf::Color::Blue);
 }
 
 BombeGlacee::~BombeGlacee()

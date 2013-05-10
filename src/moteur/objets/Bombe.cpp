@@ -90,4 +90,9 @@ void Bombe::blesser()
 unsigned Bombe::get_puissance()
 {
     return _puissance;
-}// gat_puissance()
+} // gat_puissance()
+
+sf::Sprite & Bombe::get_sprite()
+{
+    return _sprite;
+}
