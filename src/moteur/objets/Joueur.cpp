@@ -14,7 +14,7 @@
 #include <SFML/Window.hpp>
 
 Joueur::Joueur(Case * cse) :
-        Mobile(cse, Jeu::instance().get_vitesse_joueur()), _sprite(Jeu::instance().get_texture("joueur")),
+        Mobile(cse, Jeu::instance().get_vitesse_joueur()), _sprite(Jeu::instance().get_texture("joueur_bas")),
         _case_deposer_objet(NULL),_bombe_cooldown(BOMBE_COOLDOWN), _objet_souleve_cooldown(OBJET_SOULEVE_COOLDOWN),
         _nb_bombes_simultanee(Jeu::instance().get_nb_bombe_joueur()), _puissance_bombe(Jeu::instance().get_puissance_joueur()),
         _vies(Jeu::instance().get_vie_joueur()), _clignote(false), _protection(0), _bonus_soulevable(Jeu::instance().get_bonus_soulevable_joueur()),
@@ -86,16 +86,37 @@ void Joueur::mise_a_jour()
     if (!est_en_mouvement())
     {
         if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdHaut()))
+        {
+            _sprite.setTexture(Jeu::instance().get_texture("joueur_haut"));
+            _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
+                    _sprite.getTexture()->getSize().y
+                            - _sprite.getTexture()->getSize().x / 2);
             bouger(HAUT);
-
+        }
         else if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdBas()))
+        {
+            _sprite.setTexture(Jeu::instance().get_texture("joueur_bas"));
+            _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
+                    _sprite.getTexture()->getSize().y
+                            - _sprite.getTexture()->getSize().x / 2);
             bouger(BAS);
-
+        }
         else if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdGauche()))
+        {
+            _sprite.setTexture(Jeu::instance().get_texture("joueur_gauche"));
+            _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
+                    _sprite.getTexture()->getSize().y
+                            - _sprite.getTexture()->getSize().x / 2);
             bouger(GAUCHE);
-
+        }
         else if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdDroite()))
+        {
+            _sprite.setTexture(Jeu::instance().get_texture("joueur_droite"));
+            _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
+                    _sprite.getTexture()->getSize().y
+                            - _sprite.getTexture()->getSize().x / 2);
             bouger(DROITE);
+        }
     }
 
     // Gérer charger une bombe
