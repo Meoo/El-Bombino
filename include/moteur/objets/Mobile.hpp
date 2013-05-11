@@ -65,6 +65,8 @@ public:
     virtual void        appliquer_bonus(Bonus::bonus_t type_bonus);
 
     virtual bool        est_joueur();
+
+    virtual void        toucher(Mobile * autre);
 };
 // class Mobile
 

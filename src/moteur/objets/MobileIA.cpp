@@ -88,6 +88,7 @@ void MobileIA::glacee()
     }
 }
 
+
 const unsigned MobileIA::get_vies() const
 {
     return _vies;

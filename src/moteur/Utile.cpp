@@ -83,7 +83,7 @@ std::string nsUtil::SFKeyToString(sf::Keyboard::Key keycode) {
         case sf::Keyboard::Divide: return"/"; break;
         case sf::Keyboard::Left: return"Left"; break;
         case sf::Keyboard::Right: return"Right"; break;
-        case sf::Keyboard::Up: return"UP"; break;
+        case sf::Keyboard::Up: return"Up"; break;
         case sf::Keyboard::Down: return"Down"; break;
         case sf::Keyboard::Numpad0: return"NP 0"; break;
         case sf::Keyboard::Numpad1: return"NP 1"; break;

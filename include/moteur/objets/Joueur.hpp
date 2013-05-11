@@ -65,6 +65,8 @@ public:
     const bool          get_bonus_bombe_spe() const;
     bool                get_bonus_bombe_spe();
 
+    virtual void        toucher(Mobile * autre);
+
 };
 // class Joueur
 

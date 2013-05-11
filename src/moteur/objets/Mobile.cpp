@@ -54,8 +54,8 @@ void Mobile::bouger(Direction dir)
     case DROITE: cse = get_case()->get_case_droite(); break;
     }
 
-    Bonus *bonus = dynamic_cast<Bonus *> (cse->get_objet());
-    if ( cse->est_praticable() && (cse->get_objet() == NULL || bonus))
+    Soulevable * soul = dynamic_cast<Soulevable *> (cse->get_objet());
+    if (cse->est_praticable() && soul == NULL)
     {
         _bouge = true;
     }
@@ -131,6 +131,7 @@ void Mobile::mise_a_jour()
                 }
 
                 Bonus * bonus = dynamic_cast<Bonus *> (cse->get_objet());
+                Mobile * mobile = dynamic_cast<Mobile *> (cse->get_objet());
 
                 if (cse->est_praticable() && cse->get_objet() == NULL)
                 {
@@ -151,6 +152,13 @@ void Mobile::mise_a_jour()
                     case BAS: _direction = HAUT; break;
                     case GAUCHE: _direction = DROITE; break;
                     case DROITE: _direction = GAUCHE; break;
+                    }
+
+                    if (mobile)
+                    {
+                        // C'est un autre mobile! Ils se sont touchés!
+                        toucher(mobile);
+                        mobile->toucher(this);
                     }
                 }
             }
@@ -195,6 +203,7 @@ void Mobile::glacee()
 
 }// glacee()
 
+
 void Mobile::appliquer_bonus(Bonus::bonus_t type_bonus)
 {
 
@@ -205,6 +214,11 @@ bool Mobile::est_joueur()
 {
     return false;
 }// est_joueur()
+
+
+void Mobile::toucher(Mobile* autre)
+{
+}
 
 
 // fin implementation class Mobile
