@@ -90,7 +90,8 @@ const unsigned      IDIOT_PUISSANCE_DELTA       = 1;
 const unsigned      IDIOT_PUISSANCE_MIN         = 1;
 const unsigned      IDIOT_PUISSANCE_MAX         = 2;
 const unsigned      IDIOT_VISIBILITE_DEFAULT    = 3;
-const unsigned      IDIOT_COLDOWN_ATT           = 500;
+const unsigned      IDIOT_COLDOWN_ATT           = 250;
+const unsigned      IDIOT_COLDOWN_ATT_RAND      = 250;
 
 
 // Ressources

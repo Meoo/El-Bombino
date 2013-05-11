@@ -68,83 +68,32 @@ void Idiot::appliquer_bonus(Bonus::bonus_t type_bonus)
 
 void Idiot::attaquer_joueur()
 {
-    //
-    //Attaque
-    //
-    //#TODO
-    Case * gauche = get_case()->get_case_gauche();
-    Joueur *joueur_gauche;
-    bool gauche_att = false;
-    for(unsigned i = 0; i < _visibilite; ++i)
+    if((rand() % 10 == 0) && get_direction() != Mobile::GAUCHE)
     {
-        joueur_gauche = dynamic_cast<Joueur *> (gauche->get_objet());
-        if(gauche->est_praticable())
-        {
-            gauche_att = gauche_att || joueur_gauche;
-            gauche = gauche->get_case_gauche();
-        }
-    }
-    if(gauche_att)
-    {
-        _coldown_att = IDIOT_COLDOWN_ATT;
-        get_case()->enflammer_direction(Case::GAUCHE, _puissance);
+        _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
+        get_case()->enflammer_direction(Case::GAUCHE, _puissance + (rand() % 10 == 0 ? 1 : 0));
+        return;
     }
 
-
-    Case * droite = get_case()->get_case_droite();
-    Joueur *joueur_droite;
-    bool droite_att = false;
-    for(unsigned i = 0; i < _visibilite; ++i)
+    if((rand() % 10 == 0) && get_direction() != Mobile::DROITE)
     {
-        joueur_droite = dynamic_cast<Joueur *> (droite->get_objet());
-        if(droite->est_praticable())
-        {
-            droite_att = droite_att || joueur_droite;
-            droite = droite->get_case_droite();
-        }
-    }
-    if(droite_att)
-    {
-        get_case()->enflammer_direction(Case::DROITE,_puissance);
-        _coldown_att = IDIOT_COLDOWN_ATT;
+        get_case()->enflammer_direction(Case::DROITE,_puissance + (rand() % 10 == 0 ? 1 : 0));
+        _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
+        return;
     }
 
-
-    Case * bas = get_case()->get_case_bas();
-    Joueur *joueur_bas;
-    bool bas_att = false;
-    for(unsigned i = 0; i < _visibilite; ++i)
+    if((rand() % 10 == 0) && get_direction() != Mobile::BAS)
     {
-        joueur_bas = dynamic_cast<Joueur *> (bas->get_objet());
-        if(bas->est_praticable())
-        {
-            bas_att = bas_att || joueur_bas;
-            bas = bas->get_case_bas();
-        }
-    }
-    if(bas_att)
-    {
-        get_case()->enflammer_direction(Case::BAS, _puissance);
-        _coldown_att = IDIOT_COLDOWN_ATT;
+        get_case()->enflammer_direction(Case::BAS, _puissance + (rand() % 10 == 0 ? 1 : 0));
+        _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
+        return;
     }
 
-
-    Case * haut = get_case()->get_case_haut();
-    Joueur *joueur_haut;
-    bool haut_att = false;
-    for(unsigned i = 0; i < _visibilite; ++i)
+    if((rand() % 10 == 0) && get_direction() != Mobile::HAUT)
     {
-        joueur_haut = dynamic_cast<Joueur *> (haut->get_objet());
-        if(haut->est_praticable())
-        {
-            haut_att = haut_att || (joueur_haut);
-            haut = haut->get_case_haut();
-        }
-    }
-    if(haut_att)
-    {
-        _coldown_att = IDIOT_COLDOWN_ATT;
-        get_case()->enflammer_direction(Case::HAUT, _puissance);
+        get_case()->enflammer_direction(Case::HAUT, _puissance + (rand() % 10 == 0 ? 1 : 0));
+        _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
+        return;
     }
 }// attaquer_joueur()
 
