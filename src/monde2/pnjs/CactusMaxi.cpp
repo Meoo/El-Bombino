@@ -15,7 +15,7 @@
 
 #include <vector>
 
-CactusMaxi::CactusMaxi(Case * cse) : MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("cactusmaxi")), _derniere_direction((nsUtil::direction_t) -1), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT)
+CactusMaxi::CactusMaxi(Case * cse) : MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("cactusmaxi")), _derniere_direction((nsUtil::direction_t) -1), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT), _acces_joueur(false)
 {
 }
 
@@ -104,13 +104,22 @@ void CactusMaxi::mise_a_jour_ia()
     unsigned max = -1;
     if(get_case()->get_case_info()._distance < max)
     {
-        set_vitesse(  get_vitesse() * 3.0);
+        if(!_acces_joueur)
+        {
+            _acces_joueur = true;
+            set_vitesse(  get_vitesse() * 3.0);
+        }
         _derniere_direction = get_case()->get_case_info()._direction;
         bouger(_derniere_direction);
     }
     else
     {
-        set_vitesse( get_vitesse() / 3.0);
+        if(_acces_joueur)
+        {
+            _acces_joueur = false;
+            set_vitesse( get_vitesse() / 3.0);
+        }
+
         //
         //Deplacement
         //

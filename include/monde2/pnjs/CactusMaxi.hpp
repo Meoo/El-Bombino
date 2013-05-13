@@ -19,6 +19,7 @@ private:
     unsigned    _coldown_att;
     unsigned    _visibilite;
     unsigned    _puissance;
+    bool        _acces_joueur;
 
 public:
     CactusMaxi(Case * cse);
