@@ -90,6 +90,15 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
     }
 }// draw()
 
+Case::caseinfo_t & Case::get_case_info()
+{
+    return _case_info;
+}
+
+const Case::caseinfo_t & Case::get_case_info() const
+{
+    return _case_info;
+}
 
 void Case::set_objet(Objet * objet)
 {

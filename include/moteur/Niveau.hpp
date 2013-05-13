@@ -75,6 +75,8 @@ public:
 
     virtual void        mise_a_jour();
 
+    //protected :
+    void                genere_infocase(Case *cse, int distance = 0);
 };
 // class Niveau
 

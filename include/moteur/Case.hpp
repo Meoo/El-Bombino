@@ -30,6 +30,12 @@ public:
     {
         HAUT,BAS,DROITE,GAUCHE,
     } direction_t;
+
+    typedef struct caseinfo {
+        int             _distance;
+        direction_t     _direction;
+        int             _danger_explosion;
+    } caseinfo_t;
 private:
 
     Objet *         _objet;
@@ -39,6 +45,7 @@ private:
     sf::Color       _feu_couleur;
     objet_effet_t   _feu_effet;
 
+    caseinfo_t      _case_info;
 
     const unsigned  _x;
     const unsigned  _y;
@@ -64,6 +71,9 @@ public:
 
     Case *          get_case_bas();
     const Case *    get_case_bas() const;
+
+    caseinfo_t &  get_case_info();
+    const caseinfo_t &  get_case_info() const;
 
     /// Renvoyer false si les flammes ne passe pas au travers de la case
     virtual bool    enflammer(unsigned          duree   = FEU_TIME_DEFAULT,
