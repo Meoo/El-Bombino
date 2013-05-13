@@ -368,7 +368,8 @@ void Niveau::mise_a_jour()
 
 void Niveau::genere_infocase(Case* cse, unsigned distance /*= 0*/, Case::direction_t direction /*= Case::ORIGINE*/)
 {
-    if(!cse->est_praticable())return;
+    Soulevable * soulevable = dynamic_cast<Soulevable *> (cse->get_objet());
+    if(!cse->est_praticable()  || soulevable)return;
     if(_joueur->get_case() == cse || cse->get_case_info()._distance > distance)
     {
         cse->get_case_info()._distance = distance;
