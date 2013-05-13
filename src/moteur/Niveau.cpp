@@ -315,6 +315,15 @@ void Niveau::mise_a_jour()
 {
     assert(_pret);
 
+    for (unsigned i = 0; i < _largeur * _hauteur; ++i)
+    {
+        _cases[i]->get_case_info()._danger_explosion = 200;
+        _cases[i]->get_case_info()._distance = 200;
+        _cases[i]->get_case_info()._direction = Case::ORIGINE;
+    }
+
+    if(_joueur != NULL)genere_infocase(_joueur->get_case());
+
     typedef std::vector<Objet *> obj_vec_t;
     obj_vec_t objs;
 
@@ -332,6 +341,8 @@ void Niveau::mise_a_jour()
     // Mettre à jour les objets
     for (obj_vec_t::iterator i = objs.begin(); i != objs.end(); ++i)
         (*i)->mise_a_jour();
+
+    for(std::list<MobileIA *>::iterator i = _pnjs.begin(); i != _pnjs.end(); ++i)LOG((*i)->get_case()->get_case_info()._distance);
 
     if(_pnjs.size() == 0 && _joueur)
     {
@@ -354,3 +365,43 @@ void Niveau::mise_a_jour()
 
 
 // fin implementation class Niveau
+
+void Niveau::genere_infocase(Case* cse, int distance /*= 0*/, Case::direction_t direction /*= Case::ORIGINE*/)
+{
+    if(!cse->est_praticable())return;
+    if(_joueur->get_case() == cse || cse->get_case_info()._distance > distance)
+    {
+        cse->get_case_info()._distance = distance;
+        cse->get_case_info()._direction = direction;
+        switch (direction) {
+            case Case::GAUCHE:
+                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, Case::HAUT);
+                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, Case::GAUCHE);
+                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, Case::BAS);
+                break;
+            case Case::DROITE:
+                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, Case::HAUT);
+                genere_infocase(cse->get_case_gauche(), cse->get_case_info()._distance+1, Case::DROITE);
+                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, Case::BAS);
+                break;
+            case Case::BAS:
+                genere_infocase(cse->get_case_gauche(), cse->get_case_info()._distance+1, Case::DROITE);
+                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, Case::GAUCHE);
+                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, Case::BAS);
+                break;
+            case Case::HAUT:
+                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, Case::HAUT);
+                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, Case::GAUCHE);
+                genere_infocase(cse->get_case_gauche(),cse->get_case_info()._distance+1, Case::DROITE);
+                break;
+            case Case::ORIGINE:
+                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, Case::BAS);
+                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, Case::HAUT);
+                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, Case::GAUCHE);
+                genere_infocase(cse->get_case_gauche(),cse->get_case_info()._distance+1, Case::DROITE);
+            default:
+
+                break;
+        }
+    }
+}// genere_infocase()

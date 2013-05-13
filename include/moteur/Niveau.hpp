@@ -8,6 +8,7 @@
 #define _NIVEAU_HPP_
 
 #include "../Config.hpp"
+#include <moteur/Case.hpp>
 
 #include <SFML/Graphics.hpp>
 #include <list>
@@ -76,7 +77,7 @@ public:
     virtual void        mise_a_jour();
 
     //protected :
-    void                genere_infocase(Case *cse, int distance = 0);
+    void                genere_infocase(Case *cse, int distance = 0, Case::direction_t direction = Case::ORIGINE);
 };
 // class Niveau
 

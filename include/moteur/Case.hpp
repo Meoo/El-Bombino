@@ -28,7 +28,7 @@ class Case : public sf::Drawable
 public:
     typedef enum direction
     {
-        HAUT,BAS,DROITE,GAUCHE,
+        HAUT,BAS,DROITE,GAUCHE,ORIGINE,
     } direction_t;
 
     typedef struct caseinfo {
