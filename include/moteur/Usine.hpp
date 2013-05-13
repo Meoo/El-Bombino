@@ -12,6 +12,10 @@
 class Case;
 class Objet;
 
+
+/**
+ * @brief
+ */
 namespace Usine
 {
     Case * creer_case(const std::string & classe_case, unsigned x, unsigned y, const std::string & texture_case);

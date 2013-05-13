@@ -9,6 +9,10 @@
 
 #include <SFML/Graphics.hpp>
 
+
+/**
+ * @brief
+ */
 class Menu : public sf::Drawable
 {
 public:

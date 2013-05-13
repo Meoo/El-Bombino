@@ -1,8 +1,7 @@
-/*
- * BombeGlacee.cpp
- *
- *  Created on: 10 mai 2013
- *      Author: Sanpas
+/**
+ * @file   BombeGlacee.cpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #include <moteur/bombe/BombeGlacee.hpp>
@@ -30,3 +29,7 @@ void BombeGlacee::exploser()
     get_case()->enflammer_direction(nsUtil::GAUCHE, get_puissance(),  FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
     get_case()->enflammer_direction(nsUtil::DROITE, get_puissance(),  FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
 }// exploser()
+
+
+
+// fin implementation Class BombeGlacee

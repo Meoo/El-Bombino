@@ -11,6 +11,10 @@
 
 #include <SFML/Graphics.hpp>
 
+
+/**
+ * @brief
+ */
 namespace nsUtil
 {
     std::string convertInt(int number);
@@ -21,6 +25,6 @@ namespace nsUtil
         HAUT,BAS,DROITE,GAUCHE,ORIGINE,
     } direction_t;
 }
-
+// namespace Utile
 
 #endif /* UTILE_HPP_ */

@@ -390,9 +390,13 @@ void    Joueur::glacee()
     }
 }
 
-// fin implementation class Joueur
 
 void Joueur::toucher(Mobile* autre)
 {
     blesser();
-}
+}// toucher()
+
+
+// fin implementation class Joueur
+
+

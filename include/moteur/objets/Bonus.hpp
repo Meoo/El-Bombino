@@ -11,6 +11,10 @@
 
 class Mobile;
 
+
+/**
+ * @brief
+ */
 class Bonus : public Immobile
 {
 public:

@@ -9,6 +9,10 @@
 
 #include <SFML/Graphics.hpp>
 
+
+/**
+ * @brief
+ */
 class ConfigCMD
 {
 private:
@@ -87,7 +91,7 @@ public:
 
 
 };
-
+// class ConfigCMD
 
 
 #endif /* CONFIGCMD_HPP_ */

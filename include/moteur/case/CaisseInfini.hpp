@@ -7,6 +7,10 @@
 #ifndef CAISSEINFINI_HPP_
 #define CAISSEINFINI_HPP_
 
+
+/**
+ * @brief
+ */
 class CaisseInfini : public Case
 {
         unsigned    _timer;

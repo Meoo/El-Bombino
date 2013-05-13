@@ -9,6 +9,10 @@
 
 #include "../Exception.hpp"
 
+
+/**
+ * @brief
+ */
 class ExceptionRessource: public Exception
 {
 public:

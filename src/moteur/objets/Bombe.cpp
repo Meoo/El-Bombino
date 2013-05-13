@@ -85,14 +85,15 @@ void Bombe::blesser()
 }// blesser()
 
 
-// fin implementation class Bombe
-
 unsigned Bombe::get_puissance()
 {
     return _puissance;
-} // gat_puissance()
+} // get_puissance()
 
 sf::Sprite & Bombe::get_sprite()
 {
     return _sprite;
-}
+}// get_sprite()
+
+
+// fin implementation class Bombe

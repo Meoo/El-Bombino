@@ -1,8 +1,7 @@
-/*
- * BombeGlacee.hpp
- *
- *  Created on: 10 mai 2013
- *      Author: Sanpas
+/**
+ * @file   BombeGlacee.hpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef BOMBEGLACEE_HPP_
@@ -10,6 +9,9 @@
 
 #include <moteur/objets/Bombe.hpp>
 
+/**
+ * @brief
+ */
 class BombeGlacee: public Bombe
 {
 public:
@@ -20,6 +22,6 @@ public:
 
 
 };
-
+// class BombeGlacee
 
 #endif /* BOMBEGLACEE_HPP_ */

@@ -4,9 +4,6 @@
  * @author Pascal-Pierre Sanchez-Carrion
  */
 
-
-
-
 #include <monde2/pnjs/CactusMini.hpp>
 #include <moteur/Jeu.hpp>
 #include <moteur/Case.hpp>

@@ -9,6 +9,10 @@
 
 #include "Soulevable.hpp"
 
+
+/**
+ * @brief
+ */
 class Bombe : public Soulevable
 {
 private:

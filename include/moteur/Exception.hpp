@@ -11,6 +11,10 @@
 
 #include <exception>
 
+
+/**
+ * @brief
+ */
 class Exception: public std::exception
 {
 private:

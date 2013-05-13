@@ -218,7 +218,7 @@ bool Mobile::est_joueur()
 
 void Mobile::toucher(Mobile* autre)
 {
-}
+}// toucher()
 
 
 // fin implementation class Mobile
