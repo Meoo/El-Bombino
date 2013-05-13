@@ -317,8 +317,8 @@ void Niveau::mise_a_jour()
 
     for (unsigned i = 0; i < _largeur * _hauteur; ++i)
     {
-        _cases[i]->get_case_info()._danger_explosion = 200;
-        _cases[i]->get_case_info()._distance = 200;
+        _cases[i]->get_case_info()._danger_explosion = -1;
+        _cases[i]->get_case_info()._distance = -1;
         _cases[i]->get_case_info()._direction = Case::ORIGINE;
     }
 
@@ -366,7 +366,7 @@ void Niveau::mise_a_jour()
 
 // fin implementation class Niveau
 
-void Niveau::genere_infocase(Case* cse, int distance /*= 0*/, Case::direction_t direction /*= Case::ORIGINE*/)
+void Niveau::genere_infocase(Case* cse, unsigned distance /*= 0*/, Case::direction_t direction /*= Case::ORIGINE*/)
 {
     if(!cse->est_praticable())return;
     if(_joueur->get_case() == cse || cse->get_case_info()._distance > distance)

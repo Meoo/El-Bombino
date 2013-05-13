@@ -32,9 +32,9 @@ public:
     } direction_t;
 
     typedef struct caseinfo {
-        int             _distance;
+        unsigned             _distance;
         direction_t     _direction;
-        int             _danger_explosion;
+        unsigned             _danger_explosion;
     } caseinfo_t;
 private:
 
