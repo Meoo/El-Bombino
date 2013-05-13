@@ -10,7 +10,7 @@
 #include <moteur/objets/Bonus.hpp>
 
 Mobile::Mobile(Case * cse, float vitesse) :
-        Objet(cse), _objet_souleve(NULL), _vitesse(vitesse), _direction(BAS), _bouge(
+        Objet(cse), _objet_souleve(NULL), _vitesse(vitesse), _direction(nsUtil::BAS), _bouge(
                 false), _deplacement(0), _position_ecran(
                 cse->get_x() * TILE_SIZE + TILE_SIZE / 2,
                 cse->get_y() * TILE_SIZE + TILE_SIZE / 2), _change_case(false)
@@ -38,7 +38,7 @@ const Soulevable * Mobile::get_objet_souleve() const
 }// get_objet_souleve()
 
 
-void Mobile::bouger(Direction dir)
+void Mobile::bouger(nsUtil::direction_t dir)
 {
     if (_bouge)
         return; // TODO assert?
@@ -48,10 +48,10 @@ void Mobile::bouger(Direction dir)
     Case * cse = NULL;
     switch (_direction)
     {
-    case HAUT: cse = get_case()->get_case_haut(); break;
-    case BAS: cse = get_case()->get_case_bas(); break;
-    case GAUCHE: cse = get_case()->get_case_gauche(); break;
-    case DROITE: cse = get_case()->get_case_droite(); break;
+    case nsUtil::HAUT: cse = get_case()->get_case_haut(); break;
+    case nsUtil::BAS: cse = get_case()->get_case_bas(); break;
+    case nsUtil::GAUCHE: cse = get_case()->get_case_gauche(); break;
+    case nsUtil::DROITE: cse = get_case()->get_case_droite(); break;
     }
 
     Soulevable * soul = dynamic_cast<Soulevable *> (cse->get_objet());
@@ -81,7 +81,7 @@ void Mobile::set_vitesse(float vitesse)
 }// set_vitesse()
 
 
-Mobile::Direction Mobile::get_direction() const
+nsUtil::direction_t Mobile::get_direction() const
 {
     return _direction;
 }// get_direction()
@@ -110,10 +110,10 @@ void Mobile::mise_a_jour()
             // Bouger la position écran
             switch (_direction)
             {
-            case HAUT: _position_ecran.y -= _vitesse; break;
-            case BAS: _position_ecran.y += _vitesse; break;
-            case GAUCHE: _position_ecran.x -= _vitesse; break;
-            case DROITE: _position_ecran.x += _vitesse; break;
+            case nsUtil::HAUT: _position_ecran.y -= _vitesse; break;
+            case nsUtil::BAS: _position_ecran.y += _vitesse; break;
+            case nsUtil::GAUCHE: _position_ecran.x -= _vitesse; break;
+            case nsUtil::DROITE: _position_ecran.x += _vitesse; break;
             }
 
             // Changer de case à la moitié du déplacement
@@ -124,10 +124,10 @@ void Mobile::mise_a_jour()
                 Case * cse = NULL;
                 switch (_direction)
                 {
-                case HAUT: cse = get_case()->get_case_haut(); break;
-                case BAS: cse = get_case()->get_case_bas(); break;
-                case GAUCHE: cse = get_case()->get_case_gauche(); break;
-                case DROITE: cse = get_case()->get_case_droite(); break;
+                case nsUtil::HAUT: cse = get_case()->get_case_haut(); break;
+                case nsUtil::BAS: cse = get_case()->get_case_bas(); break;
+                case nsUtil::GAUCHE: cse = get_case()->get_case_gauche(); break;
+                case nsUtil::DROITE: cse = get_case()->get_case_droite(); break;
                 }
 
                 Bonus * bonus = dynamic_cast<Bonus *> (cse->get_objet());
@@ -148,10 +148,10 @@ void Mobile::mise_a_jour()
                     // Un objet est apparu entre temps, demi-tour!
                     switch (_direction)
                     {
-                    case HAUT: _direction = BAS; break;
-                    case BAS: _direction = HAUT; break;
-                    case GAUCHE: _direction = DROITE; break;
-                    case DROITE: _direction = GAUCHE; break;
+                    case nsUtil::HAUT: _direction = nsUtil::BAS; break;
+                    case nsUtil::BAS: _direction = nsUtil::HAUT; break;
+                    case nsUtil::GAUCHE: _direction = nsUtil::DROITE; break;
+                    case nsUtil::DROITE: _direction = nsUtil::GAUCHE; break;
                     }
 
                     if (mobile)

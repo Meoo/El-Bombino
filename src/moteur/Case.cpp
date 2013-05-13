@@ -93,12 +93,12 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
 Case::caseinfo_t & Case::get_case_info()
 {
     return _case_info;
-}
+}// get_case_info()
 
 const Case::caseinfo_t & Case::get_case_info() const
 {
     return _case_info;
-}
+}// get_case_info()
 
 void Case::set_objet(Objet * objet)
 {
@@ -199,7 +199,7 @@ const Case * Case::get_case_bas() const
 }// get_case_bas()
 
 
-void    Case::enflammer_direction( direction_t direction,
+void    Case::enflammer_direction( nsUtil::direction_t direction,
                                         unsigned    puissance,
                                         unsigned            duree   /*= FEU_TIME_DEFAULT*/,
                                         const sf::Color &   couleur /*= FEU_COLOR_DEFAULT*/,
@@ -212,7 +212,7 @@ void    Case::enflammer_direction( direction_t direction,
     bool r_bas = true, r_haut = true, r_droite = true, r_gauche = true;
 
     switch (direction) {
-        case Case::HAUT:
+        case nsUtil::HAUT:
             for (unsigned i = 1; i <= puissance; ++i)
             {
                 if(haut->est_praticable() && r_haut)
@@ -222,7 +222,7 @@ void    Case::enflammer_direction( direction_t direction,
                 }
             }
             break;
-        case Case::BAS:
+        case nsUtil::BAS:
             for (unsigned i = 1; i <= puissance; ++i)
             {
                 if(bas->est_praticable() && r_bas)
@@ -232,7 +232,7 @@ void    Case::enflammer_direction( direction_t direction,
                 }
             }
             break;
-        case Case::DROITE:
+        case nsUtil::DROITE:
             for (unsigned i = 1; i <= puissance; ++i)
             {
                 if(droite->est_praticable() && r_droite)
@@ -242,7 +242,7 @@ void    Case::enflammer_direction( direction_t direction,
                 }
             }
             break;
-        case Case::GAUCHE:
+        case nsUtil::GAUCHE:
             for (unsigned i = 1; i <= puissance; ++i)
             {
                 if(gauche->est_praticable() && r_gauche)

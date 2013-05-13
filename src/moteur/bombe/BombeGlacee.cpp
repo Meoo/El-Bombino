@@ -25,8 +25,8 @@ void BombeGlacee::exploser()
     //Faire exploser la bombe
     detruire();
     get_case()->enflammer(FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
-    get_case()->enflammer_direction(Case::HAUT, get_puissance(), FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
-    get_case()->enflammer_direction(Case::BAS, get_puissance(),  FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
-    get_case()->enflammer_direction(Case::GAUCHE, get_puissance(),  FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
-    get_case()->enflammer_direction(Case::DROITE, get_puissance(),  FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
+    get_case()->enflammer_direction(nsUtil::HAUT, get_puissance(), FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
+    get_case()->enflammer_direction(nsUtil::BAS, get_puissance(),  FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
+    get_case()->enflammer_direction(nsUtil::GAUCHE, get_puissance(),  FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
+    get_case()->enflammer_direction(nsUtil::DROITE, get_puissance(),  FEU_TIME_DEFAULT, sf::Color(37, 253, 233), &Objet::glacee);
 }// exploser()

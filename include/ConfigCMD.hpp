@@ -1,8 +1,7 @@
-/*
- * ConfigCMD.hpp
- *
- *  Created on: 10 mai 2013
- *      Author: Sanpas
+/**
+ * @file   ConfigCMD.hpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef CONFIGCMD_HPP_

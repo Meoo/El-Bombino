@@ -1,8 +1,7 @@
-/*
- * Utile.cpp
- *
- *  Created on: 10 mai 2013
- *      Author: Sanpas
+/**
+ * @file   Utile.cpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #include <moteur/Utile.hpp>

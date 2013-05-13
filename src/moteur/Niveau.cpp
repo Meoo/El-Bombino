@@ -319,7 +319,7 @@ void Niveau::mise_a_jour()
     {
         _cases[i]->get_case_info()._danger_explosion = -1;
         _cases[i]->get_case_info()._distance = -1;
-        _cases[i]->get_case_info()._direction = Case::ORIGINE;
+        _cases[i]->get_case_info()._direction = nsUtil::ORIGINE;
     }
 
     if(_joueur != NULL)genere_infocase(_joueur->get_case());
@@ -364,9 +364,7 @@ void Niveau::mise_a_jour()
 }// mise_a_jour()
 
 
-// fin implementation class Niveau
-
-void Niveau::genere_infocase(Case* cse, unsigned distance /*= 0*/, Case::direction_t direction /*= Case::ORIGINE*/)
+void Niveau::genere_infocase(Case* cse, unsigned distance /*= 0*/, nsUtil::direction_t direction /*= nsUtil::ORIGINE*/)
 {
     Soulevable * soulevable = dynamic_cast<Soulevable *> (cse->get_objet());
     if(!cse->est_praticable()  || soulevable)return;
@@ -375,34 +373,39 @@ void Niveau::genere_infocase(Case* cse, unsigned distance /*= 0*/, Case::directi
         cse->get_case_info()._distance = distance;
         cse->get_case_info()._direction = direction;
         switch (direction) {
-            case Case::GAUCHE:
-                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, Case::HAUT);
-                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, Case::GAUCHE);
-                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, Case::BAS);
+            case nsUtil::GAUCHE:
+                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, nsUtil::HAUT);
+                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, nsUtil::GAUCHE);
+                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, nsUtil::BAS);
                 break;
-            case Case::DROITE:
-                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, Case::HAUT);
-                genere_infocase(cse->get_case_gauche(), cse->get_case_info()._distance+1, Case::DROITE);
-                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, Case::BAS);
+            case nsUtil::DROITE:
+                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, nsUtil::HAUT);
+                genere_infocase(cse->get_case_gauche(), cse->get_case_info()._distance+1, nsUtil::DROITE);
+                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, nsUtil::BAS);
                 break;
-            case Case::BAS:
-                genere_infocase(cse->get_case_gauche(), cse->get_case_info()._distance+1, Case::DROITE);
-                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, Case::GAUCHE);
-                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, Case::BAS);
+            case nsUtil::BAS:
+                genere_infocase(cse->get_case_gauche(), cse->get_case_info()._distance+1, nsUtil::DROITE);
+                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, nsUtil::GAUCHE);
+                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, nsUtil::BAS);
                 break;
-            case Case::HAUT:
-                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, Case::HAUT);
-                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, Case::GAUCHE);
-                genere_infocase(cse->get_case_gauche(),cse->get_case_info()._distance+1, Case::DROITE);
+            case nsUtil::HAUT:
+                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, nsUtil::HAUT);
+                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, nsUtil::GAUCHE);
+                genere_infocase(cse->get_case_gauche(),cse->get_case_info()._distance+1, nsUtil::DROITE);
                 break;
-            case Case::ORIGINE:
-                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, Case::BAS);
-                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, Case::HAUT);
-                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, Case::GAUCHE);
-                genere_infocase(cse->get_case_gauche(),cse->get_case_info()._distance+1, Case::DROITE);
+            case nsUtil::ORIGINE:
+                genere_infocase(cse->get_case_haut(),cse->get_case_info()._distance+1, nsUtil::BAS);
+                genere_infocase(cse->get_case_bas(), cse->get_case_info()._distance+1, nsUtil::HAUT);
+                genere_infocase(cse->get_case_droite(), cse->get_case_info()._distance+1, nsUtil::GAUCHE);
+                genere_infocase(cse->get_case_gauche(),cse->get_case_info()._distance+1, nsUtil::DROITE);
             default:
 
                 break;
         }
     }
 }// genere_infocase()
+
+
+// fin implementation class Niveau
+
+

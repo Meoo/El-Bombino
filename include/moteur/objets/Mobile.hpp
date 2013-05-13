@@ -8,6 +8,7 @@
 #define _MOBILE_HPP_
 
 #include "../Objet.hpp"
+#include <moteur/Utile.hpp>
 #include <moteur/objets/Bonus.hpp>
 
 class Soulevable;
@@ -20,20 +21,11 @@ class Mobile : public Objet
 {
     friend class Soulevable;
 
-public:
-    enum Direction
-    {
-        DROITE,
-        GAUCHE,
-        HAUT,
-        BAS,
-    };
-
 private:
     Soulevable *        _objet_souleve;
     float               _vitesse;
 
-    Direction           _direction;
+    nsUtil::direction_t _direction;
     bool                _bouge;
     float               _deplacement;
     sf::Vector2f        _position_ecran;
@@ -46,13 +38,13 @@ public:
     Soulevable *        get_objet_souleve();
     const Soulevable *  get_objet_souleve() const;
 
-    void                bouger(Direction dir);
+    void                bouger(nsUtil::direction_t dir);
     bool                est_en_mouvement() const;
 
     float               get_vitesse() const;
     void                set_vitesse(float vitesse);
 
-    Direction           get_direction() const;
+    nsUtil::direction_t           get_direction() const;
     const sf::Vector2f & get_position_ecran() const;
     virtual const sf::Vector2f get_position_objet_souleve() const;
 

@@ -14,7 +14,7 @@
 
 #include <vector>
 
-Idiot::Idiot(Case * cse) : MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("idiot")), _derniere_direction((Direction) -1), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT)
+Idiot::Idiot(Case * cse) : MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("idiot")), _derniere_direction((nsUtil::direction_t) -1), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT)
 {
 }
 
@@ -68,30 +68,30 @@ void Idiot::appliquer_bonus(Bonus::bonus_t type_bonus)
 
 void Idiot::attaquer_joueur()
 {
-    if((rand() % 10 == 0) && get_direction() != Mobile::GAUCHE)
+    if((rand() % 10 == 0) && get_direction() != nsUtil::GAUCHE)
     {
         _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
-        get_case()->enflammer_direction(Case::GAUCHE, _puissance + (rand() % 10 == 0 ? 1 : 0));
+        get_case()->enflammer_direction(nsUtil::GAUCHE, _puissance + (rand() % 10 == 0 ? 1 : 0));
         return;
     }
 
-    if((rand() % 10 == 0) && get_direction() != Mobile::DROITE)
+    if((rand() % 10 == 0) && get_direction() != nsUtil::DROITE)
     {
-        get_case()->enflammer_direction(Case::DROITE,_puissance + (rand() % 10 == 0 ? 1 : 0));
-        _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
-        return;
-    }
-
-    if((rand() % 10 == 0) && get_direction() != Mobile::BAS)
-    {
-        get_case()->enflammer_direction(Case::BAS, _puissance + (rand() % 10 == 0 ? 1 : 0));
+        get_case()->enflammer_direction(nsUtil::DROITE,_puissance + (rand() % 10 == 0 ? 1 : 0));
         _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
         return;
     }
 
-    if((rand() % 10 == 0) && get_direction() != Mobile::HAUT)
+    if((rand() % 10 == 0) && get_direction() != nsUtil::BAS)
     {
-        get_case()->enflammer_direction(Case::HAUT, _puissance + (rand() % 10 == 0 ? 1 : 0));
+        get_case()->enflammer_direction(nsUtil::BAS, _puissance + (rand() % 10 == 0 ? 1 : 0));
+        _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
+        return;
+    }
+
+    if((rand() % 10 == 0) && get_direction() != nsUtil::HAUT)
+    {
+        get_case()->enflammer_direction(nsUtil::HAUT, _puissance + (rand() % 10 == 0 ? 1 : 0));
         _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
         return;
     }
@@ -129,16 +129,16 @@ void Idiot::mise_a_jour_ia()
     {
         switch(_derniere_direction)
         {
-        case HAUT:
+        case nsUtil::HAUT:
             bas_ok = false; --num_choix;
             break;
-        case BAS:
+        case nsUtil::BAS:
             haut_ok = false; --num_choix;
             break;
-        case GAUCHE:
+        case nsUtil::GAUCHE:
             droite_ok = false; --num_choix;
             break;
-        case DROITE:
+        case nsUtil::DROITE:
             gauche_ok = false; --num_choix;
             break;
         }
@@ -150,8 +150,8 @@ void Idiot::mise_a_jour_ia()
     {
         if (choix == 0)
         {
-            _derniere_direction = GAUCHE;
-            bouger(GAUCHE);
+            _derniere_direction = nsUtil::GAUCHE;
+            bouger(nsUtil::GAUCHE);
             return;
         }
         --choix;
@@ -161,8 +161,8 @@ void Idiot::mise_a_jour_ia()
     {
         if (choix == 0)
         {
-            _derniere_direction = DROITE;
-            bouger(DROITE);
+            _derniere_direction = nsUtil::DROITE;
+            bouger(nsUtil::DROITE);
             return;
         }
         --choix;
@@ -172,8 +172,8 @@ void Idiot::mise_a_jour_ia()
     {
         if (choix == 0)
         {
-            _derniere_direction = HAUT;
-            bouger(HAUT);
+            _derniere_direction = nsUtil::HAUT;
+            bouger(nsUtil::HAUT);
             return;
         }
         --choix;
@@ -183,8 +183,8 @@ void Idiot::mise_a_jour_ia()
     {
         if (choix == 0)
         {
-            _derniere_direction = BAS;
-            bouger(BAS);
+            _derniere_direction = nsUtil::BAS;
+            bouger(nsUtil::BAS);
             return;
         }
     }

@@ -18,6 +18,7 @@
 #include <moteur/objets/Caisse.hpp>
 
 #include <monde1/pnjs/Idiot.hpp>
+#include <monde2/pnjs/CactusMaxi.hpp>
 
 namespace Usine
 {
@@ -48,6 +49,9 @@ namespace Usine
 
         if (classe_objet.compare("Idiot") == 0)
             return new Idiot(cse);
+
+        if (classe_objet.compare("CactusMaxi") == 0)
+            return new CactusMaxi(cse);
 
         throw ExceptionRessource(classe_objet, "Classe d'Objet invalide");
     }// creer_objet()

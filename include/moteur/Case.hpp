@@ -8,6 +8,7 @@
 #define _CASE_HPP_
 
 #include "../Config.hpp"
+#include <moteur/Utile.hpp>
 #include "Objet.hpp"
 
 #include <SFML/Graphics.hpp>
@@ -26,14 +27,10 @@ class Case : public sf::Drawable
     typedef void (Objet::* objet_effet_t) (void);
 
 public:
-    typedef enum direction
-    {
-        HAUT,BAS,DROITE,GAUCHE,ORIGINE,
-    } direction_t;
 
     typedef struct caseinfo {
         unsigned             _distance;
-        direction_t     _direction;
+        nsUtil::direction_t     _direction;
         unsigned             _danger_explosion;
     } caseinfo_t;
 private:
@@ -80,7 +77,7 @@ public:
                               const sf::Color & couleur = FEU_COLOR_DEFAULT,
                               objet_effet_t     effet   = &Objet::blesser);
 
-    virtual void    enflammer_direction( direction_t direction,
+    virtual void    enflammer_direction( nsUtil::direction_t direction,
                                         unsigned    puissance,
                                         unsigned            duree   = FEU_TIME_DEFAULT,
                                         const sf::Color &   couleur = FEU_COLOR_DEFAULT,

@@ -91,7 +91,7 @@ void Joueur::mise_a_jour()
             _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
                     _sprite.getTexture()->getSize().y
                             - _sprite.getTexture()->getSize().x / 2);
-            bouger(HAUT);
+            bouger(nsUtil::HAUT);
         }
         else if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdBas()))
         {
@@ -99,7 +99,7 @@ void Joueur::mise_a_jour()
             _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
                     _sprite.getTexture()->getSize().y
                             - _sprite.getTexture()->getSize().x / 2);
-            bouger(BAS);
+            bouger(nsUtil::BAS);
         }
         else if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdGauche()))
         {
@@ -107,7 +107,7 @@ void Joueur::mise_a_jour()
             _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
                     _sprite.getTexture()->getSize().y
                             - _sprite.getTexture()->getSize().x / 2);
-            bouger(GAUCHE);
+            bouger(nsUtil::GAUCHE);
         }
         else if (sf::Keyboard::isKeyPressed(Jeu::instance().get_cmd()->getCmdDroite()))
         {
@@ -115,7 +115,7 @@ void Joueur::mise_a_jour()
             _sprite.setOrigin(_sprite.getTexture()->getSize().x / 2,
                     _sprite.getTexture()->getSize().y
                             - _sprite.getTexture()->getSize().x / 2);
-            bouger(DROITE);
+            bouger(nsUtil::DROITE);
         }
     }
 
@@ -165,19 +165,19 @@ void Joueur::mise_a_jour()
                 Soulevable * soulevable = NULL;
 
                 // Essayer de récupérer un soulevable sur une case à coté
-                if(get_direction() == HAUT && get_case()->get_case_haut()->get_objet() != NULL)
+                if(get_direction() == nsUtil::HAUT && get_case()->get_case_haut()->get_objet() != NULL)
                 {
                     soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_haut()->get_objet());
                 }
-                else if (get_direction() == BAS && get_case()->get_case_bas()->get_objet() != NULL)
+                else if (get_direction() == nsUtil::BAS && get_case()->get_case_bas()->get_objet() != NULL)
                 {
                     soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_bas()->get_objet());
                 }
-                else if (get_direction() == DROITE && get_case()->get_case_droite()->get_objet() != NULL)
+                else if (get_direction() == nsUtil::DROITE && get_case()->get_case_droite()->get_objet() != NULL)
                 {
                     soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_droite()->get_objet());
                 }
-                else if (get_direction() == GAUCHE && get_case()->get_case_gauche()->get_objet() != NULL)
+                else if (get_direction() == nsUtil::GAUCHE && get_case()->get_case_gauche()->get_objet() != NULL)
                 {
                     soulevable = dynamic_cast<Soulevable *>(get_case()->get_case_gauche()->get_objet());
                 }
@@ -197,19 +197,19 @@ void Joueur::mise_a_jour()
                 }
 
                 // Sinon déposer l'objet sur une case à coté
-                else if(get_direction() == HAUT)
+                else if(get_direction() == nsUtil::HAUT)
                 {
                     get_objet_souleve()->deposer(get_case()->get_case_haut());
                 }
-                else if (get_direction() == BAS)
+                else if (get_direction() == nsUtil::BAS)
                 {
                     get_objet_souleve()->deposer(get_case()->get_case_bas());
                 }
-                else if (get_direction() == DROITE)
+                else if (get_direction() == nsUtil::DROITE)
                 {
                     get_objet_souleve()->deposer(get_case()->get_case_droite());
                 }
-                else if (get_direction() == GAUCHE)
+                else if (get_direction() == nsUtil::GAUCHE)
                 {
                     get_objet_souleve()->deposer(get_case()->get_case_gauche());
                 }

@@ -1,18 +1,18 @@
 /**
- * @file   Idiot.hpp
+ * @file   CactusMaxi.hpp
  * @author Bastien Brunnenstein
  * @author Pascal-Pierre Sanchez-Carrion
  */
 
-#ifndef _IDIOT_HPP_
-#define _IDIOT_HPP_
+#ifndef CACTUS_MAXI_HPP_
+#define CACTUS_MAXI_HPP_
 
 #include "../../moteur/objets/MobileIA.hpp"
 
 /**
  * @brief
  */
-class Idiot : public MobileIA
+class CactusMaxi : public MobileIA
 {
 private:
     nsUtil::direction_t   _derniere_direction;
@@ -21,8 +21,8 @@ private:
     unsigned    _puissance;
 
 public:
-    Idiot(Case * cse);
-    virtual ~Idiot();
+    CactusMaxi(Case * cse);
+    virtual ~CactusMaxi();
 
     virtual void mise_a_jour_ia();
 
@@ -36,6 +36,7 @@ public:
 private:
 
 };
-// class Idiot
+// class CactusMaxi
 
-#endif // _IDIOT_HPP_
+
+#endif /* CACTUS_MAXI_HPP_ */

@@ -1,8 +1,7 @@
-/*
- * Utile.hpp
- *
- *  Created on: 10 mai 2013
- *      Author: Sanpas
+/**
+ * @file   Utile.hpp
+ * @author Bastien Brunnenstein
+ * @author Pascal-Pierre Sanchez-Carrion
  */
 
 #ifndef UTILE_HPP_
@@ -17,6 +16,10 @@ namespace nsUtil
     std::string convertInt(int number);
 
     std::string SFKeyToString(sf::Keyboard::Key keycode);
+
+    typedef enum direction {
+        HAUT,BAS,DROITE,GAUCHE,ORIGINE,
+    } direction_t;
 }
 
 
