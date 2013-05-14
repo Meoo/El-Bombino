@@ -29,9 +29,9 @@ const sf::Color     FEU_COLOR_DEFAULT  (sf::Color(254, 75, 0, 200));  //!< Rouge
 
 // Bombe
 // > Timer
-const unsigned      BOMBE_TIMER_DEFAULT = 150;              //!< En nombre d'affichages
-const unsigned      BOMBE_TIMER_MAX     = 200;
-const unsigned      BOMBE_TIMER_MIN     = 100;
+const unsigned      BOMBE_TIMER_DEFAULT = 120;              //!< En nombre d'affichages
+const unsigned      BOMBE_TIMER_MAX     = 160;
+const unsigned      BOMBE_TIMER_MIN     = 80;
 const unsigned      BOMBE_COOLDOWN      = 15;               //!< Pour éviter de poser sur 2 cases sans le faire exprès
 const unsigned      BOMBE_POWER_DEFAULT = 2;
 const unsigned      BOMBE_POWER_MIN     = 1;
