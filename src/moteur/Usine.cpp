@@ -16,6 +16,7 @@
 #include <moteur/Objet.hpp>
 #include <moteur/objets/Joueur.hpp>
 #include <moteur/objets/Caisse.hpp>
+#include <moteur/objets/CaissePiege.hpp>
 
 #include <monde1/pnjs/Idiot.hpp>
 #include <monde2/pnjs/CactusMaxi.hpp>
@@ -44,6 +45,9 @@ namespace Usine
     {
         if (classe_objet.compare("Caisse") == 0)
             return new Caisse(cse);
+
+        if (classe_objet.compare("CaissePiege") == 0)
+            return new CaissePiege(cse);
 
         if (classe_objet.compare("Joueur") == 0)
             return new Joueur(cse);

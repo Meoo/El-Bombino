@@ -9,6 +9,7 @@
 
 #include "../Config.hpp"
 #include <moteur/Case.hpp>
+#include <moteur/objets/Bombe.hpp>
 
 #include <SFML/Graphics.hpp>
 #include <list>
@@ -17,7 +18,7 @@ class Joueur;
 class Case;
 class Monde;
 class MobileIA;
-class Bombe;
+
 
 /**
  * @brief
