@@ -17,6 +17,7 @@
 
 CactusMaxi::CactusMaxi(Case * cse) : MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("cactusmaxi")), _derniere_direction((nsUtil::direction_t) -1), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT), _acces_joueur(false)
 {
+    get_sprite().setScale(1.2, 1.2);
 }
 
 CactusMaxi::~CactusMaxi()

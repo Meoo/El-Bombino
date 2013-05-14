@@ -16,6 +16,7 @@
 
 CactusMini::CactusMini(Case * cse) : MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("cactusmini")), _derniere_direction((nsUtil::direction_t) -1), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT), _acces_joueur(false)
 {
+    get_sprite().setScale(0.8, 0.8);
 }
 
 CactusMini::~CactusMini()

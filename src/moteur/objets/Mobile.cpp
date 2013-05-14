@@ -114,6 +114,7 @@ void Mobile::mise_a_jour()
             case nsUtil::BAS: _position_ecran.y += _vitesse; break;
             case nsUtil::GAUCHE: _position_ecran.x -= _vitesse; break;
             case nsUtil::DROITE: _position_ecran.x += _vitesse; break;
+            case nsUtil::ORIGINE: break;
             }
 
             // Changer de case à la moitié du déplacement
@@ -128,6 +129,7 @@ void Mobile::mise_a_jour()
                 case nsUtil::BAS: cse = get_case()->get_case_bas(); break;
                 case nsUtil::GAUCHE: cse = get_case()->get_case_gauche(); break;
                 case nsUtil::DROITE: cse = get_case()->get_case_droite(); break;
+                case nsUtil::ORIGINE: break;
                 }
 
                 Bonus * bonus = dynamic_cast<Bonus *> (cse->get_objet());
@@ -152,6 +154,7 @@ void Mobile::mise_a_jour()
                     case nsUtil::BAS: _direction = nsUtil::HAUT; break;
                     case nsUtil::GAUCHE: _direction = nsUtil::DROITE; break;
                     case nsUtil::DROITE: _direction = nsUtil::GAUCHE; break;
+                    case nsUtil::ORIGINE: break;
                     }
 
                     if (mobile)

@@ -14,7 +14,7 @@
 
 #include <vector>
 
-Idiot::Idiot(Case * cse) : MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("idiot")), _derniere_direction((nsUtil::direction_t) -1), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT)
+Idiot::Idiot(Case * cse) : MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("idiot")), _derniere_direction(nsUtil::ORIGINE), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT)
 {
 }
 
@@ -141,6 +141,7 @@ void Idiot::mise_a_jour_ia()
         case nsUtil::DROITE:
             gauche_ok = false; --num_choix;
             break;
+        case nsUtil::ORIGINE: break;
         }
     }
 

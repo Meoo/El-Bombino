@@ -4,6 +4,7 @@
  * @author Pascal-Pierre Sanchez-Carrion
  */
 
+#include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <cmath>
@@ -26,6 +27,7 @@ int main(int argc, char ** argv)
     // Fenêtre
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, 32), WINDOW_NAME, sf::Style::Default, sf::ContextSettings(32));
     window.setFramerateLimit(WINDOW_FRAMERATE);
+    window.setVerticalSyncEnabled(true);
 
     // Icône de la fenêtre
     {
@@ -34,8 +36,13 @@ int main(int argc, char ** argv)
         window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
     }
 
+#ifndef NDEBUG
+    sf::Clock clock;
+    int count = 0;
+#endif
     while (window.isOpen())
     {
+
         //gestion des different evenement
         sf::Event event;
         while (window.pollEvent(event))
@@ -50,9 +57,6 @@ int main(int argc, char ** argv)
                 Jeu::instance().lost_focus();
 
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
-                window.close();
-
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Pause))
                 Jeu::instance().press_pause();
 
             if (event.type == sf::Event::MouseButtonPressed)
@@ -84,9 +88,17 @@ int main(int argc, char ** argv)
 
         window.draw(Jeu::instance());
 
-        window.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
-
         window.display();
+
+#ifndef NDEBUG
+        ++count;
+        if (clock.getElapsedTime().asMilliseconds() >= 1000)
+        {
+            window.setTitle(std::string("FPS : ") + nsUtil::convertInt(count));
+            clock.restart();
+            count = 0;
+        }
+#endif
     }
 
     return EXIT_SUCCESS;

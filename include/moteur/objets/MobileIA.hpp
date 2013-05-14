@@ -44,6 +44,9 @@ public:
 
     virtual void        appliquer_bonus(Bonus::bonus_t type_bonus);
 
+protected:
+    sf::Sprite &        get_sprite();
+
 };
 // class Mobile
 

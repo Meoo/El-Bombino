@@ -162,31 +162,31 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _mc_modif_haut(false), _mc_modif_bas(
     _sauvegarder.setCharacterSize(28);
     _sauvegarder.setColor(sf::Color::Black);
     _sauvegarder.setOrigin(_sauvegarder.getLocalBounds().width / 2, _sauvegarder.getLocalBounds().height / 2);
-    _sauvegarder.setPosition(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 4);
+    _sauvegarder.setPosition(WINDOW_WIDTH / 4, WINDOW_HEIGHT - WINDOW_HEIGHT / 4);
 
 
     _sauvegarder_fond = sf::RectangleShape(sf::Vector2f(_sauvegarder.getLocalBounds().width, _sauvegarder.getGlobalBounds().height * 2));
     _sauvegarder_fond.setOrigin(_sauvegarder.getOrigin());
-    _sauvegarder_fond.setPosition(WINDOW_WIDTH / 4, WINDOW_HEIGHT / 4);
+    _sauvegarder_fond.setPosition(WINDOW_WIDTH / 4, WINDOW_HEIGHT - WINDOW_HEIGHT / 4);
     _sauvegarder_fond.setFillColor(sf::Color(255, 255, 255, 128));
 
     _retour_menu_principal = sf::Text("RETOUR MENU PRINCIPAL",Jeu::instance().get_default_font());
     _retour_menu_principal.setCharacterSize(28);
     _retour_menu_principal.setColor(sf::Color::Black);
     _retour_menu_principal.setOrigin(_retour_menu_principal.getLocalBounds().width / 2, _retour_menu_principal.getLocalBounds().height / 2);
-    _retour_menu_principal.setPosition(WINDOW_WIDTH * 3 / 4, WINDOW_HEIGHT / 4);
+    _retour_menu_principal.setPosition(WINDOW_WIDTH * 3 / 4, WINDOW_HEIGHT - WINDOW_HEIGHT / 4);
 
 
     _retour_menu_principal_fond = sf::RectangleShape(sf::Vector2f(_retour_menu_principal.getLocalBounds().width, _retour_menu_principal.getGlobalBounds().height * 2));
     _retour_menu_principal_fond.setOrigin(_retour_menu_principal.getOrigin());
-    _retour_menu_principal_fond.setPosition(WINDOW_WIDTH * 3/ 4, WINDOW_HEIGHT / 4);
+    _retour_menu_principal_fond.setPosition(WINDOW_WIDTH * 3/ 4, WINDOW_HEIGHT - WINDOW_HEIGHT / 4);
     _retour_menu_principal_fond.setFillColor(sf::Color(255, 255, 255, 128));
 
     _texte_pause = sf::Text("PAUSE", Jeu::instance().get_default_font());
     _texte_pause.setCharacterSize(128);
     _texte_pause.setColor(sf::Color::White);
     _texte_pause.setOrigin(_texte_pause.getLocalBounds().width / 2, _texte_pause.getLocalBounds().height / 2);
-    _texte_pause.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+    _texte_pause.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 3);
 
     _texte_pause_fond = sf::Text(_texte_pause);
     _texte_pause_fond.move(4, 4);

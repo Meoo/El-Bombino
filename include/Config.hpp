@@ -18,7 +18,7 @@
 const std::string   WINDOW_NAME         ("El Bombino");
 const unsigned      WINDOW_WIDTH        = 960;
 const unsigned      WINDOW_HEIGHT       = 720;
-const unsigned      WINDOW_FRAMERATE    = 50;               //!< Affichages par seconde
+const unsigned      WINDOW_FRAMERATE    = 60;               //!< Affichages par seconde
 
 // Taille d'une tuile (Case carrée du jeu)
 const unsigned      TILE_SIZE           = 48;
@@ -29,20 +29,20 @@ const sf::Color     FEU_COLOR_DEFAULT  (sf::Color(254, 75, 0, 200));  //!< Rouge
 
 // Bombe
 // > Timer
-const unsigned      BOMBE_TIMER_DEFAULT = 100;              //!< En nombre d'affichages
+const unsigned      BOMBE_TIMER_DEFAULT = 150;              //!< En nombre d'affichages
 const unsigned      BOMBE_TIMER_MAX     = 200;
-const unsigned      BOMBE_TIMER_MIN     = 50;
-const unsigned      BOMBE_COOLDOWN      = 10;               //!< Pour éviter de poser sur 2 cases sans le faire exprès
+const unsigned      BOMBE_TIMER_MIN     = 100;
+const unsigned      BOMBE_COOLDOWN      = 15;               //!< Pour éviter de poser sur 2 cases sans le faire exprès
 const unsigned      BOMBE_POWER_DEFAULT = 2;
 const unsigned      BOMBE_POWER_MIN     = 1;
 const unsigned      BOMBE_POWER_MAX     = 10;
 const unsigned      BOMBE_POWER_DELTA   = 1;
 
-const float         BOMBE_GLACEE_DELTA  = 0.2;
+const float         BOMBE_GLACEE_DELTA  = 0.4;
 
 // Objet souleve
 // > Timer
-const unsigned      OBJET_SOULEVE_COOLDOWN  = 10;
+const unsigned      OBJET_SOULEVE_COOLDOWN  = 15;
 
 // CaisseInfini
 // > Timer

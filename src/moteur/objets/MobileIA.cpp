@@ -139,5 +139,10 @@ void MobileIA::appliquer_bonus(Bonus::bonus_t type_bonus)
     }
 }// appliquer_bonus()
 
+sf::Sprite& MobileIA::get_sprite()
+{
+    return _sprite;
+}//get_sprite()
 
 // fin implementation class MobileIA
+

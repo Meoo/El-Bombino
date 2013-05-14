@@ -77,7 +77,7 @@ public:
     virtual void        mise_a_jour();
 
     //protected :
-    void                genere_infocase(Case *cse, unsigned distance = 0, nsUtil::direction_t direction = nsUtil::ORIGINE);
+    void                generer_info_case(Case *cse, unsigned distance = 0, nsUtil::direction_t direction = nsUtil::ORIGINE);
 };
 // class Niveau
 
