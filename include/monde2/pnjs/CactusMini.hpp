@@ -31,8 +31,6 @@ public:
     virtual void    laisser_tomber_objet(Case * cse);
 
     virtual void    appliquer_bonus(Bonus::bonus_t type_bonus);
-
-    void attaquer_joueur();
 private:
 
 };

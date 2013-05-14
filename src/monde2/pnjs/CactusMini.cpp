@@ -71,40 +71,6 @@ void CactusMini::appliquer_bonus(Bonus::bonus_t type_bonus)
     }
 } // appliquer_bonus()
 
-void CactusMini::attaquer_joueur()
-{
-    if ((rand() % 10 == 0) && get_direction() != nsUtil::GAUCHE)
-    {
-        _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
-        get_case()->enflammer_direction(nsUtil::GAUCHE,
-                _puissance + (rand() % 10 == 0 ? 1 : 0));
-        return;
-    }
-
-    if ((rand() % 10 == 0) && get_direction() != nsUtil::DROITE)
-    {
-        get_case()->enflammer_direction(nsUtil::DROITE,
-                _puissance + (rand() % 10 == 0 ? 1 : 0));
-        _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
-        return;
-    }
-
-    if ((rand() % 10 == 0) && get_direction() != nsUtil::BAS)
-    {
-        get_case()->enflammer_direction(nsUtil::BAS,
-                _puissance + (rand() % 10 == 0 ? 1 : 0));
-        _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
-        return;
-    }
-
-    if ((rand() % 10 == 0) && get_direction() != nsUtil::HAUT)
-    {
-        get_case()->enflammer_direction(nsUtil::HAUT,
-                _puissance + (rand() % 10 == 0 ? 1 : 0));
-        _coldown_att = IDIOT_COLDOWN_ATT + rand() % IDIOT_COLDOWN_ATT_RAND;
-        return;
-    }
-} // attaquer_joueur()
 
 void CactusMini::mise_a_jour_ia()
 {
@@ -148,13 +114,8 @@ void CactusMini::mise_a_jour_ia()
 void CactusMini::mise_a_jour()
 {
     MobileIA::mise_a_jour();
-    //
-    //
-    if (_coldown_att > 0)
-        --_coldown_att;
-    else
-        attaquer_joueur();
-}    // mise_a_jour()
+}
+
 
 void CactusMini::laisser_tomber_objet(Case* cse)
 {
