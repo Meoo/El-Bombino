@@ -49,18 +49,24 @@ void CactusMaxi::appliquer_bonus(Bonus::bonus_t type_bonus)
                set_vitesse(IDIOT_VIE_MAX);
            break;
        case Bonus::BONUS_VITESSE:
-           if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
-               set_vitesse(get_vitesse()+ JOUEUR_VIT_DELTA);
-           else
-               set_vitesse(JOUEUR_VIT_MAX);
+           if(this->_acces_joueur)
+           {
+               if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
+                   set_vitesse(get_vitesse()+ JOUEUR_VIT_DELTA);
+               else
+                   set_vitesse(JOUEUR_VIT_MAX);
+           }
            break;
        case Bonus::MALUS_BOMBE:
            break;
        case Bonus::MALUS_VITESSE:
-           if(get_vitesse() - JOUEUR_VIT_DELTA > JOUEUR_VIT_MIN)
-               set_vitesse(get_vitesse() - JOUEUR_VIT_DELTA);
-           else
-               set_vitesse(JOUEUR_VIT_MIN);
+           if(this->_acces_joueur)
+           {
+               if(get_vitesse() - JOUEUR_VIT_DELTA > JOUEUR_VIT_MIN)
+                  set_vitesse(get_vitesse() - JOUEUR_VIT_DELTA);
+              else
+                  set_vitesse(JOUEUR_VIT_MIN);
+           }
            break;
         default:
             break;
