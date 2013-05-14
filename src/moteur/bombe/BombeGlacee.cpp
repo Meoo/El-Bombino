@@ -4,13 +4,14 @@
  * @author Pascal-Pierre Sanchez-Carrion
  */
 
+#include <moteur/Jeu.hpp>
 #include <moteur/bombe/BombeGlacee.hpp>
 #include <moteur/objets/Bombe.hpp>
 #include <moteur/Case.hpp>
 
 BombeGlacee::BombeGlacee(Mobile* porteur, unsigned timer, unsigned puissance): Bombe(porteur, timer, puissance)
 {
-    get_sprite().setColor(sf::Color(37, 253, 233));
+    get_sprite().setTexture(Jeu::instance().get_texture("bombeglacee"),true);
 }
 
 BombeGlacee::~BombeGlacee()

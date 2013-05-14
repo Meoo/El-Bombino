@@ -17,7 +17,7 @@ CaissePiege::CaissePiege(Case * cse) :
             _sprite.getTexture()->getSize().y - _sprite.getTexture()->getSize().x / 2);
     _sprite.setPosition(get_case()->get_x() * TILE_SIZE + TILE_SIZE / 2,
             get_case()->get_y() * TILE_SIZE + TILE_SIZE / 2);
-    _sprite.setColor(FEU_COLOR_DEFAULT);
+    _sprite.setColor(sf::Color(254, 75, 0));
 }
 
 
