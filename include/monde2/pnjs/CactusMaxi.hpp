@@ -15,7 +15,6 @@
 class CactusMaxi : public MobileIA
 {
 private:
-    nsUtil::direction_t   _derniere_direction;
     unsigned    _coldown_att;
     unsigned    _visibilite;
     unsigned    _puissance;

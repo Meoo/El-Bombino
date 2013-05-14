@@ -24,6 +24,10 @@ solution "El-Bombino"
   configuration "Release"
     defines { "NDEBUG" }
     flags { "OptimizeSpeed", "ExtraWarnings" }
+    linkoptions "-static-libstdc++"
+
+  configuration "gmake"
+    linkoptions "-static-libgcc"
 
   configuration {}
 

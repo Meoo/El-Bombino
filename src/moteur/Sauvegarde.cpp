@@ -35,7 +35,7 @@ void Sauvegarde::charger_sauvegarde()
 
     std::string clef;
 
-    int mode;
+    int mode = 0;
 
     int         monde       = 0;
     int         niveau      = 0;

@@ -9,7 +9,7 @@
 #include <moteur/Jeu.hpp>
 
 MobileIA::MobileIA(Case* cse, float vitesse, unsigned vies, const sf::Texture & texture)
-    : Mobile(cse, vitesse), _vies(vies), _texture(texture), _protection(0), _clignote(false)
+    : Mobile(cse, vitesse), _vies(vies), _texture(texture), _protection(0), _clignote(false), _derniere_direction(nsUtil::ORIGINE)
 {
     assert(vies > 0);
     _sprite.setOrigin(_texture.getSize().x / 2, _texture.getSize().y - _texture.getSize().x / 2);
@@ -138,6 +138,101 @@ void MobileIA::appliquer_bonus(Bonus::bonus_t type_bonus)
             break;
     }
 }// appliquer_bonus()
+
+void MobileIA::deplacement_aleatoire()
+{
+    Case * gauche = get_case()->get_case_gauche();
+    Soulevable * bonus_gauche = dynamic_cast<Soulevable *> (gauche->get_objet());
+    bool gauche_ok = gauche->est_praticable() && !gauche->est_en_feu() && (gauche->get_objet() == NULL || !bonus_gauche);
+
+    Case * droite = get_case()->get_case_droite();
+    Soulevable * bonus_droite = dynamic_cast<Soulevable *> (droite->get_objet());
+    bool droite_ok = droite->est_praticable() && !droite->est_en_feu() && (droite->get_objet() == NULL || !bonus_droite);
+
+    Case * haut = get_case()->get_case_haut();
+    Soulevable * bonus_haut = dynamic_cast<Soulevable *> (haut->get_objet());
+    bool haut_ok = haut->est_praticable() && !haut->est_en_feu() && (haut->get_objet() == NULL || !bonus_haut);
+
+    Case * bas = get_case()->get_case_bas();
+    Soulevable * bonus_bas = dynamic_cast<Soulevable *> (bas->get_objet());
+    bool bas_ok = bas->est_praticable() && !bas->est_en_feu() && (bas->get_objet() == NULL || !bonus_bas);
+
+    int num_choix = gauche_ok + droite_ok + haut_ok + bas_ok;
+
+    if (num_choix == 0) return;
+
+    // Si on as plusieurs choix on bloque la direction d'ou l'on vient
+    if (num_choix > 1)
+    {
+        switch(_derniere_direction)
+        {
+        case nsUtil::HAUT:
+            bas_ok = false; --num_choix;
+            break;
+        case nsUtil::BAS:
+            haut_ok = false; --num_choix;
+            break;
+        case nsUtil::GAUCHE:
+            droite_ok = false; --num_choix;
+            break;
+        case nsUtil::DROITE:
+            gauche_ok = false; --num_choix;
+            break;
+        case nsUtil::ORIGINE: break;
+        }
+    }
+
+    int choix = rand() % num_choix;
+
+    if (gauche_ok)
+    {
+        if (choix == 0)
+        {
+            _derniere_direction = nsUtil::GAUCHE;
+            bouger(nsUtil::GAUCHE);
+            return;
+        }
+        --choix;
+    }
+
+    if (droite_ok)
+    {
+        if (choix == 0)
+        {
+            _derniere_direction = nsUtil::DROITE;
+            bouger(nsUtil::DROITE);
+            return;
+        }
+        --choix;
+    }
+
+    if (haut_ok)
+    {
+        if (choix == 0)
+        {
+            _derniere_direction = nsUtil::HAUT;
+            bouger(nsUtil::HAUT);
+            return;
+        }
+        --choix;
+    }
+
+    if (bas_ok)
+    {
+        if (choix == 0)
+        {
+            _derniere_direction = nsUtil::BAS;
+            bouger(nsUtil::BAS);
+            return;
+        }
+    }
+
+    if(num_choix == 0)
+    {
+        return;
+    }
+    assert(false);
+}//deplacement_aleatoire()
 
 sf::Sprite& MobileIA::get_sprite()
 {

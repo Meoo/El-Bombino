@@ -52,6 +52,7 @@ void Mobile::bouger(nsUtil::direction_t dir)
     case nsUtil::BAS: cse = get_case()->get_case_bas(); break;
     case nsUtil::GAUCHE: cse = get_case()->get_case_gauche(); break;
     case nsUtil::DROITE: cse = get_case()->get_case_droite(); break;
+    case nsUtil::ORIGINE: return;
     }
 
     Soulevable * soul = dynamic_cast<Soulevable *> (cse->get_objet());

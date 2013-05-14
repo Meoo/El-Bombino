@@ -22,6 +22,7 @@ class MobileIA : public Mobile
 
     unsigned            _protection;
     mutable bool        _clignote;
+    nsUtil::direction_t _derniere_direction;
 
 public:
                         MobileIA(Case * cse, float vitesse, unsigned vies, const sf::Texture & texture);
@@ -43,6 +44,8 @@ public:
     virtual void        glacee();
 
     virtual void        appliquer_bonus(Bonus::bonus_t type_bonus);
+
+    void                deplacement_aleatoire();
 
 protected:
     sf::Sprite &        get_sprite();
