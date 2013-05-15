@@ -16,6 +16,7 @@ class CaissePiege : public Soulevable
 {
 private:
     sf::Sprite      _sprite;
+    bool            _explosive;
 
 public:
     explicit        CaissePiege(Case * cse);
@@ -27,6 +28,10 @@ public:
     virtual void    mise_a_jour();
 
     virtual void    blesser();
+
+    virtual void    glacee();
+
+    virtual void    laisser_tomber_objet(Case * cse);
 };
 // class CaissePiege
 
