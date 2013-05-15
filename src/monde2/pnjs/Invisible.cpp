@@ -24,7 +24,7 @@
 #include <vector>
 
 Invisible::Invisible(Case * cse) : MobileIA(cse, 1.f, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("invisible")),
-                            _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT)
+                            _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT), _invisible(true)
 {
 }
 
@@ -85,10 +85,21 @@ void Invisible::attaquer_joueur()
 void Invisible::mise_a_jour_ia()
 {
     unsigned max = -1;
-    if(get_case()->get_case_info()._distance > 3 && get_case()->get_case_info()._distance < max)
+    if(get_case()->get_case_info()._distance > 5){
         get_sprite().setTexture(Jeu::instance().get_texture("invisible"));
-    if(get_case()->get_case_info()._distance <= 3 || get_case()->get_case_info()._distance == max)
+        if(!_invisible){
+            _invisible = !_invisible;
+            set_vitesse(get_vitesse() / 4);
+        }
+    }
+    if(get_case()->get_case_info()._distance <= 5 ){
         get_sprite().setTexture(Jeu::instance().get_texture("mouche"));
+        if(_invisible){
+            _invisible = !_invisible;
+            set_vitesse(get_vitesse() * 4);
+        }
+    }
+
     deplacement_aleatoire();
 }// mise_a_jour_ia()
 
@@ -107,16 +118,22 @@ void Invisible::mise_a_jour()
 
 void Invisible::laisser_tomber_objet(Case* cse)
 {
-    int type_bonus = rand() % BONUS_NB_DIFFERENTS_PNJ + BONUS_NB_DIFFERENTS_CAISSE;
-    switch (type_bonus) {
-        case Bonus::SPECIAL_GANT:
-            new Bonus(get_case(),Bonus::SPECIAL_GANT);
-            break;
-        case Bonus::SPECIAL_BOMBE_GLACEE:
-            new Bonus(get_case(), Bonus::SPECIAL_BOMBE_GLACEE);
-            break;
-        default:
-            break;
+    int bonnus_ok = rand() % 4;
+    if (bonnus_ok == 0)
+    {
+        int type_bonus = rand() % 2;
+        if(type_bonus == 0)
+            new Bonus(get_case(),Bonus::BONUS_VIE);
+        else
+            new Bonus(get_case(), Bonus::BONUS_VITESSE);
+    }
+    else
+    {
+        int type_bonus = rand() % 4;
+        if(type_bonus == 0)
+            new Bonus(get_case(),Bonus::SPECIAL_BOMBE_GLACEE);
+        else
+            new Bonus(get_case(), Bonus::SPECIAL_GANT);
     }
 }// laisser_tomber_objet()
 

@@ -20,7 +20,7 @@ private:
     unsigned    _coldown_att;
     unsigned    _visibilite;
     unsigned    _puissance;
-
+    bool        _invisible;
 
 public:
     Invisible(Case * cse);
