@@ -67,7 +67,7 @@ const unsigned      BONUS_NB_DIFFERENTS_PNJ             = 2; //!< Nombres de bon
 const unsigned      BONUS_NB_DIFFERENTS_CAISSE          = 7; //!< Nombres de bonus differents que peut faire apparaitre les caisses
 const unsigned      BONUS_BONUS_NB_DIFFERENTS_CAISSE    = 4; //!< Nombres de bonus (bonus) differents que peut faire apparaitre les caisses
 const unsigned      BONUS_MALUS_NB_DIFFERENTS_CAISSE    = 3; //!< Nombres de bonus (malus) differents que peut faire apparaitre les caisses
-const unsigned      BONUS_TIMER                         = 250;
+const unsigned      BONUS_TIMER                         = 360;
 
 
 // IA
