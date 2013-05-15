@@ -42,7 +42,6 @@ void Idiot::appliquer_bonus(Bonus::bonus_t type_bonus)
             case Bonus::BONUS_BOMBE:
                break;
            case Bonus::BONUS_VIE:
-               LOG(get_vies());
                if(get_vies()+IDIOT_VIE_DELTA < IDIOT_VIE_MAX)
                    set_vies(get_vies()+ IDIOT_VIE_DELTA);
                else
