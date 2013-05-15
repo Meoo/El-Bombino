@@ -48,9 +48,9 @@ void CactusMini::appliquer_bonus(Bonus::bonus_t type_bonus)
         break;
     case Bonus::BONUS_VIE:
         if (get_vies() + IDIOT_VIE_DELTA < IDIOT_VIE_MAX)
-            set_vitesse(get_vies() + IDIOT_VIE_DELTA);
+            set_vies(get_vies() + IDIOT_VIE_DELTA);
         else
-            set_vitesse(IDIOT_VIE_MAX);
+            set_vies(IDIOT_VIE_MAX);
         break;
     case Bonus::BONUS_VITESSE:
         if (get_vitesse() + JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
@@ -83,19 +83,19 @@ void CactusMini::mise_a_jour_ia()
             set_vitesse(get_vitesse() * 3.0);
         }
         if ((get_case()->get_case_gauche()->get_case_info()._distance
-                > get_case()->get_case_info()._distance)
+                >= get_case()->get_case_info()._distance)
                 && get_case()->get_case_gauche()->est_praticable())
             bouger(nsUtil::GAUCHE);
         if ((get_case()->get_case_droite()->get_case_info()._distance
-                > get_case()->get_case_info()._distance)
+                >= get_case()->get_case_info()._distance)
                 && get_case()->get_case_droite()->est_praticable())
             bouger(nsUtil::DROITE);
         if ((get_case()->get_case_haut()->get_case_info()._distance
-                > get_case()->get_case_info()._distance)
+                >= get_case()->get_case_info()._distance)
                 && get_case()->get_case_haut()->est_praticable())
             bouger(nsUtil::HAUT);
         if ((get_case()->get_case_bas()->get_case_info()._distance
-                > get_case()->get_case_info()._distance)
+                >= get_case()->get_case_info()._distance)
                 && get_case()->get_case_bas()->est_praticable())
             bouger(nsUtil::BAS);
     }

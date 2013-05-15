@@ -44,9 +44,9 @@ void CactusMaxi::appliquer_bonus(Bonus::bonus_t type_bonus)
            break;
        case Bonus::BONUS_VIE:
            if(get_vies()+IDIOT_VIE_DELTA < IDIOT_VIE_MAX)
-               set_vitesse(get_vies()+ IDIOT_VIE_DELTA);
+               set_vies(get_vies()+ IDIOT_VIE_DELTA);
            else
-               set_vitesse(IDIOT_VIE_MAX);
+               set_vies(IDIOT_VIE_MAX);
            break;
        case Bonus::BONUS_VITESSE:
            if(this->_acces_joueur)
