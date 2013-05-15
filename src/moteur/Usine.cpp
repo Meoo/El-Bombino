@@ -22,6 +22,7 @@
 #include <monde2/pnjs/CactusMaxi.hpp>
 #include <monde2/pnjs/CactusMini.hpp>
 #include <monde2/pnjs/Tequilla.hpp>
+#include <monde2/pnjs/Invisible.hpp>
 
 namespace Usine
 {
@@ -65,6 +66,8 @@ namespace Usine
         if (classe_objet.compare("Tequilla") == 0)
                     return new Tequilla(cse);
 
+        if (classe_objet.compare("Invisible") == 0)
+                    return new Invisible(cse);
         throw ExceptionRessource(classe_objet, "Classe d'Objet invalide");
     }// creer_objet()
 }
