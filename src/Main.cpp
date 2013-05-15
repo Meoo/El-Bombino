@@ -66,6 +66,30 @@ int main(int argc, char ** argv)
                     Jeu::instance().clic(event.mouseButton.x,event.mouseButton.y);
                 }
             }
+#ifndef NDBEUG
+            if((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::F1))
+            {
+                int count_monde = Jeu::instance().get_count_mondes();
+                int count_niveau = Jeu::instance().get_monde_courant().get_count_niveaux();
+                int num_monde = Jeu::instance().get_num_monde_courant();
+                int num_niv   = Jeu::instance().get_monde_courant().get_num_niveau_courant();
+                if(num_niv + 1 >= count_niveau)
+                {
+                    if(num_monde + 1 < count_monde)
+                    {
+                        Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+                        Jeu::instance().get_monde_courant().liberer();
+                        Jeu::instance().set_monde_courant(num_monde + 1);
+                        Jeu::instance().get_monde_courant().set_niveau_courant(0);
+                    }
+                }
+                else
+                {
+                    Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+                    Jeu::instance().get_monde_courant().set_niveau_courant(num_niv + 1);
+                }
+            }
+#endif
         }
 
         //option quitter du menu principal

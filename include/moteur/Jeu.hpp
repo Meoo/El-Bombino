@@ -127,6 +127,10 @@ public:
     ConfigCMD*          get_cmd();
 /*TODO protected:*/
     void                set_monde_courant(unsigned num);
+
+#ifndef NDEBUG
+    unsigned            get_count_mondes(){ return _mondes_count; }
+#endif
 };
 // class Jeu
 
