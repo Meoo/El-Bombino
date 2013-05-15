@@ -235,61 +235,64 @@ void Joueur::mise_a_jour()
 
 void Joueur::appliquer_bonus(Bonus::bonus_t type_bonus)
 {
-    switch (type_bonus) {
-        case Bonus::BONUS_BOMBE:
-            if(_nb_bombes_simultanee + JOUEUR_NB_BOMBES_DELTA < JOUEUR_NB_BOMBES_MAX)
-                _nb_bombes_simultanee += JOUEUR_NB_BOMBES_DELTA;
-            else
-                _nb_bombes_simultanee = JOUEUR_NB_BOMBES_MAX;
-            break;
-        case Bonus::BONUS_PUISSANCE:
-            if(_puissance_bombe + BOMBE_POWER_DELTA < BOMBE_POWER_MAX)
-                _puissance_bombe += BOMBE_POWER_DELTA;
-            else
-                _puissance_bombe = BOMBE_POWER_MAX;
-            break;
-        case Bonus::BONUS_VIE:
-            ++_vies;
-            break;
-        case Bonus::BONUS_VITESSE:
-            if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
-                set_vitesse(get_vitesse()+ JOUEUR_VIT_DELTA);
-            else
-                set_vitesse(JOUEUR_VIT_MAX);
-            break;
-        case Bonus::MALUS_BOMBE:
-            if(_nb_bombes_simultanee - JOUEUR_NB_BOMBES_DELTA > JOUEUR_NB_BOMBES_MIN)
-                _nb_bombes_simultanee -= JOUEUR_NB_BOMBES_DEFAULT;
-            else
-                _nb_bombes_simultanee = JOUEUR_NB_BOMBES_MIN;
-            break;
-        case Bonus::MALUS_PUISSANCE:
-            if(_puissance_bombe - BOMBE_POWER_DELTA > BOMBE_POWER_MIN)
-                _puissance_bombe -= BOMBE_POWER_DELTA;
-            else
-                _puissance_bombe = BOMBE_POWER_MIN;
-            break;
-        case Bonus::MALUS_VITESSE:
-            if(get_vitesse()-JOUEUR_VIT_DELTA > JOUEUR_VIT_MIN)
-                set_vitesse(get_vitesse()-JOUEUR_VIT_DELTA);
-            else
-                set_vitesse(JOUEUR_VIT_MIN);
-        case Bonus::SPECIAL_GANT:
-            if(!_bonus_soulevable)
-            {
-                _bonus_soulevable = true;
-                _bonus_bombe_special = false;
-            }
-            break;
-        case Bonus::SPECIAL_BOMBE_GLACEE:
-            if(!_bonus_bombe_special)
-            {
-                _bonus_bombe_special = true;
-                _bonus_soulevable = false;
-            }
-            break;
-        default:
-            break;
+    if(est_valide())
+    {
+        switch (type_bonus) {
+            case Bonus::BONUS_BOMBE:
+                if(_nb_bombes_simultanee + JOUEUR_NB_BOMBES_DELTA < JOUEUR_NB_BOMBES_MAX)
+                    _nb_bombes_simultanee += JOUEUR_NB_BOMBES_DELTA;
+                else
+                    _nb_bombes_simultanee = JOUEUR_NB_BOMBES_MAX;
+                break;
+            case Bonus::BONUS_PUISSANCE:
+                if(_puissance_bombe + BOMBE_POWER_DELTA < BOMBE_POWER_MAX)
+                    _puissance_bombe += BOMBE_POWER_DELTA;
+                else
+                    _puissance_bombe = BOMBE_POWER_MAX;
+                break;
+            case Bonus::BONUS_VIE:
+                ++_vies;
+                break;
+            case Bonus::BONUS_VITESSE:
+                if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
+                    set_vitesse(get_vitesse()+ JOUEUR_VIT_DELTA);
+                else
+                    set_vitesse(JOUEUR_VIT_MAX);
+                break;
+            case Bonus::MALUS_BOMBE:
+                if(_nb_bombes_simultanee - JOUEUR_NB_BOMBES_DELTA > JOUEUR_NB_BOMBES_MIN)
+                    _nb_bombes_simultanee -= JOUEUR_NB_BOMBES_DEFAULT;
+                else
+                    _nb_bombes_simultanee = JOUEUR_NB_BOMBES_MIN;
+                break;
+            case Bonus::MALUS_PUISSANCE:
+                if(_puissance_bombe - BOMBE_POWER_DELTA > BOMBE_POWER_MIN)
+                    _puissance_bombe -= BOMBE_POWER_DELTA;
+                else
+                    _puissance_bombe = BOMBE_POWER_MIN;
+                break;
+            case Bonus::MALUS_VITESSE:
+                if(get_vitesse()-JOUEUR_VIT_DELTA > JOUEUR_VIT_MIN)
+                    set_vitesse(get_vitesse()-JOUEUR_VIT_DELTA);
+                else
+                    set_vitesse(JOUEUR_VIT_MIN);
+            case Bonus::SPECIAL_GANT:
+                if(!_bonus_soulevable)
+                {
+                    _bonus_soulevable = true;
+                    _bonus_bombe_special = false;
+                }
+                break;
+            case Bonus::SPECIAL_BOMBE_GLACEE:
+                if(!_bonus_bombe_special)
+                {
+                    _bonus_bombe_special = true;
+                    _bonus_soulevable = false;
+                }
+                break;
+            default:
+                break;
+        }
     }
 }// appliquer_bonus()
 

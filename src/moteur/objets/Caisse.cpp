@@ -49,7 +49,8 @@ void Caisse::mise_a_jour()
 
 void Caisse::laisser_tomber_objet(Case* cse)
 {
-    int laisser_tomber = rand() % 4;
+    new Bonus(cse, Bonus::BONUS_VIE);
+    /*int laisser_tomber = rand() % 4;
 
     if (laisser_tomber == 0){
         int bonus_ou_malus = rand() % 4;
@@ -85,7 +86,7 @@ void Caisse::laisser_tomber_objet(Case* cse)
                     break;
             }
         }
-    }
+    }*/
 }// laisser_tomber_objet()
 
 

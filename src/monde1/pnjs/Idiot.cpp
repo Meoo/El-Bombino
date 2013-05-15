@@ -24,44 +24,47 @@ Idiot::~Idiot()
 
 void Idiot::appliquer_bonus(Bonus::bonus_t type_bonus)
 {
-    switch (type_bonus) {
+    if(est_valide()){
+        switch (type_bonus) {
 
-        case (Bonus::BONUS_PUISSANCE):
-            if(_puissance + IDIOT_PUISSANCE_DELTA < IDIOT_PUISSANCE_MAX)
-                _puissance += IDIOT_PUISSANCE_DELTA;
-            else
-                _puissance = IDIOT_PUISSANCE_MAX;
-            break;
-        case(Bonus::MALUS_PUISSANCE):
-            if(_puissance - IDIOT_PUISSANCE_DELTA > IDIOT_PUISSANCE_MIN)
-                _puissance -= IDIOT_PUISSANCE_DELTA;
-            else
-                _puissance = IDIOT_PUISSANCE_MIN;
-            break;
-        case Bonus::BONUS_BOMBE:
-           break;
-       case Bonus::BONUS_VIE:
-           if(get_vies()+IDIOT_VIE_DELTA < IDIOT_VIE_MAX)
-               set_vies(get_vies()+ IDIOT_VIE_DELTA);
-           else
-               set_vies(IDIOT_VIE_MAX);
-           break;
-       case Bonus::BONUS_VITESSE:
-           if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
-               set_vitesse(get_vitesse()+ JOUEUR_VIT_DELTA);
-           else
-               set_vitesse(JOUEUR_VIT_MAX);
-           break;
-       case Bonus::MALUS_BOMBE:
-           break;
-       case Bonus::MALUS_VITESSE:
-           if(get_vitesse() - JOUEUR_VIT_DELTA > JOUEUR_VIT_MIN)
-               set_vitesse(get_vitesse() - JOUEUR_VIT_DELTA);
-           else
-               set_vitesse(JOUEUR_VIT_MIN);
-           break;
-        default:
-            break;
+            case (Bonus::BONUS_PUISSANCE):
+                if(_puissance + IDIOT_PUISSANCE_DELTA < IDIOT_PUISSANCE_MAX)
+                    _puissance += IDIOT_PUISSANCE_DELTA;
+                else
+                    _puissance = IDIOT_PUISSANCE_MAX;
+                break;
+            case(Bonus::MALUS_PUISSANCE):
+                if(_puissance - IDIOT_PUISSANCE_DELTA > IDIOT_PUISSANCE_MIN)
+                    _puissance -= IDIOT_PUISSANCE_DELTA;
+                else
+                    _puissance = IDIOT_PUISSANCE_MIN;
+                break;
+            case Bonus::BONUS_BOMBE:
+               break;
+           case Bonus::BONUS_VIE:
+               LOG(get_vies());
+               if(get_vies()+IDIOT_VIE_DELTA < IDIOT_VIE_MAX)
+                   set_vies(get_vies()+ IDIOT_VIE_DELTA);
+               else
+                   set_vies(IDIOT_VIE_MAX);
+               break;
+           case Bonus::BONUS_VITESSE:
+               if(get_vitesse()+JOUEUR_VIT_DELTA < JOUEUR_VIT_MAX)
+                   set_vitesse(get_vitesse()+ JOUEUR_VIT_DELTA);
+               else
+                   set_vitesse(JOUEUR_VIT_MAX);
+               break;
+           case Bonus::MALUS_BOMBE:
+               break;
+           case Bonus::MALUS_VITESSE:
+               if(get_vitesse() - JOUEUR_VIT_DELTA > JOUEUR_VIT_MIN)
+                   set_vitesse(get_vitesse() - JOUEUR_VIT_DELTA);
+               else
+                   set_vitesse(JOUEUR_VIT_MIN);
+               break;
+            default:
+                break;
+        }
     }
 }// appliquer_bonus()
 

@@ -72,9 +72,9 @@ public:
 /*TODO protected:*/
     void                set_niveau_courant(unsigned num);
 
-#ifndef NDEBUG
+
     unsigned            get_count_niveaux(){ return _niveaux_count; }
-#endif
+
 };
 // class Monde
 

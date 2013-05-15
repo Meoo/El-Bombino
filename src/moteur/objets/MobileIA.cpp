@@ -103,39 +103,42 @@ unsigned MobileIA::get_vies()
 
 void MobileIA::set_vies(unsigned vies)
 {
-    assert(vies <= 0);
+    assert(vies > 0);
     _vies = vies;
 }// set_vies()
 
 
 void MobileIA::appliquer_bonus(Bonus::bonus_t type_bonus)
 {
-    switch (type_bonus) {
-        case Bonus::BONUS_BOMBE:
-            break;
-        case Bonus::BONUS_PUISSANCE:
-            break;
-        case Bonus::BONUS_VIE:
-            ++_vies;
-            break;
-        case Bonus::BONUS_VITESSE:
-            if(get_vitesse()+IA_VIT_DELTA < IA_VIT_MAX)
-                set_vitesse(get_vitesse()+ IA_VIT_DELTA);
-            else
-                set_vitesse(IA_VIT_MAX);
-            break;
-        case Bonus::MALUS_BOMBE:
-            break;
-        case Bonus::MALUS_PUISSANCE:
-            break;
-        case Bonus::MALUS_VITESSE:
-            if(get_vitesse() - IA_VIT_DELTA > IA_VIT_MIN)
-                set_vitesse(get_vitesse() - IA_VIT_DELTA);
-            else
-                set_vitesse(IA_VIT_MIN);
-            break;
-        default:
-            break;
+    if(est_valide())
+    {
+        switch (type_bonus) {
+             case Bonus::BONUS_BOMBE:
+                 break;
+             case Bonus::BONUS_PUISSANCE:
+                 break;
+             case Bonus::BONUS_VIE:
+                 ++_vies;
+                 break;
+             case Bonus::BONUS_VITESSE:
+                 if(get_vitesse()+IA_VIT_DELTA < IA_VIT_MAX)
+                     set_vitesse(get_vitesse()+ IA_VIT_DELTA);
+                 else
+                     set_vitesse(IA_VIT_MAX);
+                 break;
+             case Bonus::MALUS_BOMBE:
+                 break;
+             case Bonus::MALUS_PUISSANCE:
+                 break;
+             case Bonus::MALUS_VITESSE:
+                 if(get_vitesse() - IA_VIT_DELTA > IA_VIT_MIN)
+                     set_vitesse(get_vitesse() - IA_VIT_DELTA);
+                 else
+                     set_vitesse(IA_VIT_MIN);
+                 break;
+             default:
+                 break;
+         }
     }
 }// appliquer_bonus()
 
