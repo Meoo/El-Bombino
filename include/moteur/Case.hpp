@@ -29,9 +29,11 @@ class Case : public sf::Drawable
 public:
 
     typedef struct caseinfo {
-        unsigned             _distance;
+        unsigned                _distance;
+        unsigned                _distance_cacher;
         nsUtil::direction_t     _direction;
-        unsigned             _danger_explosion;
+        nsUtil::direction_t     _direction_cacher;
+        unsigned                _danger_explosion;
     } caseinfo_t;
 private:
 

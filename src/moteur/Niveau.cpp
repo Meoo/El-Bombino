@@ -326,15 +326,35 @@ void Niveau::mise_a_jour()
     {
         _cases[i]->get_case_info()._danger_explosion = -1;
         _cases[i]->get_case_info()._distance = -1;
+        _cases[i]->get_case_info()._distance_cacher = -1;
         _cases[i]->get_case_info()._direction = nsUtil::ORIGINE;
     }
 
     // Lancer la génération des informations sur les cases pour IA
     if(_joueur != NULL)
+    {
        generer_info_case(_joueur->get_case());
+       generer_info_case_cacher(_joueur->get_case());
+    }
 
     typedef std::vector<Objet *> obj_vec_t;
     obj_vec_t objs;
+
+
+    unsigned max = -1;
+    for(std::list<MobileIA *>::iterator i = _pnjs.begin(); i != _pnjs.end(); ++i)
+    {
+        if((*i)->get_case()->get_case_info()._distance == max)
+        {
+            LOG("NON PRATICABLE");
+            LOG((*i)->get_case()->get_case_info()._distance_cacher);
+        }
+        else
+        {
+            LOG("PRATICABLE");
+            LOG((*i)->get_case()->get_case_info()._distance);
+        }
+    }
 
     // Mettre à jour toutes les cases
     for (unsigned i = 0; i < _largeur * _hauteur; ++i)
@@ -353,7 +373,6 @@ void Niveau::mise_a_jour()
 
     if(_pnjs.size() == 0 && _joueur)
     {
-        //niveau fini #TODO
         if(_timer_fini == 0)
             _fini = true;
         else if (_timer_fini > 0)
@@ -361,7 +380,6 @@ void Niveau::mise_a_jour()
     }
     if(!_joueur)
     {
-        // game over, restart niveau #TODO
         if(_timer_game_over == 0)
             Jeu::instance().get_menu()->active_menu(Menu::GAME_OVER);
         else
@@ -416,6 +434,50 @@ void Niveau::generer_info_case(Case* cse, unsigned distance /*= 0*/, nsUtil::dir
     }
 }// genere_infocase()
 
+
+void Niveau::generer_info_case_cacher(Case* cse, unsigned distance /*= 0*/, nsUtil::direction_t direction /*= nsUtil::ORIGINE*/)
+{
+    if (!cse->est_praticable()) return;
+    if (_joueur->get_case() == cse || cse->get_case_info()._distance_cacher >= distance)
+    {
+        if(cse->get_case_info()._distance_cacher == distance)
+        {
+            if(rand()%2 == 0) cse->get_case_info()._direction_cacher = direction;
+        }
+        else
+        {
+            cse->get_case_info()._distance_cacher = distance;
+            cse->get_case_info()._direction_cacher = direction;
+            switch (direction) {
+                case nsUtil::GAUCHE:
+                    generer_info_case_cacher(cse->get_case_bas(), distance+1, nsUtil::HAUT);
+                    generer_info_case_cacher(cse->get_case_droite(), distance+1, nsUtil::GAUCHE);
+                    generer_info_case_cacher(cse->get_case_haut(), distance+1, nsUtil::BAS);
+                    break;
+                case nsUtil::DROITE:
+                    generer_info_case_cacher(cse->get_case_bas(), distance+1, nsUtil::HAUT);
+                    generer_info_case_cacher(cse->get_case_gauche(), distance+1, nsUtil::DROITE);
+                    generer_info_case_cacher(cse->get_case_haut(), distance+1, nsUtil::BAS);
+                    break;
+                case nsUtil::BAS:
+                    generer_info_case_cacher(cse->get_case_gauche(), distance+1, nsUtil::DROITE);
+                    generer_info_case_cacher(cse->get_case_droite(), distance+1, nsUtil::GAUCHE);
+                    generer_info_case_cacher(cse->get_case_haut(), distance+1, nsUtil::BAS);
+                    break;
+                case nsUtil::HAUT:
+                    generer_info_case_cacher(cse->get_case_bas(), distance+1, nsUtil::HAUT);
+                    generer_info_case_cacher(cse->get_case_droite(), distance+1, nsUtil::GAUCHE);
+                    generer_info_case_cacher(cse->get_case_gauche(), distance+1, nsUtil::DROITE);
+                    break;
+                case nsUtil::ORIGINE:
+                    generer_info_case_cacher(cse->get_case_haut(), distance+1, nsUtil::BAS);
+                    generer_info_case_cacher(cse->get_case_bas(), distance+1, nsUtil::HAUT);
+                    generer_info_case_cacher(cse->get_case_droite(), distance+1, nsUtil::GAUCHE);
+                    generer_info_case_cacher(cse->get_case_gauche(), distance+1, nsUtil::DROITE);
+            }
+        }
+    }
+}// genere_infocase()
 
 // fin implementation class Niveau
 

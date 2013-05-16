@@ -84,7 +84,6 @@ void Invisible::attaquer_joueur()
 
 void Invisible::mise_a_jour_ia()
 {
-    unsigned max = -1;
     if(get_case()->get_case_info()._distance > 6){
         get_sprite().setTexture(Jeu::instance().get_texture("invisible"));
         if(!_invisible){

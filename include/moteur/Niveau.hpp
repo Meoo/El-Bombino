@@ -79,6 +79,8 @@ public:
 
 private :
     void                generer_info_case(Case *cse, unsigned distance = 0, nsUtil::direction_t direction = nsUtil::ORIGINE);
+
+    void                generer_info_case_cacher(Case* cse, unsigned distance = 0, nsUtil::direction_t direction = nsUtil::ORIGINE);
 };
 // class Niveau
 
