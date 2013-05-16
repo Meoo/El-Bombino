@@ -597,7 +597,6 @@ void Menu::clic(int x, int y)
         case JEU_FINI:
             if(_fin_jeu_fond.getGlobalBounds().contains(x,y))
             {
-                Jeu::instance().get_monde_courant().get_niveau_courant().get_joueur()->detruire();
                 Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
                 Jeu::instance().get_monde_courant().liberer();
                 active_menu(Menu::MENU_PRINCIPAL);
@@ -710,7 +709,6 @@ void Menu::press_touch(sf::Event::KeyEvent key)
     {
         if(key.code == sf::Keyboard::Return)
         {
-            Jeu::instance().get_monde_courant().get_niveau_courant().get_joueur()->detruire();
             Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
             Jeu::instance().get_monde_courant().liberer();
             active_menu(Menu::MENU_PRINCIPAL);
