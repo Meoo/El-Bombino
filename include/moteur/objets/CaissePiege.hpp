@@ -7,25 +7,19 @@
 #define CAISSEPIEGE_HPP_
 
 
-#include "Soulevable.hpp"
+#include "Caisse.hpp"
 
 /**
  * @brief
  */
-class CaissePiege : public Soulevable
+class CaissePiege : public Caisse
 {
 private:
-    sf::Sprite      _sprite;
     bool            _explosive;
 
 public:
     explicit        CaissePiege(Case * cse);
     virtual         ~CaissePiege();
-
-    // Fonction d'affichage de Drawable
-    virtual void    draw(sf::RenderTarget & target, sf::RenderStates states) const;
-
-    virtual void    mise_a_jour();
 
     virtual void    blesser();
 

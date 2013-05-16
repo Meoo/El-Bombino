@@ -28,6 +28,9 @@ public:
     virtual void    mise_a_jour();
 
     virtual void    laisser_tomber_objet(Case * cse);
+
+protected:
+    sf::Sprite &        get_sprite();
 };
 // class Caisse
 

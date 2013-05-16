@@ -88,5 +88,8 @@ void Caisse::laisser_tomber_objet(Case* cse)
     }
 }// laisser_tomber_objet()
 
-
+sf::Sprite& Caisse::get_sprite()
+{
+    return _sprite;
+}//get_sprite()
 // fin implementation class Caisse
