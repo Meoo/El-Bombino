@@ -597,6 +597,7 @@ void Menu::clic(int x, int y)
         case JEU_FINI:
             if(_fin_jeu_fond.getGlobalBounds().contains(x,y))
             {
+                Jeu::instance().get_monde_courant().get_niveau_courant().get_joueur()->detruire();
                 Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
                 Jeu::instance().get_monde_courant().liberer();
                 active_menu(Menu::MENU_PRINCIPAL);
@@ -668,6 +669,51 @@ void Menu::press_touch(sf::Event::KeyEvent key)
         {
             Jeu::instance().get_cmd()->setCmdSpecial(key.code);
             _mc_modif_special = false;
+        }
+    }
+    else if (_menu_type == NIVEAU_SUIVANT)
+    {
+        if(key.code == sf::Keyboard::Return)
+        {
+            Jeu::instance().sauve_donnees_joueur();
+            unsigned niveau_courant = Jeu::instance().get_monde_courant().get_num_niveau_courant();
+            Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+            Jeu::instance().get_monde_courant().set_niveau_courant(niveau_courant + 1);
+            active_menu(Menu::AUCUN_MENU);
+        }
+    }
+    else if (_menu_type == MONDE_SUIVANT)
+    {
+        if(key.code == sf::Keyboard::Return)
+        {
+            Jeu::instance().sauve_donnees_joueur();
+            unsigned monde_courant = Jeu::instance().get_num_monde_courant();
+            Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+            Jeu::instance().get_monde_courant().liberer();
+            Jeu::instance().set_monde_courant(monde_courant + 1);
+            Jeu::instance().get_monde_courant().set_niveau_courant(0);
+            active_menu(Menu::AUCUN_MENU);
+        }
+    }
+    else if (_menu_type == GAME_OVER)
+    {
+        if(key.code == sf::Keyboard::Return)
+        {
+            //unsigned monde_courant = Jeu::instance().get_num_monde_courant();
+            unsigned niveau_courant = Jeu::instance().get_monde_courant().get_num_niveau_courant();
+            Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+            Jeu::instance().get_monde_courant().set_niveau_courant(niveau_courant);
+            active_menu(Menu::AUCUN_MENU);
+        }
+    }
+    else if (_menu_type == JEU_FINI)
+    {
+        if(key.code == sf::Keyboard::Return)
+        {
+            Jeu::instance().get_monde_courant().get_niveau_courant().get_joueur()->detruire();
+            Jeu::instance().get_monde_courant().get_niveau_courant().liberer();
+            Jeu::instance().get_monde_courant().liberer();
+            active_menu(Menu::MENU_PRINCIPAL);
         }
     }
 }// press_touch()
