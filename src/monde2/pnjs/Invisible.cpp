@@ -85,18 +85,18 @@ void Invisible::attaquer_joueur()
 void Invisible::mise_a_jour_ia()
 {
     unsigned max = -1;
-    if(get_case()->get_case_info()._distance > 5){
+    if(get_case()->get_case_info()._distance > 6){
         get_sprite().setTexture(Jeu::instance().get_texture("invisible"));
         if(!_invisible){
             _invisible = !_invisible;
-            set_vitesse(get_vitesse() / 4);
+            set_vitesse(get_vitesse() / 2);
         }
     }
-    if(get_case()->get_case_info()._distance <= 5 ){
+    if(get_case()->get_case_info()._distance <= 6 ){
         get_sprite().setTexture(Jeu::instance().get_texture("mouche"));
         if(_invisible){
             _invisible = !_invisible;
-            set_vitesse(get_vitesse() * 4);
+            set_vitesse(get_vitesse() * 3);
         }
     }
 

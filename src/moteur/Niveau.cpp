@@ -125,7 +125,7 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
         target.setView(sf::View(sf::FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
         // Dessiner l'interface
-        sf::RectangleShape rect(sf::Vector2f(300, 28));
+        sf::RectangleShape rect(sf::Vector2f(350, 28));
         rect.setFillColor(sf::Color(0,0,0,128));
 
         target.draw(rect);
@@ -206,6 +206,13 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
             target.draw(sprite);
         }
+
+        sprintf(text_c, "%d", _pnjs.size());
+
+        text.setString(text_c);
+        text.setPosition(300, 3);
+
+        target.draw(text);
     }
 
 }// draw()
