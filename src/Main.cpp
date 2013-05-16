@@ -47,7 +47,7 @@ int main(int argc, char ** argv)
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if((event.type == sf::Event::KeyPressed) && Jeu::instance().get_menu()->get_menu_type() == Menu::MENU_CONFIGURATION)
+            if((event.type == sf::Event::KeyPressed) )
                 Jeu::instance().press_touch(event.key);
 
             if (event.type == sf::Event::Closed)
