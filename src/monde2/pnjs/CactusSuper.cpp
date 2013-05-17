@@ -15,7 +15,7 @@
 
 #include <vector>
 
-CactusSuper::CactusSuper(Case * cse) : MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("cactusmaxi")), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT), _acces_joueur(false), _objet(false)
+CactusSuper::CactusSuper(Case * cse) : MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("porteur")), _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT), _acces_joueur(false), _objet(false)
 {
     get_sprite().setScale(1.2, 1.2);
 }
