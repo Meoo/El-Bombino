@@ -192,8 +192,7 @@ void MobileIA::deplacement_aleatoire()
         if (choix == 0)
         {
             _derniere_direction = nsUtil::GAUCHE;
-            if(!get_case()->get_case_gauche()->est_en_feu())
-                bouger(nsUtil::GAUCHE);
+            bouger(nsUtil::GAUCHE);
             return;
         }
         --choix;
@@ -204,8 +203,7 @@ void MobileIA::deplacement_aleatoire()
         if (choix == 0)
         {
             _derniere_direction = nsUtil::DROITE;
-            if(!get_case()->get_case_droite()->est_en_feu())
-                bouger(nsUtil::DROITE);
+            bouger(nsUtil::DROITE);
             return;
         }
         --choix;
@@ -216,8 +214,7 @@ void MobileIA::deplacement_aleatoire()
         if (choix == 0)
         {
             _derniere_direction = nsUtil::HAUT;
-            if(!get_case()->get_case_haut()->est_en_feu())
-                bouger(nsUtil::HAUT);
+            bouger(nsUtil::HAUT);
             return;
         }
         --choix;
@@ -228,8 +225,7 @@ void MobileIA::deplacement_aleatoire()
         if (choix == 0)
         {
             _derniere_direction = nsUtil::BAS;
-            if(!get_case()->get_case_bas()->est_en_feu())
-                bouger(nsUtil::BAS);
+            bouger(nsUtil::BAS);
             return;
         }
     }
