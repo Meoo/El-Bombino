@@ -341,20 +341,6 @@ void Niveau::mise_a_jour()
     obj_vec_t objs;
 
 
-    unsigned max = -1;
-    for(std::list<MobileIA *>::iterator i = _pnjs.begin(); i != _pnjs.end(); ++i)
-    {
-        if((*i)->get_case()->get_case_info()._distance == max)
-        {
-            LOG("NON PRATICABLE");
-            LOG((*i)->get_case()->get_case_info()._distance_cacher);
-        }
-        else
-        {
-            LOG("PRATICABLE");
-            LOG((*i)->get_case()->get_case_info()._distance);
-        }
-    }
 
     // Mettre à jour toutes les cases
     for (unsigned i = 0; i < _largeur * _hauteur; ++i)
