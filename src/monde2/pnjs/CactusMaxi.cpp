@@ -82,6 +82,22 @@ void CactusMaxi::mise_a_jour_ia()
     unsigned max = -1;
     if(get_case()->get_case_info()._distance < max)
     {
+        switch (get_case()->get_case_info()._direction) {
+            case nsUtil::HAUT:
+                if(get_case()->get_case_haut()->est_en_feu())return;
+                break;
+            case nsUtil::BAS:
+                if(get_case()->get_case_bas()->est_en_feu())return;
+                break;
+            case nsUtil::GAUCHE:
+                if(get_case()->get_case_gauche()->est_en_feu())return;
+                break;
+            case nsUtil::DROITE:
+                if(get_case()->get_case_droite()->est_en_feu())return;
+                break;
+            default:
+                break;
+        }
         if(!_acces_joueur)
         {
             _acces_joueur = true;

@@ -87,19 +87,19 @@ void CactusMini::mise_a_jour_ia()
         }
         if ((get_case()->get_case_gauche()->get_case_info()._distance
                 >= get_case()->get_case_info()._distance)
-                && get_case()->get_case_gauche()->est_praticable())
+                && get_case()->get_case_gauche()->est_praticable() && !get_case()->get_case_gauche()->est_en_feu())
             bouger(nsUtil::GAUCHE);
         if ((get_case()->get_case_droite()->get_case_info()._distance
                 >= get_case()->get_case_info()._distance)
-                && get_case()->get_case_droite()->est_praticable())
+                && get_case()->get_case_droite()->est_praticable() && !get_case()->get_case_gauche()->est_en_feu())
             bouger(nsUtil::DROITE);
         if ((get_case()->get_case_haut()->get_case_info()._distance
                 >= get_case()->get_case_info()._distance)
-                && get_case()->get_case_haut()->est_praticable())
+                && get_case()->get_case_haut()->est_praticable() && !get_case()->get_case_haut()->est_en_feu())
             bouger(nsUtil::HAUT);
         if ((get_case()->get_case_bas()->get_case_info()._distance
                 >= get_case()->get_case_info()._distance)
-                && get_case()->get_case_bas()->est_praticable())
+                && get_case()->get_case_bas()->est_praticable() && !get_case()->get_case_bas()->est_en_feu())
             bouger(nsUtil::BAS);
     }
     else

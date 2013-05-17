@@ -154,7 +154,22 @@ void CactusSuper::mise_a_jour_ia()
                  break;
          }
     }
-
+    switch (get_case()->get_case_info()._direction) {
+        case nsUtil::HAUT:
+            if(get_case()->get_case_haut()->est_en_feu())return;
+            break;
+        case nsUtil::BAS:
+            if(get_case()->get_case_bas()->est_en_feu())return;
+            break;
+        case nsUtil::GAUCHE:
+            if(get_case()->get_case_gauche()->est_en_feu())return;
+            break;
+        case nsUtil::DROITE:
+            if(get_case()->get_case_droite()->est_en_feu())return;
+            break;
+        default:
+            break;
+    }
      bouger(get_case()->get_case_info()._direction_cacher);
 }// mise_a_jour_ia()
 
