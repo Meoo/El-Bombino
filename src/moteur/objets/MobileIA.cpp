@@ -145,20 +145,20 @@ void MobileIA::appliquer_bonus(Bonus::bonus_t type_bonus)
 void MobileIA::deplacement_aleatoire()
 {
     Case * gauche = get_case()->get_case_gauche();
-    Soulevable * bonus_gauche = dynamic_cast<Soulevable *> (gauche->get_objet());
-    bool gauche_ok = gauche->est_praticable() && !gauche->est_en_feu() && (gauche->get_objet() == NULL || !bonus_gauche);
+    Bonus * bonus_gauche = dynamic_cast<Bonus *> (gauche->get_objet());
+    bool gauche_ok = gauche->est_praticable() && !gauche->est_en_feu() && (gauche->get_objet() == NULL || bonus_gauche);
 
     Case * droite = get_case()->get_case_droite();
-    Soulevable * bonus_droite = dynamic_cast<Soulevable *> (droite->get_objet());
-    bool droite_ok = droite->est_praticable() && !droite->est_en_feu() && (droite->get_objet() == NULL || !bonus_droite);
+    Bonus * bonus_droite = dynamic_cast<Bonus *> (droite->get_objet());
+    bool droite_ok = droite->est_praticable() && !droite->est_en_feu() && (droite->get_objet() == NULL || bonus_droite);
 
     Case * haut = get_case()->get_case_haut();
-    Soulevable * bonus_haut = dynamic_cast<Soulevable *> (haut->get_objet());
-    bool haut_ok = haut->est_praticable() && !haut->est_en_feu() && (haut->get_objet() == NULL || !bonus_haut);
+    Bonus * bonus_haut = dynamic_cast<Bonus *> (haut->get_objet());
+    bool haut_ok = haut->est_praticable() && !haut->est_en_feu() && (haut->get_objet() == NULL || bonus_haut);
 
     Case * bas = get_case()->get_case_bas();
-    Soulevable * bonus_bas = dynamic_cast<Soulevable *> (bas->get_objet());
-    bool bas_ok = bas->est_praticable() && !bas->est_en_feu() && (bas->get_objet() == NULL || !bonus_bas);
+    Bonus * bonus_bas = dynamic_cast<Bonus *> (bas->get_objet());
+    bool bas_ok = bas->est_praticable() && !bas->est_en_feu() && (bas->get_objet() == NULL || bonus_bas);
 
     int num_choix = gauche_ok + droite_ok + haut_ok + bas_ok;
 
