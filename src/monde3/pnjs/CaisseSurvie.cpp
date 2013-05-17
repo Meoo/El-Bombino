@@ -51,7 +51,6 @@ void CaisseSurvie::mise_a_jour_ia()
             && get_case()->get_case_gauche()->get_case_info()._danger_explosion == max) {
             bouger(nsUtil::GAUCHE);
             _fonce_sur_bombe = false;
-            cout << "danger_gauche" << endl;
             return;
         }
         else if (get_case()->get_case_droite()->est_praticable()
@@ -60,7 +59,6 @@ void CaisseSurvie::mise_a_jour_ia()
             && get_case()->get_case_droite()->get_case_info()._danger_explosion == max) {
             bouger(nsUtil::DROITE);
             _fonce_sur_bombe = false;
-            cout << "danger_droite" << endl;
             return;
         }
         else if (get_case()->get_case_haut()->est_praticable()
@@ -69,7 +67,6 @@ void CaisseSurvie::mise_a_jour_ia()
             && get_case()->get_case_haut()->get_case_info()._danger_explosion == max) {
             bouger(nsUtil::HAUT);
             _fonce_sur_bombe = false;
-            cout << "danger_haut" << endl;
             return;
         }
         else if (get_case()->get_case_bas()->est_praticable()
@@ -78,44 +75,43 @@ void CaisseSurvie::mise_a_jour_ia()
             && get_case()->get_case_bas()->get_case_info()._danger_explosion == max) {
             bouger(nsUtil::BAS);
             _fonce_sur_bombe = false;
-            cout << "danger_bas" << endl;
             return;
         }
 
         if (!_fonce_sur_bombe) {
-            if ((get_case()->get_case_gauche()->get_case_info()._distance
-                >= get_case()->get_case_info()._distance)
+            if ((get_case()->get_case_gauche()->get_case_info()._distance_cacher
+                > get_case()->get_case_info()._distance_cacher)
                 && get_case()->get_case_gauche()->est_praticable()
                 && get_case()->get_case_gauche()->get_objet() == NULL
                 && !get_case()->get_case_gauche()->est_en_feu()) {
-                bouger(nsUtil::GAUCHE); cout << "distance_gauche" << endl;}
-            else if ((get_case()->get_case_droite()->get_case_info()._distance
-                >= get_case()->get_case_info()._distance)
+                bouger(nsUtil::GAUCHE);}
+            else if ((get_case()->get_case_droite()->get_case_info()._distance_cacher
+                > get_case()->get_case_info()._distance_cacher)
                 && get_case()->get_case_droite()->est_praticable()
                 && get_case()->get_case_droite()->get_objet() == NULL
                 && !get_case()->get_case_droite()->est_en_feu()) {
-                bouger(nsUtil::DROITE); cout << "distance_droite" << endl;}
-            else if ((get_case()->get_case_haut()->get_case_info()._distance
-                >= get_case()->get_case_info()._distance)
+                bouger(nsUtil::DROITE);}
+            else if ((get_case()->get_case_haut()->get_case_info()._distance_cacher
+                > get_case()->get_case_info()._distance_cacher)
                 && get_case()->get_case_haut()->est_praticable()
                 && get_case()->get_case_haut()->get_objet() == NULL
                 && !get_case()->get_case_haut()->est_en_feu()) {
-                bouger(nsUtil::HAUT); cout << "distance_haut" << endl;}
-            else if ((get_case()->get_case_bas()->get_case_info()._distance
-                >= get_case()->get_case_info()._distance)
+                bouger(nsUtil::HAUT);}
+            else if ((get_case()->get_case_bas()->get_case_info()._distance_cacher
+                > get_case()->get_case_info()._distance_cacher)
                 && get_case()->get_case_bas()->est_praticable()
                 && get_case()->get_case_bas()->get_objet() == NULL
                 && !get_case()->get_case_bas()->est_en_feu()) {
-                bouger(nsUtil::BAS); cout << "distance_bas" << endl;}
+                bouger(nsUtil::BAS);}
             else {
                 _fonce_sur_bombe = true;
                 set_vitesse(15.0);
-                bouger(get_case()->get_case_info()._direction, true);
-                cout << "foncer" << endl;
+                bouger(get_case()->get_case_info()._direction_cacher, true);
             }
         }
         else {
-            bouger(get_case()->get_case_info()._direction, true);
+            bouger(get_case()->get_case_info()._direction_cacher, true);
+            cout << "foncer true" << get_case()->get_case_info()._direction_cacher << endl;
         }
     }
     else
