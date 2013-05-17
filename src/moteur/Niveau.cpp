@@ -13,6 +13,7 @@
 #include <moteur/objets/Joueur.hpp>
 #include <moteur/objets/MobileIA.hpp>
 #include <moteur/objets/Bombe.hpp>
+#include <monde3/pnjs/CaisseSurvie.hpp>
 
 #include <fstream>
 
@@ -343,14 +344,15 @@ void Niveau::mise_a_jour()
            Case * case_haut = (*i)->get_case()->get_case_haut();
            Case * case_bas = (*i)->get_case()->get_case_bas();
            bool ok_bas = true, ok_gauche = true, ok_droite = true, ok_haut = true;
-           for(unsigned puissance = 1; puissance < (*i)->get_puissance(); ++puissance)
+           for(unsigned puissance = 1; puissance <= (*i)->get_puissance(); ++puissance)
            {
                if(case_bas && ok_bas)
                {
                    if(case_bas->est_praticable())
                    {
-                       case_bas->get_case_info()._danger_explosion = (*i)->get_timer();
-                      if(case_bas->get_objet())ok_bas = false;
+                      case_bas->get_case_info()._danger_explosion = (*i)->get_timer();
+                      CaisseSurvie * cs = dynamic_cast<CaisseSurvie *>(case_bas->get_objet());
+                      if(case_bas->get_objet() && cs == NULL) ok_bas = false;
                       case_bas = case_bas->get_case_bas();
                    }
                }
@@ -358,8 +360,9 @@ void Niveau::mise_a_jour()
                {
                    if(case_haut->est_praticable())
                    {
-                       case_haut->get_case_info()._danger_explosion = (*i)->get_timer();
-                      if(case_haut->get_objet())ok_haut = false;
+                      case_haut->get_case_info()._danger_explosion = (*i)->get_timer();
+                      CaisseSurvie * cs = dynamic_cast<CaisseSurvie *>(case_haut->get_objet());
+                      if(case_haut->get_objet() && cs == NULL) ok_haut = false;
                       case_haut = case_haut->get_case_haut();
                    }
                }
@@ -368,7 +371,8 @@ void Niveau::mise_a_jour()
                   if(case_gauche->est_praticable())
                   {
                       case_gauche->get_case_info()._danger_explosion = (*i)->get_timer();
-                      if(case_gauche->get_objet())ok_gauche = false;
+                      CaisseSurvie * cs = dynamic_cast<CaisseSurvie *>(case_gauche->get_objet());
+                      if(case_gauche->get_objet() && cs == NULL) ok_gauche = false;
                       case_gauche = case_gauche->get_case_gauche();
                   }
                }
@@ -377,7 +381,8 @@ void Niveau::mise_a_jour()
                    if(case_droite->est_praticable())
                    {
                       case_droite->get_case_info()._danger_explosion = (*i)->get_timer();
-                      if(case_droite->get_objet())ok_droite = false;
+                      CaisseSurvie * cs = dynamic_cast<CaisseSurvie *>(case_droite->get_objet());
+                      if(case_droite->get_objet() && cs == NULL) ok_droite = false;
                       case_droite = case_droite->get_case_droite();
                    }
                }

@@ -85,15 +85,19 @@ void CactusMaxi::mise_a_jour_ia()
         switch (get_case()->get_case_info()._direction) {
             case nsUtil::HAUT:
                 if(get_case()->get_case_haut()->est_en_feu())return;
+                if (get_case()->get_case_haut()->get_objet() != NULL) return;
                 break;
             case nsUtil::BAS:
                 if(get_case()->get_case_bas()->est_en_feu())return;
+                if (get_case()->get_case_bas()->get_objet() != NULL) return;
                 break;
             case nsUtil::GAUCHE:
                 if(get_case()->get_case_gauche()->est_en_feu())return;
+                if (get_case()->get_case_gauche()->get_objet() != NULL) return;
                 break;
             case nsUtil::DROITE:
                 if(get_case()->get_case_droite()->est_en_feu())return;
+                if (get_case()->get_case_droite()->get_objet() != NULL) return;
                 break;
             default:
                 break;

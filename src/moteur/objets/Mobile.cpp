@@ -38,7 +38,7 @@ const Soulevable * Mobile::get_objet_souleve() const
 }// get_objet_souleve()
 
 
-void Mobile::bouger(nsUtil::direction_t dir)
+void Mobile::bouger(nsUtil::direction_t dir, bool forcer)
 {
     if (_bouge)
         return; // TODO assert?
@@ -56,7 +56,8 @@ void Mobile::bouger(nsUtil::direction_t dir)
     }
 
     Soulevable * soul = dynamic_cast<Soulevable *> (cse->get_objet());
-    if (cse->est_praticable() && soul == NULL)
+    if (forcer) _bouge = true;
+    else if (cse->est_praticable() && soul == NULL)
     {
         _bouge = true;
     }

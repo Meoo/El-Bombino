@@ -64,12 +64,19 @@ unsigned Case::get_duree_flammes() const
 bool Case::est_praticable()
 {
     return true;
-}// est_particable()
+}// est_praticable()
 
 
 void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     sf::Sprite sprite(*_texture);
+
+#ifndef NDBEUG
+    unsigned max = -1;
+    if (_case_info._danger_explosion < max) {
+        sprite.setTexture(Jeu::instance().get_texture("danger"));
+    }
+#endif
     sprite.setPosition((float) _x * TILE_SIZE,
             (float) _y * TILE_SIZE + (float) TILE_SIZE
                     - (float) sprite.getTexture()->getSize().y);

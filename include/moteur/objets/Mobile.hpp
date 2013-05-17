@@ -38,7 +38,7 @@ public:
     Soulevable *        get_objet_souleve();
     const Soulevable *  get_objet_souleve() const;
 
-    void                bouger(nsUtil::direction_t dir);
+    void                bouger(nsUtil::direction_t dir, bool forcer = false);
     bool                est_en_mouvement() const;
 
     float               get_vitesse() const;
