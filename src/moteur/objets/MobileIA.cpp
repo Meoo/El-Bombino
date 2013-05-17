@@ -51,7 +51,32 @@ void MobileIA::mise_a_jour()
 
     if (_protection > 0)
         --_protection;
-
+    if(est_en_mouvement())
+    {
+        MobileIA * mob;
+        switch (get_direction()) {
+                case nsUtil::HAUT:
+                    mob = dynamic_cast<MobileIA *>(get_case()->get_case_haut()->get_objet());
+                    if(mob)mise_a_jour_ia();
+                    break;
+                case nsUtil::BAS:
+                    mob = dynamic_cast<MobileIA *>(get_case()->get_case_bas()->get_objet());
+                    if(mob)mise_a_jour_ia();
+                    break;
+                case nsUtil::DROITE:
+                    mob = dynamic_cast<MobileIA *>(get_case()->get_case_droite()->get_objet());
+                    if(mob)mise_a_jour_ia();
+                    break;
+                case nsUtil::GAUCHE:
+                    mob = dynamic_cast<MobileIA *>(get_case()->get_case_gauche()->get_objet());
+                    if(mob)mise_a_jour_ia();
+                    break;
+                case nsUtil::ORIGINE:
+                    break;
+                default:
+                    break;
+            }
+    }
     // TODO Gérer la direction
     _sprite.setPosition(get_position_ecran());
 }// mise_a_jour()
