@@ -80,6 +80,64 @@ void CactusSuper::appliquer_bonus(Bonus::bonus_t type_bonus)
 void CactusSuper::mise_a_jour_ia()
 {
     Soulevable * soulevable;
+    if(get_objet_souleve() == NULL)
+    {
+        switch(get_case()->get_case_info()._direction_cacher){
+            case(nsUtil::HAUT):
+            soulevable = dynamic_cast<Soulevable *> (get_case()->get_case_haut()->get_objet());
+             if(soulevable){
+                 soulevable->set_porteur(this);
+                 if(!get_case()->get_case_bas()->get_objet())soulevable->deposer(get_case()->get_case_bas());
+             }
+             break;
+            case(nsUtil::BAS):
+             soulevable = dynamic_cast<Soulevable *> (get_case()->get_case_bas()->get_objet());
+             if(soulevable){
+                 soulevable->set_porteur(this);
+                 if(!get_case()->get_case_haut()->get_objet())soulevable->deposer(get_case()->get_case_haut());
+             }
+             break;
+            case(nsUtil::DROITE):
+             soulevable = dynamic_cast<Soulevable *> (get_case()->get_case_droite()->get_objet());
+             if(soulevable){
+                 soulevable->set_porteur(this);
+                 if(!get_case()->get_case_gauche()->get_objet())soulevable->deposer(get_case()->get_case_gauche());
+             }
+             break;
+            case(nsUtil::GAUCHE):
+             soulevable = dynamic_cast<Soulevable *> (get_case()->get_case_gauche()->get_objet());
+             if(soulevable){
+                 soulevable->set_porteur(this);
+                 if(!get_case()->get_case_droite()->get_objet())soulevable->deposer(get_case()->get_case_droite());
+             }
+             break;
+            case(nsUtil::ORIGINE):
+             break;
+            }
+    }
+    switch (get_case()->get_case_info()._direction_cacher) {
+        case nsUtil::HAUT:
+            if(get_case()->get_case_haut()->est_en_feu())return;
+            break;
+        case nsUtil::BAS:
+            if(get_case()->get_case_bas()->est_en_feu())return;
+            break;
+        case nsUtil::GAUCHE:
+            if(get_case()->get_case_gauche()->est_en_feu())return;
+            break;
+        case nsUtil::DROITE:
+            if(get_case()->get_case_droite()->est_en_feu())return;
+            break;
+        default:
+            break;
+    }
+     bouger(get_case()->get_case_info()._direction_cacher);
+}// mise_a_jour_ia()
+
+
+void CactusSuper::mise_a_jour()
+{
+    MobileIA::mise_a_jour();
     if(get_objet_souleve() != NULL)
     {
         switch(get_case()->get_case_info()._direction_cacher){
@@ -118,65 +176,8 @@ void CactusSuper::mise_a_jour_ia()
              case(nsUtil::ORIGINE):
                  break;
          }
-    }
-    else
-    {
-         switch(get_case()->get_case_info()._direction_cacher){
-             case(nsUtil::HAUT):
-                soulevable = dynamic_cast<Soulevable *> (get_case()->get_case_haut()->get_objet());
-                 if(soulevable){
-                     soulevable->set_porteur(this);
-                     if(!get_case()->get_case_bas()->get_objet())soulevable->deposer(get_case()->get_case_bas());
-                 }
-                 break;
-             case(nsUtil::BAS):
-                 soulevable = dynamic_cast<Soulevable *> (get_case()->get_case_bas()->get_objet());
-                 if(soulevable){
-                     soulevable->set_porteur(this);
-                     if(!get_case()->get_case_haut()->get_objet())soulevable->deposer(get_case()->get_case_haut());
-                 }
-                 break;
-             case(nsUtil::DROITE):
-                 soulevable = dynamic_cast<Soulevable *> (get_case()->get_case_droite()->get_objet());
-                 if(soulevable){
-                     soulevable->set_porteur(this);
-                     if(!get_case()->get_case_gauche()->get_objet())soulevable->deposer(get_case()->get_case_gauche());
-                 }
-                 break;
-             case(nsUtil::GAUCHE):
-                 soulevable = dynamic_cast<Soulevable *> (get_case()->get_case_gauche()->get_objet());
-                 if(soulevable){
-                     soulevable->set_porteur(this);
-                     if(!get_case()->get_case_droite()->get_objet())soulevable->deposer(get_case()->get_case_droite());
-                 }
-                 break;
-             case(nsUtil::ORIGINE):
-                 break;
-         }
-    }
-    switch (get_case()->get_case_info()._direction) {
-        case nsUtil::HAUT:
-            if(get_case()->get_case_haut()->est_en_feu())return;
-            break;
-        case nsUtil::BAS:
-            if(get_case()->get_case_bas()->est_en_feu())return;
-            break;
-        case nsUtil::GAUCHE:
-            if(get_case()->get_case_gauche()->est_en_feu())return;
-            break;
-        case nsUtil::DROITE:
-            if(get_case()->get_case_droite()->est_en_feu())return;
-            break;
-        default:
-            break;
-    }
-     bouger(get_case()->get_case_info()._direction_cacher);
-}// mise_a_jour_ia()
 
-
-void CactusSuper::mise_a_jour()
-{
-    MobileIA::mise_a_jour();
+    }
 }// mise_a_jour()
 
 
