@@ -21,6 +21,7 @@
 #include <monde1/pnjs/Idiot.hpp>
 #include <monde2/pnjs/CactusMaxi.hpp>
 #include <monde2/pnjs/CactusMini.hpp>
+#include <monde3/pnjs/CaisseSurvie.hpp>
 #include <monde2/pnjs/Tequilla.hpp>
 #include <monde2/pnjs/Invisible.hpp>
 #include <monde2/pnjs/CactusSuper.hpp>
@@ -63,6 +64,9 @@ namespace Usine
 
         if (classe_objet.compare("CactusMini") == 0)
             return new CactusMini(cse);
+
+        if (classe_objet.compare("CaisseSurvie") == 0)
+            return new CaisseSurvie(cse);
 
         if (classe_objet.compare("Tequilla") == 0)
             return new Tequilla(cse);
