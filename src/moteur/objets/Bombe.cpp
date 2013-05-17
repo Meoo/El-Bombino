@@ -90,6 +90,11 @@ unsigned Bombe::get_puissance()
     return _puissance;
 } // get_puissance()
 
+const unsigned Bombe::get_timer() const
+{
+    return _timer;
+}
+
 sf::Sprite & Bombe::get_sprite()
 {
     return _sprite;

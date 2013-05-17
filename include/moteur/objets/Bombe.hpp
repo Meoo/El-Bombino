@@ -39,6 +39,8 @@ public:
 
     unsigned        get_puissance();
 
+    const unsigned        get_timer() const;
+
 protected:
     sf::Sprite &    get_sprite();
 

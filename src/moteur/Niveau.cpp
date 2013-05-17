@@ -335,6 +335,54 @@ void Niveau::mise_a_jour()
     {
        generer_info_case(_joueur->get_case());
        generer_info_case_cacher(_joueur->get_case());
+       for(std::list<Bombe *>::iterator i = _bombes_actives.begin(); i != _bombes_actives.end(); ++i)
+       {
+           (*i)->get_case()->get_case_info()._danger_explosion = (*i)->get_timer();
+           Case * case_gauche = (*i)->get_case()->get_case_gauche();
+           Case * case_droite = (*i)->get_case()->get_case_droite();
+           Case * case_haut = (*i)->get_case()->get_case_haut();
+           Case * case_bas = (*i)->get_case()->get_case_bas();
+           bool ok_bas = true, ok_gauche = true, ok_droite = true, ok_haut = true;
+           for(unsigned puissance = 1; puissance < (*i)->get_puissance(); ++puissance)
+           {
+               if(case_bas && ok_bas)
+               {
+                   if(case_bas->est_praticable())
+                   {
+                       case_bas->get_case_info()._danger_explosion = (*i)->get_timer();
+                      if(case_bas->get_objet())ok_bas = false;
+                      case_bas = case_bas->get_case_bas();
+                   }
+               }
+               if(case_haut && ok_haut)
+               {
+                   if(case_haut->est_praticable())
+                   {
+                       case_haut->get_case_info()._danger_explosion = (*i)->get_timer();
+                      if(case_haut->get_objet())ok_haut = false;
+                      case_haut = case_haut->get_case_haut();
+                   }
+               }
+               if(case_gauche && ok_gauche)
+               {
+                  if(case_gauche->est_praticable())
+                  {
+                      case_gauche->get_case_info()._danger_explosion = (*i)->get_timer();
+                      if(case_gauche->get_objet())ok_gauche = false;
+                      case_gauche = case_gauche->get_case_gauche();
+                  }
+               }
+               if(case_droite && ok_droite)
+               {
+                   if(case_droite->est_praticable())
+                   {
+                      case_droite->get_case_info()._danger_explosion = (*i)->get_timer();
+                      if(case_droite->get_objet())ok_droite = false;
+                      case_droite = case_droite->get_case_droite();
+                   }
+               }
+           }
+       }
     }
 
     typedef std::vector<Objet *> obj_vec_t;
