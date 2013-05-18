@@ -12,8 +12,8 @@ solution "El-Bombino"
   configurations { "Debug", "Release" }
   targetdir "bin"
   objdir "bin/obj"
-  includedirs { "include", "../../SFML2/include" }
-  libdirs "../../SFML2/bin/lib"
+  includedirs { "include", "../SFML2/include" }
+  libdirs "../SFML2/lib"
 
   -- Configurations Debug et Release
   configuration "Debug"

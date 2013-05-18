@@ -9,6 +9,7 @@
 #include <moteur/bombe/BombeGlacee.hpp>
 #include <moteur/Jeu.hpp>
 #include <moteur/Case.hpp>
+#include <monde3/pnjs/CaisseSurvie.hpp>
 
 
 #include <SFML/Window.hpp>
@@ -396,6 +397,7 @@ void    Joueur::glacee()
 
 void Joueur::toucher(Mobile* autre)
 {
+    if (dynamic_cast<CaisseSurvie * >(autre)) return;
     blesser();
 }// toucher()
 

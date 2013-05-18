@@ -91,8 +91,6 @@ const unsigned      IDIOT_VISIBILITE_DEFAULT    = 3;
 const unsigned      IDIOT_COLDOWN_ATT           = 250;
 const unsigned      IDIOT_COLDOWN_ATT_RAND      = 250;
 
-// CaisseSurvie
-const unsigned      CAISSE_SURVIE_VISIBILITE_DEFAULT    = 1;
 
 // Ressources
 const std::string   RC_FOLDER           ("rc/");

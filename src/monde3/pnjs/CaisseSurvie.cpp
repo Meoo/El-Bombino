@@ -21,8 +21,8 @@ using namespace std;
 CaisseSurvie::CaisseSurvie(Case * cse) :
         MobileIA(cse, IDIOT_PUISSANCE_DEFAULT, IDIOT_VIE_DEFAULT,
                 Jeu::instance().get_texture("caissesurvie1")), _coldown_att(
-                IDIOT_COLDOWN_ATT), _visibilite(CAISSE_SURVIE_VISIBILITE_DEFAULT), _puissance(
-                IDIOT_PUISSANCE_DEFAULT), _fonce_sur_bombe(false)
+                IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(
+                IDIOT_PUISSANCE_DEFAULT)
 {
     get_sprite().setScale(1, 1);
 }
@@ -50,7 +50,6 @@ void CaisseSurvie::mise_a_jour_ia()
             && !get_case()->get_case_gauche()->est_en_feu()
             && get_case()->get_case_gauche()->get_case_info()._danger_explosion == max) {
             bouger(nsUtil::GAUCHE);
-            _fonce_sur_bombe = false;
             return;
         }
         else if (get_case()->get_case_droite()->est_praticable()
@@ -58,7 +57,6 @@ void CaisseSurvie::mise_a_jour_ia()
             && !get_case()->get_case_droite()->est_en_feu()
             && get_case()->get_case_droite()->get_case_info()._danger_explosion == max) {
             bouger(nsUtil::DROITE);
-            _fonce_sur_bombe = false;
             return;
         }
         else if (get_case()->get_case_haut()->est_praticable()
@@ -66,7 +64,6 @@ void CaisseSurvie::mise_a_jour_ia()
             && !get_case()->get_case_haut()->est_en_feu()
             && get_case()->get_case_haut()->get_case_info()._danger_explosion == max) {
             bouger(nsUtil::HAUT);
-            _fonce_sur_bombe = false;
             return;
         }
         else if (get_case()->get_case_bas()->est_praticable()
@@ -74,45 +71,33 @@ void CaisseSurvie::mise_a_jour_ia()
             && !get_case()->get_case_bas()->est_en_feu()
             && get_case()->get_case_bas()->get_case_info()._danger_explosion == max) {
             bouger(nsUtil::BAS);
-            _fonce_sur_bombe = false;
             return;
         }
 
-        if (!_fonce_sur_bombe) {
-            if ((get_case()->get_case_gauche()->get_case_info()._distance_cacher
-                > get_case()->get_case_info()._distance_cacher)
-                && get_case()->get_case_gauche()->est_praticable()
-                && get_case()->get_case_gauche()->get_objet() == NULL
-                && !get_case()->get_case_gauche()->est_en_feu()) {
-                bouger(nsUtil::GAUCHE);}
-            else if ((get_case()->get_case_droite()->get_case_info()._distance_cacher
-                > get_case()->get_case_info()._distance_cacher)
-                && get_case()->get_case_droite()->est_praticable()
-                && get_case()->get_case_droite()->get_objet() == NULL
-                && !get_case()->get_case_droite()->est_en_feu()) {
-                bouger(nsUtil::DROITE);}
-            else if ((get_case()->get_case_haut()->get_case_info()._distance_cacher
-                > get_case()->get_case_info()._distance_cacher)
-                && get_case()->get_case_haut()->est_praticable()
-                && get_case()->get_case_haut()->get_objet() == NULL
-                && !get_case()->get_case_haut()->est_en_feu()) {
-                bouger(nsUtil::HAUT);}
-            else if ((get_case()->get_case_bas()->get_case_info()._distance_cacher
-                > get_case()->get_case_info()._distance_cacher)
-                && get_case()->get_case_bas()->est_praticable()
-                && get_case()->get_case_bas()->get_objet() == NULL
-                && !get_case()->get_case_bas()->est_en_feu()) {
-                bouger(nsUtil::BAS);}
-            else {
-                _fonce_sur_bombe = true;
-                set_vitesse(15.0);
-                bouger(get_case()->get_case_info()._direction_cacher, true);
-            }
-        }
-        else {
-            bouger(get_case()->get_case_info()._direction_cacher, true);
-            cout << "foncer true" << get_case()->get_case_info()._direction_cacher << endl;
-        }
+        if ((get_case()->get_case_gauche()->get_case_info()._distance_cacher
+            > get_case()->get_case_info()._distance_cacher)
+            && get_case()->get_case_gauche()->est_praticable()
+            && get_case()->get_case_gauche()->get_objet() == NULL
+            && !get_case()->get_case_gauche()->est_en_feu())
+            bouger(nsUtil::GAUCHE);
+        else if ((get_case()->get_case_droite()->get_case_info()._distance_cacher
+            > get_case()->get_case_info()._distance_cacher)
+            && get_case()->get_case_droite()->est_praticable()
+            && get_case()->get_case_droite()->get_objet() == NULL
+            && !get_case()->get_case_droite()->est_en_feu())
+            bouger(nsUtil::DROITE);
+        else if ((get_case()->get_case_haut()->get_case_info()._distance_cacher
+            > get_case()->get_case_info()._distance_cacher)
+            && get_case()->get_case_haut()->est_praticable()
+            && get_case()->get_case_haut()->get_objet() == NULL
+            && !get_case()->get_case_haut()->est_en_feu())
+            bouger(nsUtil::HAUT);
+        else if ((get_case()->get_case_bas()->get_case_info()._distance_cacher
+            > get_case()->get_case_info()._distance_cacher)
+            && get_case()->get_case_bas()->est_praticable()
+            && get_case()->get_case_bas()->get_objet() == NULL
+            && !get_case()->get_case_bas()->est_en_feu())
+            bouger(nsUtil::BAS);
     }
     else
     {

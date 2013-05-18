@@ -72,12 +72,12 @@ void Case::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     sf::Sprite sprite(*_texture);
 
-#ifndef NDBEUG
+/*#ifndef NDBEUG
     unsigned max = -1;
     if (_case_info._danger_explosion < max) {
         sprite.setTexture(Jeu::instance().get_texture("danger"));
     }
-#endif
+#endif*/
     sprite.setPosition((float) _x * TILE_SIZE,
             (float) _y * TILE_SIZE + (float) TILE_SIZE
                     - (float) sprite.getTexture()->getSize().y);
