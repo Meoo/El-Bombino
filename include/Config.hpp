@@ -113,6 +113,8 @@ const sf::Keyboard::Key   CMD_SPECIA_DEFAULTL     = sf::Keyboard::E;
 #else
 #   include <iostream>
 #   define LOG(x) std::cout << ( x ) << std::endl;
+
+extern bool                DEBUG_ALGO;
 #endif
 
 // fichier config

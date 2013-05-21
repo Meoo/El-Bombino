@@ -22,7 +22,11 @@ namespace nsUtil
     std::string SFKeyToString(sf::Keyboard::Key keycode);
 
     typedef enum direction {
-        HAUT,BAS,DROITE,GAUCHE,ORIGINE,
+        HAUT,
+        DROITE,
+        BAS,
+        GAUCHE,
+        ORIGINE,
     } direction_t;
 }
 // namespace Utile

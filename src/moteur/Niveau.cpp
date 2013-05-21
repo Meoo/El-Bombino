@@ -108,6 +108,23 @@ void Niveau::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         if (_cases[i]->est_praticable())
             target.draw(*_cases[i], states);
+
+#ifndef NDEBUG
+        if (DEBUG_ALGO && _cases[i]->get_case_info()._direction != nsUtil::ORIGINE)
+        {
+            sf::Sprite s(Jeu::instance().get_texture("fleche"));
+            s.setOrigin(16, 16);
+            s.setPosition(_cases[i]->get_x() * TILE_SIZE + TILE_SIZE / 2, _cases[i]->get_y() * TILE_SIZE + TILE_SIZE / 2);
+            s.setRotation(_cases[i]->get_case_info()._direction * 90);
+            target.draw(s, states);
+
+            sf::Text t(nsUtil::convertInt(_cases[i]->get_case_info()._distance), Jeu::instance().get_default_font(), 16);
+            t.setPosition(_cases[i]->get_x() * TILE_SIZE + TILE_SIZE / 2, _cases[i]->get_y() * TILE_SIZE + TILE_SIZE / 2);
+            t.setColor(sf::Color::White);
+            t.setStyle(sf::Text::Bold);
+            target.draw(t);
+        }
+#endif
     }
 
     // Dessiner les murs et les objets

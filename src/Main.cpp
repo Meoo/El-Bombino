@@ -15,12 +15,21 @@
 
 #include <moteur/Jeu.hpp>
 
+#ifndef NDEBUG
+bool DEBUG_ALGO;
+#endif
+
 int main(int argc, char ** argv)
 {
     srand(time(NULL));
 
     Jeu::instance().charger();
 
+    sf::Music mus;
+    mus.openFromFile(RC_FOLDER + "musique.ogg");
+    mus.setVolume(50.f);
+    mus.setLoop(true);
+    mus.play();
 
     unsigned timer_close = 200;
 
@@ -37,6 +46,7 @@ int main(int argc, char ** argv)
     }
 
 #ifndef NDEBUG
+    DEBUG_ALGO = false;
     sf::Clock clock;
     int count = 0;
 #endif
@@ -58,6 +68,11 @@ int main(int argc, char ** argv)
 
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
                 Jeu::instance().press_pause();
+
+#ifndef NDEBUG
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::F8))
+                DEBUG_ALGO = !DEBUG_ALGO;
+#endif
 
             if (event.type == sf::Event::MouseButtonPressed)
             {

@@ -53,23 +53,23 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _mc_modif_haut(false), _mc_modif_bas(
     _menu_principal_quitter.setOrigin(_menu_principal_quitter.getLocalBounds().width / 2, _menu_principal_quitter.getLocalBounds().height / 2);
     _menu_principal_quitter.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 5/ 8);
 
-    _fond_mp_play = sf::RectangleShape(sf::Vector2f(_menu_principal_play.getLocalBounds().width, _menu_principal_play.getGlobalBounds().height * 2));
-    _fond_mp_play.setOrigin(_menu_principal_play.getOrigin());
+    _fond_mp_play = sf::RectangleShape(sf::Vector2f(_menu_principal_play.getLocalBounds().width + 30, _menu_principal_play.getGlobalBounds().height * 2));
+    _fond_mp_play.setOrigin(_fond_mp_play.getSize().x / 2, _menu_principal_play.getLocalBounds().height / 2);
     _fond_mp_play.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2/ 8);
     _fond_mp_play.setFillColor(sf::Color::White);
 
-    _fond_mp_charger = sf::RectangleShape(sf::Vector2f(_menu_principal_charger.getLocalBounds().width, _menu_principal_charger.getLocalBounds().height * 2));
-    _fond_mp_charger.setOrigin(_menu_principal_charger.getLocalBounds().width / 2, _menu_principal_charger.getLocalBounds().height / 2);
+    _fond_mp_charger = sf::RectangleShape(sf::Vector2f(_menu_principal_charger.getLocalBounds().width + 30, _menu_principal_charger.getLocalBounds().height * 2));
+    _fond_mp_charger.setOrigin(_fond_mp_charger.getSize().x / 2, _menu_principal_charger.getLocalBounds().height / 2);
     _fond_mp_charger.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 3/ 8);
     _fond_mp_charger.setFillColor(sf::Color::White);
 
-    _fond_mp_config = sf::RectangleShape(sf::Vector2f(_menu_principal_config.getLocalBounds().width, _menu_principal_config.getLocalBounds().height * 2));
-    _fond_mp_config.setOrigin(_menu_principal_config.getLocalBounds().width / 2, _menu_principal_config.getLocalBounds().height / 2);
+    _fond_mp_config = sf::RectangleShape(sf::Vector2f(_menu_principal_config.getLocalBounds().width + 30, _menu_principal_config.getLocalBounds().height * 2));
+    _fond_mp_config.setOrigin(_fond_mp_config.getSize().x / 2, _menu_principal_config.getLocalBounds().height / 2);
     _fond_mp_config.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 4/ 8);
     _fond_mp_config.setFillColor(sf::Color::White);
 
-    _fond_mp_quitter = sf::RectangleShape(sf::Vector2f(_menu_principal_quitter.getLocalBounds().width, _menu_principal_quitter.getLocalBounds().height * 2));
-    _fond_mp_quitter.setOrigin(_menu_principal_quitter.getLocalBounds().width / 2, _menu_principal_quitter.getLocalBounds().height / 2);
+    _fond_mp_quitter = sf::RectangleShape(sf::Vector2f(_menu_principal_quitter.getLocalBounds().width + 30, _menu_principal_quitter.getLocalBounds().height * 2));
+    _fond_mp_quitter.setOrigin(_fond_mp_quitter.getSize().x / 2, _menu_principal_quitter.getLocalBounds().height / 2);
     _fond_mp_quitter.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 5/ 8);
     _fond_mp_quitter.setFillColor(sf::Color::White);
 
@@ -262,13 +262,13 @@ Menu::Menu():  _menu_type(MENU_PRINCIPAL), _mc_modif_haut(false), _mc_modif_bas(
     //
     _quitter_1 = sf::Text(L"Jeu realisé dans le cadre du projet de fin de quatrième année",Jeu::instance().get_default_font());
     _quitter_1.setCharacterSize(28);
-    _quitter_1.setColor(sf::Color::White);
+    _quitter_1.setColor(sf::Color::Black);
     _quitter_1.setOrigin(_quitter_1.getLocalBounds().width / 2, _quitter_1.getLocalBounds().height / 2);
     _quitter_1.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 4);
 
     _quitter_2 = sf::Text("Bastien & Pascal-Pierre (r) Polytech'Marseille",Jeu::instance().get_default_font());
     _quitter_2.setCharacterSize(28);
-    _quitter_2.setColor(sf::Color::White);
+    _quitter_2.setColor(sf::Color::Black);
     _quitter_2.setOrigin(_quitter_2.getLocalBounds().width / 2, _quitter_2.getLocalBounds().height / 2);
     _quitter_2.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT * 2 / 4);
 }
@@ -290,7 +290,7 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     sf::Text texte_special;
     switch (_menu_type) {
         case MENU_CONFIGURATION:
-            //target.draw(sp_fond);
+            target.draw(sp_fond);
 
             texte_bas  = sf::Text(nsUtil::SFKeyToString(Jeu::instance().get_cmd()->getCmdBas()),Jeu::instance().get_default_font(), 20);
             if(_mc_modif_bas)
@@ -376,7 +376,7 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
             target.draw(_texte_pause);
             break;
         case MENU_PRINCIPAL:
-            //target.draw(sp_fond);
+            target.draw(sp_fond);
             target.draw(_fond_mp_play);
             target.draw(_menu_principal_play);
             target.draw(_fond_mp_charger);
@@ -409,6 +409,7 @@ void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
         case AUCUN_MENU:
             break;
         case QUITTER:
+            target.draw(sp_fond);
             target.draw(_quitter_1);
             target.draw(_quitter_2);
             break;

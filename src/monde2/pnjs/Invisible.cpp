@@ -23,9 +23,10 @@
 
 #include <vector>
 
-Invisible::Invisible(Case * cse) : MobileIA(cse, 1.f, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("invisible")),
+Invisible::Invisible(Case * cse) : MobileIA(cse, 1.f, IDIOT_VIE_DEFAULT, Jeu::instance().get_texture("mouche")),
                             _coldown_att(IDIOT_COLDOWN_ATT), _visibilite(IDIOT_VISIBILITE_DEFAULT), _puissance(IDIOT_PUISSANCE_DEFAULT), _invisible(true)
 {
+    get_sprite().setColor(sf::Color(255, 255, 255, 32));
 }
 
 Invisible::~Invisible()
@@ -84,18 +85,22 @@ void Invisible::attaquer_joueur()
 
 void Invisible::mise_a_jour_ia()
 {
-    if(get_case()->get_case_info()._distance > 6){
-        get_sprite().setTexture(Jeu::instance().get_texture("invisible"));
-        if(!_invisible){
+    if(get_case()->get_case_info()._distance > 6)
+    {
+        if(!_invisible)
+        {
             _invisible = !_invisible;
             set_vitesse(get_vitesse() / 3);
+            get_sprite().setColor(sf::Color(255, 255, 255, 32));
         }
     }
-    if(get_case()->get_case_info()._distance <= 6 ){
-        get_sprite().setTexture(Jeu::instance().get_texture("mouche"));
-        if(_invisible){
+    else
+    {
+        if(_invisible)
+        {
             _invisible = !_invisible;
             set_vitesse(get_vitesse() * 3.1);
+            get_sprite().setColor(sf::Color::White);
         }
     }
 
