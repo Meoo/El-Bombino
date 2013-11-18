@@ -1,0 +1,30 @@
+MONDES
+monde1.txt
+monde2.txt
+monde3.txt
+
+TEXTURES
+vide    moteur/sol/vide.png
+mur     moteur/mur/mur2.png
+sol     moteur/sol/Herbes_3.png
+caisse  moteur/caisse/test_caisse_vf.png
+bombe   moteur/bombe.png
+bombeglacee moteur/bombe_prisme.png
+joueur_bas      moteur/joueur_bas.png
+joueur_haut     moteur/joueur_haut.png
+joueur_droite   moteur/joueur_droite.png
+joueur_gauche   moteur/joueur_gauche.png
+feu     moteur/feu.png
+caisseinfini        moteur/caisse_infini.png
+bonus_bombe         moteur/bonus/bonus_bombe.png
+bonus_vie           moteur/bonus/bonus_vie.png
+bonus_puissance     moteur/bonus/bonus_puissance.png
+bonus_vitesse       moteur/bonus/bonus_vitesse.png
+malus_vitesse       moteur/bonus/malus_vitesse.png
+malus_bombe         moteur/bonus/malus_bombe.png
+malus_puissance     moteur/bonus/malus_puissance.png
+bonus_gant          moteur/bonus/bonus_gant.png
+bonus_bombe_glacee  moteur/bonus/bonus_bombe_glacee.png
+bonus_bombe_special moteur/bonus/bonus_bombe_special.png
+aucun_bonus_special moteur/bonus/aucun_bonus_special.png
+fleche              fleche.png

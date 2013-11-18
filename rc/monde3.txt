@@ -1,0 +1,42 @@
+NIVEAUX
+monde3/niveau1.txt
+monde3/niveau2.txt
+monde3/niveau3.txt
+monde3/niveau4.txt
+
+TEXTURES
+caisse monde3/caisse/caisse_metal1.png
+caisse monde3/caisse/caisse_metal2.png
+caisse monde3/caisse/caisse_metal3.png
+caisse monde3/caisse/caisse_metal4.png
+
+sol monde3/sol/sable.png
+
+mur monde3/mur/mur.png
+
+cactusmaxi monde3/pnj_cactus_v2.png
+cactusmaxi monde3/pnj_cactus_v3.png
+cactusmini monde3/pnj_cactus.png
+caissesurvie1 monde3/caisse/caisse_metal1.png
+caissesurvie2 monde3/caisse/caisse_survie.png
+idiot	   monde1/idiot.png
+tequilla   monde3/tequilla.png
+mouche     monde3/mouche.png
+invisible  monde3/invisible.png
+porteur monde3/pnj_cactus_v3.png
+
+CASES
+M Mur mur Vide
+_ Sol sol Vide
+C Sol sol Caisse
+B Sol sol CaissePiege
+I Sol sol Joueur
+R CaisseInfini caisseinfini Vide
+1 Sol sol CactusMaxi
+2 Sol sol CactusMini
+3 Sol sol Idiot
+4 Sol sol Tequilla
+5 Sol sol Invisible
+6 Sol sol Porteur
+7 Sol sol CaisseSurvie
+V Vide vide Vide

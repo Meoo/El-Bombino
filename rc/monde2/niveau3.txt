@@ -1,0 +1,16 @@
+20 15
+M M M M M M M M M M M M M M M M M M M M
+M _ _ _ _ _ M _ _ 2 _ _ _ _ _ C _ _ 1 M
+M _ _ _ _ _ M _ _ _ _ _ _ 1 _ C _ _ _ M
+M _ _ _ _ _ M _ C _ _ C _ _ _ C _ _ _ M
+M _ _ _ C _ _ _ C _ _ C _ M _ C _ _ _ M
+M _ _ _ C _ R _ C _ _ C _ M _ C _ _ _ M
+M _ I _ C _ R _ C _ 2 C _ M _ _ _ _ _ M
+M _ _ _ C _ R _ C _ 2 C _ M _ _ _ _ _ M
+M _ _ _ C _ R _ C _ _ C _ M _ _ _ _ _ M
+M _ _ _ C _ R _ C _ _ C _ M _ _ _ _ _ M
+M _ _ _ C _ _ _ C _ _ C _ M _ C _ _ _ M
+M _ _ _ _ _ M _ C _ _ C _ _ _ C _ _ _ M
+M _ _ _ _ _ M _ _ _ _ _ _ 1 _ C _ _ _ M
+M _ _ _ _ _ M _ _ 1 _ _ _ _ _ C _ _ 2 M
+M M M M M M M M M M M M M M M M M M M M

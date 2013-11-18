@@ -1,0 +1,24 @@
+NIVEAUX
+monde1/niveau1.txt
+monde1/niveau2.txt
+monde1/niveau3.txt
+
+TEXTURES
+caisse monde1/caisse/caisse_bois1.png
+caisse monde1/caisse/caisse_bois2.png
+caisse monde1/caisse/caisse_bois3.png
+caisse monde1/caisse/caisse_bois4.png
+
+mur monde1/mur/mur.png
+
+idiot monde1/idiot.png
+
+CASES
+M Mur mur Vide
+_ Sol sol Vide
+C Sol sol Caisse
+B Sol sol CaissePiege
+I Sol sol Joueur
+R CaisseInfini caisseinfini Vide
+1 Sol sol Idiot
+V Vide vide Vide

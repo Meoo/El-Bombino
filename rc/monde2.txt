@@ -1,0 +1,28 @@
+NIVEAUX
+monde2/niveau1.txt
+monde2/niveau2.txt
+monde2/niveau3.txt
+
+TEXTURES
+caisse monde2/caisse/caisse2.png
+caisse monde2/caisse/caisse3.png
+
+sol monde2/sol/sol_terre.png
+
+mur monde2/mur/mur_pierre_rouge.png
+
+cactusmaxi monde2/pnj_cactus.png
+cactusmini monde2/pnj_cactus.png
+idiot monde2/pnj_cactus_v2.png
+
+CASES
+M Mur mur Vide
+_ Sol sol Vide
+C Sol sol Caisse
+I Sol sol Joueur
+R CaisseInfini caisseinfini Vide
+1 Sol sol CactusMaxi
+2 Sol sol CactusMini
+V Vide vide Vide
+B Sol sol CaissePiege
+3 Sol sol Idiot
