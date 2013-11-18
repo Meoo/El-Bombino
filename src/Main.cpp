@@ -27,7 +27,7 @@ int main(int argc, char ** argv)
 
     sf::Music mus;
     mus.openFromFile(RC_FOLDER + "musique.ogg");
-    mus.setVolume(50.f);
+    mus.setVolume(10.f);
     mus.setLoop(true);
     mus.play();
 
